@@ -30,8 +30,6 @@ roojspacker_SOURCES = \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala
 
-		
-		
  
 roojspacker_VALAFLAGS = \
 	 --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
