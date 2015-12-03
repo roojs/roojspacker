@@ -2,7 +2,7 @@
 dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.68])
 
-AC_INIT([builder], [4.0.0])
+AC_INIT([roojspacker], [4.0.0])
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -20,16 +20,11 @@ AC_CHECK_LIB([m],[cos])
 
 dnl we need to check these exist, then it will generate a compile string for them.
 
-PKG_CHECK_MODULES(BUILDER, [
-		 clutter-gtk-1.0 
+PKG_CHECK_MODULES(ROOJSPACKER, [
 		 glib-2.0 >= 2.24.1
 		 gobject-2.0 >= 2.24.1
-		 gtk+-3.0 >= 3.11.3
-		 gtksourceview-3.0 
-		 json-glib-1.0 		 
 		 gee-1.0 
- 		 libxml-2.0 
-		 libsoup-2.4
+ 		
 		  
 ])
 
