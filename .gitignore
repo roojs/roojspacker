@@ -1,5 +1,6 @@
-src/JSDOC/*.c
 src/Makefile
+src/jsdoc/*.c
+src/jsdoc/*.o
 src/*.c
 src/*.o
 src/roojspacker
