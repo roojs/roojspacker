@@ -132,6 +132,9 @@ namespace JSDOC {
 			}
  		
         }
+        public bool isPunc(string ch) {
+    		return this.puncNull(ch) != null;
+        }
         
         public TokenName? puncNull (string ch)
         {
