@@ -93,7 +93,7 @@ namespace JSDOC {
                 }
                 // console.log(tok.data);
                 
-                debug("COL: %s", tok.asString());
+                //debug("COL: %s", tok.asString());
                 
                 switch(tok.type) {
                     case TokenType.VOID: 
