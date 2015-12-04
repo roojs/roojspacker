@@ -271,10 +271,7 @@ namespace JSDOC {
             
             while (!stream.lookEOF()) {
         		var ns = stream.look().to_string();
-
-				try {
-					Lang.punc(found + ns );
-				} catch(LangError e) {
+				if (!Lang.isPunc(found + ns )) {
 					break;
 				}
 				
