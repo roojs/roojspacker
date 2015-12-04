@@ -130,6 +130,7 @@ namespace JSDOC {
  			if (x == null) {
  				throw new LangError.ArgumentError("invalid punctuation character : %s",ch);
 			}
+			return x;
  		
         }
         public bool isPunc(string ch) {
