@@ -149,6 +149,7 @@ namespace JSDOC
 		
 	}
 
+
     public class Token : Object {
         
         public int id;
@@ -181,9 +182,16 @@ namespace JSDOC
             this.identifier = null; // used by scope
             this.id = Token_id++;
             
+            // should we initialize when needed...?? to keep the usage down..
+            this.items = null;
+            this.props = null;
+            if (name == TokenName.LEFT_BRACE || 
+		        name == TokenName.LEFT_CURLY || 
+	            name == TokenName.LEFT_PAREN ) {
             
-            this.items = new Gee.ArrayList<Gee.ArrayList<Token>>();
-            this.props = new Gee.HashMap<string,TokenKeyMap>();
+		        this.items = new Gee.ArrayList<Gee.ArrayList<Token>>();
+		        this.props = new Gee.HashMap<string,TokenKeyMap>();
+	        }
         }
     
         public string asString()
