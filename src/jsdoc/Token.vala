@@ -30,7 +30,111 @@
 namespace JSDOC
 {
     int Token_id = 1;
+	public enum TokenType {
+		TOKN, //  (unknown)          - name is UNKNOWN_TOKEN
+		KEYW, //  (keyword)          - name is upper case version of keyword
+		NAME, //  (name/identifier)  - name is NAME
+		COMM, //  (comment)          - name is MULTI_LINE_COMM, JSDOC, SINGLE_LINE_COMM
+		PUNC, //  (puctuation)       - name is String description of punctionan (eg LEFTPARAM)
+		WHIT, //  (white space)      - name is SPACE,NEWLINE
+		STRN, //  (string)           - name is DOBULE_QUOTE, SINGLE_QUOTE
+		NUMB, //  (number)           - name is OCTAL,DECIMAL,HEC_DEC
+		REGX, //   (reg.expression)  - name is REGX
+		
+		VOID // BAD eof 
+	}
+	
+	
+	public enum TokenName {
+		UNKNOWN_TOKEN,
+		
+		// keywords.
+			BREAK,
+			CASE,
+			CATCH,
+			CONST,
+			CONTINUE,
+			DEFAULT,
+			DELETE,
+			DO,
+			ELSE,
+			FALSE,
+			FINALLY,
+			FOR,
+			FUNCTION,
+			IF,
+			IN,
+			INSTANCEOF,
+			NEW,
+			NULL,
+			RETURN,
+			SWITCH,
+			THIS,
+			THROW,
+			TRUE,
+			TRY,
+			TYPEOF,
+			VOID,
+			WHILE,
+			WITH,
+			VAR,
+			EVAL,
+		
+		NAME,
+		
+	
+		MULTI_LINE_COMM, JSDOC, SINGLE_LINE_COMM,
+		// punc
+			SEMICOLON,
+			COMMA,
+			HOOK,
+			COLON,
+			OR,
+			AND,
+			BITWISE_OR,
+			BITWISE_XOR,
+			BITWISE_AND,
+			STRICT_EQ,
+			EQ,
+			ASSIGN,
+			STRICT_NE,
+			NE,
+			LSH,
+			LE,
+			LT,
+			URSH,
+			RSH,
+			GE,
+			GT,
+			INCREMENT,
+			DECREMENT,
+			PLUS,
+			MINUS,
+			MUL,
+			DIV,
+			MOD,
+			NOT,
+			BITWISE_NOT,
+			DOT,
+			LEFT_BRACE,
+			RIGHT_BRACE,
+			LEFT_CURLY,
+			RIGHT_CURLY,
+			LEFT_PAREN,
+			RIGHT_PAREN,
 
+		
+		
+		SPACE,NEWLINE,
+		DOUBLE_QUOTE, SINGLE_QUOTE,
+		OCTAL,DECIMAL,HEX_DEC,
+		REGX,
+		
+		START_OF_STREAM,
+		END_OF_STREAM,
+		
+		UNKNOWN // we should change void/void to void/unknown.
+	}
 
 	public class TokenKeyMap : Object {
 		public Token key;
@@ -38,7 +142,7 @@ namespace JSDOC
 		
 		public TokenKeyMap()
 		{
-			this.key = new Token("","VOID", "VOID"); 
+			this.key = new Token("",TokenType.VOID, TokenName.VOID); 
 			this.vals = new  Gee.ArrayList<Token>();
 		}
 		
@@ -50,8 +154,8 @@ namespace JSDOC
         public int id;
         
         public string data;
-        public string type;
-        public string name;
+        public TokenType type;
+        public TokenName name;
         public int line;
         public string prefix; // white space prefix... (when outputing with WS)
         
@@ -66,7 +170,7 @@ namespace JSDOC
         
         // props??? what's this???
         
-        public Token(string data, string type, string name, int line = -1)
+        public Token(string data, TokenType type, TokenName name, int line = -1)
         {
             this.data = data;
             this.type = type;
@@ -87,9 +191,9 @@ namespace JSDOC
             return "line:%d, id %d, type %s, data : %s,  name %s, , outData: %s".printf(
                     this.line,
                     this.id,
-                    this.type,
+                    this.type.to_string(),
                     this.data,
-                    this.name,
+                    this.name.to_string(),
                     this.outData == null ? "" : this.outData
             );
             
@@ -170,9 +274,13 @@ namespace JSDOC
         */
                         
 
-        public bool is(string what) {
-            return this.name == what || this.type == what;
+        public bool isName(TokenName what) {
+            return this.name == what;
         }
+        public bool isType(TokenType what) {
+            return  this.type == what;
+        }
+        
     }
 }
   

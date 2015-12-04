@@ -48,7 +48,7 @@ namespace JSDOC {
 		    if (considerWhitespace == true) {
 		    
 		        if (this.cursor+n < 0 || this.cursor+n > (this.tokens.size -1)) {
-		            return new Token("", "VOID", "START_OF_STREAM");
+		            return new Token("", TokenType.VOID, TokenName.START_OF_STREAM);
 		        }
 		        return this.tokens.get(this.cursor+n);
 		    }
@@ -59,13 +59,13 @@ namespace JSDOC {
 
 	        while (true) {
 	            if (i < 0) {
-	        		return new Token("", "VOID", "START_OF_STREAM");
+	        		return new Token("", TokenType.VOID, TokenName.START_OF_STREAM);
 	    		}
 	            if (i >= this.tokens.size) {
-	        		return new Token("", "VOID", "END_OF_STREAM");
+	        		return new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
 
-	            if (i != this.cursor && this.tokens.get(i).is("WHIT")) {
+	            if (i != this.cursor && this.tokens.get(i).isType(TokenType.WHIT)) {
 	        		i += (n < 0) ? -1 : 1;
 	                continue;
 	            }
@@ -86,7 +86,7 @@ namespace JSDOC {
 
 
 	         if (this.cursor+n < 0 || this.cursor+n > (this.tokens.size -1)) {
-	            return new Token("", "VOID", "START_OF_STREAM");
+	            return new Token("", TokenType.VOID, TokenName.START_OF_STREAM);
 	        }
 	        return this.tokens.get(this.cursor+n);
 	    
@@ -137,13 +137,13 @@ namespace JSDOC {
 		                continue;
 		                
 		            }
-		            return  new Token("", "VOID", "END_OF_STREAM");
+		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
 		        if (i >= this.tokens.size) {
-		    		return  new Token("", "VOID", "END_OF_STREAM");
+		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
 
-		        if (i != this.cursor && ( this.tokens.get(i).is("WHIT") || this.tokens.get(i).is("COMM"))) {
+		        if (i != this.cursor && ( this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM))) {
 		            i += (n < 0) ? -1 : 1;
 		            continue;
 		        }
@@ -215,7 +215,7 @@ namespace JSDOC {
 		        if (tok == null) {
 		            return null;
 		        }
-		        if (tok.is("WHIT") ||  tok.is("COMM")) {
+		        if (tok.isType(TokenType.WHIT) ||  tok.isType(TokenType.COMM)) {
 		            continue;
 		        }
 		        return tok;
@@ -228,21 +228,28 @@ namespace JSDOC {
 		 * @param start {String}  token name or data (eg. '{'
 		 * @param stop {String} (Optional) token name or data (eg. '}'
 		 */
-		public Gee.ArrayList<Token> balance (string start, string in_stop = "") throws TokenStreamError 
+		 
+		 
+		//public Gee.ArrayList<Token> balanceStr (string start) throws TokenStreamError 	
+		//{
+		//	return this.balance( Lang.punc(start));
+		//}	 
+
+		 
+		public Gee.ArrayList<Token> balance (TokenName in_start) throws TokenStreamError 
 		{
 		    
-		    // accepts names or "{" etc..
-		    var stop = in_stop;
-		    start = Lang.punc(start) == null ? start : Lang.punc(start);
+		    // fixme -- validate start...
 		    
-		    if (stop=="") {
-				var newstop = Lang.matching(start);
-				stop = newstop;
+		    // accepts names or "{" etc..
+		    
+		    var start = in_start;
+		    var stop =  Lang.matching(start); /// validates start..
+		    if (stop == null) {
+				throw new TokenStreamError.ArgumentError("balance called with invalid start/stop : %s",start.to_string());
 			}
-			if (stop == null) {
-				throw new TokenStreamError.ArgumentError("balance called with invalid start/stop : %s",start);
-			}
-		    debug("START=%s, STOP=%s \n", start,stop);
+		    
+		    debug("START=%s, STOP=%s \n", start.to_string(),stop.to_string());
 		    var depth = 0;
 		    var got = new Gee.ArrayList<Token>();
 		    var started = false;
@@ -252,7 +259,7 @@ namespace JSDOC {
 		    
 		    while (null != (token = this.lookAny(1))) {
 				debug("BALANCE: %d %s " , this.cursor,  token.asString());
-		        if (token.is(start)) {
+		        if (token.isName(start)) {
 		      //      Seed.print("balance: START : " + depth + " " + token.data);
 		            depth++;
 		            started = true;
@@ -262,13 +269,13 @@ namespace JSDOC {
 		            got.add(token);
 		        }
 		        
-		        if (token.is(stop)) {
+		        if (token.isName(stop)) {
 		            depth--;
 		            
-	    			//print("balance (%d): STOP: %s\n" ,  depth ,  token.data);
+	    			debug("balance (%d): STOP: %s" ,  depth ,  token.data);
 		            if (depth < 1) {
 			            this.next(); // shift cursor to eat closer...
-		        		//print("returning got %d\n", got.size);
+		        		debug("returning got %d", got.size);
 		        		return got;
 	        		}
 	        		
@@ -279,29 +286,29 @@ namespace JSDOC {
 		    }
 		    return new Gee.ArrayList<Token>();
 		}
-
-		public Token? getMatchingToken(string start, string stop) 
+		// designed to get either end or start..
+		
+		
+		public Token? getMatchingTokenEnd(TokenName end) 		
 		{
-		    var depth = 0;
+			return this.getMatchingToken(Lang.matching(end), 1);
+		}
+		
+		public Token? getMatchingToken(TokenName start, int depth = 0) 
+		{
+ 
 		    var cursor = this.cursor;
 		    
-		    if (start.length < 1) {
-			    var ns = Lang.matching(stop);
-		        start = ns;
-		        depth = 1;
-		    }
-		    if (stop.length < 1) {
-				var ns = Lang.matching(start);
-				stop = ns;
-			}
+		    
+				var stop= Lang.matching(start);
 			Token token;
 		    
 		    while (null != (token = this.tokens[cursor])) {
-		        if (token.is(start)) {
+		        if (token.isName(start)) {
 		            depth++;
 		        }
 		        
-		        if (token.is(stop) && cursor != 0) {
+		        if (token.isName(stop) && cursor != 0) {
 		            depth--;
 		            if (depth == 0) {
 		        		return this.tokens[cursor];
@@ -322,7 +329,7 @@ namespace JSDOC {
 		    var ret = new Gee.ArrayList<Token>();
 		    while (true) {
 		        var tok = this.look(1,true);
-		        if (tok.is("VOID")) {
+		        if (tok.isType(TokenType.VOID)) {
 		            return ret;
 		        }
 		        var nt = this.next();

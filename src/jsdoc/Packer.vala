@@ -103,10 +103,17 @@ namespace JSDOC
 		Gee.ArrayList<string> files;
 		
 		/**
-		* @cfg debug -- pretty obvious.
+		* @cfg activeFile ??? used???
 		*/
 		 
 		public string activeFile = "";
+		
+			
+		/**
+		* @cfg baseDir -- prefix the files listed in indexfiles with this.
+		*/
+		 
+		public string baseDir = "";
 		
 		
 		public  string outstr = ""; // if no target is specified - then this will contain the result
@@ -130,6 +137,7 @@ namespace JSDOC
 		
 		public void loadFiles(string[] fs)
 		{
+			// fixme -- prefix baseDir?
 			foreach(var f in fs) {
 			    GLib.debug("add File: %s", f);
 				this.files.add(f); //?? easier way?
@@ -137,6 +145,7 @@ namespace JSDOC
 		}
 		public void loadFile(string f)
 		{
+		    // fixme -- prefix baseDir?
 		    GLib.debug("add File: %s", f);
 			this.files.add(f); 
 			GLib.debug("FILE LEN: %d", this.files.size);
@@ -169,8 +178,13 @@ namespace JSDOC
 		 * 
 		 */
 		
-		public void loadSourceIndex(string srcfile)
+		public void loadSourceIndex(string in_srcfile)
 		{
+		    
+		    var srcfile = in_srcfile;
+		    if (srcfile[0] != '/') {
+				srcfile = this.baseDir + in_srcfile;
+			}
 		    string str;
 		    FileUtils.get_contents(srcfile,out str);
 		    
@@ -195,9 +209,17 @@ namespace JSDOC
 				// should we prefix? =- or should this be done elsewhere?
 				
 		        var add = f.replace(".", "/") + ".js";
+		        
+		        if (add[0] != '/') {
+					add = this.baseDir + add;
+				}
+		        
 		        if (this.files.contains(add)) {
 		            continue;
 		        }
+		        
+		        
+		        
 		        this.files.add( add );
 		        
 		    }
@@ -379,7 +401,7 @@ namespace JSDOC
 			var outf = CompressWhite(new TokenStream(toks.tokens), this, this.keepWhite); // do not kill whitespace..
 		
 			
-			print("RESULT: \n %s\n", outf);
+			debug("RESULT: \n %s\n", outf);
 		
 			 if (outf.length > 0) {
 				FileUtils.set_contents(minfile, outf);

@@ -248,189 +248,256 @@ namespace JSDOC {
 			    //if (token.type == 'NAME') {
 			    //    print('*' + token.data);
 			    //}
-			    switch(token.type + "." + token.name) {
-			        case "KEYW.VAR":
-			        case "KEYW.CONST": // not really relivant as it's only mozzy that does this.
-			            //print('SCOPE-VAR:' + token.toString());
-			            var vstart = this.ts.cursor +1;
-			            
-			            //this.log("parseScope GOT VAR/CONST : " + token.toString()); 
-			            while (true) {
-			                token = this.ts.nextTok();
-			                //!this.debug|| print( token.toString());
-			               // print('SCOPE-VAR-VAL:' + JSON.stringify(token, null, 4));
-			                if (token == null) { // can return false at EOF!
-			                    break;
-			                }
-			                if (token.name == "VAR" || token.data == ",") { // kludge..
-			                    continue;
-			                }
-			                //this.logR("parseScope GOT VAR  : <B>" + token.toString() + "</B>"); 
-			                if (token.type != "NAME") {
-			            		this.ts.printRange( int.max(this.ts.cursor-10,0), this.ts.cursor);
-			                    
-			                    print( "var without ident");
-			                    GLib.Process.exit (0);
-			                }
-			                
+			    switch(token.type) {
+			    
+					case TokenType.KEYW:
+					
+						switch(token.name) {
+							case TokenName.VAR:
+							case TokenName.CONST: // not really relivant as it's only mozzy that does this.
+							    //print('SCOPE-VAR:' + token.toString());
+							    var vstart = this.ts.cursor +1;
+							    
+							    //this.log("parseScope GOT VAR/CONST : " + token.toString()); 
+							    while (true) {
+							        token = this.ts.nextTok();
+							        //!this.debug|| print( token.toString());
+							       // print('SCOPE-VAR-VAL:' + JSON.stringify(token, null, 4));
+							        if (token == null) { // can return false at EOF!
+							            break;
+							        }
+							        if (token.name == TokenName.VAR || token.data == ",") { // kludge..
+							            continue;
+							        }
+							        //this.logR("parseScope GOT VAR  : <B>" + token.toString() + "</B>"); 
+							        if (token.type != TokenType.NAME) {
+							    		this.ts.printRange( int.max(this.ts.cursor-10,0), this.ts.cursor);
+							            
+							            print( "var without ident");
+							            GLib.Process.exit (0);
+							        }
+							        
 
-			                if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
-			                    var identifier = scope.getIdentifier(token.data,token) ;
-			                    
-			                    if (identifier == null) {
-			                        scope.declareIdentifier(token.data, token);
-			                    } else {
-			                        token.identifier = identifier;
-			                        this.warn("(SCOPE) The variable " + token.data  + 
-			                    		" (line:" + token.line.to_string() + ")  has already been declared in the same scope...");
-			                    }
-			                }
+							        if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
+							            var identifier = scope.getIdentifier(token.data,token) ;
+							            
+							            if (identifier == null) {
+							                scope.declareIdentifier(token.data, token);
+							            } else {
+							                token.identifier = identifier;
+							                this.warn("(SCOPE) The variable " + token.data  + 
+							            		" (line:" + token.line.to_string() + ")  has already been declared in the same scope...");
+							            }
+							        }
 
-			                token = this.ts.nextTok();
-			                //!this.debug|| print(token.toString());
-			                /*
-			                assert token.getType() == Token.SEMI ||
-			                        token.getType() == Token.ASSIGN ||
-			                        token.getType() == Token.COMMA ||
-			                        token.getType() == Token.IN;
-			                */
-			                if (token.name == "IN") {
-			                    break;
-			                } else {
-			                    //var bn = this.braceNesting;
-			                    var bn = this.braceNesting;
-			                    var nts = new Gee.ArrayList<Token>();
-			                    while (true) {
-			                        if (token == null  || token.type == "VOID" || token.data == ",") {
-			                            break;
-			                        }
-			                        nts.add(token);
-			                        token = this.ts.nextTok();
-			                    }
-			                    if (nts.size > 0) {
-			                        var TS = this.ts;
-			                        this.ts = new TokenStream(nts);
-			                        this.parseExpression(scope);
-			                        this.ts = TS;
-			                    }
-			                       
-			                    this.braceNesting = bn;
-			                    //this.braceNesting = bn;
-			                    //this.logR("parseScope DONE  : <B>ParseExpression</B> - tok is:" + this.ts.lookT(0).toString()); 
-			                    
-			                    token = this.ts.lookTok(1);
-			                    //!this.debug|| 
-			                   // print("AFTER EXP: " + token.toString());
-			                    if (token.data == ";") {
-			                        break;
-			                    }
-			                }
-			            }
-			            
-			            //print("VAR:")
-			            //this.ts.dump(vstart , this.ts.cursor);
-			            
-			            break;
-			            
-			            
-			        case "KEYW.FUNCTION":
-			            //if (this.mode == 'BUILDING_SYMBOL_TREE') 
-			            //    print('SCOPE-FUNC:' + JSON.stringify(token,null,4));
-			            //println("<i>"+token.data+"</i>");
-			             var bn = this.braceNesting;
-			            this.parseFunctionDeclaration(scope);
-			             this.braceNesting = bn;
-			            break;
+							        token = this.ts.nextTok();
+							        //!this.debug|| print(token.toString());
+							        /*
+							        assert token.getType() == Token.SEMI ||
+							                token.getType() == Token.ASSIGN ||
+							                token.getType() == Token.COMMA ||
+							                token.getType() == Token.IN;
+							        */
+							        if (token.name == TokenName.IN) {
+							            break;
+							        } else {
+							            //var bn = this.braceNesting;
+							            var bn = this.braceNesting;
+							            var nts = new Gee.ArrayList<Token>();
+							            while (true) {
+							                if (token == null  || token.type == TokenType.VOID || token.data == ",") {
+							                    break;
+							                }
+							                nts.add(token);
+							                token = this.ts.nextTok();
+							            }
+							            if (nts.size > 0) {
+							                var TS = this.ts;
+							                this.ts = new TokenStream(nts);
+							                this.parseExpression(scope);
+							                this.ts = TS;
+							            }
+							               
+							            this.braceNesting = bn;
+							            //this.braceNesting = bn;
+							            //this.logR("parseScope DONE  : <B>ParseExpression</B> - tok is:" + this.ts.lookT(0).toString()); 
+							            
+							            token = this.ts.lookTok(1);
+							            //!this.debug|| 
+							           // print("AFTER EXP: " + token.toString());
+							            if (token.data == ";") {
+							                break;
+							            }
+							        }
+							    }
+							    
+							    //print("VAR:")
+							    //this.ts.dump(vstart , this.ts.cursor);
+							    
+							    break;
+							    
+							    
+							case TokenName.FUNCTION:
+							    //if (this.mode == 'BUILDING_SYMBOL_TREE') 
+							    //    print('SCOPE-FUNC:' + JSON.stringify(token,null,4));
+							    //println("<i>"+token.data+"</i>");
+							     var bn = this.braceNesting;
+							    this.parseFunctionDeclaration(scope);
+							     this.braceNesting = bn;
+							    break;
 
-			        case "PUNC.LEFT_CURLY": // {
-			        case "PUNC.LEFT_PAREN": // (    
-			        case "PUNC.LEFT_BRACE": // [
-			            //print('SCOPE-CURLY/PAREN:' + token.toString());
-			            //println("<i>"+token.data+"</i>");
-			            var curTS = this.ts;
-			            if (token.props.size > 0) {
-			                
-			                // { a : ... , c : .... }
-			                var iter = token.props.map_iterator();
-			                
-			                while(iter.next()) {
-			            		
-			                    TokenKeyMap val = iter.get_value(); // TokenKeyMap
-			                    
-			                    
-			                  //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
-			                    if (val.vals.get(0).data == "function") {
-			                        // parse a function..
-			                        this.ts = new TokenStream(val.vals);
-			                        this.ts.nextTok();
-			                        this.parseFunctionDeclaration(scope);
-			                        
-			                        continue;
-			                    }
-			                    // key value..
-			                    
-			                    this.ts = new TokenStream(val.vals);
-			                    this.parseExpression(scope);
-			                    
-			                }
-			                this.ts = curTS;
-			                
-			                // it's an object literal..
-			                // the values could be replaced..
-			                break;
-			            }
-			            
-			            // ( ... ) or { .... } not object literals..
-			            
-			            
-	 	            for (var xx =0; xx < token.items.size; xx++) {
-						var expr = token.items.get(xx);
-			            //token.items.forEach(function(expr) {
-			                    //print(expr.toString());
-			                   this.ts = new TokenStream(expr);
-			                    //if (curTS.data == '(') {
-			                        this.parseScope(scope);
-			                    //} else {
-			                      //  _this.parseExpression(scope)
-			                    //}
-			                  
-			            }  
-			            this.ts = curTS;
-			            //print("NOT PROPS"); Seed.quit();
-			            
-			            //isObjectLitAr.push(false);
-			            //this.braceNesting++;
-			            
-			            //print(">>>>>> OBJLIT PUSH(false)" + this.braceNesting);
-			            break;
+							case TokenName.WITH:
+							    //print('SCOPE-WITH:' + token.toString());
+							    //println("<i>"+token.data+"</i>");   
+							    if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
+							        // Inside a 'with' block, it is impossible to figure out
+							        // statically whether a symbol is a local variable or an
+							        // object member. As a consequence, the only thing we can
+							        // do is turn the obfuscation off for the highest scope
+							        // containing the 'with' block.
+							        this.protectScopeFromObfuscation(scope);
+							        this.warn("Using 'with' is not recommended." +
+							    		 (this.munge ? " Moreover, using 'with' reduces the level of compression!" : ""));
+							    }
+							    break;
 
-			        case "PUNC.RIGHT_CURLY": // }
-			            //print("<< EXIT SCOPE");
-			            return;
+							case TokenName.CATCH:
+							    //print('SCOPE-CATCH:' + token.toString());
+							    //println("<i>"+token.data+"</i>");
+							    this.parseCatch(scope);
+							    break;
+
+
+
+							default:    
+							
+								var symbol = token.data;
+					        
+							     if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
+
+							        if (token.name == TokenName.EVAL) {
+							            
+							            //print(JSON.stringify(token, null,4));
+							            // look back one and see if we can find a comment!!!
+							            //if (this.ts.look(-1).type == "COMM") {
+							            if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
+							                // look for eval:var:noreplace\n
+							                //print("MATCH!?");
+							                var _t = this;
+							                
+							                var regex = new GLib.Regex ("eval:var:([a-z_]+)",GLib.RegexCompileFlags.CASELESS );
+			 
+							                regex.replace_eval (token.prefix, token.prefix.length, 0, 0, (match_info, result) => {
+									           	var a =  match_info.fetch(0);
+							                    var hi = this.getIdentifier(a, scope, token);
+								                   // println("PROTECT "+a+" from munge" + (hi ? "FOUND" : "MISSING"));
+							                    if (hi != null) {
+							                      //  print("PROTECT "+a+" from munge");
+							                        //print(JSON.stringify(hi,null,4));
+							                        hi.toMunge = false;
+							                    }
+							                    return false;
+							                    
+							                });
+							                
+							                
+							            } else {
+							                
+							            
+							                this.protectScopeFromObfuscation(scope);
+							                this.warn("Using 'eval' is not recommended. (use  eval:var:noreplace in comments to optimize) " +
+							            		 (this.munge ? " Moreover, using 'eval' reduces the level of compression!" : ""));
+							            }
+
+							        }
+
+							
+							
+
+								}
+								break; //???							
+						}
+						break; // end KEYW
+					
+					case TokenType.PUNC:
+							
+							switch(token.name) {
+					
+					
+								case TokenName.LEFT_CURLY: // {
+								case TokenName.LEFT_PAREN: // (    
+								case TokenName.LEFT_BRACE: // [
+									//print('SCOPE-CURLY/PAREN:' + token.toString());
+									//println("<i>"+token.data+"</i>");
+									var curTS = this.ts;
+									if (token.props.size > 0) {
+									    
+									    // { a : ... , c : .... }
+									    var iter = token.props.map_iterator();
+									    
+									    while(iter.next()) {
+											
+									        TokenKeyMap val = iter.get_value(); // TokenKeyMap
+									        
+									        
+									      //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
+									        if (val.vals.get(0).data == "function") {
+									            // parse a function..
+									            this.ts = new TokenStream(val.vals);
+									            this.ts.nextTok();
+									            this.parseFunctionDeclaration(scope);
+									            
+									            continue;
+									        }
+									        // key value..
+									        
+									        this.ts = new TokenStream(val.vals);
+									        this.parseExpression(scope);
+									        
+									    }
+									    this.ts = curTS;
+									    
+									    // it's an object literal..
+									    // the values could be replaced..
+									    break;
+									}
+									
+									// ( ... ) or { .... } not object literals..
+									
+									
+				 	            for (var xx =0; xx < token.items.size; xx++) {
+									var expr = token.items.get(xx);
+									//token.items.forEach(function(expr) {
+									        //print(expr.toString());
+									       this.ts = new TokenStream(expr);
+									        //if (curTS.data == '(') {
+									            this.parseScope(scope);
+									        //} else {
+									          //  _this.parseExpression(scope)
+									        //}
+									      
+									}  
+									this.ts = curTS;
+									//print("NOT PROPS"); Seed.quit();
+									
+									//isObjectLitAr.push(false);
+									//this.braceNesting++;
+									
+									//print(">>>>>> OBJLIT PUSH(false)" + this.braceNesting);
+									break;
+
+								case TokenName.RIGHT_CURLY: // }
+									//print("<< EXIT SCOPE");
+									return;
+									
+								default:
+									break;
+						}
+						break;
+						
+			        case TokenType.STRN:
 			      
-			        case "KEYW.WITH":
-			            //print('SCOPE-WITH:' + token.toString());
-			            //println("<i>"+token.data+"</i>");   
-			            if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
-			                // Inside a 'with' block, it is impossible to figure out
-			                // statically whether a symbol is a local variable or an
-			                // object member. As a consequence, the only thing we can
-			                // do is turn the obfuscation off for the highest scope
-			                // containing the 'with' block.
-			                this.protectScopeFromObfuscation(scope);
-			                this.warn("Using 'with' is not recommended." +
-			            		 (this.munge ? " Moreover, using 'with' reduces the level of compression!" : ""));
-			            }
-			            break;
-
-			        case "KEYW.CATCH":
-			            //print('SCOPE-CATCH:' + token.toString());
-			            //println("<i>"+token.data+"</i>");
-			            this.parseCatch(scope);
-			            break;
-
-			        case "STRN.DOUBLE_QUOTE": // used for object lit detection..
-			        case "STRN.SINGLE_QUOTE":
+			    		///case "STRN.DOUBLE_QUOTE": // used for object lit detection.. case "STRN.SINGLE_QUOTE":
 			          //  print('SCOPE-STRING:' + token.toString());
 			            //println("<i>"+token.data+"</i>");
 
@@ -459,7 +526,7 @@ namespace JSDOC {
 			            
 			            break;
 			        
-			        case "NAME.NAME":
+			        case TokenType.NAME:
 			            //print('SCOPE-NAME:' + token.toString());
 			            //print("DEAL WITH NAME:");
 			            // got identifier..
@@ -510,53 +577,7 @@ namespace JSDOC {
 			            break;
 			            //println("<B>SID</B>");
 			        default:
-			            if (token.type != "KEYW") {
-			                break;
-			            }
-			            //print('SCOPE-KEYW:' + token.toString());
-			           // print("Check eval:");
-			        
-			            var symbol = token.data;
 			            
-			             if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
-
-			                if (token.name == "EVAL") {
-			                    
-			                    //print(JSON.stringify(token, null,4));
-			                    // look back one and see if we can find a comment!!!
-			                    //if (this.ts.look(-1).type == "COMM") {
-			                    if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
-			                        // look for eval:var:noreplace\n
-			                        //print("MATCH!?");
-			                        var _t = this;
-			                        
-			                        var regex = new GLib.Regex ("eval:var:([a-z_]+)",GLib.RegexCompileFlags.CASELESS );
-	 
-			                        regex.replace_eval (token.prefix, token.prefix.length, 0, 0, (match_info, result) => {
-					                   	var a =  match_info.fetch(0);
-			                            var hi = this.getIdentifier(a, scope, token);
-				                           // println("PROTECT "+a+" from munge" + (hi ? "FOUND" : "MISSING"));
-			                            if (hi != null) {
-			                              //  print("PROTECT "+a+" from munge");
-			                                //print(JSON.stringify(hi,null,4));
-			                                hi.toMunge = false;
-			                            }
-			                            return false;
-			                            
-			                        });
-			                        
-			                        
-			                    } else {
-			                        
-			                    
-			                        this.protectScopeFromObfuscation(scope);
-			                        this.warn("Using 'eval' is not recommended. (use  eval:var:noreplace in comments to optimize) " +
-			                    		 (this.munge ? " Moreover, using 'eval' reduces the level of compression!" : ""));
-			                    }
-
-			                }
-
-			            }
 			            break;
 			        
 			        
@@ -621,7 +642,7 @@ namespace JSDOC {
 			    //println("<i>"+token.data+"</i>");
 			    //this.log("EXP:" + token.data);
 			    switch (token.type) {
-			        case "PUNC":
+			        case TokenType.PUNC:
 			            //print("EXPR-PUNC:" + token.toString());
 			            
 			            switch(token.data) {
@@ -710,7 +731,7 @@ namespace JSDOC {
 			            }
 			            break;
 			            
-			        case "STRN": // used for object lit detection..
+			        case TokenType.STRN: // used for object lit detection..
 			            //if (this.mode == 'BUILDING_SYMBOL_TREE')    
 			                //print("EXPR-STR:" + JSON.stringify(token, null, 4));
 			       
@@ -719,7 +740,7 @@ namespace JSDOC {
 			        
 			              
 			     
-			        case "NAME":
+			        case TokenType.NAME:
 			            if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
 			                
 			                //print("EXPR-NAME:" + JSON.stringify(token, null, 4));
@@ -774,12 +795,12 @@ namespace JSDOC {
 			            
 			            
 			            //println("<B>EID</B>");
-			        case "KEYW":   
+			        case TokenType.KEYW:   
 			            //if (this.mode == 'BUILDING_SYMBOL_TREE') 
 			            //    print("EXPR-KEYW:" + JSON.stringify(token, null, 4));
 			            
 			            //print('EXPR-KEYW:' + token.toString());
-			            if (token.name == "FUNCTION") {
+			            if (token.name == TokenName.FUNCTION) {
 			                
 			                this.parseFunctionDeclaration(scope);
 			                break;
@@ -789,7 +810,7 @@ namespace JSDOC {
 			            var symbol = token.data;
 			            if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
 			                
-			                if (token.name == "EVAL") {
+			                if (token.name == TokenName.EVAL) {
 			                
 			                
 			                    //print(JSON.stringify(token,null,4));
@@ -882,7 +903,7 @@ namespace JSDOC {
 			
 
 			var token = this.ts.nextTok();
-			if (token.type == "NAME") {
+			if (token.type == TokenType.NAME) {
 			    if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
 			        // Get the name of the function and declare it in the current scope.
 			        var symbol = token.data;
@@ -925,7 +946,7 @@ namespace JSDOC {
 			    //print ("FUNC ARGS: " + token.toString())
 			    //assert token.getType() == Token.NAME ||
 			    //        token.getType() == Token.COMMA;
-			    if (token.type == "NAME" && this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
+			    if (token.type == TokenType.NAME && this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
 			        var symbol = token.data;
 			        var identifier = fnScope.declareIdentifier(symbol,token);
 			        if (symbol == "$super" && argpos == 0) {

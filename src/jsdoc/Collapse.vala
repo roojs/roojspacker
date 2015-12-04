@@ -56,7 +56,7 @@ namespace JSDOC {
             
             for (var i = 0; i < this.tokens.size; i ++) {
                 var tok = this.tokens[i];
-                if (tok.is("COMM") || tok.is("WHIT")) {
+                if (tok.isType(TokenType.COMM) || tok.isType(TokenType.WHIT)) {
                     pref.add(tok);
                     continue;
                 }
@@ -96,23 +96,23 @@ namespace JSDOC {
                 debug("COL: %s", tok.asString());
                 
                 switch(tok.type) {
-                    case "VOID": 
+                    case TokenType.VOID: 
                         return ret; //EOF
                         
                         
-                    case "KEYW": 
-                    case "TOKN":
-                    case "NAME":
-                    case "STRN":
-                    case "NUMB":
-                    case "REGX":
+                    case TokenType.KEYW: 
+                    case TokenType.TOKN:
+                    case TokenType.NAME:
+                    case TokenType.STRN:
+                    case TokenType.NUMB:
+                    case TokenType.REGX:
                 		var nn = st.next();
                 		if (nn != null) { 
 	                        ret.add(nn);
                         }
                         continue;
                         
-                    case "PUNC":
+                    case TokenType.PUNC:
                         switch (tok.data) {
                             case "[":
                             case "{":
@@ -121,7 +121,7 @@ namespace JSDOC {
                                 var start = st.cursor;
                                 //st.next(); << no need to shift, balance will start at first character..
                                 
-                                var add = st.balance(tok.data);
+                                var add = st.balance(tok.name);
                                 
                                 debug("BALANCE returned %d items\n", add.size);
                                 
@@ -185,7 +185,7 @@ namespace JSDOC {
                        print("OOPS");
                         continue;
                     default : 
-                       print("OOPS" + tok.type);
+                       print("OOPS" + tok.type.to_string());
                         continue;
                 }
             }
@@ -212,7 +212,7 @@ namespace JSDOC {
                     continue;
                 }
                 // var a=..., b =...
-                if ((ar.get(i).data != ";") && g.size> 0  && (g[0].name == "VAR")) {;
+                if ((ar.get(i).data != ";") && g.size> 0  && (g[0].name == TokenName.VAR)) {;
                     g.add(ar.get(i));
                     continue;
                 }

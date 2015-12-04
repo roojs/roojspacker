@@ -29,7 +29,7 @@ namespace JSDOC
 			if (tok == null) {
 			    break;
 			}
-			if (tok.type == "WHIT") {
+			if (tok.type == TokenType.WHIT) {
 			   
 			    continue;
 			    //if (tok._isDoc) {
@@ -44,7 +44,7 @@ namespace JSDOC
 			}
 			if (tok.data == "}")  {
 			    
-			    if (ts.lookTok(0).type == "NAME" && ts.look(1,true).name == "NEWLINE") {
+			    if (ts.lookTok(0).type == TokenType.NAME && ts.look(1,true).name == TokenName.NEWLINE) {
 			        ts.look(0,true).outData = ts.look(0,true).data+"\n";
 			    }
 			    // restore.. 
@@ -52,21 +52,21 @@ namespace JSDOC
 			    continue;
 			}
 			// add semi-colon's where linebreaks are used... - not foolproof yet.!
-			if (tok.type == "NAME")  {
+			if (tok.type == TokenType.NAME)  {
 			    //var tokident = ts.look(-1).data + tok.data + ts.look(1).data +  ts.look(2).data;
 			    // a = new function() {} 
-			    if (ts.lookTok(1).data == "=" && ts.lookTok(2).name == "NEW"  && 
-			        ts.lookTok(3).name == "FUNCTION") {
+			    if (ts.lookTok(1).data == "=" && ts.lookTok(2).name == TokenName.NEW  && 
+			        ts.lookTok(3).name == TokenName.FUNCTION) {
 			        // freeze time.. 
 			        var cu = ts.cursor;
 			        
-			        ts.balance("(");
+			        ts.balance(TokenName.LEFT_PAREN); //"(");
 			        
 			        
-			        ts.balance("{");
+			        ts.balance(TokenName.LEFT_CURLY); //"{");
 			        // if next is not ';' -> make it so...
 			        
-			        if (ts.lookTok(1).data != ";"  && ts.lookTok(1).data != "}" && ts.lookTok(1).name == "NEWLINE") {
+			        if (ts.lookTok(1).data != ";"  && ts.lookTok(1).data != "}" && ts.lookTok(1).name == TokenName.NEWLINE) {
 			            ts.look(0,true).outData = ts.lookTok(0).data +";";
 			        }
 			        // restore.. 
@@ -75,7 +75,7 @@ namespace JSDOC
 			    }
 			    // a = function() { ... -- add a semi colon a tthe end if not one there..
 			       
-			    if (ts.lookTok(1).data == "=" &&  ts.lookTok(2).name == "FUNCTION") {
+			    if (ts.lookTok(1).data == "=" &&  ts.lookTok(2).name == TokenName.FUNCTION) {
 			        // freeze time.. 
 			        //println("got = function() ");
 			        tok = ts.nextTok();
@@ -87,7 +87,7 @@ namespace JSDOC
 					  
 			       //print("cursor = %d", ts.cursor);
 			          
-			        if (ts.lookTok(1).data != "(" || ts.balance("(").size < 1 ){
+			        if (ts.lookTok(1).data != "(" || ts.balance(TokenName.LEFT_PAREN /*"("*/).size < 1 ){
 			    		print("balance ( issue on line %d\n", ts.toArray().get(cu).line);
 			            ts.dump(cu-40, cu+2);
 			            print(">>>>>>>>>>>>>>>>>HERE>>>>>>>>>>>>");
@@ -101,11 +101,14 @@ namespace JSDOC
 			        tok = ts.nextTok();
 			        //print("CUR = should be {: %s\n", ts.lookTok(0).asString());			        
 			        cu = ts.cursor; // set the cursor to here.. so the next bit of the code will check inside the method.
+			        
 			        //print("cursor = %d", ts.cursor);
-			        //print("AFTER BALANCE (");
+			       // print("AFTER BALANCE (");
 			        //ts.dump(cu, ts.cursor);
-			        //ts.cursor--; // cursor at the (
-			        if (tok.data != "{" || ts.balance("{").size < 1 ){
+			        
+			        
+			        ts.cursor--; // cursor at the (
+			        if (tok.data != "{" || ts.balance(TokenName.LEFT_CURLY /*"("*/).size < 1 ){
 
 			            ts.dump(cu-40, cu);
 			            print(">>>>>>>>>>>>>>>>>HERE>>>>>>>>>>>>");
@@ -119,7 +122,7 @@ namespace JSDOC
 			        
 			        // if next is not ';' -> make it so...
 			        // although this var a=function(){},v,c; causes 
-			        if (ts.lookTok(1).data != ";" && ts.lookTok(1).data != "}" && ts.look(1,true).name == "NEWLINE") {
+			        if (ts.lookTok(1).data != ";" && ts.lookTok(1).data != "}" && ts.look(1,true).name == TokenName.NEWLINE) {
 			            
 			            ts.look(0,true).outData = ts.look(0,true).data+";";
 			           // print("ADDING SEMI: " + ts.look(0).toString());
@@ -132,7 +135,8 @@ namespace JSDOC
 			        continue;
 			    }
 			    // next item is a name..
-			    if ((ts.lookTok(1).type == "NAME" || ts.lookTok(1).type == "KEYW" ) &&  ts.look(1,true).name == "NEWLINE") {
+			    if ((ts.lookTok(1).type == TokenType.NAME || ts.lookTok(1).type == TokenType.KEYW ) 
+						&&  ts.look(1,true).name == TokenName.NEWLINE) {
 			        // preserve linebraek
 			        ts.look(0,true).outData = ts.look(0,true).data+"\n";
 			    }
@@ -140,10 +144,10 @@ namespace JSDOC
 			    if (ts.lookTok(1).data == "(")  {
 			        var cu = ts.cursor;
 			        
-			        ts.balance("(");
+			         ts.balance(TokenName.LEFT_PAREN); //"(");
 			         // although this var a=function(){},v,c; causes 
 			        
-			        if (ts.lookTok(1).type == "NAME" && ts.look(1,true).name == "NEWLINE") {
+			        if (ts.lookTok(1).type == TokenType.NAME && ts.look(1,true).name == TokenName.NEWLINE) {
 			        
 			            ts.look(0,true).outData = ts.look(0,true).data+"\n";
 			        }
@@ -179,8 +183,8 @@ namespace JSDOC
 			        // freeze time.. 
 			        //println("----------*** 3 *** --------------");
 			        var cu = ts.cursor;
-			        
-			        if (ts.balance("{").size < 1 ){
+			        ;
+			        if (ts.balance(TokenName.LEFT_CURLY /*"{" */).size < 1 ){
 
 			            ts.dump(cu-40, cu);
 			            print(">>>>>>>>>>>>>>>>>HERE>>>>>>>>>>>>");
@@ -190,7 +194,7 @@ namespace JSDOC
 			        }
 			        // if next is not ';' -> make it so...
 			        
-			        if (ts.lookTok(1).data != ";" && ts.lookTok(1).data != "}" && ts.look(1,true).name=="NEWLINE") {
+			        if (ts.lookTok(1).data != ";" && ts.lookTok(1).data != "}" && ts.look(1,true).name==TokenName.NEWLINE) {
 			            ts.look(0,true).outData = ts.look(0,true).data +";";
 			        }
 			        // restore.. 
@@ -210,19 +214,19 @@ namespace JSDOC
 			
 			
 			
-			switch(tok.data.up()) {
+			switch(tok.name) {
 			    // things that need space appending
-			    case "FUNCTION":
-			    case "BREAK":
-			    case "CONTINUE":
+			    case TokenName.FUNCTION:
+			    case TokenName.BREAK:
+			    case TokenName.CONTINUE:
 			        // if next item is a identifier..
-			        if (ts.lookTok(1).type == "NAME" || Regex.match_simple("^[a-z]+$", ts.lookTok(1).data, GLib.RegexCompileFlags.CASELESS) ) { // as include is a keyword for us!!
+			        if (ts.lookTok(1).type == TokenType.NAME || Regex.match_simple("^[a-z]+$", ts.lookTok(1).data, GLib.RegexCompileFlags.CASELESS) ) { // as include is a keyword for us!!
 			           tok.outData =  tok.data + " ";
 			        }
 			        continue;
 			        
 			        
-			    case "RETURN": // if next item is not a semi; (or }
+			    case TokenName.RETURN: // if next item is not a semi; (or }
 			        if (ts.lookTok(1).data == ";" || ts.lookTok(1).data == "}") {
 			            continue;
 			        }
@@ -231,16 +235,16 @@ namespace JSDOC
 			        continue;
 			    
 			        
-			    case "ELSE": // if next item is not a semi; (or }
-			        if (ts.lookTok(1).name != "IF") {
+			    case TokenName.ELSE: // if next item is not a semi; (or }
+			        if (ts.lookTok(1).name != TokenName.IF) {
 			            continue;
 			        }
 			        // add a space if next element is 'IF'
 			        tok.outData =  tok.data + " ";
 			        continue;
 			    
-			    case "++": // if previous was a plus or next is a + add a space..
-			    case "--": // if previous was a - or next is a - add a space..
+			    case TokenName.INCREMENT: //"++": // if previous was a plus or next is a + add a space..
+			    case TokenName.DECREMENT: //"--": // if previous was a - or next is a - add a space..
 			    
 			        var p = (tok.data == "--" ? "-" : "+"); 
 			    
@@ -253,29 +257,29 @@ namespace JSDOC
 			        }
 			        continue;
 			    
-			    case "IN": // before and after?? 
-			    case "INSTANCEOF":
+			    case TokenName.IN: // before and after?? 
+			    case TokenName.INSTANCEOF:
 			        
 			        tok.outData = " " + tok.data + " ";
 			        continue;
 			    
-			    case "VAR": // always after..
-			    case "NEW":
-			    case "DELETE":
-			    case "THROW":
-			    case "CASE":
-			    case "CONST":
-			    case "VOID":
+			    case TokenName.VAR: // always after..
+			    case TokenName.NEW:
+			    case TokenName.DELETE:
+			    case TokenName.THROW:
+			    case TokenName.CASE:
+			    case TokenName.CONST:
+			    case TokenName.VOID:
 			        tok.outData =  tok.data + " ";
 			        
 			        continue;
 			        
-			    case "TYPEOF": // what about typeof(
+			    case TokenName.TYPEOF: // what about typeof(
 			        if (ts.lookTok(1).data != "(") {
 			            tok.outData =  tok.data + " ";
 			        }
 			        continue;
-			     case ";":
+			     case TokenName.SEMICOLON: //";":
 			        //remove semicolon before brace -- 
 			        //if(ts.look(1).isTypeN(Script.TOKrbrace)) {
 			        //    tok.outData = '';
@@ -305,13 +309,13 @@ namespace JSDOC
 			if (tok == null) {
 			    break;
 			}
-			if (tok.type == "COMM") {
+			if (tok.type == TokenType.COMM) {
 			    tok.outData = "\n";
 			}
 			
 			///print(tok.type + ':' + tok.data);
 			
-			if (tok.type == "NAME"  &&
+			if (tok.type == TokenType.NAME  &&
 				 tok.identifier != null  &&
 			    tok.identifier.mungedValue.length > 0) {
 			    //f.write(tok.identifier.mungedValue);
@@ -331,7 +335,7 @@ namespace JSDOC
 		 
 			outstr += tok.outData != "" ? tok.outData : tok.data;
 			
-			if ((tok.outData == ";") && (outstr.length - outoff > 255)) {
+			if ((tok.data == ";") && (outstr.length - outoff > 255)) {
 			    outoff = outstr.length;
 			    outstr += "\n";
 			}

@@ -16,6 +16,10 @@ void main () {
 
 namespace JSDOC {
 
+	public errordomain LangError {
+            ArgumentError
+    }
+
     public Lang_Class Lang = null;
     
     public class Lang_Class : Object {
@@ -23,10 +27,8 @@ namespace JSDOC {
         GLib.List<string> coreObjects;
         Gee.HashMap<string,string> whitespaceNames;
         Gee.HashMap<string,string> newlineNames;
-        Gee.HashMap<string,string> keywordNames;
-        Gee.HashMap<string,string> puncNames;
-        Gee.HashMap<string,string> matchingNames;
-        public Gee.ArrayList<string> match_strings;
+        
+       
         
         public Lang_Class ()
         {
@@ -53,21 +55,60 @@ namespace JSDOC {
         public string  newline (string ch) {
             return this.newlineNames.get(ch);
         }
-        public string keyword(string word) {
-            return this.keywordNames.get("="+word);
+        public TokenName keyword(string word) throws LangError {
+        
+    		switch(word) {
+			    case "break": return TokenName.BREAK;
+				case "case": return TokenName.CASE;
+				case "catch": return TokenName.CATCH;
+				case "const": return TokenName.VAR;
+				case "continue": return TokenName.CONTINUE;
+				case "default": return TokenName.DEFAULT;
+				case "delete": return TokenName.DELETE;
+				case "do": return TokenName.DO;
+				case "else": return TokenName.ELSE;
+				case "false": return TokenName.FALSE;
+				case "finally": return TokenName.FINALLY;
+				case "for": return TokenName.FOR;
+				case "function": return TokenName.FUNCTION;
+				case "if": return TokenName.IF;
+				case "in": return TokenName.IN;
+				case "instanceof": return TokenName.INSTANCEOF;
+				case "new": return TokenName.NEW;
+				case "null": return TokenName.NULL;
+				case "return": return TokenName.RETURN;
+				case "switch": return TokenName.SWITCH;
+				case "this": return TokenName.THIS;
+				case "throw": return TokenName.THROW;
+				case "true": return TokenName.TRUE;
+				case "try": return TokenName.TRY;
+				case "typeof": return TokenName.TYPEOF;
+				case "void": return TokenName.VOID;
+				case "while": return TokenName.WHILE;
+				case "with": return TokenName.WITH;
+				case "var": return TokenName.VAR;
+ 
+			
+				default: 
+					throw new LangError.ArgumentError("invalid keyword : %s", word);
+			}
+          
         }
         
-        public string? matching(string name) {
+        public TokenName? matching(TokenName name) throws LangError
+        {
         
             
             switch(name) {
-        			case   "LEFT_PAREN": return "RIGHT_PAREN";
-               case "RIGHT_PAREN": return "LEFT_PAREN";
-               case "LEFT_CURLY": return "RIGHT_CURLY";
-               case "RIGHT_CURLY": return "LEFT_CURLY";
-               case "LEFT_BRACE": return "RIGHT_BRACE";
-               case "RIGHT_BRACE": return "LEFT_BRACE";
+				case TokenName.LEFT_PAREN: return TokenName.RIGHT_PAREN;
+				case TokenName.RIGHT_PAREN: return TokenName.LEFT_PAREN;
+				case TokenName.LEFT_CURLY: return TokenName.RIGHT_CURLY;
+				case TokenName.RIGHT_CURLY: return TokenName.LEFT_CURLY;
+				case TokenName.LEFT_BRACE: return TokenName.RIGHT_BRACE;
+				case TokenName.RIGHT_BRACE: return TokenName.LEFT_BRACE;
                default:
+	               throw new LangError.ArgumentError("invalid matching character : %s", name.to_string());
+				
            			return null;
            };
         
@@ -75,12 +116,65 @@ namespace JSDOC {
         }
         
         public bool isKeyword(string word) {
-            return this.keywordNames.get("=" + word) != null;
-            
+       		try {
+       			var x = this.keyword(word);
+				return true;
+            } catch (LangError e) {
+        		return false;
+    		}
         }
-        public string punc (string ch) {
-            return this.puncNames.get(ch); // ?? does [xxx] work!?
+        
+        
+        
+        public TokenName punc (string ch) throws LangError 
+        {
+        
+    		switch(ch) {
+				case ";": return TokenName.SEMICOLON;
+				case ",": return TokenName.COMMA;
+				case "?": return TokenName.HOOK;
+				case ":": return TokenName.COLON;
+				case "||": return TokenName.OR;
+				case "&&": return TokenName.AND;
+				case "|": return TokenName.BITWISE_OR;
+				case "^": return TokenName.BITWISE_XOR;
+				case "&": return TokenName.BITWISE_AND;
+				case "===": return TokenName.STRICT_EQ;
+				case "==": return TokenName.EQ;
+				case "=": return TokenName.ASSIGN;
+				case "!==": return TokenName.STRICT_NE;
+				case "!=": return TokenName.NE;
+				case "<<": return TokenName.LSH;
+				case "<=": return TokenName.LE;
+				case "<": return TokenName.LT;
+				case ">>>": return TokenName.URSH;
+				case ">>": return TokenName.RSH;
+				case ">=": return TokenName.GE;
+				case ">": return TokenName.GT;
+				case "++": return TokenName.INCREMENT;
+				case "--": return TokenName.DECREMENT;
+				case "+": return TokenName.PLUS;
+				case "-": return TokenName.MINUS;
+				case "*": return TokenName.MUL;
+				case "/": return TokenName.DIV;
+				case "%": return TokenName.MOD;
+				case "!": return TokenName.NOT;
+				case "~": return TokenName.BITWISE_NOT;
+				case "0": return TokenName.DOT;
+				case "[": return TokenName.LEFT_BRACE;
+				case "]": return TokenName.RIGHT_BRACE;
+				case "{": return TokenName.LEFT_CURLY;
+				case "}": return TokenName.RIGHT_CURLY;
+				case "(": return TokenName.LEFT_PAREN;
+				case ")": return TokenName.RIGHT_PAREN;
+			default:
+				throw new LangError.ArgumentError("invalid punctuation character : %s",ch);
+				 
+				
+			}        
+         
         }
+        
         
         public bool isNumber (string str) {
             return Regex.match_simple("^(\\.[0-9]|[0-9]+\\.|[0-9])[0-9]*([eE][+-][0-9]+)?$",str);
@@ -122,17 +216,17 @@ namespace JSDOC {
             
             this.whitespaceNames = new Gee.HashMap<string,string>();
             this.newlineNames = new Gee.HashMap<string,string>();
-            this.keywordNames = new Gee.HashMap<string,string>();
-            this.puncNames = new Gee.HashMap<string,string>();
-            this.matchingNames = new Gee.HashMap<string,string>();
-            this.match_strings = new Gee.ArrayList<string>();
+            
+            
+ 
+            
             
             
             string[] co = { "_global_", "Array", "Boolean", "Date", "Error", 
                 "Function", "Math", "Number", "Object", "RegExp", "String" };
             for(var i =0; i< co.length;i++ ) {
                 this.coreObjects.append(co[i]);
-                this.match_strings.add(co[i]);
+                //this.match_strings.add(co[i]);
             }
             string[] ws =  {
                 " :SPACE",
@@ -159,100 +253,15 @@ namespace JSDOC {
                 var x = ws[i].split(":");
                 this.newlineNames.set(x[0],x[1]);
             }
-            ws = {
-                "=break:BREAK",
-                "=case:CASE",
-                "=catch:CATCH",
-                "=const:VAR",
-                "=continue:CONTINUE",
-                "=default:DEFAULT",
-                "=delete:DELETE",
-                "=do:DO",
-                "=else:ELSE",
-                "=false:FALSE",
-                "=finally:FINALLY",
-                "=for:FOR",
-                "=function:FUNCTION",
-                "=if:IF",
-                "=in:IN",
-                "=instanceof:INSTANCEOF",
-                "=new:NEW",
-                "=null:NULL",
-                "=return:RETURN",
-                "=switch:SWITCH",
-                "=this:THIS",
-                "=throw:THROW",
-                "=true:TRUE",
-                "=try:TRY",
-                "=typeof:TYPEOF",
-                "=void:VOID",
-                "=while:WHILE",
-                "=with:WITH",
-                "=var:VAR"
-             };
-            for(var i =0; i< ws.length;i++ ) {
-                var x = ws[i].split(":");
-                this.keywordNames.set(x[0],x[1]);
-                this.match_strings.add(x[0].substring(1));
-            }
+            
+
+                // << was keywords here...
+                //this.match_strings.add(x[0].substring(1));
+            
         
       
-            ws={
-                "; SEMICOLON",
-                ", COMMA",
-                "? HOOK",
-                ": COLON",
-                "|| OR", 
-                "&& AND",
-                "| BITWISE_OR",
-                "^ BITWISE_XOR",
-                "& BITWISE_AND",
-                "=== STRICT_EQ", 
-                "== EQ",
-                "= ASSIGN",
-                "!== STRICT_NE",
-                "!= NE",
-                "<< LSH",
-                "<= LE", 
-                "< LT",
-                ">>> URSH",
-                ">> RSH",
-                ">= GE",
-                "> GT", 
-                "++ INCREMENT",
-                "-- DECREMENT",
-                "+ PLUS",
-                "- MINUS",
-                "* MUL",
-                "/ DIV", 
-                "% MOD",
-                "! NOT",
-                "~ BITWISE_NOT",
-                ". DOT",
-                "[ LEFT_BRACE",
-                "] RIGHT_BRACE",
-                "{ LEFT_CURLY",
-                "} RIGHT_CURLY",
-                "( LEFT_PAREN",
-                ") RIGHT_PAREN"
-            };
-            for(var i =0; i< ws.length;i++ ) {
-                var x = ws[i].split(" ");
-                this.puncNames.set(x[0],x[1]);
-            }
+  
         
-           string[] wsp = {
-               "LEFT_PAREN:RIGHT_PAREN",
-               "RIGHT_PAREN:LEFT_PAREN",
-               "LEFT_CURLY:RIGHT_CURLY",
-               "RIGHT_CURLY:LEFT_CURLY",
-               "LEFT_BRACE:RIGHT_BRACE",
-               "RIGHT_BRACE:LEFT_BRACE"
-           };
-           for(var i =0; i< wsp.length;i++ ) {
-               var x = wsp[i].split(":");
-               this.matchingNames.set(x[0],x[1]);
-           }
            
            
            

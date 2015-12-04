@@ -32,7 +32,7 @@ namespace JSDOC {
         }
         public Token? lastSym () {
             for (var i = this.tokens.size-1; i >= 0; i--) {
-                if (!(this.tokens.get(i).is("WHIT") || this.tokens.get(i).is("COMM")))  {
+                if (!(this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM)))  {
                     return this.tokens.get(i);
                 }
             }
@@ -125,7 +125,7 @@ namespace JSDOC {
                 
                 // if execution reaches here then an error has happened
                 tokens.push(
-                        new Token(stream.next(), "TOKN", "UNKNOWN_TOKEN", this.line)
+                        new Token(stream.next(), TokenType.TOKN, TokenName.UNKNOWN_TOKEN, this.line)
                 );
             }
             
@@ -180,7 +180,7 @@ namespace JSDOC {
         public Token? lastSym(TokenArray tokens, int n)
         {
             for (var i = n-1; i >= 0; i--) {
-                if (!(tokens.get(i).is("WHIT") || tokens.get(i).is("COMM"))) {
+                if (!(tokens.get(i).isType(TokenType.WHIT) || tokens.get(i).isType(TokenType.COMM))) {
                     return tokens.get(i);
                 }
             }
@@ -202,9 +202,18 @@ namespace JSDOC {
             if (found == "") {
                 return false;
             }
-            
-            var name = Lang.keyword(found);
-            if (name != null) {
+            TokenName name;
+            try {
+        		name = Lang.keyword(found);
+        		tokens.push(new Token(found, TokenType.KEYW, name, this.line));
+        		return true;
+        	}  catch (LangError e) {	
+        		// noop -- then it's a word / not a keyword...
+        	}
+        		/*
+        		What did all this do...
+        		
+    		//
                 
                 // look for "()return" ?? why ???
                 var ls = tokens.lastSym();
@@ -227,25 +236,26 @@ namespace JSDOC {
                     }
                     
                     */
-                    
+                    /*
                 }
                 
-                tokens.push(new Token(found, "KEYW", name, this.line));
+                
+                tokens.push(new Token(found, TokenType.KEYW, name, this.line));
                 return true;
             }
-            
+            */
             if (!this.sepIdents || found.index_of(".") < 0 ) {
-                tokens.push(new Token(found, "NAME", "NAME", this.line));
+                tokens.push(new Token(found, TokenType.NAME, TokenName.NAME, this.line));
                 return true;
             }
             var n = found.split(".");
             var p = false;
             foreach (unowned string nm in n) {
                 if (p) {
-                    tokens.push(new Token(".", "PUNC", "DOT", this.line));
+                    tokens.push(new Token(".", TokenType.PUNC, TokenName.DOT, this.line));
                 }
                 p=true;
-                tokens.push(new Token(nm, "NAME", "NAME", this.line));
+                tokens.push(new Token(nm, TokenType.NAME, TokenName.NAME, this.line));
             }
             return true;
                 
@@ -262,9 +272,12 @@ namespace JSDOC {
             while (!stream.lookEOF()) {
         		var ns = stream.look().to_string();
 
-	            if (null == Lang.punc(found + ns )) {
-	        		break;
-        		}
+				try {
+					Lang.punc(found + ns );
+				} catch(LangError e) {
+					break;
+				}
+				
                 found += stream.next();
             }
             
@@ -289,7 +302,7 @@ namespace JSDOC {
                 }
             }
             
-            tokens.push(new Token(found, "PUNC", Lang.punc(found), this.line));
+            tokens.push(new Token(found, TokenType.PUNC, Lang.punc(found), this.line));
             return true;
             
         } 
@@ -315,7 +328,7 @@ namespace JSDOC {
                 found = " "; // this might work better if it was a '\n' ???
             }
             if (this.keepWhite) {
-                tokens.push(new Token(found, "WHIT", "SPACE", this.line));
+                tokens.push(new Token(found, TokenType.WHIT, TokenName.SPACE, this.line));
             }
             return true;
         
@@ -348,11 +361,11 @@ namespace JSDOC {
             
             if (this.keepWhite) {
                 var last = tokens.pop();
-                if (last != null && last.name != "WHIT") {
+                if (last != null && last.type != TokenType.WHIT) {
                     tokens.push(last);
                 }
                 // replaces last new line... 
-                tokens.push(new Token(found, "WHIT", "NEWLINE", line));
+                tokens.push(new Token(found, TokenType.WHIT, TokenName.NEWLINE, line));
             }
             return true;
         }
@@ -382,9 +395,9 @@ namespace JSDOC {
             // to start doclet we allow /** or /*** but not /**/ or /****
             //if (found.length /^\/\*\*([^\/]|\*[^*])/.test(found) && this.keepDocs) {
             if (this.keepDocs && found.length > 4 && found.index_of("/**") == 0 && found[3] != '/') {
-                tokens.push(new Token(found, "COMM", "JSDOC", this.line));
+                tokens.push(new Token(found, TokenType.COMM, TokenName.JSDOC, this.line));
             } else if (this.keepComments) {
-                tokens.push(new Token(found, "COMM", "MULTI_LINE_COMM", line));
+                tokens.push(new Token(found, TokenType.COMM, TokenName.MULTI_LINE_COMM, line));
             }
             return true;
         
@@ -413,7 +426,7 @@ namespace JSDOC {
                     found += stream.next();
                 }
                 if (this.keepComments) {
-                    tokens.push(new Token(found, "COMM", "SINGLE_LINE_COMM", line));
+                    tokens.push(new Token(found, TokenType.COMM, TokenName.SINGLE_LINE_COMM, line));
                 }
                 this.line++;
                 return true;
@@ -447,7 +460,7 @@ namespace JSDOC {
                 }
                 if (stream.look() == '"') {
                     str += stream.next();
-                    tokens.push(new Token(str, "STRN", "DOUBLE_QUOTE", this.line));
+                    tokens.push(new Token(str, TokenType.STRN, TokenName.DOUBLE_QUOTE, this.line));
                     return true;
                 }
             
@@ -475,7 +488,7 @@ namespace JSDOC {
                 }
                 if (stream.look() == '\'') {
                     str += stream.next();
-                    tokens.push(new Token(str, "STRN", "SINGLE_QUOTE", this.line));
+                    tokens.push(new Token(str, TokenType.STRN, TokenName.SINGLE_QUOTE, this.line));
                     return true;
                 }
                 str += stream.next();
@@ -504,10 +517,10 @@ namespace JSDOC {
                 return false;
             }
             if (GLib.Regex.match_simple("^0[0-7]", found)) {
-                tokens.push(new Token(found, "NUMB", "OCTAL", this.line));
+                tokens.push(new Token(found, TokenType.NUMB, TokenName.OCTAL, this.line));
                 return true;
             }
-            tokens.push(new Token(found, "NUMB", "DECIMAL", this.line));
+            tokens.push(new Token(found, TokenType.NUMB, TokenName.DECIMAL, this.line));
             return true;
         
         }
@@ -521,7 +534,7 @@ namespace JSDOC {
             
             while (!stream.lookEOF()) {
                 if (Lang.isHexDec(found) && !Lang.isHexDec(found+stream.look().to_string())) { // done
-                    tokens.push(new Token(found, "NUMB", "HEX_DEC", this.line));
+                    tokens.push(new Token(found, TokenType.NUMB, TokenName.HEX_DEC, this.line));
                     return true;
                 }
                 
@@ -545,10 +558,10 @@ namespace JSDOC {
                 (last == null)
                 || 
                 (
-                       !last.is("NUMB")   // stuff that can not appear before a regex..
-                    && !last.is("NAME")
-                    && !last.is("RIGHT_PAREN")
-                    && !last.is("RIGHT_BRACKET")
+                       !last.isType(TokenType.NUMB)   // stuff that can not appear before a regex..
+                    && !last.isType(TokenType.NAME)
+                    && !last.isName(TokenName.RIGHT_PAREN)
+                    && !last.isName(TokenName.RIGHT_BRACE)
                 )
             )  {
                 var regex = stream.next();
@@ -565,7 +578,7 @@ namespace JSDOC {
                             regex += stream.next();
                         }
                         
-                        tokens.push(new Token(regex, "REGX", "REGX", this.line));
+                        tokens.push(new Token(regex, TokenType.REGX, TokenName.REGX, this.line));
                         return true;
                     }
                      
