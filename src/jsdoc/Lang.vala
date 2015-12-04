@@ -124,9 +124,16 @@ namespace JSDOC {
     		}
         }
         
+ 		public TokenName punc (string ch) throws LangError 
+ 		{
+ 			var x = this.puncNull(ch);
+ 			if (x == null) {
+ 				throw new LangError.ArgumentError("invalid punctuation character : %s",ch);
+			}
+ 		
+        }
         
-        
-        public TokenName punc (string ch) throws LangError 
+        public TokenName? puncNull (string ch)
         {
         
     		switch(ch) {
@@ -168,7 +175,7 @@ namespace JSDOC {
 				case "(": return TokenName.LEFT_PAREN;
 				case ")": return TokenName.RIGHT_PAREN;
 			default:
-				throw new LangError.ArgumentError("invalid punctuation character : %s",ch);
+				return null;
 				 
 				
 			}        
