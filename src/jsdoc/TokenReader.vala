@@ -278,7 +278,7 @@ namespace JSDOC {
 						break;
 					}
 					pos++;
-					found = ns.to_string();
+	                found += stream.next();
 					continue;
 				}
         		var nx = Lang.puncString(found + ns.to_string() );
