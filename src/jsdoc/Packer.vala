@@ -100,7 +100,7 @@ namespace JSDOC
 			
 		/**
 		 * @cfg {Boolean} skipScope (optional) skip Scope parsing and replacement.
-		 *    usefull for debugging compressed files.
+		 *    usefull for debugging...
 		 */
 		
 		public bool skipScope = false;
