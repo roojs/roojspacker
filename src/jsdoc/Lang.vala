@@ -145,25 +145,12 @@ namespace JSDOC {
 				case ",": return TokenName.COMMA;
 				case "?": return TokenName.HOOK;
 				case ":": return TokenName.COLON;
-				case "||": return TokenName.OR;
-				case "&&": return TokenName.AND;
-				case "|": return TokenName.BITWISE_OR;
+				case "|": return TokenName.BITWISE_OR;				
 				case "^": return TokenName.BITWISE_XOR;
 				case "&": return TokenName.BITWISE_AND;
-				case "===": return TokenName.STRICT_EQ;
-				case "==": return TokenName.EQ;
 				case "=": return TokenName.ASSIGN;
-				case "!==": return TokenName.STRICT_NE;
-				case "!=": return TokenName.NE;
-				case "<<": return TokenName.LSH;
-				case "<=": return TokenName.LE;
 				case "<": return TokenName.LT;
-				case ">>>": return TokenName.URSH;
-				case ">>": return TokenName.RSH;
-				case ">=": return TokenName.GE;
 				case ">": return TokenName.GT;
-				case "++": return TokenName.INCREMENT;
-				case "--": return TokenName.DECREMENT;
 				case "+": return TokenName.PLUS;
 				case "-": return TokenName.MINUS;
 				case "*": return TokenName.MUL;
@@ -178,6 +165,25 @@ namespace JSDOC {
 				case "}": return TokenName.RIGHT_CURLY;
 				case "(": return TokenName.LEFT_PAREN;
 				case ")": return TokenName.RIGHT_PAREN;
+				
+								
+				case "||": return TokenName.OR;
+				case "&&": return TokenName.AND;
+				case "==": return TokenName.EQ;
+				case "!=": return TokenName.NE;
+				case "<<": return TokenName.LSH;
+				case "<=": return TokenName.LE;
+				case ">>": return TokenName.RSH;
+				case ">=": return TokenName.GE;
+				case "++": return TokenName.INCREMENT;
+				case "--": return TokenName.DECREMENT;
+				
+				
+				case "===": return TokenName.STRICT_EQ;
+				case "!==": return TokenName.STRICT_NE;
+				case ">>>": return TokenName.URSH;
+				
+				
 			default:
 				return null;
 				 
