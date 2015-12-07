@@ -99,6 +99,8 @@ namespace JSDOC
 		public bool keepWhite =  false;
 		
 		
+		public bool skipScope = false;
+		
 		// list of files to compile...
 		Gee.ArrayList<string> files;
 		
