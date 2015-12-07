@@ -268,9 +268,16 @@ namespace JSDOC {
         public bool read_punc (TextStream stream, TokenArray tokens) throws TokenReader_Error
         {
             string found = "";
+            int pos = 0;
             
             while (!stream.lookEOF()) {
-        		var ns = stream.look().to_string();
+        		var ns = stream.look();
+				if (pos ==0 ){
+					if (!Lang.isPuncFirst(ns)) {
+						break;
+					}
+						
+        		
 				if (!Lang.isPunc(found + ns )) {
 					break;
 				}
