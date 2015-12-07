@@ -394,13 +394,18 @@ namespace JSDOC
 			
 		   // print(JSON.stringify(ts.tokens, null,4 )); Seed.quit();
 			//return;//
+			if (!this.skipScope) {
 			var sp = new ScopeParser(ts);
  
-			//sp.packer = this;
-			sp.buildSymbolTree();
-
-			sp.mungeSymboltree();
-			sp.printWarnings();
+				//sp.packer = this;
+				sp.buildSymbolTree();
+				sp.mungeSymboltree();
+			
+			
+				sp.printWarnings();
+			}
+			
+			
 			//print(sp.warnings.join("\n"));
 			//(new TokenStream(toks.tokens)).dumpAll(""); GLib.Process.exit(1);
 			// compress works on the original array - in theory the replacements have already been done by now 
