@@ -290,7 +290,7 @@ namespace JSDOC {
             }
             
             
-            if (found == "") {
+            if (tokname == TokenName.UNKNOWN) {
                 return false;
             }
             
