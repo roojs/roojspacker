@@ -280,7 +280,7 @@ namespace JSDOC {
 					found = ns.to_string();
 				}
         		
-				if (!Lang.isPunc(found + ns )) {
+				if (null == Lang.isPunc(found + ns.to_string() )) {
 					break;
 				}
 				
