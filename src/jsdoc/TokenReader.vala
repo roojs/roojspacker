@@ -269,7 +269,7 @@ namespace JSDOC {
         {
             string found = "";
             int pos = 0;
-            TokenName tokname;
+            TokenName tokname = TokenName.UNKNOWN;
             while (!stream.lookEOF()) {
         		var ns = stream.look();
 				if (pos ==0 ){
