@@ -273,7 +273,7 @@ namespace JSDOC {
             while (!stream.lookEOF()) {
         		var ns = stream.look();
 				if (pos ==0 ){
-					if (!Lang.isPuncFirst(ns)) {
+					if (null == Lang.puncFirst(ns)) {
 						break;
 					}
 					pos++;
