@@ -97,7 +97,11 @@ namespace JSDOC
 		 */
 		
 		public bool keepWhite =  false;
-		
+			
+		/**
+		 * @cfg {Boolean} skipScope (optional) skip Scope parsing and replacement.
+		 *    usefull for debugging compressed files.
+		 */
 		
 		public bool skipScope = false;
 		
