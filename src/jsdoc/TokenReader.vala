@@ -279,6 +279,7 @@ namespace JSDOC {
 					}
 					pos++;
 					found = ns.to_string();
+					continue;
 				}
         		var nx = Lang.puncString(found + ns.to_string() );
 				if (TokenName.UNKNOWN == nx) {
