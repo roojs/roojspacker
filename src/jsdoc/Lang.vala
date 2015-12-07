@@ -165,9 +165,8 @@ namespace JSDOC {
 				case '}': return TokenName.RIGHT_CURLY;
 				case '(': return TokenName.LEFT_PAREN;
 				case ')': return TokenName.RIGHT_PAREN;
-				
 			}
-			return null;				
+			return null;
 		}
         
         
