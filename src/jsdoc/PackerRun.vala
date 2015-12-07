@@ -111,6 +111,7 @@ namespace JSDOC
 					opt_debug_target == null ? "" :  opt_debug_target 
 				);
 			p.keepWhite = opt_keep_whitespace;
+			p.skipScope = opt_skip_scope;
 			
 			// set the base directory...
 			var curdir = Environment.get_current_dir() + Path.DIR_SEPARATOR_S;
