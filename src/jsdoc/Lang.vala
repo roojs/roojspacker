@@ -123,7 +123,7 @@ namespace JSDOC {
         		return false;
     		}
         }
-        
+        /*
  		public TokenName punc (string ch) throws LangError 
  		{
  			var x = this.puncNull(ch);
@@ -136,7 +136,7 @@ namespace JSDOC {
         public bool isPunc(string ch) {
     		return this.puncNull(ch) != null;
         }
-        
+        */
         public TokenName? puncFirst (char ch)
         {
         
@@ -197,61 +197,7 @@ namespace JSDOC {
 			}        
          
         }
-        
-        public TokenName? puncNull (string ch)
-        {
-        
-    		switch(ch) {
-				case ";": return TokenName.SEMICOLON;
-				case ",": return TokenName.COMMA;
-				case "?": return TokenName.HOOK;
-				case ":": return TokenName.COLON;
-				case "|": return TokenName.BITWISE_OR;				
-				case "^": return TokenName.BITWISE_XOR;
-				case "&": return TokenName.BITWISE_AND;
-				case "=": return TokenName.ASSIGN;
-				case "<": return TokenName.LT;
-				case ">": return TokenName.GT;
-				case "+": return TokenName.PLUS;
-				case "-": return TokenName.MINUS;
-				case "*": return TokenName.MUL;
-				case "/": return TokenName.DIV;
-				case "%": return TokenName.MOD;
-				case "!": return TokenName.NOT;
-				case "~": return TokenName.BITWISE_NOT;
-				case "0": return TokenName.DOT;
-				case "[": return TokenName.LEFT_BRACE;
-				case "]": return TokenName.RIGHT_BRACE;
-				case "{": return TokenName.LEFT_CURLY;
-				case "}": return TokenName.RIGHT_CURLY;
-				case "(": return TokenName.LEFT_PAREN;
-				case ")": return TokenName.RIGHT_PAREN;
-				
-								
-				case "||": return TokenName.OR;
-				case "&&": return TokenName.AND;
-				case "==": return TokenName.EQ;
-				case "!=": return TokenName.NE;
-				case "<<": return TokenName.LSH;
-				case "<=": return TokenName.LE;
-				case ">>": return TokenName.RSH;
-				case ">=": return TokenName.GE;
-				case "++": return TokenName.INCREMENT;
-				case "--": return TokenName.DECREMENT;
-				
-				
-				case "===": return TokenName.STRICT_EQ;
-				case "!==": return TokenName.STRICT_NE;
-				case ">>>": return TokenName.URSH;
-				
-				
-			default:
-				return null;
-				 
-				
-			}        
          
-        }
         
         
         public bool isNumber (string str) {
