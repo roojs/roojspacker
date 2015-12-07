@@ -276,7 +276,9 @@ namespace JSDOC {
 					if (!Lang.isPuncFirst(ns)) {
 						break;
 					}
-						
+					pos++;
+					found = ns.to_string();
+				}
         		
 				if (!Lang.isPunc(found + ns )) {
 					break;
