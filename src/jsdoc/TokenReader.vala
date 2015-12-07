@@ -310,7 +310,7 @@ namespace JSDOC {
                 }
             }
             
-            tokens.push(new Token(found, TokenType.PUNC, Lang.punc(found), this.line));
+            tokens.push(new Token(found, TokenType.PUNC, tokname, this.line));
             return true;
             
         } 
