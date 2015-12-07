@@ -32,6 +32,7 @@ namespace JSDOC
 		[CCode (array_length = false, array_null_terminated = true)]
 		private static string[]? opt_files_from = null;
 		public static bool opt_debug = false;
+		public static bool opt_skip_scope = false;
 
 		public static bool opt_keep_whitespace = false;	
 
