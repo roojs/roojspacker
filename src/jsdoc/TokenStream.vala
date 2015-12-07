@@ -258,7 +258,7 @@ namespace JSDOC {
 		    Token token;
 		    
 		    while (null != (token = this.lookAny(1))) {
-				debug("BALANCE: %d %s " , this.cursor,  token.asString());
+				//debug("BALANCE: %d %s " , this.cursor,  token.asString());
 		        if (token.isName(start)) {
 		      //      Seed.print("balance: START : " + depth + " " + token.data);
 		            depth++;
@@ -272,7 +272,7 @@ namespace JSDOC {
 		        if (token.isName(stop)) {
 		            depth--;
 		            
-	    			debug("balance (%d): STOP: %s" ,  depth ,  token.data);
+	    			//debug("balance (%d): STOP: %s" ,  depth ,  token.data);
 		            if (depth < 1) {
 			            this.next(); // shift cursor to eat closer...
 		        		debug("returning got %d", got.size);
