@@ -166,7 +166,7 @@ namespace JSDOC {
 				case '(': return TokenName.LEFT_PAREN;
 				case ')': return TokenName.RIGHT_PAREN;
 			}
-			return null;
+			return TokenName.UNKNOWN;
 		}
         public TokenName? puncString (string ch)
         {
@@ -191,7 +191,7 @@ namespace JSDOC {
 				
 				
 			default:
-				return null;
+				return TokenName.UNKNOWN;
 				 
 				
 			}        
