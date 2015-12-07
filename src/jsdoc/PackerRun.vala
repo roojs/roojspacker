@@ -46,6 +46,7 @@ namespace JSDOC
 
 			{ "index-files", 'i', 0, OptionArg.FILENAME_ARRAY, ref opt_files_from ,"files that contain listing of files to compile", null },		 
 			{ "keep-whitespace", 'w', 0, OptionArg.NONE, ref opt_keep_whitespace, "Keep whitespace", null },
+			{ "skip-scope", 's', 0, OptionArg.NONE, ref opt_skip_scope, "Skip scope parsing and variable replacement", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
 			// fixme -- keepwhite.. cleanup 
 			
