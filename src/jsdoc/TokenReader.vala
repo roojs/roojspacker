@@ -280,7 +280,7 @@ namespace JSDOC {
 					pos++;
 					found = ns.to_string();
 				}
-        		var nx = Lang.puncString(found + ns.to_string() )
+        		var nx = Lang.puncString(found + ns.to_string() );
 				if (null == nx) {
 					break;
 				}
