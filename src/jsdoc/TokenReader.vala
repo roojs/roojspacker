@@ -274,14 +274,14 @@ namespace JSDOC {
         		var ns = stream.look();
 				if (pos ==0 ){
 					tokname = Lang.puncFirst(ns);
-					if (null == Lang.puncFirst(ns)) {
+					if (TokenName.UNKNOWN == Lang.puncFirst(ns)) {
 						break;
 					}
 					pos++;
 					found = ns.to_string();
 				}
         		var nx = Lang.puncString(found + ns.to_string() );
-				if (null == nx) {
+				if (TokenName.UNKNOWN == nx) {
 					break;
 				}
 				
