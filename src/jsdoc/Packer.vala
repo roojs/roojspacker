@@ -331,7 +331,7 @@ namespace JSDOC
 		        		this.targetStream.write((str + "\n").data); 
 
 		            } else {
-		                this.outstr += "//" + file + "\n";
+		                this.outstr += "//" + file.substring(this.baseDir.length) + "\n";
 		                this.outstr += str + "\n";
 		            }
 		            
