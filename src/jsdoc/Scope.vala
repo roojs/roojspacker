@@ -143,12 +143,12 @@ namespace JSDOC
 		    //    return this.usedsymcache;
 		    //}
 		    
-		    var idents = this.identifiers_list;
-		    var iter = idents.list_iterator();
+		    var idents = this.identifiers_map;
+		    var iter = idents.map_iterator();
 		    while (iter.next()) {
 			    var i = iter.get_key();
 		        //println('<b>'+i+'</b>='+typeof(idents[i]) +'<br/>');
-		        var identifier = this.identifiers.get(i);
+		        var identifier = this.identifiers_map.get(i);
 		        var mungedValue = identifier.mungedValue;
 		        
 		        if (mungedValue.length < 1) {
@@ -250,9 +250,9 @@ namespace JSDOC
 			}
 		        
 		    string[] all = {};
-		    var iter = this.identifiers.map_iterator();
+		    var iter = this.identifiers_list.list_iterator();
 		    while (iter.next()) {
-		        all += iter.get_key();
+		        all += iter.get().key;
 		    }
 		    //print("MUNGE: " + all.join(', '));
 		        
