@@ -327,7 +327,7 @@ namespace JSDOC
 		        print("using MIN FILE  %s\n", minfile);
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
-		        		this.targetStream.write(("// " + file + "\n").data); 
+		        		this.targetStream.write(("// " + file.substring(this.baseDir.length) + "\n").data); 
 		        		this.targetStream.write((str + "\n").data); 
 
 		            } else {
