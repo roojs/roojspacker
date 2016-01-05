@@ -33,7 +33,8 @@ namespace JSDOC
 			this.braceN = braceN;
 			this.parent = parent;
 			this.id = startTokN;
-			this.identifiers = new Gee.HashMap<string,Identifier>();
+			this.identifiers_map = new Gee.HashMap<string,Identifier>();
+			this.identifiers_list = new Gee.ArrayList<Identifier>();
 			this.subScopes = new Gee.ArrayList<Scope> ();
 			this.hints = new Gee.HashMap<string,string>();
 			this.protectedVars = new Gee.HashMap<string,bool>();
@@ -86,24 +87,25 @@ namespace JSDOC
 		    
 		    //print("SCOPE : " + this.gid +  " :SYM: " + symbol + " " + token.toString()+"");
 		    
-		    if (!this.identifiers.has_key(symbol)) {
-		        
-		        this.identifiers.set(symbol,   new Identifier(symbol, this));
+		    if (!this.identifiers_map.has_key(symbol)) {
+				var nid = new Identifier(symbol, this);
+		        this.identifiers_list.add(nid);
+		        this.identifiers_map.set(symbol,   nid);
 		        
 		    }
 		    
 		    //if (typeof(token) != 'undefined') { // shoudl this happen?
-		        token.identifier = this.identifiers.get(symbol);
+		        token.identifier = this.identifiers_map.get(symbol);
 		        
 		    //}
 		    if (this.braceN < 0) {
 		            // then it's global... 
-		            this.identifiers[symbol].toMunge  = false;
+	            this.identifiers_map.get(symbol).toMunge  = false;
 		    }
 		     
 		    
 		    this.addToParentScope(symbol);
-		    return this.identifiers.get(symbol);
+		    return this.identifiers_map.get(symbol);
 		}
 		
 		
