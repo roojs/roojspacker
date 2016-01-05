@@ -112,7 +112,7 @@ namespace JSDOC
 		
 		public Identifier? getIdentifier(string symbol, Token token) 
 		{
-		    if (!this.identifiers.has_key(symbol)) {
+		    if (!this.identifiers_map.has_key(symbol)) {
 				return null;
 		        //if (['String', 'Date'].indexOf(symbol)> -1) {
 		         //   return false;
@@ -122,7 +122,7 @@ namespace JSDOC
 		        //return n;
 		    }
 		     //print("SCOPE : " + this.gid +" = FOUND:" + token.toString());
-		    return this.identifiers.get(symbol);
+		    return this.identifiers_map.get(symbol);
 		}
 		
 		public void addHint(string varName, string varType) {
@@ -143,8 +143,8 @@ namespace JSDOC
 		    //    return this.usedsymcache;
 		    //}
 		    
-		    var idents = this.identifiers;
-		    var iter = idents.map_iterator();
+		    var idents = this.identifiers_list;
+		    var iter = idents.list_iterator();
 		    while (iter.next()) {
 			    var i = iter.get_key();
 		        //println('<b>'+i+'</b>='+typeof(idents[i]) +'<br/>');
