@@ -268,14 +268,14 @@ namespace JSDOC
 		        //println(freeSymbols.toSource());
 		       
 		        //println("MUNGE: Replacing " + this.id+"</BR>");
-		    iter = this.identifiers_list.list_iterator();
+		    iter = this.identifier_list.list_iterator();
 		    while (iter.next()) {
 				var i = iter.get().name;
 		        
 		        // is the identifer in the global scope!?!!?
 		        
 		        
-		        if (!this.identifiers.get(i).toMunge) {
+		        if (!this.identifier_map.get(i).toMunge) {
 		            //print("SKIP toMunge==false : " + i)
 		            continue;
 		        }
@@ -300,7 +300,7 @@ namespace JSDOC
 		            repsym = freeSymbols.remove_at(0); // pop off beginngin???
 		        }
 		        
-		        var identifier = this.identifiers.get(i); 
+		        var identifier = this.identifier_map.get(i); 
 		        //println(typeof(identifier.name));
 		        var mungedValue = identifier.name; 
 		        
