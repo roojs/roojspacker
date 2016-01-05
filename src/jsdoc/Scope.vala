@@ -14,7 +14,7 @@ namespace JSDOC
 		
 		
 		Gee.HashMap<string,Identifier> identifier_map;   // map of identifiers to {Identifier} objects
-		Gee.ArrayList<Identifiers> identifier_list;
+		Gee.ArrayList<Identifier> identifier_list;
 		
 		Gee.HashMap<string,string> hints;
 		bool mungeM = true;
@@ -33,8 +33,8 @@ namespace JSDOC
 			this.braceN = braceN;
 			this.parent = parent;
 			this.id = startTokN;
-			this.identifiers_map = new Gee.HashMap<string,Identifier>();
-			this.identifiers_list = new Gee.ArrayList<Identifier>();
+			this.identifier_map = new Gee.HashMap<string,Identifier>();
+			this.identifier_list = new Gee.ArrayList<Identifier>();
 			this.subScopes = new Gee.ArrayList<Scope> ();
 			this.hints = new Gee.HashMap<string,string>();
 			this.protectedVars = new Gee.HashMap<string,bool>();
@@ -87,32 +87,32 @@ namespace JSDOC
 		    
 		    //print("SCOPE : " + this.gid +  " :SYM: " + symbol + " " + token.toString()+"");
 		    
-		    if (!this.identifiers_map.has_key(symbol)) {
+		    if (!this.identifier_map.has_key(symbol)) {
 				var nid = new Identifier(symbol, this);
-		        this.identifiers_list.add(nid);
-		        this.identifiers_map.set(symbol,   nid);
+		        this.identifier_list.add(nid);
+		        this.identifier_map.set(symbol,   nid);
 		        
 		    }
 		    
 		    //if (typeof(token) != 'undefined') { // shoudl this happen?
-		        token.identifier = this.identifiers_map.get(symbol);
+		        token.identifier = this.identifier_map.get(symbol);
 		        
 		    //}
 		    if (this.braceN < 0) {
 		            // then it's global... 
-	            this.identifiers_map.get(symbol).toMunge  = false;
+	            this.identifier_map.get(symbol).toMunge  = false;
 		    }
 		     
 		    
 		    this.addToParentScope(symbol);
-		    return this.identifiers_map.get(symbol);
+		    return this.identifier_map.get(symbol);
 		}
 		
 		
 		
 		public Identifier? getIdentifier(string symbol, Token token) 
 		{
-		    if (!this.identifiers_map.has_key(symbol)) {
+		    if (!this.identifier_map.has_key(symbol)) {
 				return null;
 		        //if (['String', 'Date'].indexOf(symbol)> -1) {
 		         //   return false;
@@ -122,7 +122,7 @@ namespace JSDOC
 		        //return n;
 		    }
 		     //print("SCOPE : " + this.gid +" = FOUND:" + token.toString());
-		    return this.identifiers_map.get(symbol);
+		    return this.identifier_map.get(symbol);
 		}
 		
 		public void addHint(string varName, string varType) {
@@ -143,12 +143,12 @@ namespace JSDOC
 		    //    return this.usedsymcache;
 		    //}
 		    
-		    var idents = this.identifiers_map;
+		    var idents = this.identifier_map;
 		    var iter = idents.map_iterator();
 		    while (iter.next()) {
 			    var i = iter.get_key();
 		        //println('<b>'+i+'</b>='+typeof(idents[i]) +'<br/>');
-		        var identifier = this.identifiers_map.get(i);
+		        var identifier = this.identifier_map.get(i);
 		        var mungedValue = identifier.mungedValue;
 		        
 		        if (mungedValue.length < 1) {
@@ -250,9 +250,9 @@ namespace JSDOC
 			}
 		        
 		    string[] all = {};
-		    var iter = this.identifiers_list.list_iterator();
+		    var iter = this.identifier_list.list_iterator();
 		    while (iter.next()) {
-		        all += iter.get().key;
+		        all += iter.get().name;
 		    }
 		    //print("MUNGE: " + all.join(', '));
 		        
@@ -268,9 +268,9 @@ namespace JSDOC
 		        //println(freeSymbols.toSource());
 		       
 		        //println("MUNGE: Replacing " + this.id+"</BR>");
-		    iter = this.identifiers.map_iterator();
+		    iter = this.identifiers_list.list_iterator();
 		    while (iter.next()) {
-				var i = iter.get_key();
+				var i = iter.get().name;
 		        
 		        // is the identifer in the global scope!?!!?
 		        
