@@ -11,7 +11,11 @@ namespace JSDOC
 		int braceN ;
 		public Scope parent;
 		public Gee.ArrayList<Scope> subScopes;
-		Gee.HashMap<string,Identifier> identifiers;   // map of identifiers to {Identifier} objects
+		
+		
+		Gee.HashMap<string,Identifier> identifier_map;   // map of identifiers to {Identifier} objects
+		Gee.ArrayList<Identifiers> identifier_list;
+		
 		Gee.HashMap<string,string> hints;
 		bool mungeM = true;
 		//ident: '',
