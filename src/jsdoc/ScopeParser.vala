@@ -193,10 +193,12 @@ namespace JSDOC {
 			
 			this.parseScope(this.globalScope);
 			
-			//this.globalScope.dump();
+			this.globalScope.dump();
 			
 			
 			this.globalScope.munge();
+			
+
 		}
 
 
