@@ -62,7 +62,7 @@ namespace JSDOC
 		 * dump the scope to StdOut...
 		 * 
 		 */
-		void dump (string indent = "") 
+		public void dump (string indent = "") 
 		{
 		    //indent = indent || '';
 		    print(
