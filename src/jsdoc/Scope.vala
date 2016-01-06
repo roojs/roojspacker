@@ -71,7 +71,7 @@ namespace JSDOC
 		    var iter = idents.list_iterator();
 		    while (iter.next()) {
 			    var identifier = iter.get();
-				str += indent + " $" + identifer.name + " => " +  identifer.mungedValue;
+				str += indent + " $" + identifier.name + " => " +  identifier.mungedValue;
 			}
 			
 		    print(
