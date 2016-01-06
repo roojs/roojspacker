@@ -65,6 +65,15 @@ namespace JSDOC
 		public void dump (string indent = "") 
 		{
 		    //indent = indent || '';
+		    
+		    var str = "";
+			 var idents = this.identifier_list;
+		    var iter = idents.list_iterator();
+		    while (iter.next()) {
+			    var identifier = iter.get();
+				str += indent + " $" + identifer.name + " => " +  identifer.mungedValue;
+			}
+			
 		    print(
 		        indent +  "Scope: %d\n" +
 		        indent + "Started: %d\n" +
