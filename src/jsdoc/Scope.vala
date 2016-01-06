@@ -62,7 +62,7 @@ namespace JSDOC
 		 * dump the scope to StdOut...
 		 * 
 		 */
-		void dump (string indent) 
+		void dump (string indent = "") 
 		{
 		    //indent = indent || '';
 		    print(
@@ -303,6 +303,10 @@ namespace JSDOC
 		        var identifier = this.identifier_map.get(i); 
 		        //println(typeof(identifier.name));
 		        var mungedValue = identifier.name; 
+		        
+		        if (mungedValue.length < 3) {  // don't bother replacing 1&2 character variables..
+			        continue;
+		        }
 		        
 		        //println([     repsym,mungedValue ]);
 		        
