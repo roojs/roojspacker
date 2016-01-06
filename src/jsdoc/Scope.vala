@@ -139,16 +139,16 @@ namespace JSDOC
 		    
 		    string[] result = {};
 		    
-		   // if (this.usedsymcache !== false) {
+		    // if (this.usedsymcache !== false) {
 		    //    return this.usedsymcache;
 		    //}
 		    
-		    var idents = this.identifier_map;
-		    var iter = idents.map_iterator();
+		    var idents = this.identifier_list;
+		    var iter = idents.list_iterator();
 		    while (iter.next()) {
-			    var i = iter.get_key();
+			    var identifier = iter.get();
 		        //println('<b>'+i+'</b>='+typeof(idents[i]) +'<br/>');
-		        var identifier = this.identifier_map.get(i);
+		        //var identifier = this.identifier_map.get(i);
 		        var mungedValue = identifier.mungedValue;
 		        
 		        if (mungedValue.length < 1) {
