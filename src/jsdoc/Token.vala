@@ -164,6 +164,8 @@ namespace JSDOC
         
         public Identifier identifier;
         
+        
+        public boolean isMap;
          // used to stuff tokens together when building a tree..
         public Gee.ArrayList<Gee.ArrayList<Token>> items;
         // for a object definition, key -> array of tokens..
@@ -191,7 +193,9 @@ namespace JSDOC
             
 		        this.items = new Gee.ArrayList<Gee.ArrayList<Token>>();
 		        this.props = new Gee.HashMap<string,TokenKeyMap>();
+		        this.isMap = false;
 	        }
+	        
         }
     
         public string asString()
