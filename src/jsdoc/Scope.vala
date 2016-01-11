@@ -71,16 +71,17 @@ namespace JSDOC
 		    var iter = idents.list_iterator();
 		    while (iter.next()) {
 			    var identifier = iter.get();
-				str += indent + " $" + identifier.name + " => " +  identifier.mungedValue;
+			    str += (str.length > 0 ? ", " : "");
+				str +=  indent + " " + identifier.name + "=>" +  identifier.mungedValue ;
 			}
 			
 		    print(
 		        indent +  "Scope: %d\n" +
 		        indent + "Started: %d\n" +
-		        indent + "- idents..: fixme\n"
-				, 
+		        indent + "- idents..: %s\n", 
 				this.id,
-				this.token != null ? this.token.line  : -1
+				this.token != null ? this.token.line  : -1,
+				str
 				//		     " + XObject.keys(this.identifiers).join(", ") + "
 		    );
 		    foreach(var s in this.subScopes) {
