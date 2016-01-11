@@ -80,7 +80,7 @@ namespace JSDOC
 		        indent + "Started: %s\n" +
 		        indent + "- idents..: %s\n", 
 				this.id,
-				this.token != null ? this.token.toString()  : -1,
+				this.token != null ? this.token.toString()  : "TOP",
 				str
 				//		     " + XObject.keys(this.identifiers).join(", ") + "
 		    );
