@@ -75,12 +75,12 @@ namespace JSDOC
 				str +=  indent + " " + identifier.name + "=>" +  identifier.mungedValue ;
 			}
 			
-		    print(
+		    print( "\n"+ 
 		        indent +  "Scope: %d\n" +
-		        indent + "Started: %d\n" +
+		        indent + "Started: %s\n" +
 		        indent + "- idents..: %s\n", 
 				this.id,
-				this.token != null ? this.token.line  : -1,
+				this.token != null ? this.token.toString()  : -1,
 				str
 				//		     " + XObject.keys(this.identifiers).join(", ") + "
 		    );
