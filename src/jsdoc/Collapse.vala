@@ -271,6 +271,8 @@ namespace JSDOC {
             if (k.length > 0 && g.vals.size > 0) {
                 ret.set(k, g);
             }
+            tok.props = ret;
+            tok.keqseq = keyseq;
             return ret;
             
             
