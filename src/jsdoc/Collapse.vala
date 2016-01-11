@@ -235,7 +235,7 @@ namespace JSDOC {
             
             var ret = new Gee.HashMap<string,TokenKeyMap>();
 			
-			var keyseq = new Gee.ArrayMap<string>();
+			var keyseq = new Gee.ArrayList<string>();
                
             var g = new TokenKeyMap();
                
