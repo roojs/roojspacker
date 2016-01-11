@@ -157,7 +157,7 @@ namespace JSDOC {
                                     //console.dump(ost.look(2,true) );
                                     if (ost.look(2,true) != null && ost.look(2,true).data == ":") {
                                 		// object properties...
-                                        tok.props = this.toProps(toks);
+                                        //tok.props = this.toProps(toks);
                                     } else {
                                         // list of statemetns..
                                         tok.items = this.toItems(toks, ";{");;
