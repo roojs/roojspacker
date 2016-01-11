@@ -248,6 +248,7 @@ namespace JSDOC {
                     case 0:
                         k = ar.get(i).data;
                         g.key = ar.get(i);
+                        keyseq.add(k);
                         state = 1;
                         continue;
                     case 1:
