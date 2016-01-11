@@ -351,9 +351,20 @@ namespace JSDOC
 
 
 
-		static void array_merge(Gee.ArrayList<string> fs, string[] toadd) 
+		static void array_merge(Gee.ArrayList<string> fs, string[] toadd, string[] ignore) 
 		{
+			var got_it = false;
 			foreach(var i in toadd) {
+				got_it = false;
+				foreach(var ig in ignore) {
+					if (i == ig) {
+						got_it = true;
+						break;
+					}
+				}
+				if (got_it) {
+					continue;
+				}
 				fs.add(i);
 			}
 		 
