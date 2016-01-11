@@ -436,7 +436,7 @@ namespace JSDOC {
 									    
 									    // { a : ... , c : .... }
 									    
-									    for (var i = 0;i < token.keyseq.size(); i++ ){ 
+									    for (var i = 0;i < token.keyseq.size; i++ ){ 
 									    //var iter = token.props.map_iterator();
 											var k =  token.keyseq.get(i);
 											
