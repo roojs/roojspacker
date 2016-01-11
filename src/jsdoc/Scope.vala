@@ -272,10 +272,15 @@ namespace JSDOC
 		    Gee.ArrayList<string> freeSymbols= new Gee.ArrayList<string>();
 		    
 		    var sy = this.getAllUsedSymbols();
+
 		    // we need to remove the used from the free.....
 		    
+		    
+		    
+		    
+		    
 		        
-			Scope.array_merge(freeSymbols,Scope.ones); 
+			Scope.array_merge(freeSymbols,Scope.ones, sy); 
 		         
 		    var repsym = "";
 		        //println(freeSymbols.toSource());
@@ -306,11 +311,16 @@ namespace JSDOC
 		       // }
 		       // println("IDENT:" +i+'</BR>');
 		        
-		        if (repsym.length < 1) {
-		            if (freeSymbols.size < 1) {
+		        while (repsym.length < 1) {
+		    		
+		            if (freeSymbols.size < 1) { // not good...
 		                Scope.array_merge(freeSymbols,Scope.twos); 
 		            }
+		            
 		            repsym = freeSymbols.remove_at(0); // pop off beginngin???
+		            if (
+		            
+		            
 		        }
 		        
 		        var identifier = this.identifier_map.get(i); 
