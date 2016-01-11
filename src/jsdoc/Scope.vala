@@ -280,7 +280,7 @@ namespace JSDOC
 		    
 		    
 		        
-			Scope.array_merge(freeSymbols,Scope.ones, sy); 
+			Scope.array_merge(freeSymbols,Scope.ones,sy); 
 		         
 		    var repsym = "";
 		        //println(freeSymbols.toSource());
@@ -311,16 +311,11 @@ namespace JSDOC
 		       // }
 		       // println("IDENT:" +i+'</BR>');
 		        
-		        while (repsym.length < 1) {
-		    		
-		            if (freeSymbols.size < 1) { // not good...
+		        if (repsym.length < 1) {
+		            if (freeSymbols.size < 1) {
 		                Scope.array_merge(freeSymbols,Scope.twos); 
 		            }
-		            
 		            repsym = freeSymbols.remove_at(0); // pop off beginngin???
-		            if (
-		            
-		            
 		        }
 		        
 		        var identifier = this.identifier_map.get(i); 
