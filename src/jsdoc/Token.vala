@@ -165,7 +165,7 @@ namespace JSDOC
         public Identifier identifier;
         
         
-        public boolean isMap;
+        public bool isMap;
          // used to stuff tokens together when building a tree..
         public Gee.ArrayList<Gee.ArrayList<Token>> items;
         // for a object definition, key -> array of tokens..
