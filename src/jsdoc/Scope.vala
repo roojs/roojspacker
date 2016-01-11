@@ -272,6 +272,8 @@ namespace JSDOC
 		    Gee.ArrayList<string> freeSymbols= new Gee.ArrayList<string>();
 		    
 		    var sy = this.getAllUsedSymbols();
+		    // we need to remove the used from the free.....
+		    
 		        
 			Scope.array_merge(freeSymbols,Scope.ones); 
 		         
