@@ -193,12 +193,12 @@ namespace JSDOC {
 			
 			this.parseScope(this.globalScope);
 			
-			this.globalScope.dump();
+
 			
 			
 			this.globalScope.munge();
 			
-
+			this.globalScope.dump();
 		}
 
 
@@ -435,12 +435,13 @@ namespace JSDOC {
 									if (token.props.size > 0) {
 									    
 									    // { a : ... , c : .... }
-									    var iter = token.props.map_iterator();
 									    
-									    while(iter.next()) {
+									    for (var i = 0;i < token.keyseq.length; i++ ){ 
+									    //var iter = token.props.map_iterator();
+											var k =  token.keyseq.get(i);
 											
-									        TokenKeyMap val = iter.get_value(); // TokenKeyMap
-									        
+											TokenKeyMap val = token.props.get(k);
+									    
 									        
 									      //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
 									        if (val.vals.get(0).data == "function") {
