@@ -230,7 +230,7 @@ namespace JSDOC {
             
         }
         
-        Gee.HashMap<string,TokenKeyMap> toProps (Gee.ArrayList<Token> ar)
+        Gee.HashMap<string,TokenKeyMap> toProps (Gee.ArrayList<Token> ar, Token tok)
         {
             
             var ret = new Gee.HashMap<string,TokenKeyMap>();
