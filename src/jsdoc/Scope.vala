@@ -78,10 +78,13 @@ namespace JSDOC
 		    print( "\n"+ 
 		        indent +  "Scope: %d\n" +
 		        indent + "Started: %s\n" +
-		        indent + "- idents..: %s\n", 
+		        indent + "- idents..: %s\n" +
+		        indent + "- idents(all)..: %s\n", 		        
 				this.id,
-				this.token != null ? this.token.toString()  : "TOP",
-				str
+				this.token != null ? this.token.asString()  : "TOP",
+				str,
+				String.join(", ", this.getAllUsedSymbols())
+				
 				//		     " + XObject.keys(this.identifiers).join(", ") + "
 		    );
 		    foreach(var s in this.subScopes) {
