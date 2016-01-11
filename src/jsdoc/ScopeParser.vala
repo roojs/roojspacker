@@ -668,13 +668,13 @@ namespace JSDOC {
 			                    var curTS = this.ts;
 			                    if (token.props.size > 0) {
 			                        
-			                         var iter = token.props.map_iterator();
-			                
-							    		while(iter.next()) {
-							    		
-							            TokenKeyMap val = iter.get_value(); // TokenKeyMap
-							       
-			                        
+			                         for (var i = 0;i < token.keyseq.size; i++ ){ 
+									    //var iter = token.props.map_iterator();
+										var k =  token.keyseq.get(i);
+										
+										TokenKeyMap val = token.props.get(k);
+								    
+									     
 			                        
 			                            //if (val.vals.size < 1) {
 			                                //print(JSON.stringify(token.props, null,4));
