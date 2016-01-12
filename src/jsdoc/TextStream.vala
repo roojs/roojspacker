@@ -27,7 +27,7 @@ namespace JSDOC {
             
             
             this.text = text;
-            stdout.printf ("%s", text);
+            //stdout.printf ("%s", text);
             this.length = text.length; //text.char_count(); //text.length;
             this.cursor = 0;
         }
@@ -72,7 +72,7 @@ namespace JSDOC {
                 }
             }
             
-            this.cursor += pulled.length;
+            this.cursor += i; //pulled.length;
             return pulled;
            
         }
