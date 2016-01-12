@@ -28,7 +28,7 @@ namespace JSDOC {
             
             this.text = text;
             print("%s", text);
-            this.length = text.char_count(); //text.length;
+            this.length = text.length; //text.char_count(); //text.length;
             this.cursor = 0;
         }
         
