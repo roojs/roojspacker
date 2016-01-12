@@ -137,18 +137,20 @@ namespace JSDOC {
 		                continue;
 		                
 		            }
-		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
+		            return  new Token("cursor<0", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
 		        if (i >= this.tokens.size) {
 		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
 
-		        if (i != this.cursor && ( this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM))) {
+		        if (i != this.cursor && ( 
+		    				this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM)
+    				)) {
 		            i += (n < 0) ? -1 : 1;
 		            continue;
 		        }
 		        
-		        if (count == n) {
+		        if (count == n.abs()) {
 		            return this.tokens.get(i);
 		        }
 		        count++;
