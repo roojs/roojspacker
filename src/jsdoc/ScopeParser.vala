@@ -576,7 +576,7 @@ namespace JSDOC {
 			                    
 			                    //println("GOT IDENT IGNORE(3): <B>" + symbol + "</B><BR/>");
 			                } else {
-			            		print("existing identifier\n");
+			            		// print("existing identifier\n");
 			                    token.identifier = identifier;
 			                    identifier.refcount++;
 			                }
