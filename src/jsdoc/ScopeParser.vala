@@ -197,7 +197,7 @@ namespace JSDOC {
 			 
 			this.globalScope.munge();
 			
-			this.globalScope.dump();
+			// this.globalScope.dump();
 		}
 
 
@@ -393,7 +393,7 @@ namespace JSDOC {
 							                    var hi = this.getIdentifier(a, scope, token);
 								                   // println("PROTECT "+a+" from munge" + (hi ? "FOUND" : "MISSING"));
 							                    if (hi != null) {
-							                      //  print("PROTECT "+a+" from munge");
+							                        print("PROTECT "+a+" from munge\n");
 							                        //print(JSON.stringify(hi,null,4));
 							                        hi.toMunge = false;
 							                    }
