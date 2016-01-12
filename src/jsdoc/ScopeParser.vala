@@ -535,7 +535,7 @@ namespace JSDOC {
 			            // look for  { ** : <- indicates obj literal.. ** this could occur with numbers ..
 			            // skip anyting with "." before it..!!
 			             
-			            if (this.ts.lookTok(-1).data == ".") {
+			            if (this.ts.lookTok(0).data == ".") {
 			                // skip, it's an object prop.
 			                print("prev is a .dot.\n");
 			                //println("<i>"+token.data+"</i>");
