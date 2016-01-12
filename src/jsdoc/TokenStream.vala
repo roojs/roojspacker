@@ -130,6 +130,7 @@ namespace JSDOC {
 		    var i = this.cursor;
 
 		    while (true) {
+		        print("lookTok:i= %d n= %d count=%d\n" , i, n, count);
 		        
 		        if (i < 0 &&  n > -1) {
 		                i = 0; 
