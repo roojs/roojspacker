@@ -387,7 +387,10 @@ namespace JSDOC
 		
 			TokenArray toks = tr.tokenize(new TextStream(str)); // dont merge xxx + . + yyyy etc.
 		
-		
+			if (this.dumpTokens) {
+				toks.dump();
+				GLib.Process.exit(0);
+			}
 		
 			this.activeFile = fn;
 		
