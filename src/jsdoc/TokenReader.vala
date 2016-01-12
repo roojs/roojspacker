@@ -384,10 +384,10 @@ namespace JSDOC {
          */
         public bool read_mlcomment  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() != '/') {
+            if (stream.look() != "/") {
                 return false;
             }
-            if (stream.look(1) != '*') {
+            if (stream.look(1) != "*") {
                 return false;
             }
             var found = stream.next(2);
