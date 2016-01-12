@@ -272,7 +272,7 @@ namespace JSDOC {
                 ret.set(k, g);
             }
             tok.props = ret;
-            tok.keqseq = keyseq;
+            tok.keyseq = keyseq;
             return ret;
             
             
