@@ -121,7 +121,7 @@ namespace JSDOC {
 		 * look ahead (or back) x number of tokens (which are not comment or whitespace)
 		 * ?? used by scope parser to look back?
 		 */
-		public Token lookTok (int n) {
+		/*public Token lookTok (int n) {
 
 
 		    var step =  (n < 0) ? -1 : 1;
@@ -136,12 +136,14 @@ namespace JSDOC {
 		                count += step;
 		                continue;
 	            }
-	            print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
+
 		        
 	            // beyond beginnnig..
 	            if (i < 0 &&  n < -1) {
-		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
+		            return  new Token("BEG", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
+	            print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
+		        
 		        // beyond end..
 		        if (i >= this.tokens.size) {
 		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
@@ -165,7 +167,7 @@ namespace JSDOC {
 		//    return  new Token("", "VOID", "END_OF_STREAM");; // because null isn't an object and caller always expects an object;
 		    
 		}
-
+		*/
 		/**
 		 *  @return {Token|null}
 		 * next token (with white space)
