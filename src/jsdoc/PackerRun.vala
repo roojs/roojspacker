@@ -35,6 +35,7 @@ namespace JSDOC
 		public static bool opt_skip_scope = false;
 
 		public static bool opt_keep_whitespace = false;	
+		public static bool opt_dump_tokens = false;	
 
 		
 		const OptionEntry[] options = {
