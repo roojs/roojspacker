@@ -31,13 +31,13 @@ namespace JSDOC {
             this.cursor = 0;
         }
         
-        public char look(int n = 0)
+        public string look(int n = 0)
         {
                  
             if (this.cursor+n < 0 || this.cursor+n >= this.length) {
                 return '\0';
             }
-            return this.text.get_char(this.cursor+n); // this.text[this.cursor+n]; // 
+            return this.text.get_char(this.cursor+n).to_string(); // this.text[this.cursor+n]; // 
         }
         
         public bool lookEOF(int n = 0)
