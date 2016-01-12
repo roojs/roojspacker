@@ -64,7 +64,7 @@ namespace JSDOC {
             while (i < n) {
                 if (this.cursor+i < this.length) {
                     var add =  this.text.get_char(this.cursor+i).to_string(); 
-                    pulled += add.to_string();
+                    pulled += add;
                     i += 1;// add.length;
                 } else {
                     return "";
