@@ -313,7 +313,7 @@ namespace JSDOC
 		        
 		        if (repsym.length < 1) {
 		            if (freeSymbols.size < 1) {
-		                Scope.array_merge(freeSymbols,Scope.twos); 
+		                Scope.array_merge(freeSymbols,Scope.twos,sy); 
 		            }
 		            repsym = freeSymbols.remove_at(0); // pop off beginngin???
 		        }
