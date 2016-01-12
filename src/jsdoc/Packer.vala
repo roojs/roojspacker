@@ -105,6 +105,14 @@ namespace JSDOC
 		
 		public bool skipScope = false;
 		
+		
+		/**
+		 * @cfg {Boolean} dumpTokens (optional) read the first file and dump the tokens.
+		 *    usefull for debugging...
+		 */
+		
+		public bool dumpTokens = false;
+		
 		// list of files to compile...
 		Gee.ArrayList<string> files;
 		
