@@ -371,11 +371,11 @@ namespace JSDOC {
 
 
 							default:    
-							
+								 print(" KEYW = %s", token.asString());
 								var symbol = token.data;
 					        
 							     if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
-
+									
 							        if (token.name == TokenName.EVAL) {
 							            
 							            //print(JSON.stringify(token, null,4));
