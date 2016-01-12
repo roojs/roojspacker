@@ -131,7 +131,7 @@ namespace JSDOC {
 
 		    while (true) {
 		        
-		        if (i < 0 &&  n > 0) {
+		        if (i < 0 &&  n > -1) {
 		                i = 0; 
 		                count += step;
 		                continue;
