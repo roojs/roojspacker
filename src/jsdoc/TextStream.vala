@@ -35,7 +35,7 @@ namespace JSDOC {
         {
                  
             if (this.cursor+n < 0 || this.cursor+n >= this.length) {
-                return '\0';
+                return "";
             }
             return this.text.get_char(this.cursor+n).to_string(); // this.text[this.cursor+n]; // 
         }
