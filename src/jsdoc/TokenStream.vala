@@ -119,9 +119,9 @@ namespace JSDOC {
 
 		/**
 		 * look ahead (or back) x number of tokens (which are not comment or whitespace)
-		 * ?? used by scope parser to look back?
+		 * ?? used by scope parser & compress white to look back?
 		 */
-		/*public Token lookTok (int n) {
+		 public Token lookTok (int n) {
 
 
 		    var step =  (n < 0) ? -1 : 1;
@@ -167,7 +167,7 @@ namespace JSDOC {
 		//    return  new Token("", "VOID", "END_OF_STREAM");; // because null isn't an object and caller always expects an object;
 		    
 		}
-		*/
+		
 		/**
 		 *  @return {Token|null}
 		 * next token (with white space)
