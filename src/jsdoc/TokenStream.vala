@@ -129,8 +129,8 @@ namespace JSDOC {
 		    var i = this.cursor;
 
 		    while (true) {
-		       // print(i);
-		       
+		         print("lookTok: %d : %s\n" , n, this.tokens.get(i));
+		        
 		        if (i < 0 &&  n > 0) {
 		                i = 0; 
 		                count += step;
