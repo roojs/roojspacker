@@ -137,7 +137,7 @@ namespace JSDOC {
 		                continue;
 		                
 		            }
-		            return  new Token("cursor<0", TokenType.VOID, TokenName.END_OF_STREAM);
+		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
 		        if (i >= this.tokens.size) {
 		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
