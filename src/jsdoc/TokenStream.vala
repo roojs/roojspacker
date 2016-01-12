@@ -129,7 +129,7 @@ namespace JSDOC {
 		    var i = this.cursor;
 
 		    while (true) {
-		         print("lookTok: %d : %s\n" , n, this.tokens.get(i));
+		         print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
 		        
 		        if (i < 0 &&  n > 0) {
 		                i = 0; 
