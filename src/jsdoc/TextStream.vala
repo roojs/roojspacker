@@ -27,7 +27,7 @@ namespace JSDOC {
             
             
             this.text = text;
-            this.length = text.length; // text.char_count();
+            this.length = text.char_count(); //text.length;
             this.cursor = 0;
         }
         
@@ -37,7 +37,7 @@ namespace JSDOC {
             if (this.cursor+n < 0 || this.cursor+n >= this.length) {
                 return '\0';
             }
-            return this.text[this.cursor+n]; // this.text.get_char(this.cursor+n);
+            return this.text.get_char(this.cursor+n); // this.text[this.cursor+n]; // 
         }
         
         public bool lookEOF(int n = 0)
@@ -62,7 +62,7 @@ namespace JSDOC {
             var i = 0;
             while (i < n) {
                 if (this.cursor+i < this.length) {
-                    var add = this.text[this.cursor+i]; //this.text.get_char(this.cursor+i).to_string();
+                    var add = this.text.get_char(this.cursor+i).to_string(); //this.text[this.cursor+i]; //
                     pulled += add.to_string();
                     i += 1;// add.length;
                 } else {
