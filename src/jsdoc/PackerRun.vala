@@ -49,6 +49,7 @@ namespace JSDOC
 			{ "keep-whitespace", 'w', 0, OptionArg.NONE, ref opt_keep_whitespace, "Keep whitespace", null },
 			{ "skip-scope", 's', 0, OptionArg.NONE, ref opt_skip_scope, "Skip scope parsing and variable replacement", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
+			{ "dump-tokens", 'k', 0, OptionArg.NONE, ref opt_dump_tokens, "Dump the tokens from a file", null },
 			// fixme -- keepwhite.. cleanup 
 			
 			{ null }
