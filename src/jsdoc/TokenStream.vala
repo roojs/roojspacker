@@ -130,7 +130,7 @@ namespace JSDOC {
 		    var i = this.cursor;
 
 		    while (true) {
-		        print("lookTok:i=%d n= %d count=%d\n" , i, n, count);
+		        // print("lookTok:i=%d n= %d count=%d\n" , i, n, count);
 		        
 		        if (i < 0 &&  n > -1) {
 		                i = 0; 
@@ -149,10 +149,11 @@ namespace JSDOC {
 		        if (i >= this.tokens.size) {
 		    		return  new Token("END", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
-				print("lookTok:i= %d n= %d : %s\n" , i, n, this.tokens.get(i).asString());
+				// print("lookTok:i= %d n= %d : %s\n" , i, n, this.tokens.get(i).asString());
+				var tok = this.tokens.get(i);
 				
 		        if (i != this.cursor && ( 
-		    				this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM)
+		    				tok.isType(TokenType.WHIT) || tok.isType(TokenType.COMM)
     				)) {
 		            i += step;
 		            continue;
