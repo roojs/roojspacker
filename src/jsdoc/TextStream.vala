@@ -55,7 +55,7 @@ namespace JSDOC {
         {
             
             if (n < 1) { //?? eof???
-                return "\0";
+                return "";
             }
                 
             string pulled = "";
