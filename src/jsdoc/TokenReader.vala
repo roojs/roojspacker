@@ -323,7 +323,7 @@ namespace JSDOC {
         {
             var found = "";
             
-            while (!stream.lookEOF() && Lang.isSpaceC(  stream.look()) && !Lang.isNewlineC(stream.look())) {
+            while (!stream.lookEOF() && Lang.isSpace(  stream.look()) && !Lang.isNewline(stream.look())) {
                 found += stream.next();
             }
             
