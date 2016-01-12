@@ -380,15 +380,17 @@ namespace JSDOC {
 							            
 							            //print(JSON.stringify(token, null,4));
 							            // look back one and see if we can find a comment!!!
-							            //if (this.ts.look(-1).type == "COMM") {
-							            if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
+							            var prevTok = this.ts.look(-1,true);
+							            if (prevTok.type == TokenType.COMM) {
+							            
+							            //if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
 							                // look for eval:var:noreplace\n
 							                //print("MATCH!?");
 							                var _t = this;
 							                
 							                var regex = new GLib.Regex ("eval:var:([a-z_]+)",GLib.RegexCompileFlags.CASELESS );
 			 
-							                regex.replace_eval (token.prefix, token.prefix.length, 0, 0, (match_info, result) => {
+							                regex.replace_eval (prevTok.data, prevTok.data.length, 0, 0, (match_info, result) => {
 									           	var a =  match_info.fetch(0);
 							                    var hi = this.getIdentifier(a, scope, token);
 								                   // println("PROTECT "+a+" from munge" + (hi ? "FOUND" : "MISSING"));
