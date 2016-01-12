@@ -153,7 +153,7 @@ namespace JSDOC {
 		        if (i != this.cursor && ( 
 		    				this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM)
     				)) {
-		            i += (n < 0) ? -1 : 1;
+		            i += step;
 		            continue;
 		        }
 		        
