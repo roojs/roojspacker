@@ -142,13 +142,13 @@ namespace JSDOC {
 	            if (i < 0 &&  n < -1) {
 		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
-	            print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
+	            
 		        
 		        // beyond end..
 		        if (i >= this.tokens.size) {
 		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
-				
+				print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
 				
 		        if (i != this.cursor && ( 
 		    				this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM)
