@@ -534,10 +534,11 @@ namespace JSDOC {
 			            // got identifier..
 			            // look for  { ** : <- indicates obj literal.. ** this could occur with numbers ..
 			            // skip anyting with "." before it..!!
-			             
-			            if (this.ts.lookTok(0).name == TokenName.DOT) {
+			            // print("prev0 = " + this.ts.lookTok(0).asString() +"\n");
+			            // print("prev-1 = " + this.ts.lookTok(-1).asString() +"\n");			             
+			            if (this.ts.lookTok(-1).name == TokenName.DOT) {
 			                // skip, it's an object prop.
-			                print("prev is a .dot.\n");
+			                // print("prev is a .dot.\n");
 			                //println("<i>"+token.data+"</i>");
 			                break;
 			            }
@@ -545,7 +546,7 @@ namespace JSDOC {
 			            
 			            var symbol = token.data;
 			            if (symbol == "this") {
-			                print("ignore 'this'\n");
+			                // print("ignore 'this'\n");
 			                break;
 			            }
 			            
@@ -562,8 +563,8 @@ namespace JSDOC {
 			                
 			                
 			                if (identifier == null) {
-	// BUG!find out where builtin is defined...
-								print("new identifier\n");
+								// BUG!find out where builtin is defined...
+								// print("new identifier\n");
 			                    if (symbol.length <= 3 &&  Scope.builtin.index_of(symbol) < 0) {
 			                        // Here, we found an undeclared and un-namespaced symbol that is
 			                        // 3 characters or less in length. Declare it in the global scope.
