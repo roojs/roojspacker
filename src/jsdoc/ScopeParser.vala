@@ -381,8 +381,9 @@ namespace JSDOC {
 							            //print(JSON.stringify(token, null,4));
 							            // look back one and see if we can find a comment!!!
 							            var prevTok = this.ts.look(-1,true);
+							            print("prev to eval = %s", prevTok.asString());
 							            if (prevTok.type == TokenType.COMM) {
-							            
+							        		print("previus to eval == comment\n%s\n" , prevTok.data);
 							            //if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
 							                // look for eval:var:noreplace\n
 							                //print("MATCH!?");
