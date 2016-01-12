@@ -138,7 +138,7 @@ namespace JSDOC {
     		return this.puncNull(ch) != null;
         }
         */
-        public TokenName puncFirst (char ch)
+        public TokenName puncFirstString (string ch)
         {
         
     		switch(ch) {
