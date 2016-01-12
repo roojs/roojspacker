@@ -126,16 +126,18 @@ namespace JSDOC {
 
 		    var step =  (n < 0) ? -1 : 1;
 		    var count = 0;
+		    
 		    var i = this.cursor;
 
 		    while (true) {
-		         print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
 		        
 		        if (i < 0 &&  n > 0) {
 		                i = 0; 
 		                count += step;
 		                continue;
 	            }
+	            print("lookTok: %d : %s\n" , n, this.tokens.get(i).asString());
+		        
 	            // beyond beginnnig..
 	            if (i < 0 &&  n < -1) {
 		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
