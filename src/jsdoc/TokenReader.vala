@@ -273,7 +273,7 @@ namespace JSDOC {
             while (!stream.lookEOF()) {
         		var ns = stream.look();
 				if (pos == 0 ){
-					tokname = Lang.puncFirst(ns);
+					tokname = Lang.puncFirstString(ns);
 					if (TokenName.UNKNOWN == tokname) {
 						break;
 					}
