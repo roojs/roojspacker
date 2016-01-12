@@ -124,27 +124,28 @@ namespace JSDOC {
 		public Token lookTok (int n) {
 
 
-		    
+		    var step =  (n < 0) ? -1 : 1;
 		    var count = 0;
 		    var i = this.cursor;
 
 		    while (true) {
 		       // print(i);
 		       
-		        if (i < 0 &&  n > -1) {
+		        if (i < 0 &&  n > 0) {
 		                i = 0; 
-		                count++;
+		                count +=step;
 		                continue;
 	            }
-	            // beyound beginnnig..
-	            if (i < 0 &&  n < 0) {
+	            // beyond beginnnig..
+	            if (i < 0 &&  n < -1) {
 		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
-		        
+		        // beyond end..
 		        if (i >= this.tokens.size) {
 		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
-
+				
+				
 		        if (i != this.cursor && ( 
 		    				this.tokens.get(i).isType(TokenType.WHIT) || this.tokens.get(i).isType(TokenType.COMM)
     				)) {
@@ -152,11 +153,11 @@ namespace JSDOC {
 		            continue;
 		        }
 		        
-		        if (count == n.abs()) {
+		        if (count == n) {
 		            return this.tokens.get(i);
 		        }
-		        count++;
-		        i += (n < 0) ? -1 : 1;
+		        count+=step;
+		        i += step;
 		    }
 		// should never get here..
 		//    return  new Token("", "VOID", "END_OF_STREAM");; // because null isn't an object and caller always expects an object;
