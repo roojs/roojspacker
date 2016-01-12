@@ -529,7 +529,7 @@ namespace JSDOC {
 			            break;
 			        
 			        case TokenType.NAME:
-			            //print('SCOPE-NAME:' + token.toString());
+			            print("SCOPE got NAME:%s\n" , token.asString());
 			            //print("DEAL WITH NAME:");
 			            // got identifier..
 			            // look for  { ** : <- indicates obj literal.. ** this could occur with numbers ..
@@ -537,6 +537,7 @@ namespace JSDOC {
 			             
 			            if (this.ts.lookTok(-1).data == ".") {
 			                // skip, it's an object prop.
+			                print("prev is a .dot.\n");
 			                //println("<i>"+token.data+"</i>");
 			                break;
 			            }
@@ -544,6 +545,7 @@ namespace JSDOC {
 			            
 			            var symbol = token.data;
 			            if (symbol == "this") {
+			                print("ignore 'this'\n");
 			                break;
 			            }
 			            
@@ -558,8 +560,10 @@ namespace JSDOC {
 			                    //println("GOT IDENT (2): <B>" + symbol + "</B><BR/>");
 			                var identifier = this.getIdentifier(symbol, scope, token);
 			                
+			                
 			                if (identifier == null) {
 	// BUG!find out where builtin is defined...
+								print("new identifier\n");
 			                    if (symbol.length <= 3 &&  Scope.builtin.index_of(symbol) < 0) {
 			                        // Here, we found an undeclared and un-namespaced symbol that is
 			                        // 3 characters or less in length. Declare it in the global scope.
@@ -571,6 +575,7 @@ namespace JSDOC {
 			                    
 			                    //println("GOT IDENT IGNORE(3): <B>" + symbol + "</B><BR/>");
 			                } else {
+			            		print("existing identifier\n");
 			                    token.identifier = identifier;
 			                    identifier.refcount++;
 			                }
