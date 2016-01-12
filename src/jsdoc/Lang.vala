@@ -67,6 +67,7 @@ namespace JSDOC {
 				case "delete": return TokenName.DELETE;
 				case "do": return TokenName.DO;
 				case "else": return TokenName.ELSE;
+				case "eval": return TokenName.EVAL;
 				case "false": return TokenName.FALSE;
 				case "finally": return TokenName.FINALLY;
 				case "for": return TokenName.FOR;
