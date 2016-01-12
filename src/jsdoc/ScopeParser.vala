@@ -159,7 +159,6 @@ namespace JSDOC {
 	
 		public void mungeSymboltree()
 		{
-
 			if (!this.munge) {
 			    return;
 			}
