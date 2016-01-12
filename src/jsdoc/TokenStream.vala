@@ -119,7 +119,7 @@ namespace JSDOC {
 
 		/**
 		 * look ahead (or back) x number of tokens (which are not comment or whitespace)
-		 * ?? used any more?
+		 * ?? used by scope parser to look back?
 		 */
 		public Token lookTok (int n) {
 
@@ -130,15 +130,17 @@ namespace JSDOC {
 
 		    while (true) {
 		       // print(i);
-		        if (i < 0) {
-		            if (n > -1) {
+		       
+		        if (i < 0 &&  n > -1) {
 		                i = 0; 
 		                count++;
 		                continue;
-		                
-		            }
+	            }
+	            // beyound beginnnig..
+	            if (i < 0 &&  n < 0) {
 		            return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 		        }
+		        
 		        if (i >= this.tokens.size) {
 		    		return  new Token("", TokenType.VOID, TokenName.END_OF_STREAM);
 	    		}
