@@ -529,7 +529,7 @@ namespace JSDOC {
 			            break;
 			        
 			        case TokenType.NAME:
-			            print("SCOPE got NAME:%s\n" , token.asString());
+			            // print("SCOPE got NAME:%s\n" , token.asString());
 			            //print("DEAL WITH NAME:");
 			            // got identifier..
 			            // look for  { ** : <- indicates obj literal.. ** this could occur with numbers ..
