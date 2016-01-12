@@ -350,7 +350,7 @@ namespace JSDOC {
         {
             var found = "";
             var line = this.line;
-            while (!stream.lookEOF() && Lang.isNewlineC(stream.look())) {
+            while (!stream.lookEOF() && Lang.isNewline(stream.look())) {
                 this.line++;
                 found += stream.next();
             }
@@ -393,7 +393,7 @@ namespace JSDOC {
             var found = stream.next(2);
             string  c = "";
             var line = this.line;
-            while (!stream.lookEOF() && !(stream.look(-1) == '/' && stream.look(-2) == '*')) {
+            while (!stream.lookEOF() && !(stream.look(-1) == "/" && stream.look(-2) == "*")) {
                 c = stream.next();
                 if (c == "\n") {
                     this.line++;
@@ -419,9 +419,9 @@ namespace JSDOC {
          {
             var found = "";
             if (
-                (stream.look() == '/' && stream.look(1) == '/' && (""!=(found=stream.next(2))))
+                (stream.look() == "/" && stream.look(1) == "/" && (""!=(found=stream.next(2))))
                 || 
-                (stream.look() == '<' && stream.look(1) == '!' && stream.look(2) == '-' && stream.look(3) == '-' && (""!=(found=stream.next(4))))
+                (stream.look() == "<" && stream.look(1) == "!" && stream.look(2) == "-" && stream.look(3) == "-" && (""!=(found=stream.next(4))))
             ) {
                 var line = this.line;
                 while (!stream.lookEOF()) {
@@ -448,14 +448,14 @@ namespace JSDOC {
          */
         public bool read_dbquote  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() != '"') {
+            if (stream.look() != "\"") {
                 return false;
             }
                 // find terminator
             var str = stream.next();
             
             while (!stream.lookEOF()) {
-                if (stream.look() == '\\') {
+                if (stream.look() == "\\") {
                     if (Lang.isNewline(stream.look(1).to_string())) {
                         do {
                             stream.next();
@@ -467,7 +467,7 @@ namespace JSDOC {
                     }
                     continue;
                 }
-                if (stream.look() == '"') {
+                if (stream.look() == "\"") {
                     str += stream.next();
                     tokens.push(new Token(str, TokenType.STRN, TokenName.DOUBLE_QUOTE, this.line));
                     return true;
@@ -484,18 +484,18 @@ namespace JSDOC {
          */
         public bool read_snquote  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() != '\'') {
+            if (stream.look() != "'") {
                 return false;
             }
             // find terminator
             var str = stream.next();
             
             while (!stream.lookEOF()) {
-                if (stream.look() == '\\') { // escape sequence
+                if (stream.look() == "\\") { // escape sequence
                     str += stream.next(2);
                     continue;
                 }
-                if (stream.look() == '\'') {
+                if (stream.look() == "'") {
                     str += stream.next();
                     tokens.push(new Token(str, TokenType.STRN, TokenName.SINGLE_QUOTE, this.line));
                     return true;
@@ -512,7 +512,7 @@ namespace JSDOC {
          */
         public bool read_numb  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() == '0' && stream.look(1) == 'x') {
+            if (stream.look() == "0" && stream.look(1) == "x") {
                 return this.read_hex(stream, tokens);
             }
             
@@ -559,7 +559,7 @@ namespace JSDOC {
         public bool read_regx (TextStream stream, TokenArray tokens)
         {
               
-            if (stream.look() != '/') {
+            if (stream.look() != "/") {
                 return false;
             }
             var  last = tokens.lastSym();
@@ -576,11 +576,11 @@ namespace JSDOC {
                 var regex = stream.next();
                 
                 while (!stream.lookEOF()) {
-                    if (stream.look() == '\\') { // escape sequence
+                    if (stream.look() == "\\") { // escape sequence
                         regex += stream.next(2);
                         continue;
                     }
-                    if (stream.look() == '/') {
+                    if (stream.look() == "/") {
                         regex += stream.next();
                         
                         while (GLib.Regex.match_simple("[gmi]", stream.look().to_string())) {
