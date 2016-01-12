@@ -371,32 +371,34 @@ namespace JSDOC {
 
 
 							default:    
-								 print(" KEYW = %s", token.asString());
+								// print(" KEYW = %s\n", token.asString());
 								var symbol = token.data;
 					        
 							     if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
 									
 							        if (token.name == TokenName.EVAL) {
+							            //print("got token eval...prefix= %s\n", token.prefix);
 							            
 							            //print(JSON.stringify(token, null,4));
 							            // look back one and see if we can find a comment!!!
-							            var prevTok = this.ts.look(-1,true);
-							            print("prev to eval = %s", prevTok.asString());
-							            if (prevTok.type == TokenType.COMM) {
-							        		print("previus to eval == comment\n%s\n" , prevTok.data);
-							            //if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
+							            //var prevTok = this.ts.look(-1,true);
+							            //print("prev to eval = %s\n", prevTok.asString());
+							            //if (prevTok.type == TokenType.COMM) {
+							        	//	print("previus to eval == comment\n%s\n" , prevTok.data);
+							            if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
 							                // look for eval:var:noreplace\n
 							                //print("MATCH!?");
 							                var _t = this;
 							                
 							                var regex = new GLib.Regex ("eval:var:([a-z_]+)",GLib.RegexCompileFlags.CASELESS );
 			 
-							                regex.replace_eval (prevTok.data, prevTok.data.length, 0, 0, (match_info, result) => {
-									           	var a =  match_info.fetch(0);
+							                regex.replace_eval (token.prefix, token.prefix.length, 0, 0, (match_info, result) => {
+									           	var a =  match_info.fetch(1);
+									           	//print("protect?: %s\n", a);
 							                    var hi = this.getIdentifier(a, scope, token);
 								                   // println("PROTECT "+a+" from munge" + (hi ? "FOUND" : "MISSING"));
 							                    if (hi != null) {
-							                        print("PROTECT "+a+" from munge\n");
+							                        //print("PROTECT "+a+" from munge\n");
 							                        //print(JSON.stringify(hi,null,4));
 							                        hi.toMunge = false;
 							                    }
