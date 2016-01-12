@@ -38,7 +38,7 @@ namespace JSDOC {
             if (this.cursor+n < 0 || this.cursor+n >= this.length) {
                 return "";
             }
-            return this.text.get_char(this.cursor+n).to_string(); // this.text[this.cursor+n]; // 
+            return this.text[this.cursor+n].to_string(); // this.text.get_char(this.cursor+n).to_string(); // this.text[this.cursor+n]; // 
         }
         
         public bool lookEOF(int n = 0)
