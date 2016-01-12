@@ -357,7 +357,7 @@ namespace JSDOC
 			}  
 			
 			if (this.outstr.length > 0 ) {
-				print(this.outstr);
+				stdout.printf ((this.outstr);
 			}
 		     
 		
