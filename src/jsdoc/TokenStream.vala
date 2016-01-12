@@ -133,7 +133,7 @@ namespace JSDOC {
 		       
 		        if (i < 0 &&  n > 0) {
 		                i = 0; 
-		                count +=step;
+		                count += step;
 		                continue;
 	            }
 	            // beyond beginnnig..
