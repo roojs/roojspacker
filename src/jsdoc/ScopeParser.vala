@@ -689,7 +689,8 @@ namespace JSDOC {
 			                                //print(JSON.stringify(token.props, null,4));
 			                            //}
 			                            
-			                            if (val.vals.get(0).data == "function") {
+			                            
+			                            if (val.vals.size > 0 && val.vals.get(0).data == "function") {
 			                                // parse a function..
 			                                this.ts = new TokenStream(val.vals);
 			                                this.ts.nextTok();
