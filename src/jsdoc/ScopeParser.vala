@@ -683,7 +683,9 @@ namespace JSDOC {
 										
 										TokenKeyMap val = token.props.get(k);
 								    
-									     
+									    if (val == null) {
+											print("failed  to get val from token %s\n", token.asString());
+										}
 			                        
 			                            //if (val.vals.size < 1) {
 			                                //print(JSON.stringify(token.props, null,4));
