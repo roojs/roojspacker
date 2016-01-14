@@ -675,7 +675,7 @@ namespace JSDOC {
 			                   // print('SCOPE-CURLY/PAREN/BRACE:' + JSON.stringify(token, null,4));
 			                    //println("<i>"+token.data+"</i>");
 			                    var curTS = this.ts;
-			                    if (token.props.size > 0) {
+			                    if (token.keyseq.size > 0) {
 			                        
 			                         for (var i = 0;i < token.keyseq.size; i++ ){ 
 									    //var iter = token.props.map_iterator();
@@ -684,7 +684,7 @@ namespace JSDOC {
 										TokenKeyMap val = token.props.get(k);
 								    
 									    if (val == null) {
-											print("failed  to get val from token %s\n", token.asString());
+											print("failed  to get %s val from token %s\n", k, token.asString());
 										}
 			                        
 			                            //if (val.vals.size < 1) {
