@@ -21,10 +21,10 @@ AC_CHECK_LIB([m],[cos])
 dnl we need to check these exist, then it will generate a compile string for them.
 
 PKG_CHECK_MODULES(ROOJSPACKER, [
-		 glib-2.0 >= 2.24.1
-		 gobject-2.0 >= 2.24.1
+		 glib-2.0 >= 2.28.0
+		 gobject-2.0 >= 2.28.0
 		 gee-1.0  
-		 gio-2.0  
+		 gio-2.0  >= 2.28.0
 ])
 
 
