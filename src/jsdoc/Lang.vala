@@ -206,7 +206,7 @@ namespace JSDOC {
         }
     
         public bool  isHexDec (string str) {
-            return Regex.match_simple("^0x[0-9A-F]+$",str);
+            return Regex.match_simple("^0x[0-9A-Fa-f]+$",str);
         }
     
         public bool isWordChar (string str) {
