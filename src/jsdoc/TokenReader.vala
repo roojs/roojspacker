@@ -518,7 +518,7 @@ namespace JSDOC {
             
             var found = "";
             
-            while (!stream.lookEOF() && Lang.isNumber(found+stream.look().to_string())){
+            while (!stream.lookEOF() && !Lang.isNewline(stream.look()) && Lang.isNumber(found+stream.look().to_string())){
                 found += stream.next();
             }
 
