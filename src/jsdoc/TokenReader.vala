@@ -55,7 +55,7 @@ namespace JSDOC {
         public void dump()
         {
     		foreach(var token in this.tokens) {
-    			print(token.asString() +"\n");
+    			stdout.printf ("%s\n", token.asString());
     		}
         }
         
@@ -521,7 +521,7 @@ namespace JSDOC {
             while (!stream.lookEOF() && Lang.isNumber(found+stream.look().to_string())){
                 found += stream.next();
             }
-            
+
             if (found == "") {
                 return false;
             }
@@ -529,6 +529,8 @@ namespace JSDOC {
                 tokens.push(new Token(found, TokenType.NUMB, TokenName.OCTAL, this.line));
                 return true;
             }
+            print("got number '%s'\n", found);
+            
             tokens.push(new Token(found, TokenType.NUMB, TokenName.DECIMAL, this.line));
             return true;
         
