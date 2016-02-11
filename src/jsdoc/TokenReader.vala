@@ -348,11 +348,12 @@ namespace JSDOC {
          */
         public bool read_newline  (TextStream stream, TokenArray tokens)
         {
+            // we do not support it yet, but newlines can be UNICODE..
             var found = "";
             var line = this.line;
             while (!stream.lookEOF() && Lang.isNewline(stream.look())) {
                 this.line++;
-                found += stream.nextC();
+                found += stream.nextS();
             }
             
             if (found == "") {
