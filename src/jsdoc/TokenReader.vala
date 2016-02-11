@@ -390,11 +390,11 @@ namespace JSDOC {
             if (stream.look(1) != "*") {
                 return false;
             }
-            var found = stream.next(2);
+            var found = stream.nextS(2);
             string  c = "";
             var line = this.line;
             while (!stream.lookEOF() && !(stream.look(-1) == "/" && stream.look(-2) == "*")) {
-                c = stream.next();
+                c = stream.nextS();
                 if (c == "\n") {
                     this.line++;
                 }
