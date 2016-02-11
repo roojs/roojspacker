@@ -464,7 +464,7 @@ namespace JSDOC {
                         str.append( "\\\n");
                     }
                     else {
-                        str += stream.next(2);
+                        str.append(stream.nextS(2));
                     }
                     continue;
                 }
