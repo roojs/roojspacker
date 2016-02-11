@@ -87,7 +87,7 @@ namespace JSDOC {
             string pulled = "";
 
             if (this.cursor+i < this.length) {
-                var ret =  this.text[(this.cursor+i];
+                var ret =  this.text[this.cursor+i];
 				this.cursor++;
                 return ret;
             } 
