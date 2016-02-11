@@ -469,8 +469,8 @@ namespace JSDOC {
                     continue;
                 }
                 if (stream.look() == "\"") {
-                    str.append(stream.nextS());
-                    tokens.push(new Token(str, TokenType.STRN, TokenName.DOUBLE_QUOTE, this.line));
+                    str.append_unichar(stream.nextC());
+                    tokens.push(new Token(str.str, TokenType.STRN, TokenName.DOUBLE_QUOTE, this.line));
                     return true;
                 }
             
