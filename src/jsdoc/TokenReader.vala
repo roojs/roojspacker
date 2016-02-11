@@ -392,7 +392,11 @@ namespace JSDOC {
             if (stream.look(1) != "*") {
                 return false;
             }
-            var found = stream.nextS(2);
+            
+            var found = new StringBuilder();
+            found.append(stream.nextS(2));
+           
+
             string  c = "";
             var line = this.line;
             while (!stream.lookEOF() && !(stream.look(-1) == "/" && stream.look(-2) == "*")) {
@@ -400,7 +404,7 @@ namespace JSDOC {
                 if (c == "\n") {
                     this.line++;
                 }
-                found += c;
+                found.append(c);
             }
             
             // to start doclet we allow /** or /*** but not /**/ or /****
