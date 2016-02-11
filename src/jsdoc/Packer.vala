@@ -318,7 +318,10 @@ namespace JSDOC
 		      
 		    }
 		    
-		  
+  			if (this.dumpTokens) {
+				 
+				GLib.Process.exit(0);
+			}
 		    print("MERGING SOURCE\n");
 		    
 		    for(var i=0; i < this.files.size; i++)  {
