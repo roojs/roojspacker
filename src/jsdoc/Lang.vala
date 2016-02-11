@@ -138,34 +138,34 @@ namespace JSDOC {
     		return this.puncNull(ch) != null;
         }
         */
-        public TokenName puncFirstString (string ch)
+        public TokenName puncFirstString (char ch)
         {
         
     		switch(ch) {
-				case ";": return TokenName.SEMICOLON;
-				case ",": return TokenName.COMMA;
-				case "?": return TokenName.HOOK;
-				case ":": return TokenName.COLON;
-				case "|": return TokenName.BITWISE_OR;				
-				case "^": return TokenName.BITWISE_XOR;
-				case "&": return TokenName.BITWISE_AND;
-				case "=": return TokenName.ASSIGN;
-				case "<": return TokenName.LT;
-				case ">": return TokenName.GT;
-				case "+": return TokenName.PLUS;
-				case "-": return TokenName.MINUS;
-				case "*": return TokenName.MUL;
-				case "/": return TokenName.DIV;
-				case "%": return TokenName.MOD;
-				case "!": return TokenName.NOT;
-				case "~": return TokenName.BITWISE_NOT;
-				case "0": return TokenName.DOT;
-				case "[": return TokenName.LEFT_BRACE;
-				case "]": return TokenName.RIGHT_BRACE;
-				case "{": return TokenName.LEFT_CURLY;
-				case "}": return TokenName.RIGHT_CURLY;
-				case "(": return TokenName.LEFT_PAREN;
-				case ")": return TokenName.RIGHT_PAREN;
+				case ';': return TokenName.SEMICOLON;
+				case ',': return TokenName.COMMA;
+				case '?': return TokenName.HOOK;
+				case ':': return TokenName.COLON;
+				case '|': return TokenName.BITWISE_OR;				
+				case '^': return TokenName.BITWISE_XOR;
+				case '&': return TokenName.BITWISE_AND;
+				case '=': return TokenName.ASSIGN;
+				case '<': return TokenName.LT;
+				case '>': return TokenName.GT;
+				case '+': return TokenName.PLUS;
+				case '-': return TokenName.MINUS;
+				case '*': return TokenName.MUL;
+				case '/': return TokenName.DIV;
+				case '%': return TokenName.MOD;
+				case '!': return TokenName.NOT;
+				case '~': return TokenName.BITWISE_NOT;
+				case '0': return TokenName.DOT;
+				case '[': return TokenName.LEFT_BRACE;
+				case ']': return TokenName.RIGHT_BRACE;
+				case '{': return TokenName.LEFT_CURLY;
+				case '}': return TokenName.RIGHT_CURLY;
+				case '(': return TokenName.LEFT_PAREN;
+				case ')': return TokenName.RIGHT_PAREN;
 			}
 			return TokenName.UNKNOWN;
 		}
