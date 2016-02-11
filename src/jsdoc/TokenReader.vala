@@ -454,7 +454,7 @@ namespace JSDOC {
          */
         public bool read_dbquote  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() != "\"") {
+            if (stream.lookC() != '"') {
                 return false;
             }
                 // find terminator
