@@ -77,7 +77,7 @@ namespace JSDOC {
            
         }
         
-        public char nextC(int n = 1)
+        public char nextC()
         {
             
             if (n < 1) { //?? eof???
@@ -86,7 +86,7 @@ namespace JSDOC {
                 
              
 
-            if (this.cursor+i < this.length) {
+            if (this.cursor+1 < this.length) {
                 var ret =  this.text[this.cursor+i];
 				this.cursor++;
                 return ret;
