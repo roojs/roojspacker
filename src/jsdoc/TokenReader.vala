@@ -125,7 +125,7 @@ namespace JSDOC {
                 
                 // if execution reaches here then an error has happened
                 tokens.push(
-                        new Token(stream.next(), TokenType.TOKN, TokenName.UNKNOWN_TOKEN, this.line)
+                        new Token(stream.nextS(), TokenType.TOKN, TokenName.UNKNOWN_TOKEN, this.line)
                 );
             }
             
