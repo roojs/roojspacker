@@ -462,7 +462,7 @@ namespace JSDOC {
             str.append_unichar(stream.nextC());
             
             while (!stream.lookEOF()) {
-                if (stream.look() == "\\") {
+                if (stream.lookC() == '\\') {
                     if (Lang.isNewline(stream.look(1).to_string())) {
                         do {
                             stream.nextC();
