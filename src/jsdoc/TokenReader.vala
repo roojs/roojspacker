@@ -489,11 +489,12 @@ namespace JSDOC {
                 return false;
             }
             // find terminator
-            var str = stream.next();
+            var str = new StringBuilder();
+     		str.append_unichar(stream.nextC());
             
             while (!stream.lookEOF()) {
                 if (stream.look() == "\\") { // escape sequence
-                    str += stream.next(2);
+                    str += stream.nextS(2);
                     continue;
                 }
                 if (stream.look() == "'") {
