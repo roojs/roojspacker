@@ -79,11 +79,11 @@ namespace JSDOC {
            
         }
         
-        public char nextC()
+        public char nextC(int n = 1)
         {
             
-            if (this.cursor+1 < this.length) {
-				this.cursor++;
+            if (this.cursor+n < this.length) {
+				this.cursor+=n;
                 return this.text[this.cursor];;
             } 
             return '\0';;
