@@ -278,7 +278,7 @@ namespace JSDOC {
 						break;
 					}
 					pos++;
-	                found += stream.next();
+	                found += stream.nextS();
 					continue;
 				}
         		var nx = Lang.puncString(found + ns.to_string() );
@@ -287,7 +287,7 @@ namespace JSDOC {
 				}
 				
 				tokname = nx;
-                found += stream.next();
+                found += stream.nextS();
             }
             
             
