@@ -432,7 +432,7 @@ namespace JSDOC {
                 var line = this.line;
                 while (!stream.lookEOF()) {
 					//print(stream.look().to_string());
-            		if ( Lang.isNewline(stream.look().to_string())) {
+            		if ( Lang.isNewline(stream.lookS().to_string())) {
             			break;
             		}
                     found += stream.nextS();
