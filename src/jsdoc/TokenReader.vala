@@ -324,7 +324,7 @@ namespace JSDOC {
             // not supported yet.. newlines can be unicode...
             var found = "";
             
-            while (!stream.lookEOF() && Lang.isSpace(  stream.look()) && !Lang.isNewline(stream.look())) {
+            while (!stream.lookEOF() && Lang.isSpace(  stream.lookS()) && !Lang.isNewline(stream.lookS())) {
                 found += stream.nextS();
             }
             
