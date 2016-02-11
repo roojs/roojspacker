@@ -494,7 +494,7 @@ namespace JSDOC {
             
             while (!stream.lookEOF()) {
                 if (stream.look() == "\\") { // escape sequence
-                    str += stream.nextS(2);
+                    str.append( stream.nextS(2));
                     continue;
                 }
                 if (stream.look() == "'") {
