@@ -321,10 +321,11 @@ namespace JSDOC {
          */
         public bool read_space  (TextStream stream, TokenArray tokens)
         {
+            // not supported yet.. newlines can be unicode...
             var found = "";
             
             while (!stream.lookEOF() && Lang.isSpace(  stream.look()) && !Lang.isNewline(stream.look())) {
-                found += stream.next();
+                found += stream.nextS();
             }
             
             if (found == "") {
