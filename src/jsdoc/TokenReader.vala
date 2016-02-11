@@ -417,7 +417,7 @@ namespace JSDOC {
             return true;
         
         } 
-
+ 
         /**
             @returns {Boolean} Was the token found?
          */

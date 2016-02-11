@@ -32,7 +32,7 @@ namespace JSDOC {
             this.cursor = 0;
         }
         
-        public string look(int n = 0)
+        public string lookS(int n = 0)
         {
                  
             if (this.cursor+n < 0 || this.cursor+n >= this.length) {
@@ -86,11 +86,11 @@ namespace JSDOC {
            
         }
         
-        public char nextC()
+        public char nextC(int n = 1)
         {
             
-            if (this.cursor+1 < this.length) {
-				this.cursor+=1;
+            if (this.cursor+n < this.length) {
+				this.cursor+=n;
                 return this.text[this.cursor];;
             } 
             return '\0';;
