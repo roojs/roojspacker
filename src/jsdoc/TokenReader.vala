@@ -469,7 +469,7 @@ namespace JSDOC {
                     continue;
                 }
                 if (stream.look() == "\"") {
-                    str += stream.next();
+                    str.append(stream.nextS());
                     tokens.push(new Token(str, TokenType.STRN, TokenName.DOUBLE_QUOTE, this.line));
                     return true;
                 }
