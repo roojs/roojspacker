@@ -352,7 +352,7 @@ namespace JSDOC {
             var line = this.line;
             while (!stream.lookEOF() && Lang.isNewline(stream.look())) {
                 this.line++;
-                found += stream.next();
+                found += stream.nextC();
             }
             
             if (found == "") {
@@ -521,7 +521,7 @@ namespace JSDOC {
             var found = "";
             
             while (!stream.lookEOF() && !Lang.isNewline(stream.look()) && Lang.isNumber(found+stream.look().to_string())){
-                found += stream.next();
+                found += stream.nextS();
             }
 
             if (found == "") {
@@ -543,7 +543,7 @@ namespace JSDOC {
          */
         public bool read_hex  (TextStream stream, TokenArray tokens)
         {
-            var found = stream.next(2);
+            var found = stream.nextS(2);
             
             while (!stream.lookEOF()) {
                 if (Lang.isHexDec(found) && !Lang.isHexDec(found+stream.look().to_string())) { // done
@@ -551,7 +551,7 @@ namespace JSDOC {
                     return true;
                 }
                 
-                found += stream.next();
+                found += stream.nextS();
                
             }
             return false;
@@ -577,25 +577,25 @@ namespace JSDOC {
                     && !last.isName(TokenName.RIGHT_BRACE)
                 )
             )  {
-                var regex = stream.next();
+                var regex = stream.nextS();
                 
                 while (!stream.lookEOF()) {
                     if (stream.look() == "\\") { // escape sequence
-                        regex += stream.next(2);
+                        regex += stream.nextS(2);
                         continue;
                     }
                     if (stream.look() == "/") {
-                        regex += stream.next();
+                        regex += stream.nextS();
                         
                         while (GLib.Regex.match_simple("[gmi]", stream.look().to_string())) {
-                            regex += stream.next();
+                            regex += stream.nextS();
                         }
                         
                         tokens.push(new Token(regex, TokenType.REGX, TokenName.REGX, this.line));
                         return true;
                     }
                      
-                    regex += stream.next();
+                    regex += stream.nextS();
                      
                 }
                 // error: unterminated regex
