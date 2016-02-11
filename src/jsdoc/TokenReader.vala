@@ -569,7 +569,7 @@ namespace JSDOC {
         public bool read_regx (TextStream stream, TokenArray tokens)
         {
               
-            if (stream.look() != "/") {
+            if (stream.lookC() != '/') {
                 return false;
             }
             var  last = tokens.lastSym();
@@ -586,14 +586,14 @@ namespace JSDOC {
                 var regex = stream.nextS();
                 
                 while (!stream.lookEOF()) {
-                    if (stream.look() == "\\") { // escape sequence
+                    if (stream.lookC() == '\\') { // escape sequence
                         regex += stream.nextS(2);
                         continue;
                     }
-                    if (stream.look() == "/") {
+                    if (stream.lookC() == '/') {
                         regex += stream.nextS();
                         
-                        while (GLib.Regex.match_simple("[gmi]", stream.look().to_string())) {
+                        while (GLib.Regex.match_simple("[gmi]", stream.lookS().to_string())) {
                             regex += stream.nextS();
                         }
                         
