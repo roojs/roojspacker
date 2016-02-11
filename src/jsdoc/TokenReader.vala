@@ -196,7 +196,7 @@ namespace JSDOC {
         {
             string found = "";
             while (!stream.lookEOF() && Lang.isWordChar(stream.lookC() )) {
-                found += stream.nextC();
+                found += stream.nextC().to_string();
             }
              
             if (found == "") {
