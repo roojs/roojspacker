@@ -276,7 +276,7 @@ namespace JSDOC {
 					tokname = Lang.puncFirstString(ns);
 					if (TokenName.UNKNOWN == tokname) {
 						break;
-					}
+					} 
 					pos++;
 	                found += stream.nextS();
 					continue;
