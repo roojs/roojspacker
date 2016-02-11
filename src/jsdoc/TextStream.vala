@@ -80,16 +80,9 @@ namespace JSDOC {
         public char nextC()
         {
             
-            if (n < 1) { //?? eof???
-                return '\0';
-            }
-                
-             
-
             if (this.cursor+1 < this.length) {
-                var ret =  this.text[this.cursor+i];
 				this.cursor++;
-                return ret;
+                return this.text[this.cursor];;
             } 
             return '\0';;
            
