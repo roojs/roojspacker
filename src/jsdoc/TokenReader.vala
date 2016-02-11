@@ -453,7 +453,7 @@ namespace JSDOC {
             }
                 // find terminator
             var str = new StringBuilder();
-            str.append(stream.nextC());
+            str.append_unichar(stream.nextC());
             
             while (!stream.lookEOF()) {
                 if (stream.look() == "\\") {
