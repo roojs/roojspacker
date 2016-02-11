@@ -52,7 +52,7 @@ namespace JSDOC {
         /**
          * @param n - number of characters to return..
          */
-        public string next(int n = 1)
+        public string nextS(int n = 1)
         {
             
             if (n < 1) { //?? eof???
