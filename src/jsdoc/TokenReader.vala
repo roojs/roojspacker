@@ -399,7 +399,7 @@ namespace JSDOC {
 
             string  c = "";
             var line = this.line;
-            while (!stream.lookEOF() && !(stream.look(-1) == "/" && stream.look(-2) == "*")) {
+            while (!stream.lookEOF() && !(stream.lookC(-1) == "/" && stream.lookC(-2) == "*")) {
                 c = stream.nextS();
                 if (c == "\n") {
                     this.line++;
