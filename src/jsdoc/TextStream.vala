@@ -84,7 +84,7 @@ namespace JSDOC {
                 return '\0';
             }
                 
-            string pulled = "";
+             
 
             if (this.cursor+i < this.length) {
                 var ret =  this.text[this.cursor+i];
