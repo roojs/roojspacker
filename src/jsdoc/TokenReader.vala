@@ -503,7 +503,7 @@ namespace JSDOC {
                     str.append( stream.nextS(2));
                     continue;
                 }
-                if (stream.lookC() == '\\') {
+                if (stream.lookC() == '\'') {
                     str.append_unichar(stream.nextC());
                     tokens.push(new Token(str.str, TokenType.STRN, TokenName.SINGLE_QUOTE, this.line));
                     return true;
