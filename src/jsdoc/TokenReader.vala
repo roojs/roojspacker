@@ -529,7 +529,7 @@ namespace JSDOC {
                 tokens.push(new Token(found, TokenType.NUMB, TokenName.OCTAL, this.line));
                 return true;
             }
-            print("got number '%s'\n", found);
+            //print("got number '%s'\n", found);
             
             tokens.push(new Token(found, TokenType.NUMB, TokenName.DECIMAL, this.line));
             return true;

@@ -335,7 +335,7 @@ namespace JSDOC
 		 
 			outstr += tok.outData != "" ? tok.outData : tok.data;
 			
-			if ((tok.data == ";") && (outstr.length - outoff > 255)) {
+			if ((tok.name == TokenName.SEMICOLON || tok.name == TokenName.RIGHT_CURLY) && (outstr.length - outoff > 255)) {
 			    outoff = outstr.length;
 			    outstr += "\n";
 			}
