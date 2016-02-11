@@ -463,10 +463,10 @@ namespace JSDOC {
             
             while (!stream.lookEOF()) {
                 if (stream.lookC() == '\\') {
-                    if (Lang.isNewline(stream.look(1).to_string())) {
+                    if (Lang.isNewline(stream.lookS(1).to_string())) {
                         do {
                             stream.nextC();
-                        } while (!stream.lookEOF() && Lang.isNewline(stream.look().to_string()));
+                        } while (!stream.lookEOF() && Lang.isNewline(stream.lookS().to_string()));
                         str.append( "\\\n");
                     }
                     else {
@@ -474,7 +474,7 @@ namespace JSDOC {
                     }
                     continue;
                 }
-                if (stream.look() == "\"") {
+                if (stream.lookC() == '"') {
                     str.append_unichar(stream.nextC());
                     tokens.push(new Token(str.str, TokenType.STRN, TokenName.DOUBLE_QUOTE, this.line));
                     return true;
@@ -491,7 +491,7 @@ namespace JSDOC {
          */
         public bool read_snquote  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() != "'") {
+            if (stream.lookC() != '\"') {
                 return false;
             }
             // find terminator
