@@ -491,7 +491,7 @@ namespace JSDOC {
          */
         public bool read_snquote  (TextStream stream, TokenArray tokens)
         {
-            if (stream.lookC() != '\"') {
+            if (stream.lookC() != '\'') {
                 return false;
             }
             // find terminator
@@ -499,7 +499,7 @@ namespace JSDOC {
      		str.append_unichar(stream.nextC());
             
             while (!stream.lookEOF()) {
-                if (stream.look() == "\\") { // escape sequence
+                if (stream.lookC() == '\\') { // escape sequence
                     str.append( stream.nextS(2));
                     continue;
                 }
