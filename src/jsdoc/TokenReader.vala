@@ -352,7 +352,7 @@ namespace JSDOC {
             // we do not support it yet, but newlines can be UNICODE..
             var found = "";
             var line = this.line;
-            while (!stream.lookEOF() && Lang.isNewline(stream.look())) {
+            while (!stream.lookEOF() && Lang.isNewline(stream.lookS())) {
                 this.line++;
                 found += stream.nextS();
             }
@@ -386,10 +386,10 @@ namespace JSDOC {
          */
         public bool read_mlcomment  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() != "/") {
+            if (stream.lookC() != '/') {
                 return false;
             }
-            if (stream.look(1) != "*") {
+            if (stream.lookC(1) != '*') {
                 return false;
             }
             
