@@ -392,7 +392,8 @@ namespace JSDOC
 		
 			if (this.dumpTokens) {
 				toks.dump();
-				GLib.Process.exit(0);
+				return "";
+				//GLib.Process.exit(0);
 			}
 		
 			this.activeFile = fn;
