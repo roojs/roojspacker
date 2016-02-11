@@ -452,7 +452,7 @@ namespace JSDOC {
                 return false;
             }
                 // find terminator
-            string str = ""+  stream.nextC();
+            string str =  stream.nextC().toString();
             
             while (!stream.lookEOF()) {
                 if (stream.look() == "\\") {
