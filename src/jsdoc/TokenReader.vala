@@ -498,11 +498,11 @@ namespace JSDOC {
                     continue;
                 }
                 if (stream.look() == "'") {
-                    str += stream.next();
-                    tokens.push(new Token(str, TokenType.STRN, TokenName.SINGLE_QUOTE, this.line));
+                    str.append_unichar(stream.nextC());
+                    tokens.push(new Token(str.str, TokenType.STRN, TokenName.SINGLE_QUOTE, this.line));
                     return true;
                 }
-                str += stream.next();
+                str.append(stream.nextS());
                 
             }
             return false;
