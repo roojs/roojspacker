@@ -195,7 +195,7 @@ namespace JSDOC {
         public bool read_word (TextStream stream, TokenArray tokens)
         {
             string found = "";
-            while (!stream.lookEOF() && Lang.isWordChar(stream.look().to_string())) {
+            while (!stream.lookEOF() && Lang.isWordChar(stream.lookC() )) {
                 found += stream.next();
             }
             
