@@ -459,7 +459,7 @@ namespace JSDOC {
                 if (stream.look() == "\\") {
                     if (Lang.isNewline(stream.look(1).to_string())) {
                         do {
-                            stream.next();
+                            stream.nextC();
                         } while (!stream.lookEOF() && Lang.isNewline(stream.look().to_string()));
                         str.append( "\\\n");
                     }
