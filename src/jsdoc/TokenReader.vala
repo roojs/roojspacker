@@ -461,7 +461,7 @@ namespace JSDOC {
                         do {
                             stream.next();
                         } while (!stream.lookEOF() && Lang.isNewline(stream.look().to_string()));
-                        str += "\\\n";
+                        str.append( "\\\n");
                     }
                     else {
                         str += stream.next(2);
