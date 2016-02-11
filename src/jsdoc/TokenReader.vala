@@ -474,7 +474,7 @@ namespace JSDOC {
                     return true;
                 }
             
-                str += stream.next();
+                str.append(stream.nextS());
                 
             }
             return false;
