@@ -216,8 +216,11 @@ namespace JSDOC {
     		return 
     			(c >= 'a' && c <= 'z')
     			||
-    			
-            return Regex.match_simple("^[a-zA-Z0-9$_.]+$", str);
+    			(c >= 'A' && c <= 'Z')
+    			||
+    			(c >= '0' && c <= '9')
+    			||
+    			c == '$' || c == '.' || c == '_' ;
         }
     
         public bool isSpace (string str) {
