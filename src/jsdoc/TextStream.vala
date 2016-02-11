@@ -81,24 +81,17 @@ namespace JSDOC {
         {
             
             if (n < 1) { //?? eof???
-                return "";
+                return '\0';
             }
                 
             string pulled = "";
-            var i = 0;
-            while (i < n) {
-                if (this.cursor+i < this.length) {
-                    var add =  this.text.get_char(this.cursor+i).to_string(); 
-                    pulled += add;
-                    i += 1;// add.length;
-                } else {
-                    return "";
-                    
-                }
-            }
-            
-            this.cursor +=  pulled.length; // i?
-            return pulled;
+
+            if (this.cursor+i < this.length) {
+                var ret =  this.text[(this.cursor+i];
+				this.cursor++;
+                return ret;
+            } 
+            return '\0';;
            
         }
         
