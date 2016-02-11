@@ -419,9 +419,9 @@ namespace JSDOC {
          {
             var found = "";
             if (
-                (stream.look() == "/" && stream.look(1) == "/" && (""!=(found=stream.next(2))))
+                (stream.look() == "/" && stream.look(1) == "/" && (""!=(found=stream.nextS(2))))
                 || 
-                (stream.look() == "<" && stream.look(1) == "!" && stream.look(2) == "-" && stream.look(3) == "-" && (""!=(found=stream.next(4))))
+                (stream.look() == "<" && stream.look(1) == "!" && stream.look(2) == "-" && stream.look(3) == "-" && (""!=(found=stream.nextS(4))))
             ) {
                 var line = this.line;
                 while (!stream.lookEOF()) {
@@ -429,7 +429,7 @@ namespace JSDOC {
             		if ( Lang.isNewline(stream.look().to_string())) {
             			break;
             		}
-                    found += stream.next();
+                    found += stream.nextS();
                 }
                 if (!stream.lookEOF()) { // lookinng for end  of line... if we got it, then do not eat the character..
                     found += stream.next();
