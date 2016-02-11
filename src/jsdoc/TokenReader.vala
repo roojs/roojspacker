@@ -552,7 +552,7 @@ namespace JSDOC {
             var found = stream.nextS(2);
             
             while (!stream.lookEOF()) {
-                if (Lang.isHexDec(found) && !Lang.isHexDec(found+stream.look().to_string())) { // done
+                if (Lang.isHexDec(found) && !Lang.isHexDec(found+stream.lookC().to_string())) { // done
                     tokens.push(new Token(found, TokenType.NUMB, TokenName.HEX_DEC, this.line));
                     return true;
                 }
