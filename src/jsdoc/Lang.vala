@@ -209,7 +209,14 @@ namespace JSDOC {
             return Regex.match_simple("^0x[0-9A-Fa-f]+$",str);
         }
     
-        public bool isWordChar (string str) {
+        public bool isWordString (string str) {
+            return Regex.match_simple("^[a-zA-Z0-9$_.]+$", str);
+        }
+        public bool isWordChar (char  c) {
+    		return 
+    			(c >= 'a' && c <= 'z')
+    			||
+    			
             return Regex.match_simple("^[a-zA-Z0-9$_.]+$", str);
         }
     
