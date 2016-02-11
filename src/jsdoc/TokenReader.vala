@@ -432,7 +432,7 @@ namespace JSDOC {
                     found += stream.nextS();
                 }
                 if (!stream.lookEOF()) { // lookinng for end  of line... if we got it, then do not eat the character..
-                    found += stream.next();
+                    found += stream.nextS();
                 }
                 if (this.keepComments) {
                     tokens.push(new Token(found, TokenType.COMM, TokenName.SINGLE_LINE_COMM, line));
@@ -452,7 +452,7 @@ namespace JSDOC {
                 return false;
             }
                 // find terminator
-            var str = stream.next();
+            var str = stream.nextC();
             
             while (!stream.lookEOF()) {
                 if (stream.look() == "\\") {
