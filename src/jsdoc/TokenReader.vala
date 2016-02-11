@@ -409,7 +409,7 @@ namespace JSDOC {
             
             // to start doclet we allow /** or /*** but not /**/ or /****
             //if (found.length /^\/\*\*([^\/]|\*[^*])/.test(found) && this.keepDocs) {
-            if (this.keepDocs && found.length > 4 && found.index_of("/**") == 0 && found[3] != '/') {
+            if (this.keepDocs && found.len > 4 && found.str.index_of("/**") == 0 && found.str[3] != '/') {
                 tokens.push(new Token(found, TokenType.COMM, TokenName.JSDOC, this.line));
             } else if (this.keepComments) {
                 tokens.push(new Token(found, TokenType.COMM, TokenName.MULTI_LINE_COMM, line));
