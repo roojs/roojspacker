@@ -520,7 +520,7 @@ namespace JSDOC {
          */
         public bool read_numb  (TextStream stream, TokenArray tokens)
         {
-            if (stream.look() == "0" && stream.look(1) == "x") {
+            if (stream.lookC() == '0' && stream.lookC(1) == 'x') {
                 return this.read_hex(stream, tokens);
             }
             
