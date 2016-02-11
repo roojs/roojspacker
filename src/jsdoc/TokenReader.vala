@@ -425,9 +425,9 @@ namespace JSDOC {
          {
             var found = "";
             if (
-                (stream.look() == "/" && stream.look(1) == "/" && (""!=(found=stream.nextS(2))))
+                (stream.lookC() == '/' && stream.lookC(1) == '/' && (""!=(found=stream.nextS(2))))
                 || 
-                (stream.look() == "<" && stream.look(1) == "!" && stream.look(2) == "-" && stream.look(3) == "-" && (""!=(found=stream.nextS(4))))
+                (stream.lookC() == '<' && stream.lookC(1) == '!' && stream.lookC(2) == '-' && stream.lookC(3) == '-' && (""!=(found=stream.nextS(4))))
             ) {
                 var line = this.line;
                 while (!stream.lookEOF()) {
