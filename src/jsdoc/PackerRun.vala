@@ -51,6 +51,7 @@ namespace JSDOC
 			{ "skip-scope", 's', 0, OptionArg.NONE, ref opt_skip_scope, "Skip scope parsing and variable replacement", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
 			{ "dump-tokens", 'k', 0, OptionArg.NONE, ref opt_dump_tokens, "Dump the tokens from a file", null },
+			{ "clean-cache", 'c', 0, OptionArg.NONE, ref opt_clean_cache, "Clean up the cache after running (slower)", null },
 			// fixme -- keepwhite.. cleanup 
 			
 			{ null }
