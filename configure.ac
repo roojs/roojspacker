@@ -25,6 +25,7 @@ PKG_CHECK_MODULES(ROOJSPACKER, [
 		 gobject-2.0 >= 2.28.0
 		 gee-1.0  
 		 gio-2.0  >= 2.28.0
+		 gthread-2.0
 ])
 
 
