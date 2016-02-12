@@ -88,7 +88,7 @@ namespace JSDOC
 		 * @cfg {Boolean} cleanup  (optional) clean up temp files after done - 
 		 *    Defaults to false if you set tmpDir, otherwise true.
 		 */
-		public bool cleanup =  true;
+		public bool cleanup =  false;
 		
 		
 		/**
@@ -306,7 +306,7 @@ namespace JSDOC
 		         
 		        print("COMPRESSING to %s\n", minfile);
 		        //var codeComp = pack(str, 10, 0, 0);
-		        if (FileUtils.test (minfile, FileTest.EXISTS)) {
+		        if (this.cleanup && FileUtils.test (minfile, FileTest.EXISTS)) {
 		            FileUtils.remove(minfile);
 		        }
 		        if (!loaded_string) {
