@@ -287,7 +287,7 @@ namespace JSDOC
 		        // this might happen if tmpDir is set .. 
 
 		        
-		        if (false && FileUtils.test (minfile, FileTest.EXISTS)) {
+		        if ( FileUtils.test (minfile, FileTest.EXISTS)) {
 		    		
 		    		var otv = File.new_for_path(file).query_info (FileAttribute.TIME_MODIFIED, 0).get_modification_time();
 		    		var mtv = File.new_for_path(minfile).query_info (FileAttribute.TIME_MODIFIED, 0).get_modification_time();
