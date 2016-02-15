@@ -296,7 +296,7 @@ namespace JSDOC
 					ot.set_time_val(otv);
 					var mt = new Date();
 					mt.set_time_val(mtv);
-		            print("%s : compare : Cache file  %s to Orignal Time %s", file, mtv.to_iso8601(), otv.to_iso8601());
+		            print("%s : compare : Cache file  %s to Orignal Time %s\n", file, mtv.to_iso8601(), otv.to_iso8601());
 		            if (mt.compare(ot) >= 0) {
 		                continue; // file is newer or the same time..
 		                
