@@ -293,7 +293,7 @@ namespace JSDOC
 		    		var mtv = File.new_for_path(minfile).query_info (FileAttribute.TIME_MODIFIED, 0).get_modification_time();
 					
 					 
-		            print("%s : compare : Cache file  %s to Orignal Time %s\n", file, mtv.to_iso8601(), otv.to_iso8601());
+		           // print("%s : compare : Cache file  %s to Orignal Time %s\n", file, mtv.to_iso8601(), otv.to_iso8601());
 		            if (mtv.tv_usec > otv.tv_usec) {
 		                continue; // file is newer or the same time..
 		                
