@@ -205,6 +205,10 @@ namespace JSDOC
 		}
 		public bool isProtectedVar(string ident)
 		{
+		    if (ident == "_this") {
+				return true;
+			}
+		    
 		    if (ident.length > 2) {
 		        return false;
 		    }
