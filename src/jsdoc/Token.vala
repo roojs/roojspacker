@@ -187,6 +187,7 @@ namespace JSDOC
             // should we initialize when needed...?? to keep the usage down..
             this.items = null;
             this.props = null;
+            this.keyseq = null;
             if (name == TokenName.LEFT_BRACE || 
 		        name == TokenName.LEFT_CURLY || 
 	            name == TokenName.LEFT_PAREN ) {
@@ -200,13 +201,32 @@ namespace JSDOC
     
         public string asString()
         {
-            return "line:%d, id %d, type %s, IS=%d,PS=%d,KS=%d, data : %s,  name %s, , outData: %s".printf(
+            if (this.name == TokenName.LEFT_BRACE || 
+		        this.name == TokenName.LEFT_CURLY || 
+	            this.name == TokenName.LEFT_PAREN ) {
+	            
+		        return "line:%d, id %d, type %s, IS=%d,PS=%d,KS=%d, data : %s,  name %s, , outData: %s".printf(
+		                this.line,
+		                this.id,
+		                this.type.to_string(),
+		                this.name == TokenName.LEFT_BRACE ? -1 : this.items.size,
+		                this.name == TokenName.LEFT_BRACE ? -1 : this.props.size,
+		                this.name == TokenName.LEFT_BRACE ? -1 : this.keyseq.size,
+		                this.data,
+		                this.name.to_string(),
+		                this.outData == null ? "" : this.outData
+		        );
+			        
+	            
+			}            
+            
+            
+            
+            return "line:%d, id %d, type %s, data : %s,  name %s, , outData: %s".printf(
                     this.line,
                     this.id,
                     this.type.to_string(),
-                    this.items == null : 0 : this.items.size,
-                    this.props == null : 0 : this.props.size,
-                    this.keyseq == null : 0 : this.keyseq.size,
+               
                     this.data,
                     this.name.to_string(),
                     this.outData == null ? "" : this.outData
@@ -218,7 +238,7 @@ namespace JSDOC
         public void dump(string indent)
 		{
 	        print("%s%s\n",indent, this.asString());
-	        if (this.items.size > 0) {
+	        if (this.items != null && this.items.size > 0) {
 		        
 				for (var i = 0;i < this.items.size; i++) {
 			        print("%s --ITEMS[%d] [ \n",indent,i);
@@ -227,7 +247,7 @@ namespace JSDOC
 					}
 				}
 			}
-			if (this.props.size > 0) {
+			if (this.props != null && this.props.size > 0) {
 				var m = this.props.map_iterator();
 				while(m.next()) {
 			        print("%s --KEY %s ::  \n",indent,m.get_key());
