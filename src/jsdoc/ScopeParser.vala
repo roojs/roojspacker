@@ -444,7 +444,7 @@ namespace JSDOC {
 											var k =  token.keyseq.get(i);
 											
 											TokenKeyMap val = token.props.get(k);
-									    
+											print("SCOPE-PROPS GET: %s\n", k);
 									        
 									      //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
 									        if (val.vals.get(0).data == "function") {
