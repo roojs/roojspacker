@@ -243,7 +243,7 @@ namespace JSDOC {
 			while (token != null) {
 			  //  this.timerPrint("parseScope AFTER lookT: " + token.toString()); 
 			    //this.dumpToken(token , this.scopes, this.braceNesting);
-			    print('SCOPE: %s\n' , token.asString());
+			    print("SCOPE: %s\n" , token.asString());
 			    //this.log(token.data);
 			    //if (token.type == 'NAME') {
 			    //    print('*' + token.data);
@@ -432,7 +432,7 @@ namespace JSDOC {
 								case TokenName.LEFT_CURLY: // {
 								case TokenName.LEFT_PAREN: // (    
 								case TokenName.LEFT_BRACE: // [
-									//print('SCOPE-CURLY/PAREN:' + token.toString());
+									print("SCOPE-CURLY/PAREN:\n");
 									//println("<i>"+token.data+"</i>");
 									var curTS = this.ts;
 									if (token.props.size > 0) {
