@@ -153,7 +153,7 @@ namespace JSDOC {
 			
 			this.parseScope(this.globalScope);
 			
-			 print("---------------END PASS 1 ---------------- \n");
+		//	 print("---------------END PASS 1 ---------------- \n");
 			
 		}
 	
@@ -432,7 +432,7 @@ namespace JSDOC {
 								case TokenName.LEFT_CURLY: // {
 								case TokenName.LEFT_PAREN: // (    
 								case TokenName.LEFT_BRACE: // [
-									print("SCOPE-CURLY/PAREN %d / KS= %d / IT=%d \n", token.props.size ,token.keyseq.size, tokens.items.size);
+									print("SCOPE-CURLY/PAREN %d / KS= %d / IT=%d \n", token.props.size ,token.keyseq.size, token.items.size);
 									//println("<i>"+token.data+"</i>");
 									var curTS = this.ts;
 									if (token.props.size > 0) {
