@@ -153,7 +153,7 @@ namespace JSDOC {
 			
 			this.parseScope(this.globalScope);
 			
-			//print("---------------END PASS 1 ---------------- ");
+			 print("---------------END PASS 1 ---------------- \n");
 			
 		}
 	
@@ -243,7 +243,7 @@ namespace JSDOC {
 			while (token != null) {
 			  //  this.timerPrint("parseScope AFTER lookT: " + token.toString()); 
 			    //this.dumpToken(token , this.scopes, this.braceNesting);
-			    //print('SCOPE:' + token.toString());
+			    print('SCOPE: %s\n' , token.asString());
 			    //this.log(token.data);
 			    //if (token.type == 'NAME') {
 			    //    print('*' + token.data);
@@ -635,7 +635,7 @@ namespace JSDOC {
 			//print(scopeIndent + ">> ENTER EXPRESSION" + this.expN);
 			while (null != (token = this.ts.nextTok())) {
 		 
-			
+				
 			    
 			   /*
 			    // moved out of loop?
@@ -648,7 +648,7 @@ namespace JSDOC {
 			   */ 
 			   
 			   //this.dumpToken(token,  this.scopes, this.braceNesting );
-			    //print('EXPR' +  token.toString());
+			    print("EXPR %s\n" ,  token.asString());
 			    
 			    
 			    //println("<i>"+token.data+"</i>");
