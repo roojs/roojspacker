@@ -269,7 +269,7 @@ namespace JSDOC
 		    while (iter.next()) {
 		        all += iter.get().name;
 		    }
-		    //print("MUNGE: " + all.join(', '));
+		    print("MUNGE: " + all.join(', '));
 		        
 		        //println("MUNGE: Building FreeSyms:" + this.id+"</BR>");
 		        
