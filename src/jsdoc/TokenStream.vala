@@ -260,7 +260,7 @@ namespace JSDOC {
 				throw new TokenStreamError.ArgumentError("balance called with invalid start/stop : %s",start.to_string());
 			}
 		    
-		    debug("START=%s, STOP=%s \n", start.to_string(),stop.to_string());
+		    print("START=%s, STOP=%s \n", start.to_string(),stop.to_string());
 		    var depth = 0;
 		    var got = new Gee.ArrayList<Token>();
 		    var started = false;
@@ -269,7 +269,7 @@ namespace JSDOC {
 		    Token token;
 		    
 		    while (null != (token = this.lookAny(1))) {
-				//debug("BALANCE: %d %s " , this.cursor,  token.asString());
+				print("BALANCE: %d %s " , this.cursor,  token.asString());
 		        if (token.isName(start)) {
 		      //      Seed.print("balance: START : " + depth + " " + token.data);
 		            depth++;
