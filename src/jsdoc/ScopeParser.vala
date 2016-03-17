@@ -763,9 +763,9 @@ namespace JSDOC {
 			                //print("EXPR-NAME:" + token.toString());
 			            }
 			            var symbol = token.data;
-			            print("in NAME = " + token.toString());
-			            print("in NAME 0: " + this.ts.look(0).toString());
-			            print("in NAME 2: " + this.ts.lookTok(2).toString());
+			            print("in NAME = %s \n" , symbol);
+			            //print("in NAME 0: " + this.ts.look(0).toString());
+			            //print("in NAME 2: " + this.ts.lookTok(2).toString());
 			            
 			            //print(this.ts.lookTok(-1).data);
 			            // prefixed with '.'
