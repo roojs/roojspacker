@@ -432,7 +432,7 @@ namespace JSDOC {
 								case TokenName.LEFT_CURLY: // {
 								case TokenName.LEFT_PAREN: // (    
 								case TokenName.LEFT_BRACE: // [
-									print("SCOPE-CURLY/PAREN:\n");
+									print("SCOPE-CURLY/PAREN %d:\n", token.props.size ,token.keyseq.size);
 									//println("<i>"+token.data+"</i>");
 									var curTS = this.ts;
 									if (token.props.size > 0) {
@@ -444,7 +444,7 @@ namespace JSDOC {
 											var k =  token.keyseq.get(i);
 											
 											TokenKeyMap val = token.props.get(k);
-											print("SCOPE-PROPS GET: %s\n", k);
+											print("SCOPE-PROPS GET (%d/%d): %s\n", i, token.keyseq.size,k);
 									        
 									      //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
 									        if (val.vals.get(0).data == "function") {
