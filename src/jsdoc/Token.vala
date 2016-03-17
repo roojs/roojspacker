@@ -204,9 +204,9 @@ namespace JSDOC
                     this.line,
                     this.id,
                     this.type.to_string(),
-                    this.items.size,
-                    this.props.size,
-                    this.keyseq.size,
+                    this.items == null : 0 : this.items.size,
+                    this.props == null : 0 : this.props.size,
+                    this.keyseq == null : 0 : this.keyseq.size,
                     this.data,
                     this.name.to_string(),
                     this.outData == null ? "" : this.outData
