@@ -269,7 +269,7 @@ namespace JSDOC {
 		    Token token;
 		    
 		    while (null != (token = this.lookAny(1))) {
-				print("BALANCE: %d %s " , this.cursor,  token.asString());
+				print("BALANCE: %d d=%d, %s  \n" , this.cursor,  depth, token.asString());
 		        if (token.isName(start)) {
 		      //      Seed.print("balance: START : " + depth + " " + token.data);
 		            depth++;
