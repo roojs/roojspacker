@@ -205,9 +205,9 @@ namespace JSDOC
 		}
 		public bool isProtectedVar(string ident)
 		{
-		    if (ident == "_this") { // not sure why we need to protect _this. as it should be calculated as protected..
-				return true;
-			}
+		    //if (ident == "_this") { // not sure why we need to protect _this. as it should be calculated as protected..
+			//	return true;
+			//}
 		    
 		    if (ident.length > 2) {
 		        return false;
