@@ -584,13 +584,20 @@ namespace JSDOC {
                 )
             )  {
                 var regex = stream.nextS();
-                
+                var in_brace= = false;
                 while (!stream.lookEOF()) {
+	                if (stream.lookC() == '[') {
+	            		in_brace = true;
+            		}
+	                if (stream.lookC() == ']') {
+	            		in_brace = false;
+            		}
+            		
                     if (stream.lookC() == '\\') { // escape sequence
                         regex += stream.nextS(2);
                         continue;
                     }
-                    if (stream.lookC() == '/') {
+                    if (!in_brace && stream.lookC() == '/') {
                         regex += stream.nextS();
                         
                         while (GLib.Regex.match_simple("[gmi]", stream.lookS().to_string())) {
