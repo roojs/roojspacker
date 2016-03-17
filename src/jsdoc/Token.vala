@@ -200,10 +200,13 @@ namespace JSDOC
     
         public string asString()
         {
-            return "line:%d, id %d, type %s, data : %s,  name %s, , outData: %s".printf(
+            return "line:%d, id %d, type %s, IS=%d,PS=%d,KS=%d, data : %s,  name %s, , outData: %s".printf(
                     this.line,
                     this.id,
                     this.type.to_string(),
+                    this.items.size,
+                    this.props.size,
+                    this.keyseq.size,
                     this.data,
                     this.name.to_string(),
                     this.outData == null ? "" : this.outData
