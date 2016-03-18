@@ -243,7 +243,7 @@ namespace JSDOC {
 			while (token != null) {
 			  //  this.timerPrint("parseScope AFTER lookT: " + token.toString()); 
 			    //this.dumpToken(token , this.scopes, this.braceNesting);
-			    print("SCOPE: %s\n" , token.asString());
+			    //print("SCOPE: %s\n" , token.asString());
 			    //this.log(token.data);
 			    //if (token.type == 'NAME') {
 			    //    print('*' + token.data);
@@ -432,7 +432,7 @@ namespace JSDOC {
 								case TokenName.LEFT_CURLY: // {
 								case TokenName.LEFT_PAREN: // (    
 								case TokenName.LEFT_BRACE: // [
-									print("SCOPE-CURLY/PAREN %d / KS= %d / IT=%d \n", token.props.size ,token.keyseq.size, token.items.size);
+									//print("SCOPE-CURLY/PAREN %d / KS= %d / IT=%d \n", token.props.size ,token.keyseq.size, token.items.size);
 									//println("<i>"+token.data+"</i>");
 									var curTS = this.ts;
 									if (token.props.size > 0) {
@@ -444,7 +444,7 @@ namespace JSDOC {
 											var k =  token.keyseq.get(i);
 											
 											TokenKeyMap val = token.props.get(k);
-											print("SCOPE-PROPS GET (%d/%d): %s\n", i, token.keyseq.size,k);
+											//print("SCOPE-PROPS GET (%d/%d): %s\n", i, token.keyseq.size,k);
 									        
 									      //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
 									        if (val.vals.get(0).data == "function") {
@@ -648,7 +648,7 @@ namespace JSDOC {
 			   */ 
 			   
 			   //this.dumpToken(token,  this.scopes, this.braceNesting );
-			    print("EXPR %s\n" ,  token.asString());
+			    //print("EXPR %s\n" ,  token.asString());
 			    
 			    
 			    //println("<i>"+token.data+"</i>");
@@ -763,7 +763,7 @@ namespace JSDOC {
 			                //print("EXPR-NAME:" + token.toString());
 			            }
 			            var symbol = token.data;
-			            print("expression got NAME = %s \n" , symbol);
+			            //print("expression got NAME = %s \n" , symbol);
 			            //print("in NAME 0: " + this.ts.look(0).toString());
 			            //print("in NAME 2: " + this.ts.lookTok(2).toString());
 			            

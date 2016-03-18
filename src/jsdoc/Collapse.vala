@@ -93,7 +93,7 @@ namespace JSDOC {
                 }
                 // console.log(tok.data);
                 
-                debug("COL: %s", tok.asString());
+                //print("COL: %s\n", tok.asString());
                 
                 switch(tok.type) {
                     case TokenType.VOID: 
@@ -123,7 +123,7 @@ namespace JSDOC {
                                 
                                 var add = st.balance(tok.name);
                                 
-                                debug("BALANCE returned %d items\n", add.size);
+                               // print("BALANCE returned %d items\n", add.size);
                                 
                                 
                                // if (!add) {
