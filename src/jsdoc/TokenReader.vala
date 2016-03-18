@@ -584,7 +584,7 @@ namespace JSDOC {
                 )
             )  {
                 var regex = stream.nextS();
-                var in_brace= = false;
+                var in_brace = false; // this is really hacky... we ignore [ .../ ]  so aforward slash in a regex.. 
                 while (!stream.lookEOF()) {
 	                if (stream.lookC() == '[') {
 	            		in_brace = true;
