@@ -54,7 +54,7 @@ namespace JSDOC {
 				)
 			) {
 				throw new TokenReader_Error.ArgumentError(
-					 string.format("File:%s, line %d Error - NAME token followed by %s ", "??", t.line,  t.name.toString())
+					 string.printf("File:%s, line %d Error - NAME token followed by %s ", "??", t.line,  t.name.toString())
 				);
     		}
     		// other pattern that are not valid
