@@ -55,7 +55,7 @@ namespace JSDOC {
 			) {
 				print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 
-				throw new TokenReader_Error.SyntaxError(
+				GLib.error(
 					 "File:%s, line %d Error - '%s' token followed by %s:%s ".printf( 
 					 "??", 
 					 t.line,
