@@ -38,8 +38,10 @@ namespace JSDOC {
             }
             return null;
         }
-        public void push (Token t) {
+        Token lastAdded = null;
         
+        public void push (Token t) {
+    		
             this.tokens.add(t);
         }
         public Token? pop ()
