@@ -53,8 +53,12 @@ namespace JSDOC {
 	    			)
 				)
 			) {
-				throw new TokenReader_Error.ArgumentError(
-					 "File:%s, line %d Error - NAME token followed by %s ".printf( "??", t.line,  t.name.to_string())
+				throw new TokenReader_Error.SyntaxError(
+					 "File:%s, line %d Error - '%s' token followed by %s:%s ".printf( 
+					 "??", 
+					 t.line,
+					  this.lastAdded.data,
+					   t.name.to_string())
 				);
     		}
     		// other pattern that are not valid
@@ -89,7 +93,8 @@ namespace JSDOC {
     }
 
     public errordomain TokenReader_Error {
-            ArgumentError
+            ArgumentError,
+            SyntaxError
     }
     
 
