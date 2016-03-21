@@ -54,7 +54,7 @@ namespace JSDOC {
 				)
 			) {
 				throw new TokenReader_Error.ArgumentError(
-					t.filename + ":" + t.line + " Error - NAME token followed by " . t.name.toString()
+					t.filename + ":" + t.line + " Error - NAME token followed by " + t.name.toString()
 				);
     		}
     		// other pattern that are not valid
