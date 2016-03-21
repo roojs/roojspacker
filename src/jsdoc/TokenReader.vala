@@ -56,12 +56,12 @@ namespace JSDOC {
 				print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 
 				GLib.error(
-					 "File:%s, line %d Error - '%s' token followed by %s:%s ".printf( 
+					 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
 					 "??", 
 					 t.line,
 					  this.lastAdded.data,
 					   t.name.to_string(),
-					   t.data)
+					   t.data
 				);
     		}
     		// other pattern that are not valid
