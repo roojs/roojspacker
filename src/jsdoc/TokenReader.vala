@@ -58,7 +58,8 @@ namespace JSDOC {
 					 "??", 
 					 t.line,
 					  this.lastAdded.data,
-					   t.name.to_string())
+					   t.name.to_string(),
+					   t.data)
 				);
     		}
     		// other pattern that are not valid
