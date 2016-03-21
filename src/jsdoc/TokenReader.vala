@@ -42,14 +42,22 @@ namespace JSDOC {
         }
 
         
-        public void push (Token t) {
+        public void push (Token t) 
+        {
+    		if (this.lastAdded != null &&
+    			 this.lastAdded.isType(TokenType.NAME) &&
+    			 t.isType(TokenType.NAME) 
+			) {
+				throw new TokenReader_Error.ArgumentError(
+					t.filename + ":" + t.line + " Error - two name tokens found without seperator"
+				);
     		
             this.tokens.add(t);
             
-            if (t.isType(TokenType.WHITE) || t.isType(TokenType.COMM)){
+            if (t.isType(TokenType.WHIT) || t.isType(TokenType.COMM)){
                // do not set last...
             } else {
-        		this.lastAdded = tok;
+        		this.lastAdded = t;
             }
             
         }
