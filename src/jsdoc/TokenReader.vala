@@ -53,8 +53,8 @@ namespace JSDOC {
 	    			)
 				)
 			) {
-				this.lastAdded.dump();
-				t.dump();
+				printf("%s\n%s\n", this.lastAdded.asString(), t.asString());
+
 				throw new TokenReader_Error.SyntaxError(
 					 "File:%s, line %d Error - '%s' token followed by %s:%s ".printf( 
 					 "??", 
