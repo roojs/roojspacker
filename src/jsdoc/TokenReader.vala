@@ -51,11 +51,12 @@ namespace JSDOC {
     				(t.isType(TokenType.KEYW)  && 
 		    			!(t.isName(TokenName.IN) || t.isName(TokenName.INSTANCEOF) || t.isName(TokenName.INSTANCEOF))
 	    			)
+				)
 			) {
 				throw new TokenReader_Error.ArgumentError(
 					t.filename + ":" + t.line + " Error - NAME token followed by " . t.name.toString()
 				);
-    		
+    		}
     		// other pattern that are not valid
     		
             this.tokens.add(t);
