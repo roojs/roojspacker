@@ -15,6 +15,8 @@ namespace JSDOC {
     public class TokenArray: Object {
         
         public Gee.ArrayList<Token> tokens;
+        Token lastAdded = null;
+        
         public int length {
             get { return this.tokens.size; }
         }
@@ -38,11 +40,18 @@ namespace JSDOC {
             }
             return null;
         }
-        Token lastAdded = null;
+
         
         public void push (Token t) {
     		
             this.tokens.add(t);
+            
+            if (t.isType(TokenType.WHITE) || t.isType(TokenType.COMM)){
+               // do not set last...
+            } else {
+        		this.lastAdded = tok;
+            }
+            
         }
         public Token? pop ()
         {
