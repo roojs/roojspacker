@@ -406,9 +406,11 @@ namespace JSDOC {
             }
             
             if (this.keepWhite) {
-                var last = tokens.pop();
+                var last = tokens.last();
                 if (last != null && last.type != TokenType.WHIT) {
-                    tokens.push(last);
+                    //tokens.push(last);
+                } else {
+            		tokens.pop(); // remove the last token..
                 }
                 // replaces last new line... 
                 tokens.push(new Token(found, TokenType.WHIT, TokenName.NEWLINE, line));
