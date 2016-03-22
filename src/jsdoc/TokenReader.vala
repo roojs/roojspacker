@@ -45,7 +45,15 @@ namespace JSDOC {
         public void push (Token t) 
         {
     		if (this.lastAdded != null &&
-    			 this.lastAdded.isType(TokenType.NAME) &&
+    			 (
+    				this.lastAdded.isType(TokenType.NAME) ||
+    				(
+    					this.lastAdded.isType(Token.KEYW) && 
+						(
+							this.lastAdded.isName(TokenName.TRUE) || this.lastAdded.isName(TokenName.FALSE)
+						)
+					)
+    			 &&
     			 (
     				t.isType(TokenType.NAME) ||     // NAME -> ???
     				(t.isType(TokenType.KEYW)  && 
