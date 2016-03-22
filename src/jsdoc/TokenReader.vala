@@ -295,13 +295,14 @@ namespace JSDOC {
             var n = found.split(".");
             var p = false;
             foreach (unowned string nm in n) {
-        		if (n.length < 1 ) {
-        			continue;
-    			}
+        	
                 if (p) {
                     tokens.push(new Token(".", TokenType.PUNC, TokenName.DOT, this.line));
                 }
                 p=true;
+            	if (nm.length < 1 ) {
+        			continue;
+    			}
                 tokens.push(new Token(nm, TokenType.NAME, TokenName.NAME, this.line));
             }
             return true;
