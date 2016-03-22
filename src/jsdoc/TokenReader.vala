@@ -583,10 +583,30 @@ namespace JSDOC {
             while (!stream.lookEOF() && !Lang.isNewline(stream.lookS()) && Lang.isNumber(found+stream.lookC().to_string())){
                 found += stream.nextS();
             }
-
+            
             if (found == "") {
                 return false;
             }
+            // if we hit an 'e'.... then we need to carry on parsing..
+            if (stream.lookC() == 'e' || stream.lookC() == 'E') {
+        		found += stream.nextS();
+        		var nc = stream.lookC();
+        		if (nc == '+' || nc == '-' || (nc >= '0' && nc <= '9')) {
+	        		found += stream.nextS();
+		            while (!stream.lookEOF() && !Lang.isNewline(stream.lookS()) && Lang.isNumber(found+stream.lookC().to_string())){
+				        found += stream.nextS();
+				    }
+        		} else {
+        			throw new TokenReader_Error.ArgumentError(
+                        "Error - could not find +/- or 0-9 after Number 'e' in %s:%d", this.filename, this.line
+                    );
+        		}
+        		
+        		
+            }
+            
+            
+            
             if (GLib.Regex.match_simple("^0[0-7]", found)) {
                 tokens.push(new Token(found, TokenType.NUMB, TokenName.OCTAL, this.line));
                 return true;
