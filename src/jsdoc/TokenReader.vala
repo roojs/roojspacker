@@ -59,6 +59,8 @@ namespace JSDOC {
     			 &&
     			 (
     				t.isType(TokenType.NAME) ||     // NAME -> ???
+    				t.isType(TokenType.STRN) ||
+    				t.isType(TokenType.NUMB) ||
     				(t.isType(TokenType.KEYW)  && 
 		    			!(t.isName(TokenName.IN) || t.isName(TokenName.INSTANCEOF) || t.isName(TokenName.INSTANCEOF))
 	    			)
