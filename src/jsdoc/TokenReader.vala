@@ -600,6 +600,7 @@ namespace JSDOC {
 		    			throw new TokenReader_Error.ArgumentError(
 		                    "Invalid Number '%s' in %s:%d", found, this.filename, this.line
 		                );
+	                }
 						
         		} else {
         			throw new TokenReader_Error.ArgumentError(
@@ -609,9 +610,7 @@ namespace JSDOC {
         		
         		
             }
-            
-            
-            
+             
             if (GLib.Regex.match_simple("^0[0-7]", found)) {
                 tokens.push(new Token(found, TokenType.NUMB, TokenName.OCTAL, this.line));
                 return true;
