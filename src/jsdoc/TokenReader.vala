@@ -596,6 +596,11 @@ namespace JSDOC {
 		            while (!stream.lookEOF() && !Lang.isNewline(stream.lookS()) && Lang.isNumber(found+stream.lookC().to_string())){
 				        found += stream.nextS();
 				    }
+				    if (!Lang.isNumber(found)) {
+		    			throw new TokenReader_Error.ArgumentError(
+		                    "Invalid Number '%s' in %s:%d", found, this.filename, this.line
+		                );
+						
         		} else {
         			throw new TokenReader_Error.ArgumentError(
                         "Error - could not find +/- or 0-9 after Number 'e' in %s:%d", this.filename, this.line
