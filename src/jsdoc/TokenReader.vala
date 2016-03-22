@@ -603,7 +603,7 @@ namespace JSDOC {
 						
         		} else {
         			throw new TokenReader_Error.ArgumentError(
-                        "Error - could not find +/- or 0-9 after Number 'e' in %s:%d", this.filename, this.line
+                        "Error - could not find +/- or 0-9 after Number '%s' in %s:%d", found, this.filename, this.line
                     );
         		}
         		
