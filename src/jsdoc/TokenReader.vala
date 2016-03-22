@@ -48,7 +48,7 @@ namespace JSDOC {
     			 (
     				this.lastAdded.isType(TokenType.NAME) ||
     				(
-    					this.lastAdded.isType(Token.KEYW) && 
+    					this.lastAdded.isType(TokenType.KEYW) && 
 						(
 							this.lastAdded.isName(TokenName.TRUE) || this.lastAdded.isName(TokenName.FALSE)
 						)
