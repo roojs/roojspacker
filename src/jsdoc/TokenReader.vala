@@ -47,6 +47,8 @@ namespace JSDOC {
     		if (this.lastAdded != null &&
     			 (
     				this.lastAdded.isType(TokenType.NAME) ||
+    				this.lastAdded.isType(TokenType.STRN) ||
+    				this.lastAdded.isType(TokenType.NUMB) ||
     				(
     					this.lastAdded.isType(TokenType.KEYW) && 
 						(
