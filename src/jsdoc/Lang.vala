@@ -202,7 +202,7 @@ namespace JSDOC {
         
         
         public bool isNumber (string str) {
-            return Regex.match_simple("^(\\.[0-9]|[0-9]+\\.|[0-9])[0-9]*([eE][+-][0-9]+)?$",str);
+            return Regex.match_simple("^(\\.[0-9]|[0-9]+\\.|[0-9])[0-9]*([eE][+-]?[0-9]+)?$",str);
         }
     
         public bool  isHexDec (string str) {

@@ -597,13 +597,13 @@ namespace JSDOC {
 				        found += stream.nextS();
 				    }
 				    if (!Lang.isNumber(found)) {
-		    			throw new TokenReader_Error.ArgumentError(
+		    			GLib.error(
 		                    "Invalid Number '%s' in %s:%d", found, this.filename, this.line
 		                );
 	                }
 						
         		} else {
-        			throw new TokenReader_Error.ArgumentError(
+        			GLib.error(
                         "Error - could not find +/- or 0-9 after Number '%s' in %s:%d", found, this.filename, this.line
                     );
         		}
