@@ -107,6 +107,10 @@ namespace JSDOC {
                     case TokenType.STRN:
                     case TokenType.NUMB:
                     case TokenType.REGX:
+                		if (last_is_object_def) {
+                			GLib.error("Syntax error - found non punctuation after object close brace\n%s", tok.asString());
+                		}
+                    
                 		var nn = st.next();
                 		if (nn != null) { 
 	                        ret.add(nn);
