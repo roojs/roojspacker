@@ -155,7 +155,9 @@ namespace JSDOC {
                                 if (tok.data != "{") {
                                     // paramters or array elements..
                                     tok.items = this.toItems(toks, ",");
-                                    last_is_object_def = true;
+                                    if (tok.data == "]") {
+	                                    last_is_object_def = true;
+                                    }
                                 } else {
                                     // check for types.. it could be a list of statements.. or object
                                     // format "{" "xXXX" ":" << looks for the ':'.. seems to work.. not sure if it's foolproof...
