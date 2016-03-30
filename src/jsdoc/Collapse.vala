@@ -84,6 +84,7 @@ namespace JSDOC {
             
             var st = new TokenStream(ar);
             var ret = new Gee.ArrayList<Token>();
+            var last_is_brace=false;
             
             while (true) {
                 var  tok = st.look(1,true);
