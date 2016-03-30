@@ -117,6 +117,12 @@ namespace JSDOC
 			p.skipScope = opt_skip_scope;
 			p.dumpTokens = opt_dump_tokens;
 			p.cleanup = opt_clean_cache;
+			if (opt_tmpdir == null) {
+				p.cleanup = false;
+			} else {
+				p.tmpDir = opt_tmpdir;
+			}
+			
 			
 			// set the base directory...
 			var curdir = Environment.get_current_dir() + Path.DIR_SEPARATOR_S;
