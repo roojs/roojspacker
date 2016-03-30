@@ -84,7 +84,7 @@ namespace JSDOC {
             
             var st = new TokenStream(ar);
             var ret = new Gee.ArrayList<Token>();
-            var last_is_brace=false;
+            var last_is_object_def = false;
             
             while (true) {
                 var  tok = st.look(1,true);
@@ -111,6 +111,7 @@ namespace JSDOC {
                 		if (nn != null) { 
 	                        ret.add(nn);
                         }
+                        last_is_object_def = false;
                         continue;
                         
                     case TokenType.PUNC:
@@ -118,7 +119,7 @@ namespace JSDOC {
                             case "[":
                             case "{":
                             case "(":
-                                
+                                last_is_object_def = false;
                                 var start = st.cursor;
                                 //st.next(); << no need to shift, balance will start at first character..
                                 
@@ -159,6 +160,7 @@ namespace JSDOC {
                                     if (ost.look(2,true) != null && ost.look(2,true).data == ":") {
                                 		// object properties...
 										this.toProps(toks,tok);
+										last_is_object_def = true;
                                     } else {
                                         // list of statemetns..
                                         tok.items = this.toItems(toks, ";{");;
