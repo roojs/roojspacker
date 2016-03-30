@@ -182,6 +182,7 @@ namespace JSDOC {
                                 continue;
                    
                             default:
+	                            last_is_object_def = false;
                                 ret.add(st.next());
                                 continue;
                         }
