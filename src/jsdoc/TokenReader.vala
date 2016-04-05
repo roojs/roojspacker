@@ -667,7 +667,7 @@ namespace JSDOC {
 	                if (stream.lookC() == '[') {
 	            		in_brace = true;
             		}
-	                if (stream.lookC() == ']') {
+	                if (in_brace && stream.lookC() == ']') {
 	            		in_brace = false;
             		}
             		
