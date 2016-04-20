@@ -84,11 +84,25 @@ namespace JSDOC {
 	    		if (
 	    			(this.lastAdded.isName( TokenName.RIGHT_BRACE) || this.lastAdded.isName( TokenName.RIGHT_PAREN))
 	    			&&
-	    			t.isType(TokenType.KEYW || t.isType(TokenType.NAME) ||     // NAME -> ???
+	    			(
+		    			t.isType(TokenType.KEYW) ||
+	    				t.isType(TokenType.NAME) ||     // NAME -> ???
 						t.isType(TokenType.STRN) ||
-						t.isType(TokenType.NUMB) ||
-	    		
-    		
+						t.isType(TokenType.NUMB) 
+					)
+				) {
+					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
+
+					GLib.error(
+						 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
+						 "??", 
+						 t.line,
+						  this.lastAdded.data,
+						   t.name.to_string(),
+						   t.data
+					);
+	    		}
+    		}
     		
     		
     		
