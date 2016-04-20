@@ -44,40 +44,53 @@ namespace JSDOC {
         
         public void push (Token t) 
         {
-    		if (this.lastAdded != null &&
-    			 (
-    				this.lastAdded.isType(TokenType.NAME) ||
-    				this.lastAdded.isType(TokenType.STRN) ||
-    				this.lastAdded.isType(TokenType.NUMB) ||
-    				(
-    					this.lastAdded.isType(TokenType.KEYW) && 
+    		if (this.lastAdded != null) {
+    		
+    			if (
+					 (
+						this.lastAdded.isType(TokenType.NAME) ||
+						this.lastAdded.isType(TokenType.STRN) ||
+						this.lastAdded.isType(TokenType.NUMB) ||
 						(
-							this.lastAdded.isName(TokenName.TRUE) || this.lastAdded.isName(TokenName.FALSE)
+							this.lastAdded.isType(TokenType.KEYW) && 
+							(
+								this.lastAdded.isName(TokenName.TRUE) || this.lastAdded.isName(TokenName.FALSE)
+							)
 						)
 					)
-				)
-    			 &&
-    			 (
-    				t.isType(TokenType.NAME) ||     // NAME -> ???
-    				t.isType(TokenType.STRN) ||
-    				t.isType(TokenType.NUMB) ||
-    				(t.isType(TokenType.KEYW)  && 
-		    			!(t.isName(TokenName.IN) || t.isName(TokenName.INSTANCEOF) || t.isName(TokenName.INSTANCEOF))
-	    			)
-				)
-			) {
-				print("%s\n%s\n", this.lastAdded.asString(), t.asString());
+					 &&
+					 (
+						t.isType(TokenType.NAME) ||     // NAME -> ???
+						t.isType(TokenType.STRN) ||
+						t.isType(TokenType.NUMB) ||
+						(t.isType(TokenType.KEYW)  && 
+							!(t.isName(TokenName.IN) || t.isName(TokenName.INSTANCEOF) || t.isName(TokenName.INSTANCEOF))
+						)
+					)
+				) {
+					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 
-				GLib.error(
-					 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
-					 "??", 
-					 t.line,
-					  this.lastAdded.data,
-					   t.name.to_string(),
-					   t.data
-				);
-    		}
-    		// other pattern that are not valid
+					GLib.error(
+						 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
+						 "??", 
+						 t.line,
+						  this.lastAdded.data,
+						   t.name.to_string(),
+						   t.data
+					);
+				}
+	    		// other pattern that are not valid
+	    		//  ] or )   followed by KEYW "STRING" or number ?
+	    		if (
+	    			(this.lastAdded.isName( TokenName.RIGHT_BRACE) || this.lastAdded.isName( TokenName.RIGHT_PAREN))
+	    			&&
+	    			t.isType(TokenType.KEYW || t.isType(TokenType.NAME) ||     // NAME -> ???
+						t.isType(TokenType.STRN) ||
+						t.isType(TokenType.NUMB) ||
+	    		
+    		
+    		
+    		
     		
             this.tokens.add(t);
             
