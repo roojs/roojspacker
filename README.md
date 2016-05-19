@@ -3,7 +3,7 @@ Javascript packer / compressor (and possibly more) Was part of the jsdoc tools
 
 Installation Procedure (Debian/Ubuntu)
 
-apt-get install valac autoconf automake gcc
+apt-get install valac autoconf automake gcc libgee-dev
 
 git clone https://github.com/roojs/roojspacker.git
 cd roojspacker
