@@ -8,3 +8,4 @@ apt-get install valac autoconf automake gcc libgee-dev make
 git clone https://github.com/roojs/roojspacker.git
 cd roojspacker
 ./autogen.sh --prefix=/usr
+make install
