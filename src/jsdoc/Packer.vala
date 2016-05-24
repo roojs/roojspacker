@@ -360,10 +360,11 @@ namespace JSDOC
 			}
             
 			// OUTPUT should be handled by PackerRun (so that this can be used as a library...)
-			//if (this.outstr.length > 0 ) {
+			if (this.outstr.length > 0 ) {
+                return this.outstr;
 			//	stdout.printf ("%s", this.outstr);
-			//}
-		     
+			}
+		    return ""
 		
 		
 		}
