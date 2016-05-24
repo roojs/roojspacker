@@ -11,7 +11,7 @@ AM_CPPFLAGS =  \
 
 
 bin_PROGRAMS = roojspacker
-lib_LTLIBRARIES = libroojspacker.la
+lib_LTLIBRARIES = libroojspacker.so
 
  
 roojspacker_PKGS = \
@@ -37,7 +37,7 @@ libroojspacker_la_SOURCES = \
 
 libroojspacker_la_VALAFLAGS = \
     --library roojspacker -H roojspacker.h \
-    --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+    --shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
 
 
