@@ -47,3 +47,6 @@ roojspacker_VALAFLAGS =  --pkg roojspacker --thread -X -lm --target-glib=2.32   
 
     
 CLEANFILES = *.h *.c *.vapi *.stamp
+
+EXTRA_DIST += \
+    roojspacker.vapi
