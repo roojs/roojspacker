@@ -357,11 +357,12 @@ namespace JSDOC
 		    }
 		    if (this.targetDebug.length > 0) {
 				 print("Output debug file: %s\n" , this.targetDebug);
-			}  
-			
-			if (this.outstr.length > 0 ) {
-				stdout.printf ("%s", this.outstr);
 			}
+            
+			// OUTPUT should be handled by PackerRun (so that this can be used as a library...)
+			//if (this.outstr.length > 0 ) {
+			//	stdout.printf ("%s", this.outstr);
+			//}
 		     
 		
 		
