@@ -5,6 +5,8 @@
  *
  * gcc test.c `pkg-config --cflags --libs roojspacker ` -o test
  *
+ * ./test  myjavascriptfile.js
+ *
  */
 
 #include <stdio.h>
