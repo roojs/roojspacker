@@ -3,7 +3,7 @@
  *
  * compile:
  *
- * PKG_CONFIG_PATH="/usr/lib/x86_64-linux-gnu/pkgconfig" gcc test.c `pkg-config --cflags --libs roojspacker ` -o test
+ * gcc test.c `pkg-config --cflags --libs roojspacker ` -o test
  *
  */
 
