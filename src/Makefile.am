@@ -2,8 +2,7 @@
  
  
 # - not sure if needed....  
-# did have  $(JAVASCRIPTCOREGTK_CFLAGS)
-
+ 
 
 AM_CPPFLAGS =  \
     $(ROOJSPACKER_CFLAGS)  \
@@ -23,7 +22,7 @@ roojspacker_PKGS = \
 		--pkg gio-2.0 
 
 
-libroojspacker_VALASOURCES = \
+libroojspacker_la_SOURCES = \
 		jsdoc/Collapse.vala \
 		jsdoc/CompressWhite.vala \
 		jsdoc/Identifier.vala \
