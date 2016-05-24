@@ -11,10 +11,12 @@ AM_MAINTAINER_MODE([enable])
 
 AM_SILENT_RULES([yes])
 
-LT_INIT
 AC_PROG_CC
 
 AM_PROG_VALAC([0.16.0])
+
+LT_PREREQ([2.2.6])
+LT_INIT([disable-static])
 
 
 AC_CHECK_LIB([m],[cos])
