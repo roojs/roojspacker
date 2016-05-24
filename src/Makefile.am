@@ -48,7 +48,7 @@ roojspacker_VALAFLAGS =  --pkg roojspacker --thread -X -lm --target-glib=2.32   
     
 CLEANFILES = *.h *.c *.vapi *.stamp
 
-roojspackerincludedir = $(includedir)/gee-0.8
+roojspackerincludedir = $(includedir)/roojspacker-0.1
 
 roojspackerinclude_HEADERS = \
 	roojspacker.h \
