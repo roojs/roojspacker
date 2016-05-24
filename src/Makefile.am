@@ -3,7 +3,12 @@
  
 # - not sure if needed....  
 # did have  $(JAVASCRIPTCOREGTK_CFLAGS)
-AM_CPPFLAGS =  $(ROOJSPACKER_CFLAGS) 
+
+
+AM_CPPFLAGS =  \
+    $(ROOJSPACKER_CFLAGS)  \
+    -DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
+    -DPACKAGE_DATA_DIR=\""$(datadir)"\" 
 
 
 bin_PROGRAMS = roojspacker
@@ -17,7 +22,8 @@ roojspacker_PKGS = \
 		--pkg posix \
 		--pkg gio-2.0 
 
-roojspacker_SOURCES = \
+
+libroojspacker_VALASOURCES = \
 		jsdoc/Collapse.vala \
 		jsdoc/CompressWhite.vala \
 		jsdoc/Identifier.vala \
@@ -31,9 +37,12 @@ roojspacker_SOURCES = \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala
 
+
  
 roojspacker_VALAFLAGS = \
 	 --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+
+
 
 roojspacker_LDADD =  $(ROOJSPACKER_LIBS)
 
