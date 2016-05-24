@@ -155,7 +155,7 @@ namespace JSDOC {
                                 if (tok.data != "{") {
                                     // paramters or array elements..
                                     tok.items = this.toItems(toks, ",");
-                                    if (tok.data == "]") {
+                                    if (tok.data == "]") {   // ) can be folowed with lots of things...
 	                                    last_is_object_def = true;
                                     }
                                 } else {

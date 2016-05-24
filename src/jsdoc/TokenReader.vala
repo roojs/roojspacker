@@ -85,7 +85,9 @@ namespace JSDOC {
 	    			(this.lastAdded.isName( TokenName.RIGHT_BRACE) || this.lastAdded.isName( TokenName.RIGHT_PAREN))
 	    			&&
 	    			(
-		    			t.isType(TokenType.KEYW) ||
+		    			(t.isType(TokenType.KEYW) &&
+			    			!(t.isName(TokenName.IN) || t.isName(TokenName.INSTANCEOF) || t.isName(TokenName.INSTANCEOF))
+		    			) || 
 	    				t.isType(TokenType.NAME) ||     // NAME -> ???
 						t.isType(TokenType.STRN) ||
 						t.isType(TokenType.NUMB) 
