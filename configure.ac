@@ -13,6 +13,8 @@ AM_SILENT_RULES([yes])
 
 AC_PROG_CC
 
+LT_INIT
+
 AM_PROG_VALAC([0.16.0])
 
 
