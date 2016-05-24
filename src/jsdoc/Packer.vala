@@ -165,7 +165,7 @@ namespace JSDOC
 			GLib.debug("FILE LEN: %d", this.files.size);
 		}
 		
-		public void pack()
+		public string pack()
 		{
 		    if (this.files.size < 1) {
 				throw new PackerError.ArgumentError("No Files loaded before pack() called");
@@ -176,7 +176,7 @@ namespace JSDOC
 			if (this.targetDebug.length > 0 ) {
 				this.targetDebugStream = File.new_for_path(this.targetDebug).replace(null, false,FileCreateFlags.NONE);
 			}
-			this.packAll();
+			return this.packAll();
 		}
 		
   
@@ -364,7 +364,7 @@ namespace JSDOC
                 return this.outstr;
 			//	stdout.printf ("%s", this.outstr);
 			}
-		    return ""
+		    return "";
 		
 		
 		}
