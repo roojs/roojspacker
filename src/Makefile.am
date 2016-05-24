@@ -37,7 +37,7 @@ libroojspacker_la_SOURCES = \
 
 libroojspacker_la_VALAFLAGS = \
     --library roojspacker -H roojspacker.h \
-    --shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+    -shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
 
 
