@@ -27,7 +27,6 @@ libroojspacker_la_SOURCES = \
 		jsdoc/CompressWhite.vala \
 		jsdoc/Identifier.vala \
 		jsdoc/Lang.vala \
-		jsdoc/PackerRun.vala \
 		jsdoc/Packer.vala \
 		jsdoc/ScopeParser.vala \
 		jsdoc/Scope.vala \
@@ -39,6 +38,10 @@ libroojspacker_la_SOURCES = \
 libroojspacker_la_VALAFLAGS = \
     --library roojspacker -H roojspacker.h \
     --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+
+roojspacker_SOURCES=  jsdoc/PackerRun.vala
+calculator_LDADD = libroojspacker.la $(ROOJSPACKER_LIBS)
+
     
 roojspacker_VALAFLAGS = \
 	 --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
