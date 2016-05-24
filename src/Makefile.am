@@ -48,5 +48,15 @@ roojspacker_VALAFLAGS =  --pkg roojspacker --thread -X -lm --target-glib=2.32   
     
 CLEANFILES = *.h *.c *.vapi *.stamp
 
+roojspackerincludedir = $(includedir)/gee-0.8
+
+roojspackerinclude_HEADERS = \
+	roojspacker.h \
+	$(NULL)
+
+
+
+vapidir = $(datadir)/vala/vapi
+
 dist_vapi_DATA = \
     roojspacker.vapi
