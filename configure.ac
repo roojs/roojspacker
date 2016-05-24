@@ -62,6 +62,4 @@ AC_SUBST(ROOJSPACKER_CFLAGS)
 AC_SUBST(ROOJSPACKER_LIBS)
 
 
-AC_OUTPUT([Makefile
-           roojspacker.pc
-           src/Makefile])
+AC_OUTPUT([roojspacker.pc])
