@@ -45,7 +45,5 @@ roojspacker_SOURCES=  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker.la $(ROOJSPACKER_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
-   
- 
-
+    
 CLEANFILES = *.h *.c *.vapi *.stamp
