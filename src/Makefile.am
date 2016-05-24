@@ -37,13 +37,13 @@ libroojspacker_la_SOURCES = \
 
 libroojspacker_la_VALAFLAGS = \
     --library roojspacker -H roojspacker.h \
-    -shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+    -X -shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
 
 
 roojspacker_SOURCES=  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker.la $(ROOJSPACKER_LIBS)
-roojspacker_VALAFLAGS =  --vapi roojspacker.vapi --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+roojspacker_VALAFLAGS =  --vapi roojspacker.vapi --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
    
  
