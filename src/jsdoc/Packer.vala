@@ -240,7 +240,7 @@ namespace JSDOC
 		}
 		
     
-		private void packAll()  // do the packing (run from constructor)
+		private string packAll()  // do the packing (run from constructor)
 		{
 		    
 		    //this.transOrigFile= bpath + '/../lang.en.js'; // needs better naming...
