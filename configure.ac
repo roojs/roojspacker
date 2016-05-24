@@ -3,6 +3,7 @@ dnl Process this file with autoconf to produce a configure script.
 AC_PREREQ([2.68])
 
 AC_INIT([roojspacker], [4.0.0])
+LT_INIT
 
 AC_CONFIG_HEADERS([config.h])
 
@@ -13,7 +14,6 @@ AM_SILENT_RULES([yes])
 
 AC_PROG_CC
 
-LT_INIT
 
 AM_PROG_VALAC([0.16.0])
 
@@ -59,6 +59,8 @@ AC_CONFIG_FILES([
   
 AC_SUBST(ROOJSPACKER_CFLAGS)
 AC_SUBST(ROOJSPACKER_LIBS)
+
+
 
 
 AC_OUTPUT
