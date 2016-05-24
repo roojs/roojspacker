@@ -165,6 +165,11 @@ namespace JSDOC
 			
 			
 			p.pack();
+            
+        	if (p.outstr.length > 0 ) {
+				stdout.printf ("%s", p.outstr);
+			}
+            
 		}	 
 		
 	}
