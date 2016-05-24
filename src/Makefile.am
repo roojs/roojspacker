@@ -7,6 +7,7 @@ AM_CPPFLAGS =  $(ROOJSPACKER_CFLAGS)
 
 
 bin_PROGRAMS = roojspacker
+lib_LTLIBRARIES = libroojspacker.la
 
  
 roojspacker_PKGS = \
