@@ -11,6 +11,12 @@
   </with>
  </deps>
 
+ <code postion="top">
+
+#include "Zend/zend_exceptions.h"
+
+ </code>
+
  <class name="roojspacker">
   <payload type="JSDOCPacker" alloc="no"/>
 
