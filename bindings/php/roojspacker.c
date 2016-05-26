@@ -50,7 +50,7 @@ PHP_METHOD(roojspacker, loadFile)
 
 
 
-/* {{{ proto string pack(void)
+/* {{{ proto string pack(string target, string debug_target)
    */
 PHP_METHOD(roojspacker, pack)
 {
@@ -58,10 +58,14 @@ PHP_METHOD(roojspacker, pack)
 	php_obj_roojspacker *payload;
 
 	zval * _this_zval = NULL;
+	const char * target = NULL;
+	int target_len = 0;
+	const char * debug_target = NULL;
+	int debug_target_len = 0;
 
 
 
-	if (zend_parse_method_parameters(ZEND_NUM_ARGS() TSRMLS_CC, getThis(), "O", &_this_zval, roojspacker_ce_ptr) == FAILURE) {
+	if (zend_parse_method_parameters(ZEND_NUM_ARGS() TSRMLS_CC, getThis(), "Oss", &_this_zval, roojspacker_ce_ptr, &target, &target_len, &debug_target, &debug_target_len) == FAILURE) {
 		return;
 	}
 
@@ -70,7 +74,7 @@ PHP_METHOD(roojspacker, pack)
 	payload = (php_obj_roojspacker *) zend_object_store_get_object(_this_zval TSRMLS_CC);
 
 	do {
-		gchar *buf = jsdoc_packer_pack(payload->data);
+		gchar *buf = jsdoc_packer_pack(payload->data, target, debug_target);
 		RETURN_STRING(buf, 1);
 	} while (0);
 }
@@ -110,7 +114,7 @@ static zend_object_value roojspacker_obj_create(zend_class_entry *class_type TSR
 	memset(payload, 0, sizeof(php_obj_roojspacker));
 	payload->obj.ce = class_type;
 	do {
-		payload->data = jsdoc_packer_new("","");
+		payload->data = jsdoc_packer_new();
 	} while (0);
 
 	retval.handle = zend_objects_store_put(payload, NULL, (zend_objects_free_object_storage_t) roojspacker_obj_free, NULL TSRMLS_CC);
@@ -135,7 +139,7 @@ static void class_init_roojspacker(void)
 /* }}} Class definitions*/
 
 /* {{{ roojspacker_functions[] */
-zend_function_entry roojspacker_functions[] = {
+function_entry roojspacker_functions[] = {
 	{ NULL, NULL, NULL }
 };
 /* }}} */
