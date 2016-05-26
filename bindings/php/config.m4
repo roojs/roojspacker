@@ -2,7 +2,7 @@ dnl
 dnl $ Id: $
 dnl
 
-PHP_ARG_WITH(roojspacker, whether roojspacker is available,[  --with-roojspacker[=DIR] With roojspacker support])
+PHP_ARG_WITH(roojspacker-1.0, whether roojspacker is available,[  --with-roojspacker[=DIR] With roojspacker support])
 
 
 if test "$PHP_ROOJSPACKER" != "no"; then
