@@ -1,0 +1,10 @@
+The bindings are mostly generated from the xml file using CodeGen_PECL
+
+Note: currently the release version is broken, and generates files wilt function_entry, and not zend_function_entry.
+
+anyway it's a pretty standard PHP extension build:
+
+phpize
+./configure
+make install
+
