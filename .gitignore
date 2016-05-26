@@ -10,6 +10,7 @@ src/*.la
 src/roojspacker.h
 src/roojspacker
 src/*.vapi
+
 tests/*.c
 examples/test
 
@@ -36,3 +37,10 @@ compile
 fontconfig/*
 *.pc
 
+bindings/php/*
+!bindings/php/config.m4
+!bindings/php/example.php
+!bindings/php/roojspacker.c
+!bindings/php/php_roojspacker.h
+!bindings/php/roojspacker.xml
+!README
