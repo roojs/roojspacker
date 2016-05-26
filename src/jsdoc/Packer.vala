@@ -63,12 +63,12 @@ namespace JSDOC
 		/**
 		* @cfg {String} target to write files to - must be full path.
 		*/
-		string target;
+		string target = "";
 		GLib.FileOutputStream targetStream = null;
 		/**
 		 * @cfg {String} debugTarget target to write files debug version to (uncompacted)- must be full path.
 		 */
-		string targetDebug;
+		string targetDebug = "";
 		
 
 		GLib.FileOutputStream targetDebugStream  = null;
@@ -132,10 +132,9 @@ namespace JSDOC
 		
 		public  string outstr = ""; // if no target is specified - then this will contain the result
     
-		public Packer(string target, string targetDebug = "")
+		public Packer()
 		{
-			this.target = target;
-			this.targetDebug  = targetDebug;
+			
 			this.files = new Gee.ArrayList<string>();
 			
 			new Lang_Class(); ///initilizaze lang..
@@ -165,8 +164,11 @@ namespace JSDOC
 			GLib.debug("FILE LEN: %d", this.files.size);
 		}
 		
-		public string pack()
+		public string pack(string target, string targetDebug = "")
 		{
+		    this.target = target;
+			this.targetDebug  = targetDebug;
+		    
 		    if (this.files.size < 1) {
 				throw new PackerError.ArgumentError("No Files loaded before pack() called");
 			}
