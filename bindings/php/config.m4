@@ -7,7 +7,6 @@ PHP_ARG_WITH(roojspacker, whether roojspacker is available,[  --with-roojspacker
 
 if test "$PHP_ROOJSPACKER" != "no"; then
 
-  
   if test -z "$PKG_CONFIG"
   then
 	AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
