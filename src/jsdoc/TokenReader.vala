@@ -274,7 +274,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_word (TextStream stream, TokenArray tokens)
+        public bool read_word (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             string found = "";
             while (!stream.lookEOF() && Lang.isWordChar(stream.lookC() )) {
@@ -405,7 +405,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_space  (TextStream stream, TokenArray tokens)
+        public bool read_space  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             // not supported yet.. newlines can be unicode...
             var found = "";
@@ -433,7 +433,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_newline  (TextStream stream, TokenArray tokens)
+        public bool read_newline  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             // we do not support it yet, but newlines can be UNICODE..
             var found = "";
