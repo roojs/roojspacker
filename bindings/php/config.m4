@@ -2,11 +2,12 @@ dnl
 dnl $ Id: $
 dnl
 
-PHP_ARG_WITH(roojspacker-1.0, whether roojspacker is available,[  --with-roojspacker[=DIR] With roojspacker support])
+PHP_ARG_WITH(roojspacker, whether roojspacker is available,[  --with-roojspacker[=DIR] With roojspacker support])
 
 
 if test "$PHP_ROOJSPACKER" != "no"; then
 
+  
   if test -z "$PKG_CONFIG"
   then
 	AC_PATH_PROG(PKG_CONFIG, pkg-config, no)
@@ -18,7 +19,7 @@ if test "$PHP_ROOJSPACKER" != "no"; then
 
   if ! $PKG_CONFIG --exists roojspacker-1.0
   then
-	AC_MSG_ERROR(['roojspacker-1.0' not known to pkg-config])
+	AC_MSG_ERROR(['roojspacker' not known to pkg-config])
   fi
 
   PHP_EVAL_INCLINE(`$PKG_CONFIG --cflags-only-I roojspacker-1.0`)
