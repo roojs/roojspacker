@@ -240,7 +240,7 @@ namespace JSDOC
 		}
 		
     
-		private string packAll() throws PackerError, TokenReaderError , ScopeParserError // do the packing (run from constructor)
+		private string packAll() throws  TokenReaderError , ScopeParserError // do the packing (run from constructor)
 		{
 		    
 		    //this.transOrigFile= bpath + '/../lang.en.js'; // needs better naming...
