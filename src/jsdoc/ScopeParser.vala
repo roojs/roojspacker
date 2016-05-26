@@ -218,7 +218,7 @@ namespace JSDOC {
 	
 
 
-		void parseScope(Scope scope) // parse a token stream..
+		void parseScope(Scope scope) throws ScopeParserError.Syntax // parse a token stream..
 		{
 			//this.timerPrint("parseScope EnterScope"); 
 			//this.log(">>> ENTER SCOPE" + this.scopes.length);
