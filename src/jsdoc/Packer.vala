@@ -165,7 +165,7 @@ namespace JSDOC
 		}
 		 
 		
-		public string pack(string target, string targetDebug = "") throws PackerError
+		public string pack(string target, string targetDebug = "") throws PackerError,TokenReaderError.Syntax, ScopeParserError.Syntax
 		{
 		    this.target = target;
 			this.targetDebug  = targetDebug;
@@ -377,7 +377,7 @@ namespace JSDOC
 		 * 
 		 */
 
-		private string packFile  (string str,string fn, string minfile) throws  TokenReaderError.Syntax, 
+		private string packFile  (string str,string fn, string minfile) throws  TokenReaderError.Syntax, ScopeParserError.Syntax
 		{
 
 			var tr = new  TokenReader();
