@@ -74,7 +74,13 @@ PHP_METHOD(roojspacker, pack)
 	payload = (php_obj_roojspacker *) zend_object_store_get_object(_this_zval TSRMLS_CC);
 
 	do {
-		gchar *buf = jsdoc_packer_pack(payload->data, target, debug_target);
+		GError *err = NULL;    
+		gchar *buf = jsdoc_packer_pack(payload->data, target, debug_target, &err);
+		if (err !=NULL) {
+		 zend_throw_exception(zend_exception_get_default(TSRMLS_C), err->message, 0 TSRMLS_CC);
+		 RETURN_FALSE;
+		}
+		
 		RETURN_STRING(buf, 1);
 	} while (0);
 }
