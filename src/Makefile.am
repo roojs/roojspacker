@@ -11,7 +11,7 @@ AM_CPPFLAGS =  \
 
 
 bin_PROGRAMS = roojspacker
-lib_LTLIBRARIES = libroojspacker.la
+lib_LTLIBRARIES = libroojspacker-1.0.la
 
  
 roojspacker_PKGS = \
@@ -22,7 +22,7 @@ roojspacker_PKGS = \
 		--pkg gio-2.0 
 
 
-libroojspacker_la_SOURCES = \
+libroojspacker_1_0_la_SOURCES = \
 		jsdoc/Collapse.vala \
 		jsdoc/CompressWhite.vala \
 		jsdoc/Identifier.vala \
@@ -35,20 +35,20 @@ libroojspacker_la_SOURCES = \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala
 
-libroojspacker_la_VALAFLAGS = \
-    --library roojspacker -H roojspacker.h \
+libroojspacker_1_0_la_VALAFLAGS = \
+    --library roojspacker-1.0 -H roojspacker.h \
     -X -shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
 
 
 roojspacker_SOURCES=  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker.la $(ROOJSPACKER_LIBS)
-roojspacker_VALAFLAGS =  --pkg roojspacker --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
     
 CLEANFILES = *.h *.c *.vapi *.stamp
 
-roojspackerincludedir = $(includedir)/roojspacker-0.1
+roojspackerincludedir = $(includedir)/roojspacker
 
 roojspackerinclude_HEADERS = \
 	roojspacker.h \
