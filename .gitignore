@@ -6,7 +6,13 @@ src/*.o
 src/roojspacker
 src/*.stamp
 src/*.stamp-t
+src/*.la
+src/roojspacker.h
+src/roojspacker
+src/*.vapi
 tests/*.c
+examples/test
+
 
 Makefile
 Makefile.in
@@ -28,4 +34,5 @@ stamp-h?
 *~
 compile
 fontconfig/*
+*.pc
 
