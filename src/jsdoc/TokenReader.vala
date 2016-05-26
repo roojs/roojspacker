@@ -472,7 +472,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_mlcomment  (TextStream stream, TokenArray tokens)
+        public bool read_mlcomment  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             if (stream.lookC() != '/') {
                 return false;
@@ -509,7 +509,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-         public bool read_slcomment  (TextStream stream, TokenArray tokens)
+         public bool read_slcomment  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
          {
             var found = "";
             if (
@@ -540,7 +540,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_dbquote  (TextStream stream, TokenArray tokens)
+        public bool read_dbquote  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             if (stream.lookC() != '"') {
                 return false;
@@ -577,7 +577,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_snquote  (TextStream stream, TokenArray tokens)
+        public bool read_snquote  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             if (stream.lookC() != '\'') {
                 return false;
@@ -659,7 +659,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_hex  (TextStream stream, TokenArray tokens)
+        public bool read_hex  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             var found = stream.nextS(2);
             
@@ -678,7 +678,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_regx (TextStream stream, TokenArray tokens)
+        public bool read_regx (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
               
             if (stream.lookC() != '/') {
