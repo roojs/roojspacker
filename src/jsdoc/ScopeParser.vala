@@ -7,7 +7,9 @@ namespace JSDOC {
 		BUILDING_SYMBOL_TREE,
 		PASS2_SYMBOL_TREE
 	}
-
+	public errordomain ScopeParserError {
+            Syntax
+    }
 
 	public class ScopeParser : Object {
 
