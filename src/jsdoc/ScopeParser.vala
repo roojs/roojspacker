@@ -137,7 +137,7 @@ namespace JSDOC {
 
 
 
-		public void buildSymbolTree()
+		public void buildSymbolTree() throws ScopeParserError.Syntax 
 		{
 			//println("<PRE>");
 			
