@@ -377,7 +377,7 @@ namespace JSDOC
 		 * 
 		 */
 
-		private string packFile  (string str,string fn, string minfile)
+		private string packFile  (string str,string fn, string minfile) throws  TokenReaderError.Syntax, 
 		{
 
 			var tr = new  TokenReader();
