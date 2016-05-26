@@ -163,6 +163,23 @@ namespace JSDOC
 			this.files.add(f); 
 			GLib.debug("FILE LEN: %d", this.files.size);
 		}
+		public string pack()
+		{
+		    this.target = "";
+			this.targetDebug  = "";
+		    
+		    if (this.files.size < 1) {
+				throw new PackerError.ArgumentError("No Files loaded before pack() called");
+			}
+			if (this.target.length > 0 ) {
+				this.targetStream = File.new_for_path(this.target).replace(null, false,FileCreateFlags.NONE);
+			}
+			if (this.targetDebug.length > 0 ) {
+				this.targetDebugStream = File.new_for_path(this.targetDebug).replace(null, false,FileCreateFlags.NONE);
+			}
+			return this.packAll();
+		}
+		
 		
 		public string pack(string target, string targetDebug = "")
 		{
