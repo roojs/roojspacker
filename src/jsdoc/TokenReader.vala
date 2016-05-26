@@ -47,7 +47,7 @@ namespace JSDOC {
         }
 
         
-        public void push (Token t) 
+        public void push (Token t)  throws  TokenReaderError.Syntax
         {
     		if (this.lastAdded != null) {
     		
@@ -74,7 +74,7 @@ namespace JSDOC {
 					)
 				) {
 					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
-					throw new ScopeParserError.Syntax(
+					throw new TokenReaderError.Syntax(
 
 						 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
 						 "??", 
@@ -100,7 +100,7 @@ namespace JSDOC {
 				) {
 					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 
-					GLib.error(
+					throw new TokenReaderError.Syntax(
 						 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
 						 "??", 
 						 t.line,
@@ -606,7 +606,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_numb  (TextStream stream, TokenArray tokens)
+        public bool read_numb  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
         {
             if (stream.lookC() == '0' && stream.lookC(1) == 'x') {
                 return this.read_hex(stream, tokens);
@@ -631,13 +631,13 @@ namespace JSDOC {
 				        found += stream.nextS();
 				    }
 				    if (!Lang.isNumber(found)) {
-		    			GLib.error(
+		    			throw new TokenReaderError.Syntax(
 		                    "Invalid Number '%s' in %s:%d", found, this.filename, this.line
 		                );
 	                }
 						
         		} else {
-        			GLib.error(
+        			throw new TokenReaderError.Syntax(
                         "Error - could not find +/- or 0-9 after Number '%s' in %s:%d", found, this.filename, this.line
                     );
         		}
