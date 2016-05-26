@@ -36,13 +36,13 @@ libroojspacker_1_0_la_SOURCES = \
 		jsdoc/Token.vala
 
 libroojspacker_1_0_la_VALAFLAGS = \
-    --library roojspacker-1.0 -H roojspacker.h \
+    --library roojspacker-1.0 -H roojspacker-1.0.h \
     -X -shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
 
 
 roojspacker_SOURCES=  jsdoc/PackerRun.vala
-roojspacker_LDADD = libroojspacker.la $(ROOJSPACKER_LIBS)
+roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
     
@@ -51,7 +51,7 @@ CLEANFILES = *.h *.c *.vapi *.stamp
 roojspackerincludedir = $(includedir)/roojspacker
 
 roojspackerinclude_HEADERS = \
-	roojspacker.h \
+	roojspacker-1.0.h \
 	$(NULL)
 
 
@@ -59,4 +59,4 @@ roojspackerinclude_HEADERS = \
 vapidir = $(datadir)/vala/vapi
 
 dist_vapi_DATA = \
-    roojspacker.vapi
+    roojspacker-1.0.vapi
