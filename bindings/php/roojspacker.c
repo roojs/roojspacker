@@ -139,7 +139,7 @@ static void class_init_roojspacker(void)
 /* }}} Class definitions*/
 
 /* {{{ roojspacker_functions[] */
-function_entry roojspacker_functions[] = {
+zend_function_entry roojspacker_functions[] = {
 	{ NULL, NULL, NULL }
 };
 /* }}} */
