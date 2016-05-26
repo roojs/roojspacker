@@ -1,5 +1,0 @@
-<!ENTITY reference.roojspacker.reference SYSTEM './roojspacker/reference.xml'>
-<!ENTITY reference.roojspacker.constants SYSTEM './roojspacker/constants.xml'>
-<!ENTITY reference.roojspacker.ini SYSTEM './roojspacker/ini.xml'>
-<!ENTITY reference.roojspacker.configure SYSTEM './roojspacker/configure.xml'>
-<!ENTITY reference.roojspacker.functions SYSTEM './functions.xml'>
