@@ -274,7 +274,7 @@ namespace JSDOC {
 							        //this.logR("parseScope GOT VAR  : <B>" + token.toString() + "</B>"); 
 							        if (token.type != TokenType.NAME) {
 							    		this.ts.printRange( int.max(this.ts.cursor-10,0), this.ts.cursor);
-							            throw ScopeParserError.Syntax("var without ident");
+							            throw new ScopeParserError.Syntax("var without ident");
 							            //print( "var without ident");
 							            //GLib.Process.exit (0);
 							        }
