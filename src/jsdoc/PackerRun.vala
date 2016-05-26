@@ -110,8 +110,7 @@ namespace JSDOC
 			
 			// now run the Packer...
 			var p = new Packer(
-					opt_target == null ? "" : opt_target ,
-					opt_debug_target == null ? "" :  opt_debug_target 
+				
 				);
 			p.keepWhite = opt_keep_whitespace;
 			p.skipScope = opt_skip_scope;
@@ -164,7 +163,8 @@ namespace JSDOC
 			
 			
 			
-			p.pack();
+			p.pack(	opt_target == null ? "" : opt_target ,
+					opt_debug_target == null ? "" :  opt_debug_target );
             
         	if (p.outstr.length > 0 ) {
 				stdout.printf ("%s", p.outstr);
