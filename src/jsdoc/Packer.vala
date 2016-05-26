@@ -163,7 +163,7 @@ namespace JSDOC
 			this.files.add(f); 
 			GLib.debug("FILE LEN: %d", this.files.size);
 		}
-		public string pack()
+		public string check()
 		{
 		    this.target = "";
 			this.targetDebug  = "";
@@ -177,7 +177,10 @@ namespace JSDOC
 			if (this.targetDebug.length > 0 ) {
 				this.targetDebugStream = File.new_for_path(this.targetDebug).replace(null, false,FileCreateFlags.NONE);
 			}
-			return this.packAll();
+			try {
+				this.packAll();
+			}
+			
 		}
 		
 		
