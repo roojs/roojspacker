@@ -69,8 +69,8 @@ namespace JSDOC {
 					)
 				) {
 					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
+					throw new ScopeParserError.Syntax(
 
-					GLib.error(
 						 "File:%s, line %d Error - '%s' token followed by %s:%s " ,
 						 "??", 
 						 t.line,
