@@ -12,7 +12,7 @@
   <payload type="JSDOCPacker" alloc="no"/>
 
   <init>
-    payload->data = jsdoc_packer_new("","");
+    payload->data = jsdoc_packer_new();
   </init>
 
   <destruct>
@@ -29,9 +29,9 @@
   </function>
 
   <function name="pack">
-   <proto>string pack(void)</proto>
+   <proto>string pack(string target, string debug_target)</proto>
    <code>
-gchar *buf = jsdoc_packer_pack(payload->data);
+gchar *buf = jsdoc_packer_pack(payload->data, target, debug_target);
 RETURN_STRING(buf, 1);
 
    </code>
