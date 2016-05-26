@@ -165,7 +165,7 @@ namespace JSDOC
 		}
 		 
 		
-		public string pack(string target, string targetDebug = "")
+		public string pack(string target, string targetDebug = "") throws PackerError
 		{
 		    this.target = target;
 			this.targetDebug  = targetDebug;
