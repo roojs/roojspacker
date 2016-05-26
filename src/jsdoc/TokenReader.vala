@@ -12,6 +12,11 @@
  
 namespace JSDOC {
 
+	public errordomain TokenReaderError {
+            Syntax
+    }
+
+
     public class TokenArray: Object {
         
         public Gee.ArrayList<Token> tokens;
