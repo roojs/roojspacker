@@ -86,8 +86,9 @@ ZEND_END_ARG_INFO()
 
 PHP_METHOD(roojspacker, pack);
 #if (PHP_MAJOR_VERSION >= 5)
-ZEND_BEGIN_ARG_INFO_EX(roojspacker__pack_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 1)
-  ZEND_ARG_INFO(0, )
+ZEND_BEGIN_ARG_INFO_EX(roojspacker__pack_args, ZEND_SEND_BY_VAL, ZEND_RETURN_VALUE, 2)
+  ZEND_ARG_INFO(0, target)
+  ZEND_ARG_INFO(0, debug_target)
 ZEND_END_ARG_INFO()
 #else /* PHP 4.x */
 #define roojspacker__pack_args NULL
