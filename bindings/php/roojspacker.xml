@@ -11,7 +11,7 @@
   </with>
  </deps>
 
- <code postion="top">
+ <code position="top">
 
 #include "Zend/zend_exceptions.h"
 

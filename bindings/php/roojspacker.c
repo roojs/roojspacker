@@ -12,6 +12,7 @@
 
 #if HAVE_ROOJSPACKER
 
+#include "Zend/zend_exceptions.h"
 /* {{{ Class definitions */
 
 /* {{{ Class roojspacker */
