@@ -17,13 +17,13 @@ if test "$PHP_ROOJSPACKER" != "no"; then
 	AC_MSG_ERROR([required utility 'pkg-config' not found])
   fi
 
-  if ! $PKG_CONFIG --exists roojspacker
+  if ! $PKG_CONFIG --exists roojspacker-1.0
   then
-	AC_MSG_ERROR(['roojspacker' not known to pkg-config])
+	AC_MSG_ERROR(['roojspacker-1.0' not known to pkg-config])
   fi
 
-  PHP_EVAL_INCLINE(`$PKG_CONFIG --cflags-only-I roojspacker`)
-  PHP_EVAL_LIBLINE(`$PKG_CONFIG --libs roojspacker`, ROOJSPACKER_SHARED_LIBADD)
+  PHP_EVAL_INCLINE(`$PKG_CONFIG --cflags-only-I roojspacker-1.0`)
+  PHP_EVAL_LIBLINE(`$PKG_CONFIG --libs roojspacker-1.0`, ROOJSPACKER_SHARED_LIBADD)
 
   export OLD_CPPFLAGS="$CPPFLAGS"
   export CPPFLAGS="$CPPFLAGS $INCLUDES -DHAVE_ROOJSPACKER"
