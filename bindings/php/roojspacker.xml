@@ -31,6 +31,7 @@
   <function name="pack">
    <proto>string pack(string target, string debug_target)</proto>
    <code>
+<![CDATA[
 GError *err = NULL;    
 gchar *buf = jsdoc_packer_pack(payload->data, target, debug_target, &err);
 if (err !=NULL) {
@@ -39,7 +40,7 @@ if (err !=NULL) {
 }
 
 RETURN_STRING(buf, 1);
-
+]]>
    </code>
   </function>
  
