@@ -10,6 +10,8 @@ src/*.la
 src/roojspacker-1.0.h
 src/roojspacker
 src/*.vapi
+src/*.typelib
+src/*.gir
 
 tests/*.c
 examples/test

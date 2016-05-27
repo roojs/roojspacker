@@ -40,7 +40,7 @@ libroojspacker_1_0_la_SOURCES = \
 libroojspacker_1_0_la_VALAFLAGS = \
     --library roojspacker-1.0 \
     -H roojspacker-1.0.h \
-    --gir roojspacker-1.0.gir \
+    --gir JSDOC-1.0.gir \
     -X -shared -X -lm \
     --thread \
     --target-glib=2.32 \
@@ -69,12 +69,23 @@ vapidir = $(datadir)/vala/vapi
 
 dist_vapi_DATA = \
     roojspacker-1.0.vapi
-    
+
+ 
+
+
 girdir = $(datadir)/gir-1.0
-gir_DATA = \
-    roojspacker-1.0.gir
+gir_DATA =  JSDOC-1.0.gir
     
 typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = $(gir_DATA:.gir=.typelib)
+typelib_DATA = JSDOC-1.0.typelib
+
+# would be better to include INTROSPECTION_MAKEFILE - but I think it's problematic...
+    
+JSDOC-1.0.typelib:
+	g-ir-compiler \
+        --includedir=$(srcdir) \
+		--shared-library=libroojspacker-1.0.so \
+		--output=$(typelib_DATA) \
+		$(gir_DATA)
     
     
