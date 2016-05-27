@@ -7,7 +7,7 @@ src/roojspacker
 src/*.stamp
 src/*.stamp-t
 src/*.la
-src/roojspacker.h
+src/roojspacker-1.0.h
 src/roojspacker
 src/*.vapi
 
@@ -36,6 +36,7 @@ stamp-h?
 compile
 fontconfig/*
 *.pc
+
 
 bindings/php/*
 !bindings/php/config.m4
