@@ -1,0 +1,1457 @@
+<?xml version="1.0"?>
+<repository version="1.2" xmlns="http://www.gtk.org/introspection/core/1.0" xmlns:c="http://www.gtk.org/introspection/c/1.0" xmlns:glib="http://www.gtk.org/introspection/glib/1.0">
+<include name="Gee" version="1.0"/>
+<include name="GObject" version="2.0"/>
+<package name="roojspacker-1.0"/>
+<c:include name="roojspacker-1.0.h"/>
+<namespace name="roojspacker" version="1.0" c:prefix="JSDOC">
+	<enumeration name="ScopeParserMode" c:type="JSDOCScopeParserMode" glib:type-name="JSDOCScopeParserMode" glib:get-type="jsdoc_scope_parser_mode_get_type">
+		<member name="building_symbol_tree" c:identifier="JSDOC_SCOPE_PARSER_MODE_BUILDING_SYMBOL_TREE" value="0"/>
+		<member name="pass2_symbol_tree" c:identifier="JSDOC_SCOPE_PARSER_MODE_PASS2_SYMBOL_TREE" value="1"/>
+	</enumeration>
+	<enumeration name="TokenType" c:type="JSDOCTokenType" glib:type-name="JSDOCTokenType" glib:get-type="jsdoc_token_type_get_type">
+		<member name="tokn" c:identifier="JSDOC_TOKEN_TYPE_TOKN" value="0"/>
+		<member name="keyw" c:identifier="JSDOC_TOKEN_TYPE_KEYW" value="1"/>
+		<member name="name" c:identifier="JSDOC_TOKEN_TYPE_NAME" value="2"/>
+		<member name="comm" c:identifier="JSDOC_TOKEN_TYPE_COMM" value="3"/>
+		<member name="punc" c:identifier="JSDOC_TOKEN_TYPE_PUNC" value="4"/>
+		<member name="whit" c:identifier="JSDOC_TOKEN_TYPE_WHIT" value="5"/>
+		<member name="strn" c:identifier="JSDOC_TOKEN_TYPE_STRN" value="6"/>
+		<member name="numb" c:identifier="JSDOC_TOKEN_TYPE_NUMB" value="7"/>
+		<member name="regx" c:identifier="JSDOC_TOKEN_TYPE_REGX" value="8"/>
+		<member name="void" c:identifier="JSDOC_TOKEN_TYPE_VOID" value="9"/>
+	</enumeration>
+	<enumeration name="TokenName" c:type="JSDOCTokenName" glib:type-name="JSDOCTokenName" glib:get-type="jsdoc_token_name_get_type">
+		<member name="unknown_token" c:identifier="JSDOC_TOKEN_NAME_UNKNOWN_TOKEN" value="0"/>
+		<member name="break" c:identifier="JSDOC_TOKEN_NAME_BREAK" value="1"/>
+		<member name="case" c:identifier="JSDOC_TOKEN_NAME_CASE" value="2"/>
+		<member name="catch" c:identifier="JSDOC_TOKEN_NAME_CATCH" value="3"/>
+		<member name="const" c:identifier="JSDOC_TOKEN_NAME_CONST" value="4"/>
+		<member name="continue" c:identifier="JSDOC_TOKEN_NAME_CONTINUE" value="5"/>
+		<member name="default" c:identifier="JSDOC_TOKEN_NAME_DEFAULT" value="6"/>
+		<member name="delete" c:identifier="JSDOC_TOKEN_NAME_DELETE" value="7"/>
+		<member name="do" c:identifier="JSDOC_TOKEN_NAME_DO" value="8"/>
+		<member name="else" c:identifier="JSDOC_TOKEN_NAME_ELSE" value="9"/>
+		<member name="false" c:identifier="JSDOC_TOKEN_NAME_FALSE" value="10"/>
+		<member name="finally" c:identifier="JSDOC_TOKEN_NAME_FINALLY" value="11"/>
+		<member name="for" c:identifier="JSDOC_TOKEN_NAME_FOR" value="12"/>
+		<member name="function" c:identifier="JSDOC_TOKEN_NAME_FUNCTION" value="13"/>
+		<member name="if" c:identifier="JSDOC_TOKEN_NAME_IF" value="14"/>
+		<member name="in" c:identifier="JSDOC_TOKEN_NAME_IN" value="15"/>
+		<member name="instanceof" c:identifier="JSDOC_TOKEN_NAME_INSTANCEOF" value="16"/>
+		<member name="new" c:identifier="JSDOC_TOKEN_NAME_NEW" value="17"/>
+		<member name="null" c:identifier="JSDOC_TOKEN_NAME_NULL" value="18"/>
+		<member name="return" c:identifier="JSDOC_TOKEN_NAME_RETURN" value="19"/>
+		<member name="switch" c:identifier="JSDOC_TOKEN_NAME_SWITCH" value="20"/>
+		<member name="this" c:identifier="JSDOC_TOKEN_NAME_THIS" value="21"/>
+		<member name="throw" c:identifier="JSDOC_TOKEN_NAME_THROW" value="22"/>
+		<member name="true" c:identifier="JSDOC_TOKEN_NAME_TRUE" value="23"/>
+		<member name="try" c:identifier="JSDOC_TOKEN_NAME_TRY" value="24"/>
+		<member name="typeof" c:identifier="JSDOC_TOKEN_NAME_TYPEOF" value="25"/>
+		<member name="void" c:identifier="JSDOC_TOKEN_NAME_VOID" value="26"/>
+		<member name="while" c:identifier="JSDOC_TOKEN_NAME_WHILE" value="27"/>
+		<member name="with" c:identifier="JSDOC_TOKEN_NAME_WITH" value="28"/>
+		<member name="var" c:identifier="JSDOC_TOKEN_NAME_VAR" value="29"/>
+		<member name="eval" c:identifier="JSDOC_TOKEN_NAME_EVAL" value="30"/>
+		<member name="name" c:identifier="JSDOC_TOKEN_NAME_NAME" value="31"/>
+		<member name="multi_line_comm" c:identifier="JSDOC_TOKEN_NAME_MULTI_LINE_COMM" value="32"/>
+		<member name="jsdoc" c:identifier="JSDOC_TOKEN_NAME_JSDOC" value="33"/>
+		<member name="single_line_comm" c:identifier="JSDOC_TOKEN_NAME_SINGLE_LINE_COMM" value="34"/>
+		<member name="semicolon" c:identifier="JSDOC_TOKEN_NAME_SEMICOLON" value="35"/>
+		<member name="comma" c:identifier="JSDOC_TOKEN_NAME_COMMA" value="36"/>
+		<member name="hook" c:identifier="JSDOC_TOKEN_NAME_HOOK" value="37"/>
+		<member name="colon" c:identifier="JSDOC_TOKEN_NAME_COLON" value="38"/>
+		<member name="or" c:identifier="JSDOC_TOKEN_NAME_OR" value="39"/>
+		<member name="and" c:identifier="JSDOC_TOKEN_NAME_AND" value="40"/>
+		<member name="bitwise_or" c:identifier="JSDOC_TOKEN_NAME_BITWISE_OR" value="41"/>
+		<member name="bitwise_xor" c:identifier="JSDOC_TOKEN_NAME_BITWISE_XOR" value="42"/>
+		<member name="bitwise_and" c:identifier="JSDOC_TOKEN_NAME_BITWISE_AND" value="43"/>
+		<member name="strict_eq" c:identifier="JSDOC_TOKEN_NAME_STRICT_EQ" value="44"/>
+		<member name="eq" c:identifier="JSDOC_TOKEN_NAME_EQ" value="45"/>
+		<member name="assign" c:identifier="JSDOC_TOKEN_NAME_ASSIGN" value="46"/>
+		<member name="strict_ne" c:identifier="JSDOC_TOKEN_NAME_STRICT_NE" value="47"/>
+		<member name="ne" c:identifier="JSDOC_TOKEN_NAME_NE" value="48"/>
+		<member name="lsh" c:identifier="JSDOC_TOKEN_NAME_LSH" value="49"/>
+		<member name="le" c:identifier="JSDOC_TOKEN_NAME_LE" value="50"/>
+		<member name="lt" c:identifier="JSDOC_TOKEN_NAME_LT" value="51"/>
+		<member name="ursh" c:identifier="JSDOC_TOKEN_NAME_URSH" value="52"/>
+		<member name="rsh" c:identifier="JSDOC_TOKEN_NAME_RSH" value="53"/>
+		<member name="ge" c:identifier="JSDOC_TOKEN_NAME_GE" value="54"/>
+		<member name="gt" c:identifier="JSDOC_TOKEN_NAME_GT" value="55"/>
+		<member name="increment" c:identifier="JSDOC_TOKEN_NAME_INCREMENT" value="56"/>
+		<member name="decrement" c:identifier="JSDOC_TOKEN_NAME_DECREMENT" value="57"/>
+		<member name="plus" c:identifier="JSDOC_TOKEN_NAME_PLUS" value="58"/>
+		<member name="minus" c:identifier="JSDOC_TOKEN_NAME_MINUS" value="59"/>
+		<member name="mul" c:identifier="JSDOC_TOKEN_NAME_MUL" value="60"/>
+		<member name="div" c:identifier="JSDOC_TOKEN_NAME_DIV" value="61"/>
+		<member name="mod" c:identifier="JSDOC_TOKEN_NAME_MOD" value="62"/>
+		<member name="not" c:identifier="JSDOC_TOKEN_NAME_NOT" value="63"/>
+		<member name="bitwise_not" c:identifier="JSDOC_TOKEN_NAME_BITWISE_NOT" value="64"/>
+		<member name="dot" c:identifier="JSDOC_TOKEN_NAME_DOT" value="65"/>
+		<member name="left_brace" c:identifier="JSDOC_TOKEN_NAME_LEFT_BRACE" value="66"/>
+		<member name="right_brace" c:identifier="JSDOC_TOKEN_NAME_RIGHT_BRACE" value="67"/>
+		<member name="left_curly" c:identifier="JSDOC_TOKEN_NAME_LEFT_CURLY" value="68"/>
+		<member name="right_curly" c:identifier="JSDOC_TOKEN_NAME_RIGHT_CURLY" value="69"/>
+		<member name="left_paren" c:identifier="JSDOC_TOKEN_NAME_LEFT_PAREN" value="70"/>
+		<member name="right_paren" c:identifier="JSDOC_TOKEN_NAME_RIGHT_PAREN" value="71"/>
+		<member name="space" c:identifier="JSDOC_TOKEN_NAME_SPACE" value="72"/>
+		<member name="newline" c:identifier="JSDOC_TOKEN_NAME_NEWLINE" value="73"/>
+		<member name="double_quote" c:identifier="JSDOC_TOKEN_NAME_DOUBLE_QUOTE" value="74"/>
+		<member name="single_quote" c:identifier="JSDOC_TOKEN_NAME_SINGLE_QUOTE" value="75"/>
+		<member name="octal" c:identifier="JSDOC_TOKEN_NAME_OCTAL" value="76"/>
+		<member name="decimal" c:identifier="JSDOC_TOKEN_NAME_DECIMAL" value="77"/>
+		<member name="hex_dec" c:identifier="JSDOC_TOKEN_NAME_HEX_DEC" value="78"/>
+		<member name="regx" c:identifier="JSDOC_TOKEN_NAME_REGX" value="79"/>
+		<member name="start_of_stream" c:identifier="JSDOC_TOKEN_NAME_START_OF_STREAM" value="80"/>
+		<member name="end_of_stream" c:identifier="JSDOC_TOKEN_NAME_END_OF_STREAM" value="81"/>
+		<member name="unknown" c:identifier="JSDOC_TOKEN_NAME_UNKNOWN" value="82"/>
+	</enumeration>
+	<enumeration name="CompressWhiteError" c:type="JSDOCCompressWhiteError" glib:error-domain="jsdoc_compress_white_error-quark">
+		<member name="brace" c:identifier="JSDOC_COMPRESS_WHITE_ERROR_BRACE" value="0"/>
+	</enumeration>
+	<enumeration name="LangError" c:type="JSDOCLangError" glib:error-domain="jsdoc_lang_error-quark">
+		<member name="argumenterror" c:identifier="JSDOC_LANG_ERROR_ArgumentError" value="0"/>
+	</enumeration>
+	<enumeration name="PackerError" c:type="JSDOCPackerError" glib:error-domain="jsdoc_packer_error-quark">
+		<member name="argumenterror" c:identifier="JSDOC_PACKER_ERROR_ArgumentError" value="0"/>
+	</enumeration>
+	<enumeration name="ScopeParserError" c:type="JSDOCScopeParserError" glib:error-domain="jsdoc_scope_parser_error-quark">
+		<member name="syntax" c:identifier="JSDOC_SCOPE_PARSER_ERROR_Syntax" value="0"/>
+	</enumeration>
+	<enumeration name="TokenReaderError" c:type="JSDOCTokenReaderError" glib:error-domain="jsdoc_token_reader_error-quark">
+		<member name="syntax" c:identifier="JSDOC_TOKEN_READER_ERROR_Syntax" value="0"/>
+	</enumeration>
+	<enumeration name="TokenReader_Error" c:type="JSDOCTokenReader_Error" glib:error-domain="jsdoc_tokenreader_error-quark">
+		<member name="argumenterror" c:identifier="JSDOC_TOKENREADER_ERROR_ArgumentError" value="0"/>
+		<member name="syntaxerror" c:identifier="JSDOC_TOKENREADER_ERROR_SyntaxError" value="1"/>
+	</enumeration>
+	<enumeration name="TokenStreamError" c:type="JSDOCTokenStreamError" glib:error-domain="jsdoc_token_stream_error-quark">
+		<member name="argumenterror" c:identifier="JSDOC_TOKEN_STREAM_ERROR_ArgumentError" value="0"/>
+	</enumeration>
+	<class name="Collapse" c:type="JSDOCCollapse" glib:type-name="JSDOCCollapse" glib:get-type="jsdoc_collapse_get_type" glib:type-struct="CollapseClass" parent="JSDOC.TokenStream">
+		<field name="parent_instance">
+			<type name="JSDOC.TokenStream" c:type="JSDOCTokenStream"/>
+		</field>
+		<field name="priv">
+			<type name="CollapsePrivate" c:type="JSDOCCollapsePrivate*"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_collapse_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Collapse" c:type="JSDOCCollapse*"/>
+			</return-value>
+			<parameters>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="Gee.ArrayList" c:type="GeeArrayList*">
+						<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+					</type>
+				</parameter>
+			</parameters>
+		</constructor>
+	</class>
+	<record name="CollapseClass" c:type="JSDOCCollapseClass" glib:is-gtype-struct-for="Collapse">
+		<field name="parent_class">
+			<type name="JSDOC.TokenStreamClass" c:type="JSDOCTokenStreamClass"/>
+		</field>
+	</record>
+	<record name="CollapsePrivate" c:type="JSDOCCollapsePrivate" disguised="1"/>
+	<class name="Identifier" c:type="JSDOCIdentifier" glib:type-name="JSDOCIdentifier" glib:get-type="jsdoc_identifier_get_type" glib:type-struct="IdentifierClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="IdentifierPrivate" c:type="JSDOCIdentifierPrivate*"/>
+		</field>
+		<field name="name">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="refcount">
+			<type name="gint" c:type="gint"/>
+		</field>
+		<field name="mungedValue">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="scope">
+			<type name="JSDOC.Scope" c:type="JSDOCScope*"/>
+		</field>
+		<field name="toMunge">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_identifier_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Identifier" c:type="JSDOCIdentifier*"/>
+			</return-value>
+			<parameters>
+				<parameter name="name" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="scope" transfer-ownership="none">
+					<type name="JSDOC.Scope" c:type="JSDOCScope*"/>
+				</parameter>
+			</parameters>
+		</constructor>
+	</class>
+	<record name="IdentifierClass" c:type="JSDOCIdentifierClass" glib:is-gtype-struct-for="Identifier">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="IdentifierPrivate" c:type="JSDOCIdentifierPrivate" disguised="1"/>
+	<class name="Lang_Class" c:type="JSDOCLang_Class" glib:type-name="JSDOCLang_Class" glib:get-type="jsdoc_langclass_get_type" glib:type-struct="Lang_ClassClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="Lang_ClassPrivate" c:type="JSDOCLang_ClassPrivate*"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_langclass_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Lang_Class" c:type="JSDOCLang_Class*"/>
+			</return-value>
+		</constructor>
+		<method name="isBuiltin" c:identifier="jsdoc_langclass_isBuiltin">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="name" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="whitespace" c:identifier="jsdoc_langclass_whitespace">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="ch" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="newline" c:identifier="jsdoc_langclass_newline">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="ch" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="keyword" c:identifier="jsdoc_langclass_keyword" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+			</return-value>
+			<parameters>
+				<parameter name="word" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="matching" c:identifier="jsdoc_langclass_matching" throws="1">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.TokenName" c:type="JSDOCTokenName*"/>
+			</return-value>
+			<parameters>
+				<parameter name="name" transfer-ownership="none">
+					<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isKeyword" c:identifier="jsdoc_langclass_isKeyword">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="word" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="puncFirstString" c:identifier="jsdoc_langclass_puncFirstString">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+			</return-value>
+			<parameters>
+				<parameter name="ch" transfer-ownership="none">
+					<type name="gint8" c:type="gchar"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="puncString" c:identifier="jsdoc_langclass_puncString">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+			</return-value>
+			<parameters>
+				<parameter name="ch" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isNumber" c:identifier="jsdoc_langclass_isNumber">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isHexDec" c:identifier="jsdoc_langclass_isHexDec">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isWordString" c:identifier="jsdoc_langclass_isWordString">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isWordChar" c:identifier="jsdoc_langclass_isWordChar">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="c" transfer-ownership="none">
+					<type name="gint8" c:type="gchar"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isSpace" c:identifier="jsdoc_langclass_isSpace">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isSpaceC" c:identifier="jsdoc_langclass_isSpaceC">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="gint8" c:type="gchar"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isNewline" c:identifier="jsdoc_langclass_isNewline">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isNewlineC" c:identifier="jsdoc_langclass_isNewlineC">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="gint8" c:type="gchar"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isBoolean" c:identifier="jsdoc_langclass_isBoolean">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="Lang_ClassClass" c:type="JSDOCLang_ClassClass" glib:is-gtype-struct-for="Lang_Class">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="Lang_ClassPrivate" c:type="JSDOCLang_ClassPrivate" disguised="1"/>
+	<class name="Packer" c:type="JSDOCPacker" glib:type-name="JSDOCPacker" glib:get-type="jsdoc_packer_get_type" glib:type-struct="PackerClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="PackerPrivate" c:type="JSDOCPackerPrivate*"/>
+		</field>
+		<field name="tmpDir">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="cleanup">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="keepWhite">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="skipScope">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="dumpTokens">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="activeFile">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="baseDir">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="outstr">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_packer_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Packer" c:type="JSDOCPacker*"/>
+			</return-value>
+		</constructor>
+		<method name="loadSourceIndexes" c:identifier="jsdoc_packer_loadSourceIndexes">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="indexes" transfer-ownership="none">
+					<type name="Gee.ArrayList" c:type="GeeArrayList*">
+						<type name="utf8" c:type="gchar*"/>
+					</type>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="loadFiles" c:identifier="jsdoc_packer_loadFiles">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="fs" transfer-ownership="none">
+					<array length="1">
+						<type name="utf8" c:type="gchar*"/>
+					</array>
+				</parameter>
+				<parameter name="fs_length1" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="loadFile" c:identifier="jsdoc_packer_loadFile">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="f" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="pack" c:identifier="jsdoc_packer_pack" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="target" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="targetDebug" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="loadSourceIndex" c:identifier="jsdoc_packer_loadSourceIndex">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="in_srcfile" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="md5" c:identifier="jsdoc_packer_md5">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="str" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="PackerClass" c:type="JSDOCPackerClass" glib:is-gtype-struct-for="Packer">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="PackerPrivate" c:type="JSDOCPackerPrivate" disguised="1"/>
+	<class name="ScopeParser" c:type="JSDOCScopeParser" glib:type-name="JSDOCScopeParser" glib:get-type="jsdoc_scope_parser_get_type" glib:type-struct="ScopeParserClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="ScopeParserPrivate" c:type="JSDOCScopeParserPrivate*"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_scope_parser_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.ScopeParser" c:type="JSDOCScopeParser*"/>
+			</return-value>
+			<parameters>
+				<parameter name="ts" transfer-ownership="none">
+					<type name="JSDOC.TokenStream" c:type="JSDOCTokenStream*"/>
+				</parameter>
+			</parameters>
+		</constructor>
+		<method name="buildSymbolTree" c:identifier="jsdoc_scope_parser_buildSymbolTree" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+		<method name="mungeSymboltree" c:identifier="jsdoc_scope_parser_mungeSymboltree">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+		<method name="printWarnings" c:identifier="jsdoc_scope_parser_printWarnings">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+	</class>
+	<record name="ScopeParserClass" c:type="JSDOCScopeParserClass" glib:is-gtype-struct-for="ScopeParser">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="ScopeParserPrivate" c:type="JSDOCScopeParserPrivate" disguised="1"/>
+	<class name="Scope" c:type="JSDOCScope" glib:type-name="JSDOCScope" glib:get-type="jsdoc_scope_get_type" glib:type-struct="ScopeClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="ScopePrivate" c:type="JSDOCScopePrivate*"/>
+		</field>
+		<field name="parent">
+			<type name="JSDOC.Scope" c:type="JSDOCScope*"/>
+		</field>
+		<field name="subScopes">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="JSDOC.Scope" c:type="JSDOCScope*"/>
+			</type>
+		</field>
+		<field name="jsdoc_scope_builtin">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="utf8" c:type="gchar*"/>
+			</type>
+		</field>
+		<field name="jsdoc_scope_skips">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="utf8" c:type="gchar*"/>
+			</type>
+		</field>
+		<field name="jsdoc_scope_ones">
+			<array>
+				<type name="utf8" c:type="gchar*"/>
+			</array>
+		</field>
+		<field name="jsdoc_scope_twos">
+			<array>
+				<type name="utf8" c:type="gchar*"/>
+			</array>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_scope_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Scope" c:type="JSDOCScope*"/>
+			</return-value>
+			<parameters>
+				<parameter name="braceN" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+				<parameter name="parent" transfer-ownership="none" allow-none="1">
+					<type name="JSDOC.Scope" c:type="JSDOCScope*"/>
+				</parameter>
+				<parameter name="startTokN" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+				<parameter name="token" transfer-ownership="none" allow-none="1">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</parameter>
+			</parameters>
+		</constructor>
+		<method name="dump" c:identifier="jsdoc_scope_dump">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="indent" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="declareIdentifier" c:identifier="jsdoc_scope_declareIdentifier">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Identifier" c:type="JSDOCIdentifier*"/>
+			</return-value>
+			<parameters>
+				<parameter name="symbol" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="token" transfer-ownership="none">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="getIdentifier" c:identifier="jsdoc_scope_getIdentifier">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Identifier" c:type="JSDOCIdentifier*"/>
+			</return-value>
+			<parameters>
+				<parameter name="symbol" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="token" transfer-ownership="none">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="addHint" c:identifier="jsdoc_scope_addHint">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="varName" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="varType" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="preventMunging" c:identifier="jsdoc_scope_preventMunging">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+		<method name="getUsedSymbols" c:identifier="jsdoc_scope_getUsedSymbols">
+			<return-value transfer-ownership="full">
+				<array length="0">
+					<type name="utf8" c:type="gchar*"/>
+				</array>
+			</return-value>
+			<parameters>
+				<parameter name="result_length1" direction="out" transfer-ownership="none">
+					<type name="gint" c:type="gint*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="addToParentScope" c:identifier="jsdoc_scope_addToParentScope">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="ident" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isProtectedVar" c:identifier="jsdoc_scope_isProtectedVar">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="ident" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="munge" c:identifier="jsdoc_scope_munge">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+	</class>
+	<record name="ScopeClass" c:type="JSDOCScopeClass" glib:is-gtype-struct-for="Scope">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="ScopePrivate" c:type="JSDOCScopePrivate" disguised="1"/>
+	<class name="TextStreamChar" c:type="JSDOCTextStreamChar" glib:type-name="JSDOCTextStreamChar" glib:get-type="jsdoc_text_stream_char_get_type" glib:type-struct="TextStreamCharClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TextStreamCharPrivate" c:type="JSDOCTextStreamCharPrivate*"/>
+		</field>
+		<field name="c">
+			<type name="gint8" c:type="gchar"/>
+		</field>
+		<field name="eof">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_text_stream_char_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TextStreamChar" c:type="JSDOCTextStreamChar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="val" transfer-ownership="none">
+					<type name="gint8" c:type="gchar"/>
+				</parameter>
+				<parameter name="eof" transfer-ownership="none">
+					<type name="gboolean" c:type="gboolean"/>
+				</parameter>
+			</parameters>
+		</constructor>
+	</class>
+	<record name="TextStreamCharClass" c:type="JSDOCTextStreamCharClass" glib:is-gtype-struct-for="TextStreamChar">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TextStreamCharPrivate" c:type="JSDOCTextStreamCharPrivate" disguised="1"/>
+	<class name="TextStream" c:type="JSDOCTextStream" glib:type-name="JSDOCTextStream" glib:get-type="jsdoc_text_stream_get_type" glib:type-struct="TextStreamClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TextStreamPrivate" c:type="JSDOCTextStreamPrivate*"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_text_stream_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+			</return-value>
+			<parameters>
+				<parameter name="text" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</constructor>
+		<method name="lookS" c:identifier="jsdoc_text_stream_lookS">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="lookC" c:identifier="jsdoc_text_stream_lookC">
+			<return-value transfer-ownership="full">
+				<type name="gint8" c:type="gchar"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="lookEOF" c:identifier="jsdoc_text_stream_lookEOF">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="nextS" c:identifier="jsdoc_text_stream_nextS">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="nextC" c:identifier="jsdoc_text_stream_nextC">
+			<return-value transfer-ownership="full">
+				<type name="gint8" c:type="gchar"/>
+			</return-value>
+		</method>
+	</class>
+	<record name="TextStreamClass" c:type="JSDOCTextStreamClass" glib:is-gtype-struct-for="TextStream">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TextStreamPrivate" c:type="JSDOCTextStreamPrivate" disguised="1"/>
+	<class name="TokenArray" c:type="JSDOCTokenArray" glib:type-name="JSDOCTokenArray" glib:get-type="jsdoc_token_array_get_type" glib:type-struct="TokenArrayClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TokenArrayPrivate" c:type="JSDOCTokenArrayPrivate*"/>
+		</field>
+		<field name="tokens">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</type>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_token_array_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+			</return-value>
+		</constructor>
+		<method name="last" c:identifier="jsdoc_token_array_last">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+		</method>
+		<method name="lastSym" c:identifier="jsdoc_token_array_lastSym">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+		</method>
+		<method name="push" c:identifier="jsdoc_token_array_push" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="t" transfer-ownership="none">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="pop" c:identifier="jsdoc_token_array_pop">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+		</method>
+		<method name="get" c:identifier="jsdoc_token_array_get">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="i" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="dump" c:identifier="jsdoc_token_array_dump">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+		<property name="length">
+			<type name="gint" c:type="gint"/>
+		</property>
+		<method name="get_length" c:identifier="jsdoc_token_array_get_length">
+			<return-value transfer-ownership="none">
+				<type name="gint" c:type="gint"/>
+			</return-value>
+		</method>
+	</class>
+	<record name="TokenArrayClass" c:type="JSDOCTokenArrayClass" glib:is-gtype-struct-for="TokenArray">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TokenArrayPrivate" c:type="JSDOCTokenArrayPrivate" disguised="1"/>
+	<class name="TokenReader" c:type="JSDOCTokenReader" glib:type-name="JSDOCTokenReader" glib:get-type="jsdoc_token_reader_get_type" glib:type-struct="TokenReaderClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TokenReaderPrivate" c:type="JSDOCTokenReaderPrivate*"/>
+		</field>
+		<field name="collapseWhite">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="keepDocs">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="keepWhite">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="keepComments">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="sepIdents">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<field name="filename">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="ignoreBadGrammer">
+			<type name="gboolean" c:type="gboolean"/>
+		</field>
+		<method name="tokenize" c:identifier="jsdoc_token_reader_tokenize" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="findPuncToken" c:identifier="jsdoc_token_reader_findPuncToken">
+			<return-value transfer-ownership="full">
+				<type name="gint" c:type="gint"/>
+			</return-value>
+			<parameters>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+				<parameter name="data" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="lastSym" c:identifier="jsdoc_token_reader_lastSym">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_word" c:identifier="jsdoc_token_reader_read_word" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_punc" c:identifier="jsdoc_token_reader_read_punc" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_space" c:identifier="jsdoc_token_reader_read_space" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_newline" c:identifier="jsdoc_token_reader_read_newline" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_mlcomment" c:identifier="jsdoc_token_reader_read_mlcomment" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_slcomment" c:identifier="jsdoc_token_reader_read_slcomment" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_dbquote" c:identifier="jsdoc_token_reader_read_dbquote" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_snquote" c:identifier="jsdoc_token_reader_read_snquote" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_numb" c:identifier="jsdoc_token_reader_read_numb" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_hex" c:identifier="jsdoc_token_reader_read_hex" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="read_regx" c:identifier="jsdoc_token_reader_read_regx" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="stream" transfer-ownership="none">
+					<type name="JSDOC.TextStream" c:type="JSDOCTextStream*"/>
+				</parameter>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="JSDOC.TokenArray" c:type="JSDOCTokenArray*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<constructor name="new" c:identifier="jsdoc_token_reader_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenReader" c:type="JSDOCTokenReader*"/>
+			</return-value>
+		</constructor>
+	</class>
+	<record name="TokenReaderClass" c:type="JSDOCTokenReaderClass" glib:is-gtype-struct-for="TokenReader">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TokenReaderPrivate" c:type="JSDOCTokenReaderPrivate" disguised="1"/>
+	<class name="TokenStream" c:type="JSDOCTokenStream" glib:type-name="JSDOCTokenStream" glib:get-type="jsdoc_token_stream_get_type" glib:type-struct="TokenStreamClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TokenStreamPrivate" c:type="JSDOCTokenStreamPrivate*"/>
+		</field>
+		<field name="tokens">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</type>
+		</field>
+		<field name="cursor">
+			<type name="gint" c:type="gint"/>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_token_stream_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenStream" c:type="JSDOCTokenStream*"/>
+			</return-value>
+			<parameters>
+				<parameter name="tokens" transfer-ownership="none">
+					<type name="Gee.ArrayList" c:type="GeeArrayList*">
+						<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+					</type>
+				</parameter>
+			</parameters>
+		</constructor>
+		<method name="toArray" c:identifier="jsdoc_token_stream_toArray">
+			<return-value transfer-ownership="full">
+				<type name="Gee.ArrayList" c:type="GeeArrayList*">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</type>
+			</return-value>
+		</method>
+		<method name="rewind" c:identifier="jsdoc_token_stream_rewind">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+		<method name="look" c:identifier="jsdoc_token_stream_look">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+				<parameter name="considerWhitespace" transfer-ownership="none">
+					<type name="gboolean" c:type="gboolean"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="lookAny" c:identifier="jsdoc_token_stream_lookAny">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="lookFor" c:identifier="jsdoc_token_stream_lookFor">
+			<return-value transfer-ownership="full">
+				<type name="gint" c:type="gint"/>
+			</return-value>
+			<parameters>
+				<parameter name="data" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="lookTok" c:identifier="jsdoc_token_stream_lookTok">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="n" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="next" c:identifier="jsdoc_token_stream_next">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+		</method>
+		<method name="nextM" c:identifier="jsdoc_token_stream_nextM" throws="1">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="Gee.ArrayList" c:type="GeeArrayList*">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</type>
+			</return-value>
+			<parameters>
+				<parameter name="howMany" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="nextTok" c:identifier="jsdoc_token_stream_nextTok">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+		</method>
+		<method name="nextNonSpace" c:identifier="jsdoc_token_stream_nextNonSpace">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+		</method>
+		<method name="balance" c:identifier="jsdoc_token_stream_balance" throws="1">
+			<return-value transfer-ownership="full">
+				<type name="Gee.ArrayList" c:type="GeeArrayList*">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</type>
+			</return-value>
+			<parameters>
+				<parameter name="in_start" transfer-ownership="none">
+					<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="getMatchingTokenEnd" c:identifier="jsdoc_token_stream_getMatchingTokenEnd">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="end" transfer-ownership="none">
+					<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="getMatchingToken" c:identifier="jsdoc_token_stream_getMatchingToken">
+			<return-value transfer-ownership="full" allow-none="1">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="start" transfer-ownership="none">
+					<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+				</parameter>
+				<parameter name="depth" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="remaining" c:identifier="jsdoc_token_stream_remaining">
+			<return-value transfer-ownership="full">
+				<type name="Gee.ArrayList" c:type="GeeArrayList*">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</type>
+			</return-value>
+		</method>
+		<method name="printRange" c:identifier="jsdoc_token_stream_printRange">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="start" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+				<parameter name="end" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="dump" c:identifier="jsdoc_token_stream_dump">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="start" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+				<parameter name="end" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="dumpAll" c:identifier="jsdoc_token_stream_dumpAll">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="indent" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="dumpAllFlat" c:identifier="jsdoc_token_stream_dumpAllFlat">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+		</method>
+	</class>
+	<record name="TokenStreamClass" c:type="JSDOCTokenStreamClass" glib:is-gtype-struct-for="TokenStream">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TokenStreamPrivate" c:type="JSDOCTokenStreamPrivate" disguised="1"/>
+	<class name="TokenKeyMap" c:type="JSDOCTokenKeyMap" glib:type-name="JSDOCTokenKeyMap" glib:get-type="jsdoc_token_key_map_get_type" glib:type-struct="TokenKeyMapClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TokenKeyMapPrivate" c:type="JSDOCTokenKeyMapPrivate*"/>
+		</field>
+		<field name="key">
+			<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+		</field>
+		<field name="vals">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</type>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_token_key_map_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.TokenKeyMap" c:type="JSDOCTokenKeyMap*"/>
+			</return-value>
+		</constructor>
+	</class>
+	<record name="TokenKeyMapClass" c:type="JSDOCTokenKeyMapClass" glib:is-gtype-struct-for="TokenKeyMap">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TokenKeyMapPrivate" c:type="JSDOCTokenKeyMapPrivate" disguised="1"/>
+	<class name="Token" c:type="JSDOCToken" glib:type-name="JSDOCToken" glib:get-type="jsdoc_token_get_type" glib:type-struct="TokenClass" parent="GObject.Object">
+		<field name="parent_instance">
+			<type name="GObject.Object" c:type="GObject"/>
+		</field>
+		<field name="priv">
+			<type name="TokenPrivate" c:type="JSDOCTokenPrivate*"/>
+		</field>
+		<field name="id">
+			<type name="gint" c:type="gint"/>
+		</field>
+		<field name="data">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="type">
+			<type name="JSDOC.TokenType" c:type="JSDOCTokenType"/>
+		</field>
+		<field name="name">
+			<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+		</field>
+		<field name="line">
+			<type name="gint" c:type="gint"/>
+		</field>
+		<field name="prefix">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="outData">
+			<type name="utf8" c:type="gchar*"/>
+		</field>
+		<field name="identifier">
+			<type name="JSDOC.Identifier" c:type="JSDOCIdentifier*"/>
+		</field>
+		<field name="items">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="Gee.ArrayList" c:type="GeeArrayList*">
+					<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+				</type>
+			</type>
+		</field>
+		<field name="props">
+			<type name="Gee.HashMap" c:type="GeeHashMap*">
+				<type name="utf8" c:type="gchar*"/>
+				<type name="JSDOC.TokenKeyMap" c:type="JSDOCTokenKeyMap*"/>
+			</type>
+		</field>
+		<field name="keyseq">
+			<type name="Gee.ArrayList" c:type="GeeArrayList*">
+				<type name="utf8" c:type="gchar*"/>
+			</type>
+		</field>
+		<constructor name="new" c:identifier="jsdoc_token_new">
+			<return-value transfer-ownership="full">
+				<type name="JSDOC.Token" c:type="JSDOCToken*"/>
+			</return-value>
+			<parameters>
+				<parameter name="data" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+				<parameter name="type" transfer-ownership="none">
+					<type name="JSDOC.TokenType" c:type="JSDOCTokenType"/>
+				</parameter>
+				<parameter name="name" transfer-ownership="none">
+					<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+				</parameter>
+				<parameter name="line" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</constructor>
+		<method name="asString" c:identifier="jsdoc_token_asString">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+		</method>
+		<method name="dump" c:identifier="jsdoc_token_dump">
+			<return-value transfer-ownership="full">
+				<type name="none"/>
+			</return-value>
+			<parameters>
+				<parameter name="indent" transfer-ownership="none">
+					<type name="utf8" c:type="const gchar*"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="toRaw" c:identifier="jsdoc_token_toRaw">
+			<return-value transfer-ownership="full">
+				<type name="utf8" c:type="gchar*"/>
+			</return-value>
+			<parameters>
+				<parameter name="lvl" transfer-ownership="none">
+					<type name="gint" c:type="gint"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isName" c:identifier="jsdoc_token_isName">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="what" transfer-ownership="none">
+					<type name="JSDOC.TokenName" c:type="JSDOCTokenName"/>
+				</parameter>
+			</parameters>
+		</method>
+		<method name="isType" c:identifier="jsdoc_token_isType">
+			<return-value transfer-ownership="full">
+				<type name="gboolean" c:type="gboolean"/>
+			</return-value>
+			<parameters>
+				<parameter name="what" transfer-ownership="none">
+					<type name="JSDOC.TokenType" c:type="JSDOCTokenType"/>
+				</parameter>
+			</parameters>
+		</method>
+	</class>
+	<record name="TokenClass" c:type="JSDOCTokenClass" glib:is-gtype-struct-for="Token">
+		<field name="parent_class">
+			<type name="GObject.ObjectClass" c:type="GObjectClass"/>
+		</field>
+	</record>
+	<record name="TokenPrivate" c:type="JSDOCTokenPrivate" disguised="1"/>
+	<field name="jsdoc_Lang">
+		<type name="JSDOC.Lang_Class" c:type="JSDOCLang_Class*"/>
+	</field>
+	<field name="jsdoc_Scope_gid">
+		<type name="gint" c:type="gint"/>
+	</field>
+	<function name="CompressWhite" c:identifier="jsdoc_CompressWhite">
+		<return-value transfer-ownership="full">
+			<type name="utf8" c:type="gchar*"/>
+		</return-value>
+		<parameters>
+			<parameter name="ts" transfer-ownership="none">
+				<type name="JSDOC.TokenStream" c:type="JSDOCTokenStream*"/>
+			</parameter>
+			<parameter name="packer" transfer-ownership="none">
+				<type name="JSDOC.Packer" c:type="JSDOCPacker*"/>
+			</parameter>
+			<parameter name="keepWhite" transfer-ownership="none">
+				<type name="gboolean" c:type="gboolean"/>
+			</parameter>
+		</parameters>
+	</function>
+</namespace>
+</repository>
