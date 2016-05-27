@@ -35,9 +35,18 @@ libroojspacker_1_0_la_SOURCES = \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala
 
+# not sure if -g is needed..???
+
 libroojspacker_1_0_la_VALAFLAGS = \
-    --library roojspacker-1.0 -H roojspacker-1.0.h \
-    -X -shared --thread -X -lm --target-glib=2.32 --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+    --library roojspacker-1.0 \
+    -H roojspacker-1.0.h \
+    --gir roojspacker-1.0.gir \
+    -X -shared -X -lm \
+    --thread \
+    --target-glib=2.32 \
+    --vapidir=$(srcdir)/vapi \
+    -g  \
+    $(roojspacker_PKGS)
 
 
 
@@ -46,7 +55,7 @@ roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
     
-CLEANFILES = *.h *.c *.vapi *.stamp
+CLEANFILES = *.h *.c *.vapi *.stamp *.gir
 
 roojspackerincludedir = $(includedir)/roojspacker
 
@@ -60,3 +69,12 @@ vapidir = $(datadir)/vala/vapi
 
 dist_vapi_DATA = \
     roojspacker-1.0.vapi
+    
+girdir = $(datadir)/gir-1.0
+gir_DATA = \
+    roojspacker-1.0.gir
+    
+typelibdir = $(libdir)/girepository-1.0
+typelib_DATA = $(gir_DATA:.gir=.typelib)
+    
+    
