@@ -3,9 +3,9 @@
  *
  * compile:
  *
- * gcc test.c `pkg-config --cflags --libs roojspacker ` -o test
+ * gcc test.c `pkg-config --cflags --libs roojspacker-1.0 ` -o /tmp/test
  *
- * ./test  myjavascriptfile.js
+ * /tmp/test  myjavascriptfile.js
  *
  */
 

@@ -73,19 +73,19 @@ dist_vapi_DATA = \
  
 
 
-girdir = $(datadir)/gir-1.0
-gir_DATA =  JSDOC-1.0.gir
+# girdir = $(datadir)/gir-1.0
+# gir_DATA =  JSDOC-1.0.gir
     
-typelibdir = $(libdir)/girepository-1.0
-typelib_DATA = JSDOC-1.0.typelib
+# typelibdir = $(libdir)/girepository-1.0
+# typelib_DATA = JSDOC-1.0.typelib
 
 # would be better to include INTROSPECTION_MAKEFILE - but I think it's problematic...
     
-JSDOC-1.0.typelib:
-	g-ir-compiler \
-        --includedir=$(srcdir) \
-		--shared-library=libroojspacker-1.0.so \
-		--output=$(typelib_DATA) \
-		$(gir_DATA)
+# JSDOC-1.0.typelib:
+# 	g-ir-compiler \
+#         --includedir=$(srcdir) \
+# 		--shared-library=libroojspacker-1.0.so \
+# 		--output=$(typelib_DATA) \
+# 		$(gir_DATA)
     
     

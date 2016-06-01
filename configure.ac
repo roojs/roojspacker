@@ -24,7 +24,7 @@ LT_INIT([disable-static])
 
 AC_CHECK_LIB([m],[cos])
 
-GOBJECT_INTROSPECTION_CHECK([1.30.0])
+dnl GOBJECT_INTROSPECTION_CHECK([1.30.0])
 
 
 dnl we need to check these exist, then it will generate a compile string for them.
