@@ -467,7 +467,7 @@ namespace JSDOC
 		 * 
 		 */
 
-		public  string packFile  (string str,string fn, string minfile) throws  ScopeParserError
+		public  string packFile  (string str,string fn, string minfile)  
 		{
 
 			var tr = new  TokenReader(this);
