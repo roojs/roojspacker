@@ -19,7 +19,8 @@ roojspacker_PKGS = \
 		--pkg gobject-2.0  \
 		--pkg gee-1.0 \
 		--pkg posix \
-		--pkg gio-2.0 
+		--pkg gio-2.0 \
+		--pkg json-glib-1.0
 
 
 libroojspacker_1_0_la_SOURCES = \
