@@ -973,7 +973,17 @@ namespace JSDOC {
 			        // Get the name of the function and declare it in the current scope.
 			        var symbol = token.data;
 			        if (scope.getIdentifier(symbol,token) != null) {
-			            this.warn("The function " + symbol + " has already been declared in the same scope...");
+			        
+			         
+                        this.packer.logError(
+							Packer.ResultType.warn,
+							this.filename,
+							token.line,
+							"The function " + symbol + " has already been declared in the same scope..."
+						);
+
+			        
+
 			        }
 			        scope.declareIdentifier(symbol,token);
 			    }
