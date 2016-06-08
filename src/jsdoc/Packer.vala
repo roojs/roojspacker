@@ -144,7 +144,7 @@ namespace JSDOC
 		*           .. sane format..
 		*
 		*/
-		public enum ResultType { err , warn  };
+		  enum ResultType { err , warn  };
 		
 		public Json.Object result;   // output - what's the complication result
 
