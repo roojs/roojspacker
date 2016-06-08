@@ -392,15 +392,14 @@ namespace JSDOC {
             if ((found == "}" || found == "]") && ls != null && ls.data == ",") {
                 //print("Error - comma found before " + found);
                 //print(JSON.stringify(tokens.lastSym(), null,4));
-                if (this.ignoreBadGrammer) {
-                    print("\n" + this.filename + ":" + this.line.to_string() + " Error - comma found before " + found);
-                } else {
-                    throw new TokenReader_Error.ArgumentError(
-                                "File:%s, line %d, Error - '%s'",
-                                this.filename , this.line,  "  comma found before " + found
-                    );
-                     
-                }
+                this.packer.logError(
+            		this.ignoreBadGrammer ? Packer.ResultType.warn : Packer.ResultType.err,
+            		this.filename,
+            		this.line,
+            		"comma found before " + found
+        		);
+                
+                 
             }
             
             tokens.push(new Token(found, TokenType.PUNC, tokname, this.line));
