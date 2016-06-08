@@ -175,6 +175,13 @@ namespace JSDOC {
         
         int line = 0;
         
+        private Packer packer;
+        
+        public TokenReader(Packer packer)
+        {
+    		this.packer = packer;
+		}
+        
         /**
          * tokenize a stream
          * @return {Array} of tokens
