@@ -219,7 +219,7 @@ namespace JSDOC
 					linelist.foreach_member((linelistobj, linestr, nodear) => {
 						var errors=  nodear.dup_array();
 						errors.foreach_element((errorar, ignore, nodestr) => {
-							print("%s: %s:%s %s", type.to_string(), filename, linestr, nodestr.get_string());
+							print("%s: %s:%s %s\n", type.to_string(), filename, linestr, nodestr.get_string());
 						});
 					});
 			
