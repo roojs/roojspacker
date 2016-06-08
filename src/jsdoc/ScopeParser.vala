@@ -293,8 +293,12 @@ namespace JSDOC {
 							                scope.declareIdentifier(token.data, token);
 							            } else {
 							                token.identifier = identifier;
-							                this.warn("(SCOPE) The variable " + token.data  + 
-							            		" (line:" + token.line.to_string() + ")  has already been declared in the same scope...");
+							                this.packer.logError(
+							    			Packer.ResultType.warng,
+							    			this.filename,
+							    			token.line,
+							    			"The variable " +token.data + ")  has already been declared in the same scope...");
+						    			);
 							            }
 							        }
 
