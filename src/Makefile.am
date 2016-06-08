@@ -53,7 +53,8 @@ libroojspacker_1_0_la_VALAFLAGS = \
 
 roojspacker_SOURCES=  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS)
-roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   \
+    --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
 
     
 CLEANFILES = *.h *.c *.vapi *.stamp *.gir
