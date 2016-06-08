@@ -20,7 +20,7 @@ namespace JSDOC {
     public class TokenArray: Object {
         
         private Packer packer;
-        
+        private  TokenReader reader;
         public Gee.ArrayList<Token> tokens;
         Token lastAdded = null;
         
@@ -28,9 +28,10 @@ namespace JSDOC {
             get { return this.tokens.size; }
         }
         
-        public TokenArray(Packer packer)
+        public TokenArray(Packer packer, TokenReader reader)
         {
             this.packer = packer;
+            this.reader  = reader;
             this.tokens = new Gee.ArrayList<Token>();
         }
         
@@ -80,8 +81,8 @@ namespace JSDOC {
 					
 					this.packer.logError(
 		        		Packer.ResultType.err,
-		        		this.filename,
-		        		this.line,
+		        		t.filename,
+		        		t.line,
 		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
 		    		);
 					
