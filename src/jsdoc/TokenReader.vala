@@ -20,7 +20,8 @@ namespace JSDOC {
     public class TokenArray: Object {
         
         private Packer packer;
-        private  TokenReader reader;
+        private TokenReader reader;
+        
         public Gee.ArrayList<Token> tokens;
         Token lastAdded = null;
         
