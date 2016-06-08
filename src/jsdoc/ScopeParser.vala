@@ -297,7 +297,7 @@ namespace JSDOC {
 							    			Packer.ResultType.warng,
 							    			this.filename,
 							    			token.line,
-							    			"The variable " +token.data + ")  has already been declared in the same scope...");
+							    			"The variable '" +token.data + "' has already been declared in the same scope");
 						    			);
 							            }
 							        }
