@@ -402,7 +402,8 @@ namespace JSDOC
 				GLib.Process.exit(0);
 			}
 		    
-		    
+			this.dumpErrors(ResultType.warn);
+			
   			if (this.dumpTokens) {
 				 
 				GLib.Process.exit(0);
@@ -441,7 +442,7 @@ namespace JSDOC
 		        
 		    }
 		    
-			this.dumpErrors(ResultType.warn);		    
+		    
 		    
 		    if (this.target.length > 0 ) {
 			    print("Output file: " + this.target);
