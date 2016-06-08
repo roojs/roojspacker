@@ -368,7 +368,7 @@ namespace JSDOC {
 							        // do is turn the obfuscation off for the highest scope
 							        // containing the 'with' block.
 							        this.protectScopeFromObfuscation(scope);
-						     		//token.identifier = identifier;
+ 
 						            this.packer.logError(
 										Packer.ResultType.warn,
 										this.filename,
@@ -376,8 +376,7 @@ namespace JSDOC {
 										"Using 'with' is not recommended as it reduces the level of compression"
 									);
 							        
-							        this.warn("Using 'with' is not recommended." +
-							    		 (this.munge ? " Moreover, using 'with' reduces the level of compression!" : ""));
+							         
 							    }
 							    break;
 
@@ -430,8 +429,14 @@ namespace JSDOC {
 							                
 							            
 							                this.protectScopeFromObfuscation(scope);
-							                this.warn("Using 'eval' is not recommended. (use  eval:var:noreplace in comments to optimize) " +
-							            		 (this.munge ? " Moreover, using 'eval' reduces the level of compression!" : ""));
+							                
+							                this.packer.logError(
+												Packer.ResultType.warn,
+												this.filename,
+												token.line,
+												"Using 'eval' is not recommended. (use  eval:var:noreplace in comments to optimize)"
+											);
+							                 
 							            }
 
 							        }
@@ -589,13 +594,20 @@ namespace JSDOC {
 			                if (identifier == null) {
 								// BUG!find out where builtin is defined...
 								// print("new identifier\n");
-			                    if (symbol.length <= 3 &&  Scope.builtin.index_of(symbol) < 0) {
-			                        // Here, we found an undeclared and un-namespaced symbol that is
-			                        // 3 characters or less in length. Declare it in the global scope.
-			                        // We don't need to declare longer symbols since they won't cause
-			                        // any conflict with other munged symbols.
-			                        this.globalScope.declareIdentifier(symbol, token);
-			                        this.warn("Found an undeclared symbol: " + symbol + " (line:" + token.line.to_string() + ")");
+								if (symbol.length <= 3 &&  Scope.builtin.index_of(symbol) < 0) {
+									// Here, we found an undeclared and un-namespaced symbol that is
+									// 3 characters or less in length. Declare it in the global scope.
+									// We don't need to declare longer symbols since they won't cause
+									// any conflict with other munged symbols.
+									this.globalScope.declareIdentifier(symbol, token);
+
+		                           this.packer.logError(
+										Packer.ResultType.warn,
+										this.filename,
+										token.line,
+										"Found an undeclared symbol: " + symbol
+									);
+
 			                    }
 			                    
 			                    //println("GOT IDENT IGNORE(3): <B>" + symbol + "</B><BR/>");
@@ -809,7 +821,17 @@ namespace JSDOC {
 			                        // We don't need to declare longer symbols since they won't cause
 			                        // any conflict with other munged symbols.
 			                        this.globalScope.declareIdentifier(symbol, token);
-			                        this.warn("Found an undeclared symbol: " + symbol + " (line:" + token.line.to_string() + ")");
+			                        
+			                        this.packer.logError(
+										Packer.ResultType.warn,
+										this.filename,
+										token.line,
+										"Found an undeclared symbol: " + symbol
+									);
+
+			                        
+			                        
+			                         
 			                        //print("Found an undeclared symbol: " + symbol + ' (line:' + token.line + ')');
 			                        //throw "OOPS";
 			                    } else {
@@ -874,8 +896,16 @@ namespace JSDOC {
 			                        
 			                    } else {
 			                        this.protectScopeFromObfuscation(scope);
-			                        this.warn("Using 'eval' is not recommended." + 
-			                    		(this.munge ? " Moreover, using 'eval' reduces the level of compression!" : ""));
+			                        
+			                        this.packer.logError(
+										Packer.ResultType.warn,
+										this.filename,
+										token.line,
+										"Using 'eval' is not recommended. use eval:var in comment before eval to enable compression " + symbol
+									);
+
+			                        
+
 			                    }
 			                    
 
