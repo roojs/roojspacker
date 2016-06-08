@@ -82,7 +82,7 @@ namespace JSDOC {
 					
 					this.packer.logError(
 		        		Packer.ResultType.err,
-		        		t.filename,
+		        		this.reader.filename,
 		        		t.line,
 		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
 		    		);
