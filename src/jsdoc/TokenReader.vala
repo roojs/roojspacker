@@ -101,7 +101,7 @@ namespace JSDOC {
 					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 
 					throw new TokenReaderError.Syntax(
-						 "File:%s, line %d,  Error - '%s' token followed by %s:%s " ,
+						 "File:%s, line %d, Error - '%s' token followed by %s:%s " ,
 						 "??", 
 						 t.line,
 						  this.lastAdded.data,
@@ -390,7 +390,9 @@ namespace JSDOC {
                     print("\n" + this.filename + ":" + this.line.to_string() + " Error - comma found before " + found);
                 } else {
                     throw new TokenReader_Error.ArgumentError(
-                                this.filename + ":" + this.line.to_string() + "  comma found before " + found
+                                "File:%s, line %d, Error - '%s'",
+                                this.filename , this.line,  "  comma found before " + found
+
                   
                     );
                      
