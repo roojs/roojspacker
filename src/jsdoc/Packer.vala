@@ -409,7 +409,7 @@ namespace JSDOC
 			this.dumpErrors(ResultType.err);		    
 			this.dumpErrors(ResultType.warn);
 			
-  			if (this.dumpTokens || this.hasErrors()) {
+  			if (this.dumpTokens || this.hasErrors("")) {
 				 
 				GLib.Process.exit(0);
 			}
