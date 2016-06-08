@@ -36,7 +36,8 @@
             "glib-2.0",
             "gio-2.0",
             "posix",
-            "gee-1.0"
+            "gee-1.0",
+            "json-glib-1.0"
         ]
     }
 ]
