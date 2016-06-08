@@ -431,7 +431,7 @@ namespace JSDOC
 			
 			debug("RESULT: \n %s\n", outf);
 		
-			 if (outf.length > 0) {
+			 if (outf.length > 0 && minfile.length > 0 ) {
 				FileUtils.set_contents(minfile, outf);
 				 
 			}  
