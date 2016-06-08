@@ -192,9 +192,18 @@ namespace JSDOC
 			 
 		}
 		
-		public bool hasErrors()
+		public bool hasErrors(string fn)
 		{
-			 if (this.result.has_member(ResultType.err.to_string())) {
+			 if (!this.result.has_member(ResultType.err.to_string())) {
+				 return false;
+			 }
+			 
+			 if (fn.length < 1) {
+				return true;
+			 }
+			 var t = this.result.get_object_member(type.to_string());
+			 
+			 if (t.has_member(filename)) {
 				 return true;
 			 }
 			 return false;
