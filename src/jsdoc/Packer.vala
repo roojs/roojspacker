@@ -57,7 +57,7 @@ namespace JSDOC
 	public errordomain PackerError {
             ArgumentError
     }
-    public enum PackerResultType { err , warn  }
+    
     
 	public class Packer : Object 
 	{
@@ -133,6 +133,7 @@ namespace JSDOC
 		
 		public  string outstr = ""; // if no target is specified - then this will contain the result
 		
+		public enum ResultType { err , warn  }
 		/**
 		*  result of complication - a JSON object containing warnings / errors etc..
 		*  FORMAT:
