@@ -7,9 +7,7 @@ namespace JSDOC {
 		BUILDING_SYMBOL_TREE,
 		PASS2_SYMBOL_TREE
 	}
-	public errordomain ScopeParserError {
-            Syntax
-    }
+	 
 
 	public class ScopeParser : Object {
 
@@ -123,13 +121,13 @@ namespace JSDOC {
 	 
 	
 	
-		void warn(string s) 
+		/*void warn(string s) 
 		{
 			//print('****************' + s);
 			this.warnings.add(s);
 			//println("WARNING:" + htmlescape(s) + "<BR>");
 		}
-	
+	*/
 	
 		// defaults should not be initialized here =- otherwise they get duped on new, rather than initalized..
 	
@@ -138,7 +136,7 @@ namespace JSDOC {
 
 
 
-		public void buildSymbolTree() throws ScopeParserError.Syntax 
+		public void buildSymbolTree()  
 		{
 			//println("<PRE>");
 			
@@ -219,7 +217,7 @@ namespace JSDOC {
 	
 
 
-		void parseScope(Scope scope) throws ScopeParserError.Syntax // parse a token stream..
+		void parseScope(Scope scope)   // parse a token stream..
 		{
 			//this.timerPrint("parseScope EnterScope"); 
 			//this.log(">>> ENTER SCOPE" + this.scopes.length);
