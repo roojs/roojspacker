@@ -150,21 +150,21 @@ namespace JSDOC
 		
 		public Json.Object result;   // output - what's the complication result
 
-		public void  compile_notice(string type, string filename, int line, string message) {
+		public void  compile_notice(ResultType type, string filename, int line, string message) {
 			 
-			 if (!this.result.has_member(type+"-TOTAL")) {
-				 this.result.set_int_member(type+"-TOTAL", 1);
+			 if (!this.result.has_member(type.to_string()+"-TOTAL")) {
+				 this.result.set_int_member(type.to_string()+"-TOTAL", 1);
 			 } else {
-				this.result.set_int_member(type+"-TOTAL", 
-					this.result.get_int_member(type+"-TOTAL") +1 
+				this.result.set_int_member(type.to_string()+"-TOTAL", 
+					this.result.get_int_member(type.to_string()+"-TOTAL") +1 
 				);
 			 }
 			 
 			 
-			 if (!this.result.has_member(type)) {
-				 this.result.set_object_member(type, new Json.Object());
+			 if (!this.result.has_member(type.to_string())) {
+				 this.result.set_object_member(type.to_string(), new Json.Object());
 			 }
-			 var t = this.result.get_object_member(type);
+			 var t = this.result.get_object_member(type.to_string());
 			 if (!t.has_member(filename)) {
 				 t.set_object_member(filename, new Json.Object());
 			 }
