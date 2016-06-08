@@ -146,6 +146,8 @@ namespace JSDOC
 		}
 		
 		
+		// this could be another class really..
+		
 		public enum ResultType { err , warn  }
 		/**
 		*  result of complication - a JSON object containing warnings / errors etc..
@@ -189,6 +191,17 @@ namespace JSDOC
 			 tl.add_string_element(message);
 			 
 		}
+		
+		public bool hasErrors()
+		{
+			 if (this.result.has_member(ResultType.err.to_string())) {
+				 return true;
+			 }
+			 
+		}
+		
+		
+		
 		
 		
 		
