@@ -107,7 +107,7 @@ namespace JSDOC {
 			}
 		}
 		
-		
+		private Packer packer;
 		public ScopeParser(TokenStream ts, Packer packer) {
 			this.ts = ts; // {TokenStream}
 			this.packer = packer;
