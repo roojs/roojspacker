@@ -245,7 +245,7 @@ namespace JSDOC
 		}
 		 
 		
-		public string pack(string target, string targetDebug = "") throws PackerError,   ScopeParserError
+		public string pack(string target, string targetDebug = "") throws PackerError 
 		{
 		    this.target = target;
 			this.targetDebug  = targetDebug;
