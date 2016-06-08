@@ -148,7 +148,18 @@ namespace JSDOC
 		
 		// this could be another class really..
 		
-		public enum ResultType { err , warn  }
+		public enum ResultType { 
+			err , 
+			warn;
+			public string to_string() { 
+				switch(this) {
+					case err: return "ERR";
+					case warn: return "WARN";
+					default: assert_not_reached();
+				}
+			
+			  }
+		  }
 		/**
 		*  result of complication - a JSON object containing warnings / errors etc..
 		*  FORMAT:
