@@ -199,13 +199,22 @@ namespace JSDOC
 			 }
 			 return false;
 		}
-		public dumpErrors()
+		public void dumpErrors()
 		{
 			if (!this.hasErrors()) {
 				return;
 			}
+			var t = this.result.get_object_member(ResultType.err.to_string());
+			t.foreach_member((obj, filename, node) => {
+					var linelist = node.dup_object();
+					linelist.foreach_member((linelistobj, linestr, nodear) => {
+						var errors=  nodear.dup_array();
+						errors.foreach_element((errorar, ignore, nodestr) => {
+							print("%s:%s %s", filename, linestr, notstr.get_string());
+						});
+					});
 			
-		
+			});
 		}
 		
 		
