@@ -320,7 +320,7 @@ namespace JSDOC
 		}
 		
     
-		private string packAll() throws    ScopeParserError // do the packing (run from constructor)
+		private string packAll()   // do the packing (run from constructor)
 		{
 		    
 		    //this.transOrigFile= bpath + '/../lang.en.js'; // needs better naming...
