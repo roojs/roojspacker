@@ -201,7 +201,7 @@ namespace JSDOC
 			 if (fn.length < 1) {
 				return true;
 			 }
-			 var t = this.result.get_object_member(type.to_string());
+			 var t = this.result.get_object_member(ResultType.err.to_string());
 			 
 			 if (t.has_member(filename)) {
 				 return true;
