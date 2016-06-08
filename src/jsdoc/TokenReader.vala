@@ -651,11 +651,13 @@ namespace JSDOC {
  	                }
 						
         		} else {
-        			throw new TokenReaderError.Syntax(
-	        			 "File:%s, line %d, %s",
-	        			 this.filename, this.line, 
-                        "Error - could not find +/- or 0-9 after Number '" + found +"'"
-                    );
+			      this.packer.logError(
+			    		Packer.ResultType.err,
+			    		this.filename,
+			    		this.line,
+			    		"could not find +/- or 0-9 after Number '" + found
+					);
+        			return true;
         		}
         		
         		
