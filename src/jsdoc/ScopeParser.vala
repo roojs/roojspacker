@@ -273,10 +273,12 @@ namespace JSDOC {
 							        //this.logR("parseScope GOT VAR  : <B>" + token.toString() + "</B>"); 
 							        if (token.type != TokenType.NAME) {
 							    		this.ts.printRange( int.max(this.ts.cursor-10,0), this.ts.cursor);
-							            throw new ScopeParserError.Syntax( 
-							        		"File:%s, line %d, Error - %s",
-							        		"???", token.line, "var without ident"
-						        		);
+							    		this.packer.logError(
+							    			Packer.ResultType.err,
+							    			this.filename,
+							    			token.line,
+							    			"var without indent"
+						    			);
 							            //print( "var without ident");
 							            //GLib.Process.exit (0);
 							        }
