@@ -144,8 +144,37 @@ namespace JSDOC
 		*           .. sane format..
 		*
 		*/
+		public enum ResultType { err , warn  };
+		
 		public Json.Object result;   // output - what's the complication result
 
+		public void  compile_notice(string type, string filename, int line, string message) {
+			 
+			 if (!this.result.has_member(type+"-TOTAL")) {
+				 this.result.set_int_member(type+"-TOTAL", 1);
+			 } else {
+				this.result.set_int_member(type+"-TOTAL", 
+					this.result.get_int_member(type+"-TOTAL") +1 
+				);
+			 }
+			 
+			 
+			 if (!this.result.has_member(type)) {
+				 this.result.set_object_member(type, new Json.Object());
+			 }
+			 var t = this.result.get_object_member(type);
+			 if (!t.has_member(filename)) {
+				 t.set_object_member(filename, new Json.Object());
+			 }
+			 var tt = t.get_object_member(filename);
+			 if (!tt.has_member(line.to_string())) {
+				 tt.set_array_member(line.to_string(), new Json.Array());
+			 }
+			 var tl = tt.get_array_member(line.to_string());
+			 tl.add_string_element(message);
+			 
+		}
+		
 		
 		public Packer()
 		{
