@@ -197,9 +197,12 @@ namespace JSDOC
 			 if (this.result.has_member(ResultType.err.to_string())) {
 				 return true;
 			 }
-			 
 		}
+		public dumpErrors()
+		{
 		
+		
+		}
 		
 		
 		
