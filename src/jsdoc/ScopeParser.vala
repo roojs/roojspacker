@@ -293,7 +293,7 @@ namespace JSDOC {
 							                scope.declareIdentifier(token.data, token);
 							            } else {
 							                token.identifier = identifier;
-									            this.packer.logError(
+								            this.packer.logError(
 												Packer.ResultType.warn,
 												this.filename,
 												token.line,
@@ -368,6 +368,14 @@ namespace JSDOC {
 							        // do is turn the obfuscation off for the highest scope
 							        // containing the 'with' block.
 							        this.protectScopeFromObfuscation(scope);
+						     		//token.identifier = identifier;
+						            this.packer.logError(
+										Packer.ResultType.warn,
+										this.filename,
+										token.line,
+										"Using 'with' is not recommended as it reduces the level of compression"
+									);
+							        
 							        this.warn("Using 'with' is not recommended." +
 							    		 (this.munge ? " Moreover, using 'with' reduces the level of compression!" : ""));
 							    }
