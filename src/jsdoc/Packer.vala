@@ -520,8 +520,10 @@ namespace JSDOC
 		
 			
 			debug("RESULT: \n %s\n", outf);
-		
-			if (outf.length > 0 && minfile.length > 0 ) {
+			
+			
+			
+			if (outf.length > 0 && minfile.length > 0 && !this.hasErrors(fn)) {
 				FileUtils.set_contents(minfile, outf);
 				 
 			}  
