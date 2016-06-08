@@ -440,12 +440,17 @@ namespace JSDOC
 		        }
 		        
 		    }
+		    
+			this.dumpErrors(ResultType.warn);		    
+		    
 		    if (this.target.length > 0 ) {
 			    print("Output file: " + this.target);
 		    }
 		    if (this.targetDebug.length > 0) {
 				 print("Output debug file: %s\n" , this.targetDebug);
 			}
+            
+
             
 			// OUTPUT should be handled by PackerRun (so that this can be used as a library...)
 			if (this.outstr.length > 0 ) {
