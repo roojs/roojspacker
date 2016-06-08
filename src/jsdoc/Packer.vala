@@ -470,7 +470,7 @@ namespace JSDOC
 		public  string packFile  (string str,string fn, string minfile) throws  TokenReaderError, ScopeParserError
 		{
 
-			var tr = new  TokenReader();
+			var tr = new  TokenReader(this);
 			tr.keepDocs =true;
 			tr.keepWhite = true;
 			tr.keepComments = true;
