@@ -502,7 +502,7 @@ namespace JSDOC
 		   // print(JSON.stringify(ts.tokens, null,4 )); Seed.quit();
 			//return;//
 			if (!this.skipScope) {
-				var sp = new ScopeParser(ts, this);
+				var sp = new ScopeParser(ts, this, fn);
  
 				//sp.packer = this;
 				sp.buildSymbolTree();
