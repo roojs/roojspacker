@@ -203,7 +203,7 @@ namespace JSDOC
 			 }
 			 var t = this.result.get_object_member(ResultType.err.to_string());
 			 
-			 if (t.has_member(filename)) {
+			 if (t.has_member(fn)) {
 				 return true;
 			 }
 			 return false;
