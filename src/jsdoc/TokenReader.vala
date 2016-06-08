@@ -52,7 +52,7 @@ namespace JSDOC {
         }
 
         
-        public void push (Token t)  throws  TokenReaderError.Syntax
+        public void push (Token t)   
         {
     		if (this.lastAdded != null) {
     		
@@ -195,7 +195,7 @@ namespace JSDOC {
          * tr.tokenize(ts)
          * 
          */
-        public TokenArray tokenize(TextStream stream) throws  TokenReaderError.Syntax
+        public TokenArray tokenize(TextStream stream)  
         {
             this.line =1;
             var tokens = new TokenArray(this.packer, this);
@@ -284,7 +284,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_word (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_word (TextStream stream, TokenArray tokens)  
         {
             string found = "";
             while (!stream.lookEOF() && Lang.isWordChar(stream.lookC() )) {
@@ -414,7 +414,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_space  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_space  (TextStream stream, TokenArray tokens)  
         {
             // not supported yet.. newlines can be unicode...
             var found = "";
@@ -442,7 +442,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_newline  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_newline  (TextStream stream, TokenArray tokens)  
         {
             // we do not support it yet, but newlines can be UNICODE..
             var found = "";
@@ -481,7 +481,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_mlcomment  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_mlcomment  (TextStream stream, TokenArray tokens)  
         {
             if (stream.lookC() != '/') {
                 return false;
@@ -518,7 +518,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-         public bool read_slcomment  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+         public bool read_slcomment  (TextStream stream, TokenArray tokens)  
          {
             var found = "";
             if (
@@ -549,7 +549,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_dbquote  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_dbquote  (TextStream stream, TokenArray tokens)  
         {
             if (stream.lookC() != '"') {
                 return false;
@@ -586,7 +586,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_snquote  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_snquote  (TextStream stream, TokenArray tokens)  
         {
             if (stream.lookC() != '\'') {
                 return false;
@@ -615,7 +615,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_numb  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_numb  (TextStream stream, TokenArray tokens)  
         {
             if (stream.lookC() == '0' && stream.lookC(1) == 'x') {
                 return this.read_hex(stream, tokens);
@@ -640,11 +640,15 @@ namespace JSDOC {
 				        found += stream.nextS();
 				    }
 				    if (!Lang.isNumber(found)) {
-		    			throw new TokenReaderError.Syntax(
-			    			 "File:%s, line %d, Error - Invalid Number '%s'",
-			    			 this.filename, this.line, found
-		                );
-	                }
+				    
+				      this.packer.logError(
+				    		Packer.ResultType.err,
+				    		this.filename,
+				    		this.line,
+				    		"Invalid Number " + found
+						);
+						return true; // eat the characters and continue...
+ 	                }
 						
         		} else {
         			throw new TokenReaderError.Syntax(
