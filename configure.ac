@@ -35,6 +35,7 @@ PKG_CHECK_MODULES(ROOJSPACKER, [
 		 gee-1.0  
 		 gio-2.0  >= 2.28.0
 		 gthread-2.0
+		 json-glib-1.0
 ])
 
 
