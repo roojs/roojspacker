@@ -30,7 +30,8 @@
         "sources" : [
             "/src/jsdoc",
             "..//roojspacker",
-            "../../../../usr/share/vala/vapi"
+            "../../../../usr/share/vala/vapi",
+            "/src"
         ],
         "packages" : [
             "glib-2.0",
