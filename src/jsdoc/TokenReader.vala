@@ -75,7 +75,6 @@ namespace JSDOC {
 				) {
 					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 					throw new TokenReaderError.Syntax(
-
 						 "File:%s, line %d, Error - '%s' token followed by %s:%s " ,
 						 "??", 
 						 t.line,
@@ -392,8 +391,6 @@ namespace JSDOC {
                     throw new TokenReader_Error.ArgumentError(
                                 "File:%s, line %d, Error - '%s'",
                                 this.filename , this.line,  "  comma found before " + found
-
-                  
                     );
                      
                 }
@@ -634,13 +631,16 @@ namespace JSDOC {
 				    }
 				    if (!Lang.isNumber(found)) {
 		    			throw new TokenReaderError.Syntax(
-		                    "Invalid Number '%s' in %s:%d", found, this.filename, this.line
+			    			 "File:%s, line %d, Error - Invalid Number '%s'",
+			    			 this.filename, this.line, found
 		                );
 	                }
 						
         		} else {
         			throw new TokenReaderError.Syntax(
-                        "Error - could not find +/- or 0-9 after Number '%s' in %s:%d", found, this.filename, this.line
+	        			 "File:%s, line %d, %s",
+	        			 this.filename, this.line, 
+                        "Error - could not find +/- or 0-9 after Number '" + found +"'"
                     );
         		}
         		
