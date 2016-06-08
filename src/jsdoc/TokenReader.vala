@@ -198,7 +198,7 @@ namespace JSDOC {
         public TokenArray tokenize(TextStream stream) throws  TokenReaderError.Syntax
         {
             this.line =1;
-            var tokens = new TokenArray();
+            var tokens = new TokenArray(this.packer, this);
            
          
             while (!stream.lookEOF()) {
