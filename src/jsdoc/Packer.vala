@@ -369,6 +369,7 @@ namespace JSDOC
 		    // at this point if we have errors, we should stop..
 		    if (this.hasErrors()) {
 				this.dumpErrors();
+				GLib.Process.exit(0);
 			}
 		    
 		    
