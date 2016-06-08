@@ -87,14 +87,7 @@ namespace JSDOC {
 		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
 		    		);
 					
-					throw new TokenReaderError.Syntax(
-						 "File:%s, line %d, Error - '%s' token followed by %s:%s " ,
-						 "??", 
-						 t.line,
-						  this.lastAdded.data,
-						   t.name.to_string(),
-						   t.data
-					);
+					 
 				}
 	    		// other pattern that are not valid
 	    		//  ] or )   followed by KEYW "STRING" or number ?
@@ -110,16 +103,14 @@ namespace JSDOC {
 						t.isType(TokenType.NUMB) 
 					)
 				) {
-					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
-
-					throw new TokenReaderError.Syntax(
-						 "File:%s, line %d, Error - '%s' token followed by %s:%s " ,
-						 "??", 
-						 t.line,
-						  this.lastAdded.data,
-						   t.name.to_string(),
-						   t.data
-					);
+					//print("%s\n%s\n", this.lastAdded.asString(), t.asString());
+					this.packer.logError(
+		        		Packer.ResultType.err,
+		        		this.reader.filename,
+		        		t.line,
+		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
+		    		);
+					 
 	    		}
     		}
     		
