@@ -57,7 +57,8 @@ namespace JSDOC
 	public errordomain PackerError {
             ArgumentError
     }
-
+    public enum PackerResultType { err , warn  }
+    
 	public class Packer : Object 
 	{
 		/**
@@ -144,7 +145,7 @@ namespace JSDOC
 		*           .. sane format..
 		*
 		*/
-		  enum ResultType { err , warn  };
+		
 		
 		public Json.Object result;   // output - what's the complication result
 
