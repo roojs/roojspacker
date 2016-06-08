@@ -131,7 +131,22 @@ namespace JSDOC
 		
 		
 		public  string outstr = ""; // if no target is specified - then this will contain the result
-    
+		
+		/**
+		*  result of complication - a JSON object containing warnings / errors etc..
+		*  FORMAT:
+		*     warn-TOTAL : X  (number of warnings.
+		*     err-TOTAL: X  (number of errors) << this indicates failure...
+		*     warn : {
+		*            FILENAME : {
+		*                  line : [ Errors,Errors,.... ]
+		*     err : {
+		*           .. sane format..
+		*
+		*/
+		public Json.Object result;   // output - what's the complication result
+
+		
 		public Packer()
 		{
 			
