@@ -19,6 +19,8 @@ namespace JSDOC {
 
     public class TokenArray: Object {
         
+        private TokenParser parser;
+        
         public Gee.ArrayList<Token> tokens;
         Token lastAdded = null;
         
@@ -26,8 +28,9 @@ namespace JSDOC {
             get { return this.tokens.size; }
         }
         
-        public TokenArray()
+        public TokenArray(TokenParser parser)
         {
+            this.parser = parser;
             this.tokens = new Gee.ArrayList<Token>();
         }
         
