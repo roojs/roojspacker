@@ -74,6 +74,14 @@ namespace JSDOC {
 					)
 				) {
 					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
+					
+					this.packer.logError(
+		        		Packer.ResultType.err,
+		        		this.filename,
+		        		this.line,
+		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
+		    		);
+					
 					throw new TokenReaderError.Syntax(
 						 "File:%s, line %d, Error - '%s' token followed by %s:%s " ,
 						 "??", 
@@ -357,7 +365,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_punc (TextStream stream, TokenArray tokens) throws TokenReader_Error
+        public bool read_punc (TextStream stream, TokenArray tokens)  
         {
             string found = "";
             int pos = 0;
