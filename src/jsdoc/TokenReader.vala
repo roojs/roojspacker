@@ -677,7 +677,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_hex  (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_hex  (TextStream stream, TokenArray tokens)  
         {
             var found = stream.nextS(2);
             
@@ -696,7 +696,7 @@ namespace JSDOC {
         /**
             @returns {Boolean} Was the token found?
          */
-        public bool read_regx (TextStream stream, TokenArray tokens) throws  TokenReaderError.Syntax
+        public bool read_regx (TextStream stream, TokenArray tokens)  
         {
               
             if (stream.lookC() != '/') {
