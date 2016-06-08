@@ -149,7 +149,7 @@ namespace JSDOC
 		
 		public Packer()
 		{
-			
+			this.result = new Json.Object();
 			this.files = new Gee.ArrayList<string>();
 			
 			new Lang_Class(); ///initilizaze lang..
