@@ -165,7 +165,7 @@ namespace JSDOC
 		
 		public Json.Object result;   // output - what's the complication result
 
-		public void  compileError(ResultType type, string filename, int line, string message) {
+		public void  logError(ResultType type, string filename, int line, string message) {
 			 
 			 if (!this.result.has_member(type.to_string()+"-TOTAL")) {
 				 this.result.set_int_member(type.to_string()+"-TOTAL", 1);
