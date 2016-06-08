@@ -417,8 +417,12 @@ namespace JSDOC
 		    
 		    // at this point if we have errors, we should stop..
 
-			this.dumpErrors(ResultType.err);		    
+					    
 			this.dumpErrors(ResultType.warn);
+			this.dumpErrors(ResultType.err); // since they are fatal - display them last...
+			
+			
+			
 			
   			if (this.dumpTokens || this.hasErrors("")) {
 				 
