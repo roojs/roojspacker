@@ -133,6 +133,19 @@ namespace JSDOC
 		
 		public  string outstr = ""; // if no target is specified - then this will contain the result
 		
+		
+		
+		
+		public Packer()
+		{
+			this.result = new Json.Object();
+			this.files = new Gee.ArrayList<string>();
+			
+			new Lang_Class(); ///initilizaze lang..
+			 
+		}
+		
+		
 		public enum ResultType { err , warn  }
 		/**
 		*  result of complication - a JSON object containing warnings / errors etc..
@@ -178,14 +191,6 @@ namespace JSDOC
 		}
 		
 		
-		public Packer()
-		{
-			this.result = new Json.Object();
-			this.files = new Gee.ArrayList<string>();
-			
-			new Lang_Class(); ///initilizaze lang..
-			 
-		}
 		
 		public void loadSourceIndexes(Gee.ArrayList<string> indexes)
 		{
