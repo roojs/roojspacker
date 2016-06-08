@@ -377,7 +377,7 @@ namespace JSDOC
 		 * 
 		 */
 
-		private string packFile  (string str,string fn, string minfile) throws  TokenReaderError, ScopeParserError
+		public  string packFile  (string str,string fn, string minfile) throws  TokenReaderError, ScopeParserError
 		{
 
 			var tr = new  TokenReader();
