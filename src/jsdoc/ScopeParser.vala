@@ -108,8 +108,9 @@ namespace JSDOC {
 		}
 		
 		
-		public ScopeParser(TokenStream ts) {
+		public ScopeParser(TokenStream ts, Packer packer) {
 			this.ts = ts; // {TokenStream}
+			this.packer = packer;
 			this.warnings = new Gee.ArrayList<string>();
 
 			this.globalScope = new  Scope(-1, null, -1, null);
