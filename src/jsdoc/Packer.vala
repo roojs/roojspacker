@@ -396,15 +396,11 @@ namespace JSDOC
 		    }
 		    
 		    // at this point if we have errors, we should stop..
-		    if (this.hasErrors()) {
-				this.dumpErrors(ResultType.err);
-				this.dumpErrors(ResultType.warn);
-				GLib.Process.exit(0);
-			}
-		    
+
+			this.dumpErrors(ResultType.err);		    
 			this.dumpErrors(ResultType.warn);
 			
-  			if (this.dumpTokens) {
+  			if (this.dumpTokens || this.hasErrors()) {
 				 
 				GLib.Process.exit(0);
 			}
