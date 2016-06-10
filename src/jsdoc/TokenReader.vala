@@ -463,7 +463,7 @@ namespace JSDOC {
     			} else {
 	                this.line++;
                 }
-        		var last = cur;
+        		last = cur;
         		
 
                 found += stream.nextS();
