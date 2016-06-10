@@ -135,6 +135,15 @@ namespace JSDOC {
         }
         public void dump()
         {
+			var line = 0;
+    		foreach(var token in this.tokens) {
+    			if (token.line != line) {
+    				print("\n%s: ", token.line);
+    				line = token.line;
+				}
+				print("%s\",token.data")
+			}
+			print("\n----\n");
     		foreach(var token in this.tokens) {
     			stdout.printf ("%s\n", token.asString());
     		}
