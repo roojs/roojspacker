@@ -455,16 +455,16 @@ namespace JSDOC {
 
             var line = this.line;
             // \r  or \r\n 
-            var last = "";
+            var lastc = "";
             while (!stream.lookEOF() && Lang.isNewline(stream.lookS())) {
         		var cur = stream.lookS();;
-        		if (last == "\r" && cur == "\n") {
+        		if (lastc == "\r" && cur == "\n") {
         			// dont add new line..
     			} else {
 	                this.line++;
                 }
         		last = cur;
-        		
+        		c
 
                 found += stream.nextS();
             }
