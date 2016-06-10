@@ -458,7 +458,7 @@ namespace JSDOC {
             var last = "";
             while (!stream.lookEOF() && Lang.isNewline(stream.lookS())) {
         		var cur = stream.lookS();;
-        		if (last == "\r" && cur = "\n") {
+        		if (last == "\r" && cur == "\n") {
         			// dont add new line..
     			} else {
 	                this.line++;
