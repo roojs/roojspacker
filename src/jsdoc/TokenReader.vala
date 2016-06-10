@@ -454,15 +454,25 @@ namespace JSDOC {
             var found = "";
 
             var line = this.line;
+            // \r  or \r\n 
+            var last = "";
             while (!stream.lookEOF() && Lang.isNewline(stream.lookS())) {
-                this.line++;
+        		var cur = stream.lookS();;
+        		if (last == "\r" && cur = "\n") {
+        			// dont add new line..
+    			} else {
+	                this.line++;
+                }
+        		var last = cur;
+        		
+
                 found += stream.nextS();
             }
 
             if (found == "") {
                 return false;
             }
-            print("NEWLINE @%d  changing this.line to %d", line, this.line);
+            print("NEWLINE @%d  changing this.line to %d\n", line, this.line);
             // if we found a new line, then we could check if previous character was a ';' - if so we can drop it.
             // otherwise generally keep it.. in which case it should reduce our issue with stripping new lines..
            
