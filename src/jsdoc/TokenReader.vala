@@ -138,7 +138,7 @@ namespace JSDOC {
 			var line = 0;
     		foreach(var token in this.tokens) {
     			if (token.line != line) {
-    				print("\n%d: ", token.line);
+    				print("%d: ", token.line);
     				line = token.line;
 				}
 				print("%s",token.data);
@@ -452,16 +452,17 @@ namespace JSDOC {
         {
             // we do not support it yet, but newlines can be UNICODE..
             var found = "";
+
             var line = this.line;
             while (!stream.lookEOF() && Lang.isNewline(stream.lookS())) {
                 this.line++;
                 found += stream.nextS();
             }
-            
+
             if (found == "") {
                 return false;
             }
-            
+            print("NEWLINE @%d  changing this.line to %d", line, this.line);
             // if we found a new line, then we could check if previous character was a ';' - if so we can drop it.
             // otherwise generally keep it.. in which case it should reduce our issue with stripping new lines..
            
