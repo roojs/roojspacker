@@ -141,7 +141,7 @@ namespace JSDOC {
     				print("\n%s: ", token.line);
     				line = token.line;
 				}
-				print("%s\",token.data")
+				print("%s",token.data);
 			}
 			print("\n----\n");
     		foreach(var token in this.tokens) {
