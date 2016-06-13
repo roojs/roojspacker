@@ -710,18 +710,19 @@ namespace JSDOC {
 			                    if (token.keyseq.size > 0) {
 			                        
 			                         for (var i = 0;i < token.keyseq.size; i++ ){ 
-									    //var iter = token.props.map_iterator();
-										var k =  token.keyseq.get(i);
-										
-										TokenKeyMap val = token.props.get(k);
+							//var iter = token.props.map_iterator();
+							var k =  token.keyseq.get(i);
+							
+							TokenKeyMap val = token.props.get(k);
 								    
-									    if (val == null) {
-											print("failed  to get %s val from token %s\n", k, token.asString());
-										}
-			                        
-			                            //if (val.vals.size < 1) {
-			                                //print(JSON.stringify(token.props, null,4));
-			                            //}
+						    	if (val == null) {
+								print("failed  to get %s val from token %s\n", k, token.asString());
+								continue										
+							}
+					                
+					                    	//if (val.vals.size < 1) {
+					                        //print(JSON.stringify(token.props, null,4));
+					                    	//}
 			                            
 			                            
 			                            if (val.vals.size > 0 && val.vals.get(0).data == "function") {
