@@ -286,7 +286,7 @@ namespace JSDOC {
 	    			//debug("balance (%d): STOP: %s" ,  depth ,  token.data);
 		            if (depth < 1) {
 			            this.next(); // shift cursor to eat closer...
-		        		debug("returning got %d", got.size);
+		        		//debug("returning got %d", got.size);
 		        		return got;
 	        		}
 	        		
