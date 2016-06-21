@@ -13,6 +13,12 @@ AM_CPPFLAGS =  \
 bin_PROGRAMS = roojspacker
 lib_LTLIBRARIES = libroojspacker-1.0.la
 
+
+roojspacker_JSON_GLIB = 
+if HAVE_JSON_GLIB
+roojspacker_JSON_GLIB = --pkg json-glib-1.0
+
+
  
 roojspacker_PKGS = \
 		--pkg glib-2.0  \
@@ -20,7 +26,8 @@ roojspacker_PKGS = \
 		--pkg gee-1.0 \
 		--pkg posix \
 		--pkg gio-2.0 \
-		--pkg json-glib-1.0
+		$(roojspacker_JSON_GLIB)
+
 
 
 libroojspacker_1_0_la_SOURCES = \
