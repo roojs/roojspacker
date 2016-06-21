@@ -29,11 +29,12 @@ namespace JSDOC {
 	public class  Collapse : TokenStream  {
 
 		Packer packer;
-
-
-		public Collapse(Gee.ArrayList<Token> tokens, Packer packer) 
+		string filename
+	
+		public Collapse(Gee.ArrayList<Token> tokens, Packer packer, string filename) 
 		{
 		    this.packer = packer;
+		    this.filename = filename;
 		    
 		    base(tokens);
 		    
