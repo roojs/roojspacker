@@ -112,7 +112,7 @@ namespace JSDOC {
                     case TokenType.REGX:
                 		if (last_is_object_def) {
                 		
-                			this.packer.logError(Packer.ResultType.err, tok.filename, tok.line, 
+                			this.packer.logError(Packer.ResultType.err, this.filename, tok.line, 
                 					"Syntax error - found non punctuation after object close brace");
                 			
                 			
