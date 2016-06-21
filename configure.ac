@@ -41,6 +41,16 @@ PKG_CHECK_MODULES(ROOJSPACKER, [
 		 json-glib-1.0
 ])
 
+PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [json-glib-1.0],
+				[json_glib_enabled=yes],
+				[json_glib_enabled=no])
+
+if test $json_glib_enabled = yes; then
+		AC_DEFINE(HAVE_JSON_GLIB,1,[json-glib support])
+fi
+AM_CONDITIONAL(HAVE_JSON_GLIB, test "$json-glib support" = "yes")
+
+
 
 dnl  -- javascriptcoregtk-4.0  ** might add this later -- verify compilation.
 
