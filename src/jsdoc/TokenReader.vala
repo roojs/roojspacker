@@ -463,8 +463,8 @@ namespace JSDOC {
     			} else {
 	                this.line++;
                 }
-        		last = cur;
-        		c
+        		lastc = cur;
+        		 
 
                 found += stream.nextS();
             }
@@ -472,7 +472,7 @@ namespace JSDOC {
             if (found == "") {
                 return false;
             }
-            print("NEWLINE @%d  changing this.line to %d\n", line, this.line);
+            //print("NEWLINE @%d  changing this.line to %d\n", line, this.line);
             // if we found a new line, then we could check if previous character was a ';' - if so we can drop it.
             // otherwise generally keep it.. in which case it should reduce our issue with stripping new lines..
            

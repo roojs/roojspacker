@@ -472,6 +472,9 @@ namespace JSDOC {
 											//print("SCOPE-PROPS GET (%d/%d): %s\n", i, token.keyseq.size,k);
 									        
 									      //  print('SCOPE-PROPS:' + JSON.stringify(token.props[prop],null,4));
+										  	if (val == null || val.vals.size < 1) {
+										  		continue;
+									  		}
 									        if (val.vals.get(0).data == "function") {
 									            // parse a function..
 									            this.ts = new TokenStream(val.vals);
