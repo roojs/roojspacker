@@ -14,10 +14,10 @@ bin_PROGRAMS = roojspacker
 lib_LTLIBRARIES = libroojspacker-1.0.la
 
 
-roojspacker_JSON_GLIB = 
+ 
 if HAVE_JSON_GLIB
 roojspacker_JSON_GLIB = --pkg json-glib-1.0
-
+endif
 
  
 roojspacker_PKGS = \
