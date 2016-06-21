@@ -38,8 +38,10 @@ PKG_CHECK_MODULES(ROOJSPACKER, [
 		 gee-1.0  
 		 gio-2.0  >= 2.24.0
 		 gthread-2.0
-		 json-glib-1.0
+		 
 ])
+
+dnl -- some old servers do not have json-glib...
 
 PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [json-glib-1.0],
 				[json_glib_enabled=yes],
