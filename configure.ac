@@ -5,7 +5,10 @@ AC_PREREQ([2.68])
 AC_INIT([roojspacker], [4.0.0])
 
 AC_CONFIG_HEADERS([config.h])
-AC_CONFIG_MACRO_DIRS([m4])
+m4_ifdef([AC_CONFIG_MACRO_DIRS], [ 
+	AC_CONFIG_MACRO_DIRS([m4])
+])
+
 
 AM_INIT_AUTOMAKE([1.11 subdir-objects])
 AM_MAINTAINER_MODE([enable])
