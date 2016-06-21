@@ -519,7 +519,7 @@ namespace JSDOC
 
 			//var ts = new TokenStream(toks);
 			//print(JSON.stringify(toks, null,4 )); Seed.quit();
-			var ts = new Collapse(toks.tokens);
+			var ts = new Collapse(toks.tokens, this);
 			
 			//ts.dumpAll(""); 			print("Done collaps"); Process.exit(1);
 			
