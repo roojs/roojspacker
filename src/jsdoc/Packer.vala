@@ -294,13 +294,12 @@ namespace JSDOC
 			 if (!this.result.has_key(type.to_string())) {
 				 return;
 			 }
-			var t = this.result.get_object_member(type.to_string());
-			t.foreach_member((obj, filename, node) => {
-					var linelist = node.dup_object();
-					linelist.foreach_member((linelistobj, linestr, nodear) => {
-						var errors=  nodear.dup_array();
-						errors.foreach_element((errorar, ignore, nodestr) => {
-							print("%s: %s:%s %s\n", type.to_string(), filename, linestr, nodestr.get_string());
+			var t = this.result.get(type.to_string());
+			t.map_iterator().foreach((filename, node) => {
+					node.map_iterator().foreach(line, errors) => {
+
+						errors.foreach((errstr) => {
+							print("%s: %s:%d %s\n", type.to_string(), filename, line, errstr);
 						});
 					});
 			
