@@ -273,7 +273,7 @@ namespace JSDOC
 			 }
 			 var t = this.result.get(type.to_string());
 			 if (!t.has_key(filename)) {
-				 t.set(filename, new  Gee.HashMap<int /*line*/, Gee.ArrayList<string>());
+				 t.set(filename, new  Gee.HashMap<int /*line*/, Gee.ArrayList<string>>());
 			 }
 			 var tt = t.get(filename);
 			 if (!tt.has_key(line)) {
