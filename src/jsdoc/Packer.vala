@@ -267,7 +267,7 @@ namespace JSDOC
 			 
 			 
 			 if (!this.result.has_key(type.to_string())) {
-				 this.result.set(type.to_string(), new, Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>();
+				 this.result.set(type.to_string(), new Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>();
 			 }
 			 var t = this.result.get(type.to_string());
 			 if (!t.has_key(filename)) {
