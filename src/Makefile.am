@@ -60,7 +60,8 @@ libroojspacker_1_0_la_VALAFLAGS = \
     --target-glib=2.32 \
     --vapidir=$(srcdir)/vapi \
     -g  \
-    $(roojspacker_PKGS)
+    $(roojspacker_PKGS) \
+     $(roojspacker_OLD_GLIB_FLAGS) $(roojspacker_JSON_GLIB_FLAGS)
 
 
 
