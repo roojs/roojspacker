@@ -94,7 +94,7 @@ namespace JSDOC
 	
 		public PackerRun (string[] args)
 		{
-#if !OLD_GLIB		
+#if !HAVE_OLD_GLIB		
 			Object(
 			    application_id: "org.roojs.jsdoc.packerrun",
 				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
