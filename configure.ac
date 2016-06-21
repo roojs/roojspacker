@@ -33,10 +33,10 @@ dnl GOBJECT_INTROSPECTION_CHECK([1.30.0])
 dnl we need to check these exist, then it will generate a compile string for them.
 
 PKG_CHECK_MODULES(ROOJSPACKER, [
-		 glib-2.0 >= 2.28.0
-		 gobject-2.0 >= 2.28.0
+		 glib-2.0 >= 2.24.0
+		 gobject-2.0 >= 2.24.0
 		 gee-1.0  
-		 gio-2.0  >= 2.28.0
+		 gio-2.0  >= 2.24.0
 		 gthread-2.0
 		 json-glib-1.0
 ])
