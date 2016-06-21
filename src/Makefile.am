@@ -17,6 +17,12 @@ lib_LTLIBRARIES = libroojspacker-1.0.la
  
 if HAVE_JSON_GLIB
 roojspacker_JSON_GLIB = --pkg json-glib-1.0
+roojspacker_JSON_GLIB_FLAGS = -D HAVE_JSON_GLIB
+endif
+
+if HAVE_OLD_GLIB
+roojspacker_JSON_GLIB = --pkg json-glib-1.0
+roojspacker_OLD_GLIB_FLAGS = -D HAVE_OLD_GLIB
 endif
 
  
@@ -61,7 +67,8 @@ libroojspacker_1_0_la_VALAFLAGS = \
 roojspacker_SOURCES=  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   \
-    --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS)
+    --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS) \
+     $(roojspacker_OLD_GLIB_FLAGS) $(roojspacker_JSON_GLIB_FLAGS)
 
     
 CLEANFILES = *.h *.c *.vapi *.stamp *.gir
