@@ -240,8 +240,8 @@ namespace JSDOC
 #else
 		public Gee.HashMap result_count<string,int>;   // output - what's the complication result
 		
-		public Gee.HashMap result_count<
-				string, Gee.HashMap<int, Gee.ArrayList<string>>
+		public Gee.HashMap result<
+				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
 		>;
 
 		public void  logError(ResultType type, string filename, int line, string message) {
@@ -258,14 +258,14 @@ namespace JSDOC
 			 
 			 
 			 if (!this.result.has_key(type.to_string())) {
-				 this.result.set(type.to_string(), new Gee.HashMap<int, Gee.ArrayList<string>>);
+				 this.result.set(type.to_string(), new, Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>();
 			 }
 			 var t = this.result.get(type.to_string());
 			 if (!t.has_key(filename)) {
-				 t.set(filename, new Json.Object());
+				 t.set(filename, new  Gee.HashMap<int /*line*/, Gee.ArrayList<string>());
 			 }
-			 var tt = t.get_object_member(filename);
-			 if (!tt.has_member(line)) {
+			 var tt = t.get(filename);
+			 if (!tt.has_key(line)) {
 				 tt.set_array_member(line, Gee.ArrayList<string));
 			 }
 			 var tl = tt.get(line);
