@@ -50,7 +50,7 @@ PKG_CHECK_MODULES(JSON_GLIB, [json-glib-1.0],
 if test $json_glib_enabled = yes; then
 		AC_DEFINE(HAVE_JSON_GLIB,1,[json-glib support])
 fi
-AM_CONDITIONAL(HAVE_JSON_GLIB, test "$json-glib support" = "yes")
+AM_CONDITIONAL(HAVE_JSON_GLIB, test "$json_glib_enabled" = "yes")
 
 
 
