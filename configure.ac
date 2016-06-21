@@ -60,7 +60,7 @@ AC_ARG_ENABLE([old_glib],
   no)  old_glib=false ;;
   *) AC_MSG_ERROR([bad value ${enableval} for --enable-old-glib]) ;;
 esac],[old_glib=false])
-AM_CONDITIONAL([OLD_GLIB], [test x$old_glib = xtrue])
+AM_CONDITIONAL([HAVE_OLD_GLIB], [test x$old_glib = xtrue])
 
 
 
