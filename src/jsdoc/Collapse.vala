@@ -28,7 +28,7 @@ namespace JSDOC {
 
 	public class  Collapse : TokenStream  {
 
-
+		Packer packer;
 
 
 		public Collapse(Gee.ArrayList<Token> tokens, Packer packer) 
