@@ -43,7 +43,7 @@ PKG_CHECK_MODULES(ROOJSPACKER, [
 
 dnl -- some old servers do not have json-glib...
 
-PKG_CHECK_MODULES(JAVASCRIPTCOREGTK, [json-glib-1.0],
+PKG_CHECK_MODULES(JSON_GLIB, [json-glib-1.0],
 				[json_glib_enabled=yes],
 				[json_glib_enabled=no])
 
