@@ -75,7 +75,7 @@ namespace JSDOC {
 						)
 					)
 				) {
-					print("%s\n%s\n", this.lastAdded.asString(), t.asString());
+					//print("%s\n%s\n", this.lastAdded.asString(), t.asString());
 					
 					this.packer.logError(
 		        		Packer.ResultType.err,
@@ -463,7 +463,7 @@ namespace JSDOC {
     			} else {
 	                this.line++;
                 }
-        		lastc = cur;
+      		lastc = cur;
         		 
 
                 found += stream.nextS();
