@@ -280,7 +280,7 @@ namespace JSDOC
 				 tt.set(line, new Gee.ArrayList<string>());
 			 }
 			 var tl = tt.get(line);
-			 tl.line(message);
+			 tl.add(message);
 			 
 		}
 		
