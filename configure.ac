@@ -53,6 +53,17 @@ fi
 AM_CONDITIONAL(HAVE_JSON_GLIB, test "$json_glib_enabled" = "yes")
 
 
+AC_ARG_ENABLE([old_glib],
+[  --enable-old-glib    Enable old Glib support],
+[case "${enableval}" in
+  yes) old_glib=true ;;
+  no)  old_glib=false ;;
+  *) AC_MSG_ERROR([bad value ${enableval} for --enable-old-glib]) ;;
+esac],[old_glib=false])
+AM_CONDITIONAL([OLD_GLIB], [test x$old_glib = xtrue])
+
+
+
 
 dnl  -- javascriptcoregtk-4.0  ** might add this later -- verify compilation.
 
