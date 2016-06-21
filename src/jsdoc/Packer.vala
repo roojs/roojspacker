@@ -238,7 +238,69 @@ namespace JSDOC
 			});
 		}
 #else
+		public Gee.HashMap result_count<string,int>;   // output - what's the complication result
 
+		public void  logError(ResultType type, string filename, int line, string message) {
+			 
+			 
+			 if (!this.result.has_key(type.to_string()+"-TOTAL")) {
+				 this.result.set(type.to_string()+"-TOTAL", 1);
+			 } else {
+				this.result.set(type.to_string()+"-TOTAL", 				 
+					this.result.get(type.to_string()+"-TOTAL") +1
+				);
+			 }
+			 
+			 
+			 if (!this.result.has_member(type.to_string())) {
+				 this.result.set_object_member(type.to_string(), new Json.Object());
+			 }
+			 var t = this.result.get_object_member(type.to_string());
+			 if (!t.has_member(filename)) {
+				 t.set_object_member(filename, new Json.Object());
+			 }
+			 var tt = t.get_object_member(filename);
+			 if (!tt.has_member(line.to_string())) {
+				 tt.set_array_member(line.to_string(), new Json.Array());
+			 }
+			 var tl = tt.get_array_member(line.to_string());
+			 tl.add_string_element(message);
+			 
+		}
+		
+		public bool hasErrors(string fn)
+		{
+			 if (!this.result.has_member(ResultType.err.to_string())) {
+				 return false;
+			 }
+			 
+			 if (fn.length < 1) {
+				return true;
+			 }
+			 var t = this.result.get_object_member(ResultType.err.to_string());
+			 
+			 if (t.has_member(fn)) {
+				 return true;
+			 }
+			 return false;
+		}
+		public void dumpErrors(ResultType type)
+		{
+			 if (!this.result.has_member(type.to_string())) {
+				 return;
+			 }
+			var t = this.result.get_object_member(type.to_string());
+			t.foreach_member((obj, filename, node) => {
+					var linelist = node.dup_object();
+					linelist.foreach_member((linelistobj, linestr, nodear) => {
+						var errors=  nodear.dup_array();
+						errors.foreach_element((errorar, ignore, nodestr) => {
+							print("%s: %s:%s %s\n", type.to_string(), filename, linestr, nodestr.get_string());
+						});
+					});
+			
+			});
+		}
 
 
 #endif
