@@ -306,15 +306,16 @@ namespace JSDOC
 				 return;
 			 }
 			var t = this.result.get(type.to_string());
-			t.map_iterator().foreach((filename, node) => {
-					node.map_iterator().foreach(line, errors) => {
-
-						errors.foreach((errstr) => {
+			foreach(string filename in t.keys) {
+				var node = t.get(filename);
+				foreach(int line in node.keys) {
+					var errors = node.get(line);
+					foreach(string errstr in errors) {
 							print("%s: %s:%d %s\n", type.to_string(), filename, line, errstr);
-						});
-					});
+					}
+				}
 			
-			});
+			}
 		}
 
 
