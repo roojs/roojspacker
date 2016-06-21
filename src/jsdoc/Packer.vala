@@ -238,11 +238,11 @@ namespace JSDOC
 			});
 		}
 #else
-		public Gee.HashMap result_count<string,int>;   // output - what's the complication result
+		public Gee.HashMap <string,int> result_count;   // output - what's the complication result
 		
-		public Gee.HashMap result<
+		public Gee.HashMap<
 				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
-		>;
+		> result;
 
 		public void  logError(ResultType type, string filename, int line, string message) {
 			 
