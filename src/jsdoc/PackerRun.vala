@@ -19,7 +19,7 @@ namespace JSDOC
 {
 	// --------------- <<<<<<< <MAIN HERE....
 	
-#if OLD_GLIB
+#if HAVE_OLD_GLIB
 	class PackerRun : Object 
 #else
 	class PackerRun : Application  	
