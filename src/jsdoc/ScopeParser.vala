@@ -692,75 +692,75 @@ namespace JSDOC {
 			        case TokenType.PUNC:
 			            //print("EXPR-PUNC:" + token.toString());
 			            
-			            switch(token.data) {
-			                 
-			                case ";":
-			                    //print("<< EXIT EXPRESSION");
-			                    break;
+						switch(token.data) {
 
-			                case ",":
-			                    
-			                    break;
+							case ";":
+							//print("<< EXIT EXPRESSION");
+								break;
 
-			               
-			                case "(": //Token.LP:
-			                case "{": //Token.LC:
-			                case "[": //Token.LB:
-			                    //print('SCOPE-CURLY/PAREN/BRACE:' + token.toString());
-			                   // print('SCOPE-CURLY/PAREN/BRACE:' + JSON.stringify(token, null,4));
-			                    //println("<i>"+token.data+"</i>");
-			                    var curTS = this.ts;
-			                    if (token.keyseq.size > 0) {
-			                        
-			                         for (var i = 0;i < token.keyseq.size; i++ ){ 
-							//var iter = token.props.map_iterator();
-							var k =  token.keyseq.get(i);
+							case ",":
+
+								break;
+
+
+							case "(": //Token.LP:
+							case "{": //Token.LC:
+							case "[": //Token.LB:
+								//print('SCOPE-CURLY/PAREN/BRACE:' + token.toString());
+								// print('SCOPE-CURLY/PAREN/BRACE:' + JSON.stringify(token, null,4));
+								//println("<i>"+token.data+"</i>");
+								var curTS = this.ts;
+								if (token.keyseq.size > 0) {
+
+									for (var i = 0;i < token.keyseq.size; i++ ){ 
+									//var iter = token.props.map_iterator();
+										var k =  token.keyseq.get(i);
 							
-							TokenKeyMap val = token.props.get(k);
-								    
-						    	if (val == null) {
-								print("failed  to get %s val from token %s\n", k, token.asString());
-								continue;										
-							}
-					                
-					                    	//if (val.vals.size < 1) {
-					                        //print(JSON.stringify(token.props, null,4));
-					                    	//}
-			                            
-			                            
-			                            if (val.vals.size > 0 && val.vals.get(0).data == "function") {
-			                                // parse a function..
-			                                this.ts = new TokenStream(val.vals);
-			                                this.ts.nextTok();
-			                                this.parseFunctionDeclaration(scope);
-			                                continue;
-			                            }
-			                            // key value..
-			                            
-			                            this.ts = new TokenStream(val.vals);
-			                            this.parseExpression(scope);
-			                            
-			                        }
-			                        this.ts = curTS;
-			                        
-			                        // it's an object literal..
-			                        // the values could be replaced..
-			                        break;
-			                    }
-			                    
-			                    
-	 
-			                    foreach(var expr in token.items) {
-	 
-			                          this.ts = new TokenStream(expr);
-			                          this.parseExpression(scope);
-			                    }
-			                    this.ts = curTS;
-			                
-			                
-			            
-			                    ///print(">>>>> EXP PUSH(false)"+this.braceNesting);
-			                    break;
+										TokenKeyMap val = token.props.get(k);
+										
+										if (val == null) {
+											print("failed  to get %s val from token %s\n", k, token.asString());
+											continue;										
+										}
+
+										//if (val.vals.size < 1) {
+										//print(JSON.stringify(token.props, null,4));
+										//}
+
+
+										if (val.vals.size > 0 && val.vals.get(0).data == "function") {
+											// parse a function..
+											this.ts = new TokenStream(val.vals);
+											this.ts.nextTok();
+											this.parseFunctionDeclaration(scope);
+											continue;
+										}
+										// key value..
+
+										this.ts = new TokenStream(val.vals);
+										this.parseExpression(scope);
+
+									}
+									this.ts = curTS;
+
+									// it's an object literal..
+									// the values could be replaced..
+									break;
+								}
+
+
+
+								foreach(var expr in token.items) {
+
+									this.ts = new TokenStream(expr);
+									this.parseExpression(scope);
+								}
+								this.ts = curTS;
+
+
+
+								///print(">>>>> EXP PUSH(false)"+this.braceNesting);
+								break;
 
 			               
 			                
