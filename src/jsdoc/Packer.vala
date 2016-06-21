@@ -173,7 +173,7 @@ namespace JSDOC
 		*
 		*/
 		
-#ifdef HAVE_JSON_GLIB
+#if HAVE_JSON_GLIB
 		
 		public Json.Object result;   // output - what's the complication result
 
