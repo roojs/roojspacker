@@ -31,9 +31,9 @@ namespace JSDOC {
 		Packer packer;
 		string filename;
 	
-		public Collapse(Gee.ArrayList<Token> tokens, Packer packer, string filename) 
+		public Collapse(Gee.ArrayList<Token> tokens, Packer pk, string filename) 
 		{
-		    this.packer = packer;
+		    this.packer = pk;
 		    this.filename = filename;
 		    
 		    base(tokens);
