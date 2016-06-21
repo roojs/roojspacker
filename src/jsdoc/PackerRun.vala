@@ -19,8 +19,11 @@ namespace JSDOC
 {
 	// --------------- <<<<<<< <MAIN HERE....
 	
-
-	class PackerRun : Application  
+#if OLD_GLIB
+	class PackerRun : Object 
+#else
+	class PackerRun : Application  	
+#endif
 	{
 		public static string opt_target = null;
 		public static string opt_debug_target = null;
@@ -91,12 +94,12 @@ namespace JSDOC
 	
 		public PackerRun (string[] args)
 		{
-		
+#if !OLD_GLIB		
 			Object(
 			    application_id: "org.roojs.jsdoc.packerrun",
 				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
 			);
-					 
+#endif					 
 			 
 			
 			// what's required...
