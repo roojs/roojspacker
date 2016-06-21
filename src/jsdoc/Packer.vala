@@ -277,7 +277,7 @@ namespace JSDOC
 			 }
 			 var tt = t.get(filename);
 			 if (!tt.has_key(line)) {
-				 tt.set_array_member(line, new Gee.ArrayList<string>());
+				 tt.set(line, new Gee.ArrayList<string>());
 			 }
 			 var tl = tt.get(line);
 			 tl.line(message);
