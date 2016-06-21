@@ -720,7 +720,7 @@ namespace JSDOC {
 								    
 						    	if (val == null) {
 								print("failed  to get %s val from token %s\n", k, token.asString());
-								continue										
+								continue;										
 							}
 					                
 					                    	//if (val.vals.size < 1) {
