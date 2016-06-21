@@ -112,11 +112,11 @@ namespace JSDOC {
                 		if (last_is_object_def) {
                 		
                 			this.packer.logError(ResultType.err, tok.filename, tok.line, 
-                					"Syntax error - found non punctuation after object close brace\n%s");
+                					"Syntax error - found non punctuation after object close brace");
+                			
                 			
                 		
-                		
-                			GLib.error("Syntax error - found non punctuation after object close brace\n%s", tok.asString());
+                			//GLib.error("Syntax error - found non punctuation after object close brace\n%s", tok.asString());
                 		}
                     
                 		var nn = st.next();
