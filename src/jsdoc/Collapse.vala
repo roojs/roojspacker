@@ -110,6 +110,11 @@ namespace JSDOC {
                     case TokenType.NUMB:
                     case TokenType.REGX:
                 		if (last_is_object_def) {
+                		
+                			this.packer.logError(ResultType.err, tok.filename, tok.line, "Syntax error - found non punctuation after object close brace\n%s")
+                			
+                		
+                		
                 			GLib.error("Syntax error - found non punctuation after object close brace\n%s", tok.asString());
                 		}
                     
