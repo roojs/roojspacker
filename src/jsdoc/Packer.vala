@@ -239,32 +239,37 @@ namespace JSDOC
 		}
 #else
 		public Gee.HashMap result_count<string,int>;   // output - what's the complication result
+		
+		public Gee.HashMap result_count<
+				string, Gee.HashMap<int, Gee.ArrayList<string>>
+		>;
 
 		public void  logError(ResultType type, string filename, int line, string message) {
 			 
 			 
-			 if (!this.result.has_key(type.to_string()+"-TOTAL")) {
-				 this.result.set(type.to_string()+"-TOTAL", 1);
+			 if (!this.result_count.has_key(type.to_string()+"-TOTAL")) {
+				 this.result_count.set(type.to_string()+"-TOTAL", 1);
 			 } else {
-				this.result.set(type.to_string()+"-TOTAL", 				 
-					this.result.get(type.to_string()+"-TOTAL") +1
+				this.result_count.set(type.to_string()+"-TOTAL", 				 
+					this.result_count.get(type.to_string()+"-TOTAL") +1
 				);
 			 }
 			 
 			 
-			 if (!this.result.has_member(type.to_string())) {
-				 this.result.set_object_member(type.to_string(), new Json.Object());
+			 
+			 if (!this.result.has_key(type.to_string())) {
+				 this.result.set(type.to_string(), new Gee.HashMap<int, Gee.ArrayList<string>>);
 			 }
-			 var t = this.result.get_object_member(type.to_string());
-			 if (!t.has_member(filename)) {
-				 t.set_object_member(filename, new Json.Object());
+			 var t = this.result.get(type.to_string());
+			 if (!t.has_key(filename)) {
+				 t.set(filename, new Json.Object());
 			 }
 			 var tt = t.get_object_member(filename);
-			 if (!tt.has_member(line.to_string())) {
-				 tt.set_array_member(line.to_string(), new Json.Array());
+			 if (!tt.has_member(line)) {
+				 tt.set_array_member(line, Gee.ArrayList<string));
 			 }
-			 var tl = tt.get_array_member(line.to_string());
-			 tl.add_string_element(message);
+			 var tl = tt.get(line);
+			 tl.line(message);
 			 
 		}
 		
