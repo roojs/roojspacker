@@ -31,8 +31,10 @@ namespace JSDOC {
 
 
 
-		public Collapse(Gee.ArrayList<Token> tokens) 
+		public Collapse(Gee.ArrayList<Token> tokens, Packer packer) 
 		{
+		    this.packer = packer;
+		    
 		    base(tokens);
 		    
 		    this.spaces();
