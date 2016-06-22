@@ -61,9 +61,9 @@ namespace JSDOC
 		};
 		public static int main(string[] args) 
 		{
-			foreach(var a in args) {
-				debug("ARG: %s\n", a);
-			}
+			//foreach(var a in args) {
+			//	debug("ARG: %s\n", a);
+			//}
 			
 			var opt_context = new OptionContext ("JSDOC Packer");
 			
