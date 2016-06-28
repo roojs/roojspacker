@@ -16,7 +16,7 @@ lib_LTLIBRARIES = libroojspacker-1.0.la
 
  
 if HAVE_JSON_GLIB
-roojspacker_JSON_GLIB = --pkg json-glib-1.0
+
 roojspacker_JSON_GLIB_FLAGS = -D HAVE_JSON_GLIB
 endif
 
@@ -30,9 +30,11 @@ roojspacker_PKGS = \
 		--pkg gobject-2.0  \
 		--pkg gee-1.0 \
 		--pkg posix \
-		--pkg gio-2.0 \
-		$(roojspacker_JSON_GLIB)
+		--pkg gio-2.0
 
+if HAVE_JSON_GLIB
+roojspacker_PKGS += --pkg json-glib-1.0
+endif
 
 
 libroojspacker_1_0_la_SOURCES = \
