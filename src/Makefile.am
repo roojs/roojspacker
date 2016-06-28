@@ -21,7 +21,6 @@ roojspacker_JSON_GLIB_FLAGS = -D HAVE_JSON_GLIB
 endif
 
 if HAVE_OLD_GLIB
-roojspacker_JSON_GLIB = --pkg json-glib-1.0
 roojspacker_OLD_GLIB_FLAGS = -D HAVE_OLD_GLIB
 endif
 
