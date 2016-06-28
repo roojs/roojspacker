@@ -6,6 +6,7 @@
 
 AM_CPPFLAGS =  \
     $(ROOJSPACKER_CFLAGS)  \
+    $(JSON_GBIB_CFLAGS)  \
     -DPACKAGE_SRC_DIR=\""$(srcdir)"\" \
     -DPACKAGE_DATA_DIR=\""$(datadir)"\" 
 
