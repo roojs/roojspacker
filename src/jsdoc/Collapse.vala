@@ -31,13 +31,14 @@ namespace JSDOC {
 		Packer packer;
 		string filename;
 	
-		public Collapse(Gee.ArrayList<Token> tokens, Packer pk, string fn) 
+		public Collapse(Gee.ArrayList<Token> tokens, Packer pk, string filename) 
 		{
-		    
 		    base(tokens);
 		    
 		    this.packer = pk;
-		    this.filename = fn;
+		    this.filename = filename;
+		    
+		    
 		    
 		    this.spaces();
 		    

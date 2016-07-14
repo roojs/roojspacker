@@ -64,14 +64,15 @@ libroojspacker_1_0_la_VALAFLAGS = \
     $(roojspacker_PKGS) \
      $(roojspacker_OLD_GLIB_FLAGS)  $(roojspacker_JSON_GLIB_FLAGS)
 
-libroojspacker_1_0_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(JSON_GLIB_CFLAGS) 
+libroojspacker_1_0_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
 
 roojspacker_SOURCES =  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   \
     --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS) \
      $(roojspacker_OLD_GLIB_FLAGS) $(roojspacker_JSON_GLIB_FLAGS)
-
+     
+roojspacker_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
     
 CLEANFILES = *.h *.c *.vapi *.stamp *.gir
 
