@@ -81,7 +81,7 @@ namespace JSDOC
 		 *  we could do this in memory now, as I suspect vala will not be as bad as javascript for leakage...
 		 *
 		 */
-		public string tmpDir = "/tmp";  // FIXME??? in ctor?
+		//public string tmpDir = "/tmp";  // FIXME??? in ctor?
 	
 	
 		  
@@ -152,7 +152,7 @@ namespace JSDOC
 			
 			new Lang_Class(); ///initilizaze lang..
 			
-			this.tmp = Glib.get_tmp_dir(); // do we have to delete this?
+			//this.tmp = Glib.get_tmp_dir(); // do we have to delete this?
 			
 			 
 		}
@@ -439,6 +439,8 @@ namespace JSDOC
 		    }
 		    
 		    
+		    var tmpDir = Glib.make_tmp("ROOPKR");
+		    
 		    foreach(var file in this.files) {
 		        
 		        print("reading %s\n",file );
@@ -465,7 +467,7 @@ namespace JSDOC
 		        
 		   
 		        
-		        var minfile = this.tmpDir + "/" + file.replace("/", ".");
+		        var minfile = tmpDir + "/" + file.replace("/", ".");
 		        
 		        
 		        // let's see if we have a min file already?
@@ -546,8 +548,9 @@ namespace JSDOC
 		        }
 		        
 		    }
-		    
-		    
+		    if (this.cleanup) {
+				FileUtils.remove(tmpDir);
+			}
 		    
 		    if (this.target.length > 0 ) {
 			    print("Output file: " + this.target);
