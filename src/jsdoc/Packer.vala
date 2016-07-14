@@ -519,7 +519,7 @@ namespace JSDOC
 		    
 		    for(var i=0; i < this.files.size; i++)  {
 		        var file = this.files[i];
-		        var minfile = this.tmpDir + "/" + file.replace("/", ".");
+		        var minfile = tmpDir + "/" + file.replace("/", ".");
 		        
 		        
 		        if ( !FileUtils.test(minfile, FileTest.EXISTS)) {
