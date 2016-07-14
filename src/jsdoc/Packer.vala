@@ -439,7 +439,7 @@ namespace JSDOC
 		    }
 		    
 		    
-		    var tmpDir = GLib.DirUtils.make_tmp("ROOPKR");
+		    var tmpDir = GLib.DirUtils.make_tmp("roojspacker_XXXXXX");
 		    
 		    foreach(var file in this.files) {
 		        
