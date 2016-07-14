@@ -27,7 +27,7 @@ namespace JSDOC
 	{
 		public static string opt_target = null;
 		public static string opt_debug_target = null;
-		public static string opt_tmpdir = null;
+//		public static string opt_tmpdir = null;
 		public static string opt_basedir = null;
 				
 		[CCode (array_length = false, array_null_terminated = true)]
@@ -46,7 +46,7 @@ namespace JSDOC
 			{ "jsfile", 'f', 0, OptionArg.FILENAME_ARRAY, ref opt_files ,"add a file to compile", null },
 			{ "target", 't', 0, OptionArg.STRING, ref opt_target, "Target File to write (eg. roojs.js)", null },
 			{ "debug-target", 'T', 0, OptionArg.STRING, ref opt_debug_target, "Target File to write debug code (eg. roojs-debug.js)", null },
-			{ "tmpdir", 'm', 0, OptionArg.STRING, ref opt_tmpdir, "Temporary Directory to use (defaults to /tmp)", null },
+			//{ "tmpdir", 'm', 0, OptionArg.STRING, ref opt_tmpdir, "Temporary Directory to use (defaults to /tmp)", null },
 			{ "basedir", 'b', 0, OptionArg.STRING, ref opt_basedir, "Base directory (where the files listed in index files are located.)", null },
 
 			{ "index-files", 'i', 0, OptionArg.FILENAME_ARRAY, ref opt_files_from ,"files that contain listing of files to compile", null },		 
@@ -119,11 +119,11 @@ namespace JSDOC
 			p.skipScope = opt_skip_scope;
 			p.dumpTokens = opt_dump_tokens;
 			p.cleanup = opt_clean_cache;
-			if (opt_tmpdir == null) {
-				p.cleanup = false;
-			} else {
-				p.tmpDir = opt_tmpdir;
-			}
+			//if (opt_tmpdir == null) {
+			//	p.cleanup = false;
+			//} else {
+			//	p.tmpDir = opt_tmpdir;
+			//}
 			
 			
 			// set the base directory...
