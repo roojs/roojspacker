@@ -151,6 +151,8 @@ namespace JSDOC
 			this.files = new Gee.ArrayList<string>();
 			
 			new Lang_Class(); ///initilizaze lang..
+			
+			this.tmp = Glib.make_tmp("ROOPKR");
 			 
 		}
 		
