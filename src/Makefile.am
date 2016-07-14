@@ -17,7 +17,6 @@ lib_LTLIBRARIES = libroojspacker-1.0.la
 
  
 if HAVE_JSON_GLIB
-
 roojspacker_JSON_GLIB_FLAGS = -D HAVE_JSON_GLIB
 endif
 
@@ -34,7 +33,7 @@ roojspacker_PKGS = \
 		--pkg gio-2.0
 
 if HAVE_JSON_GLIB
-roojspacker_PKGS += --pkg json-glib-1.0
+  roojspacker_PKGS += --pkg json-glib-1.0
 endif
 
 
@@ -66,8 +65,10 @@ libroojspacker_1_0_la_VALAFLAGS = \
      $(roojspacker_OLD_GLIB_FLAGS) $(roojspacker_JSON_GLIB_FLAGS)
 
 
+libroojspacker_1_0_la_LDADD = $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
 
-roojspacker_SOURCES=  jsdoc/PackerRun.vala
+
+roojspacker_SOURCES =  jsdoc/PackerRun.vala
 roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   \
     --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS) \
