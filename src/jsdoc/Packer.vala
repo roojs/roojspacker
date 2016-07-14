@@ -152,7 +152,7 @@ namespace JSDOC
 			
 			new Lang_Class(); ///initilizaze lang..
 			
-			this.tmp = Glib.make_tmp("ROOPKR");
+			this.tmp = Glib.make_tmp("ROOPKR"); // do we have to delete this?
 			 
 		}
 		
