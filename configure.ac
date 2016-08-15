@@ -35,7 +35,7 @@ dnl we need to check these exist, then it will generate a compile string for the
 PKG_CHECK_MODULES(ROOJSPACKER, [
 		 glib-2.0 >= 2.24.0
 		 gobject-2.0 >= 2.24.0
-		 gee-1.0  
+		 gee-0.8
 		 gio-2.0  >= 2.24.0
 		 gthread-2.0
 		 
