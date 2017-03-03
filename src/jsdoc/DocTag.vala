@@ -88,7 +88,7 @@ namespace JSDOC
             
             src = src.strip();
  
-            MatchInfo mi;
+            MatchInfo mi = null;
             
             if (this.title ==  DocTagTitle.CFG && opval_regex.match_all(src, 0, out mi )) {
 				var ms = mi.fetch(0);
@@ -222,7 +222,7 @@ namespace JSDOC
         private void balance(string str, char open, char close, out int start, out int stop) {
             start = 0;
             stop  =-1;
-            while (str.charAt(start) != open) {
+            while (str.get(start) != open) {
                 if (start == str.length) {
             		return;
         		}
