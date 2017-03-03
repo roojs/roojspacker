@@ -123,15 +123,16 @@ namespace JSDOC
 		    @param {string} src
 		    @return src
 		 */
-		private string nibbleTitle (string src)
+		private string nibbleTitle (string src) throws DocTagException
 		{
 		    MatchInfo mi;
-		    if(! title_regex.match_all(src, 0, mi)) {
+		    if(! title_regex.match_all(src, 0, out mi)) {
 				throw new DocTagException.NO_TITLE("missing title");
 				return src;
 		    }
 		    EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
-		    unowned EnumValue? eval = enumc.get_value_by_name ( mi.fetch(1).upper());
+		    var mi_str =  mi.fetch(1);
+		    unowned EnumValue? eval = enumc.get_value_by_name ( mi_str.up());
 		    if (eval == null) {
 				throw new DocTagException.INVALID_TITLE("title not supported ??");
 				return src;
