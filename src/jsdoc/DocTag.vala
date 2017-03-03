@@ -16,8 +16,8 @@ namespace JSDOC
 	{
 
 		public DocTagTitle title = DocTagTitle.NO_VALUE;
-		public string type;
-		public string name;
+		public string type;  // eg.. boolean / string etc..., may be xxxx|bbbb - eg. optional types
+		public string name; // eg. "title" << a property name etc...
 		public bool isOptional = false;
 		public string defaultValue = "";
 		public string desc = "";
@@ -39,7 +39,8 @@ namespace JSDOC
 			DocTag.title_regex = new Regex("^\s*(\S+)(?:\s([\s\S]*))?$");
 			DocTag.opval_regex = new GLib.Regex("^\\\([^)]+\\\)");
 			DocTag.type_regex = new GLib.Regex("^\s*\{");
-		
+			DocTag.name_regex = new GLib.Regex("^(\S+)(?:\s([\s\S]*))?$");
+			
 			DocTag.done_init = true;
 		}
 	
@@ -141,7 +142,7 @@ namespace JSDOC
     	private string nibbleType(string src) 
         {
 		    MatchInfo mi;
-            if(! type_regex.match_all(src, 0, mi)) {
+            if(! type_regex.match_all(src, 0, out mi)) {
          	   return src;
      	    }
             int start;
@@ -196,13 +197,13 @@ namespace JSDOC
             }
 			// not encased with [ ]
 
-                var parts = src.match(/^(\S+)(?:\s([\s\S]*))?$/);
-                if (parts) {
-                    if (parts[1]) this.name = parts[1];
-                    if (parts[2]) src = parts[2].trim();
-                    else src = "";
-                }
-            }	
+		    MatchInfo mi;
+
+            if (name_regex.match_all(src, out mi)) {
+        		this.name = mi.fetch(1);
+				return mi.fetch(2);        		
+            }
+           	
 
             return src;
         },
