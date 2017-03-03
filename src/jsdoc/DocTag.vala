@@ -7,7 +7,8 @@ namespace JSDOC
 		NO_VALUE,
 		PARAM,
 		PROPERTY,
-		CFG
+		CFG,
+		EXAMPLE
 	}
 
 
@@ -68,10 +69,7 @@ namespace JSDOC
 					}
 					src = src.substring(ms.length, src.length - ms.length);                   
                     
-                } else {
-                
-                }
-                
+                } 
                 
             }
             
