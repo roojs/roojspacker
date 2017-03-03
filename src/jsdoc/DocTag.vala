@@ -157,7 +157,7 @@ namespace JSDOC
             int start;
             int stop;
               
-			this.balance(src,"{", "}", out start, out stop);
+			this.balance(src,'{', '}', out start, out stop);
             if (stop == -1) {
                 throw new DocTagException.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ") ;
                 return src;
