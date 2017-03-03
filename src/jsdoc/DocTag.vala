@@ -60,14 +60,16 @@ namespace JSDOC
             MatchInfo mi;
             
             if (this.title ==  DocTagTitle.CFG && re.match_all(src, 0, out mi )) {
-				
-				if (mi.fetch().contains("|")) {
-                    var opts = m[1].trim().split(/\s*\|\s*/);
-                    this.optvalues = opts;
-                    src = src.substring(m[0].length).trim();
-                    print(src);
+				var ms = mi.fetch();
+				if (ms.contains("|")) {
+					var ar = ms.split("|");
+					for (var i =0 ; i < ar.length;i++) {
+						optvalues.add(ar[i].strip());
+					}
+					src = src.substring(ms.length, src.length - ms.length);                   
                     
-                    
+                } else {
+                
                 }
                 
                 
