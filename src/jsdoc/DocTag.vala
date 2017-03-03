@@ -10,6 +10,13 @@ namespace JSDOC
 		CFG,
 		EXAMPLE
 	}
+	
+	public Exception DocTagException {
+		NO_TITLE,
+		INVALID_TITLE,
+		INVALID_NAME,
+		INVALID_TYPE
+	}
 
 
 	public class DocTag : Object 
@@ -69,7 +76,7 @@ namespace JSDOC
                     src = this.nibbleName(src);
                 }
             }
-            catch(DocTagExcetion e) {
+            catch(DocTagException e) {
                 GLib.debug(e.message);
                 // only throw if in 'strict'??
                 throw e;
@@ -150,7 +157,7 @@ namespace JSDOC
               
 			this.balance(src,"{", "}", out start, out stop);
             if (stop == -1) {
-                throw new DocTag.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ") ;
+                throw new DocTagException.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ") ;
                 return src;
             }
             this.type = src.substring(start+1,stop).strip();
@@ -178,7 +185,7 @@ namespace JSDOC
         		int start, stop;
                 var nameRange = this.balance(src,"[", "]", out start, out stop);
                 if (stop == -1) {
-                    throw new  DocTag.INVALID_NAME("Malformed comment tag ignored. Tag optional name requires an opening [ and a closing ]: ");
+                    throw new  DocTagException.INVALID_NAME("Malformed comment tag ignored. Tag optional name requires an opening [ and a closing ]: ");
                     return src;
                 }
                 this.name = src.substring(start+1, stop).strip();
