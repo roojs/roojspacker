@@ -47,7 +47,7 @@ namespace JSDOC
 		public DocTag (string in_src)
 		{
 		    
-		    this.initRegex();
+		    DocTag.initRegex();
 		    
 		    
 		    
