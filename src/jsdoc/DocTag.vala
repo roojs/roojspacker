@@ -91,7 +91,7 @@ namespace JSDOC
             MatchInfo mi;
             
             if (this.title ==  DocTagTitle.CFG && opval_regex.match_all(src, 0, out mi )) {
-				var ms = mi.fetch();
+				var ms = mi.fetch(0);
 				if (ms.contains("|")) {
 					var ar = ms.split("|");
 					for (var i =0 ; i < ar.length;i++) {
