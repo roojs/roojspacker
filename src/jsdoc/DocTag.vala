@@ -27,7 +27,7 @@ namespace JSDOC
 	
 		static private GLib.Regex title_regex;
 		static private GLib.Regex opval_regex;
-	
+		static private GLib.Regex type_regex;
 	
 		static bool done_init = false;
 		
@@ -38,7 +38,7 @@ namespace JSDOC
 			}
 			DocTag.title_regex = new Regex("^\s*(\S+)(?:\s([\s\S]*))?$");
 			DocTag.opval_regex = new GLib.Regex("^\\\([^)]+\\\)");
-		
+			DocTag.type_regex = new GLib.Regex("^\s*\{");
 		
 			DocTag.done_init = true;
 		}
@@ -47,7 +47,7 @@ namespace JSDOC
 		public DocTag (string in_src)
 		{
 		    
-		    
+		    this.initRegex();
 		    
 		    
 		    
@@ -106,31 +106,53 @@ namespace JSDOC
 		
 	
 
-	}
+		}
 	
 	
-    /**
-        Find and shift off the title of a tag.
-        @param {string} src
-        @return src
-     */
-    private string nibbleTitle (string in_src)
-    {
-        MatchInfo mi;
-        if(! title_regex.match_all(src, 0, mi)) {
-    		throw new DocTagException.NO_TITLE("missing title");
-    		return src;
-        }
-        EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
-        unowned EnumValue? eval = enumc.get_value_by_name ( mi.fetch(1).upper());
-        if (eval == null) {
-    		throw new DocTagException.INVALID_TITLE("title not supported ??");
-        }
-        this.title = (DocTagTitle) eval.value;
-        return mi.fetch(2);
+		/**
+		    Find and shift off the title of a tag.
+		    @param {string} src
+		    @return src
+		 */
+		private string nibbleTitle (string in_src)
+		{
+		    MatchInfo mi;
+		    if(! title_regex.match_all(src, 0, mi)) {
+				throw new DocTagException.NO_TITLE("missing title");
+				return src;
+		    }
+		    EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
+		    unowned EnumValue? eval = enumc.get_value_by_name ( mi.fetch(1).upper());
+		    if (eval == null) {
+				throw new DocTagException.INVALID_TITLE("title not supported ??");
+		    }
+		    this.title = (DocTagTitle) eval.value;
+		    return mi.fetch(2);
 
-    },
-     
-	
+		}
+		 
+		  /**
+            Find and shift off the type of a tag.
+            @requires frame/String.js
+            @param {string} src
+            @return src
+         */
+  	   private string nibbleType(string src) 
+        {
+
+            
+            if (src.match(/^\s*\{/)) {
+                var typeRange = this.balance(src,"{", "}");
+                if (typeRange[1] == -1) {
+                    throw "Malformed comment tag ignored. Tag type requires an opening { and a closing }: "+src;
+                }
+                this.type = src.substring(typeRange[0]+1, typeRange[1]).trim();
+                this.type = this.type.replace(/\s*,\s*/g, "|"); // multiples can be separated by , or |
+                src = src.substring(typeRange[1]+1);
+            }
+            
+            return src;
+        },
+         
 	
 	
