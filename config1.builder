@@ -17,7 +17,8 @@
             "/src/jsdoc/TokenReader.vala",
             "/src/jsdoc/TokenStream.vala",
             "/src/jsdoc/Token.vala",
-            "/src/jsdoc"
+            "/src/jsdoc",
+            "/src/jsdoc/DocTag.vala"
         ],
         "packages" : [
         ]

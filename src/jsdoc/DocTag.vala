@@ -170,7 +170,7 @@ namespace JSDOC
          */
         private nibbleName( string src) {
 
-            
+           
             src = src.strip();
             
             // is optional?
