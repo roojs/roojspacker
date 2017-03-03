@@ -150,10 +150,10 @@ namespace JSDOC
               
 			this.balance(src,"{", "}", out start, out stop);
             if (stop == -1) {
-                throw new DocTag.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ");;
+                throw new DocTag.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ") ;
                 return src;
             }
-            this.type = src.substring(start]+1,stop).strip();
+            this.type = src.substring(start+1,stop).strip();
             this.type = this.type.replace(",", "|"); // multiples can be separated by , or |
             return src.substring(stop+1, stop+1-src.length);
             
@@ -168,7 +168,7 @@ namespace JSDOC
             @param {string} src
             @return src
          */
-        private nibbleName( string src) {
+        private string nibbleName( string src) {
 
            
             src = src.strip();
