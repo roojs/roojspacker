@@ -159,5 +159,29 @@ namespace JSDOC
             return src;
         }
          
+        private void balance functions(string str, char open, char close, out start, out stop) {
+            start = 0;
+            stop  =-1;
+            while (str.charAt(start) != open) {
+                if (start == str.length) {
+            		return;
+                start++;
+            }
+            
+            stop = start +1;
+            var balance = 1;
+            while (stop < str.length) {
+                if (str.get(stop) == open) balance++;
+                if (str.get(stop) == close) balance--;
+                if (balance == 0) break;
+                stop++;
+                if (stop == str.length) {
+            		stop = -1;
+            		return;
+        		}
+            }
+            
+
+}
 	
 	
