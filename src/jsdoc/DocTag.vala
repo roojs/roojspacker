@@ -16,7 +16,7 @@ namespace JSDOC
 	{
 
 		public DocTagTitle title = DocTagTitle.NO_VALUE;
-		public ?? type;
+		public string type;
 		public string name;
 		public bool isOptional = false;
 		public string defaultValue = "";
