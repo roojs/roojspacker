@@ -159,6 +159,55 @@ namespace JSDOC
             return src;
         }
          
+         
+         
+        /**
+            Find and shift off the name of a tag.
+            @requires frame/String.js
+            @param {string} src
+            @return src
+         */
+        private nibbleName( string src) {
+
+            
+            src = src.strip();
+            
+            // is optional?
+            if (src.get(0) == "[") {
+        		int start, stop;
+                var nameRange = this.balance(src,"[", "]", out start, out stop);
+                if (stop == -1) {
+                    throw new  DocTag.INVALID_NAME("Malformed comment tag ignored. Tag optional name requires an opening [ and a closing ]: ");
+                    return src;
+                }
+                this.name = src.substring(start+1, stop).strip();
+                this.isOptional = true;
+                
+                src = src.substring(nameRange[1]+1);
+                
+                // has default value?
+                var nameAndValue = this.name.split("=");
+                if (nameAndValue.length > 1) {
+            		var oname = this.name;
+                    this.name = nameAndValue[0].strip();
+                    this.defaultValue = oname.substring( nameAndValue[0].length + 1 , nameAndValue[0].length + 1 - oname.length); /// what about
+                }
+                return src.substring(stop+1, stop+1-src.length);
+            }
+			// not encased with [ ]
+
+                var parts = src.match(/^(\S+)(?:\s([\s\S]*))?$/);
+                if (parts) {
+                    if (parts[1]) this.name = parts[1];
+                    if (parts[2]) src = parts[2].trim();
+                    else src = "";
+                }
+            }	
+
+            return src;
+        },
+         
+         
         private void balance functions(string str, char open, char close, out start, out stop) {
             start = 0;
             stop  =-1;
