@@ -114,7 +114,7 @@ namespace JSDOC
 		    @param {string} src
 		    @return src
 		 */
-		private string nibbleTitle (string in_src)
+		private string nibbleTitle (string src)
 		{
 		    MatchInfo mi;
 		    if(! title_regex.match_all(src, 0, mi)) {
@@ -125,6 +125,7 @@ namespace JSDOC
 		    unowned EnumValue? eval = enumc.get_value_by_name ( mi.fetch(1).upper());
 		    if (eval == null) {
 				throw new DocTagException.INVALID_TITLE("title not supported ??");
+				return src;
 		    }
 		    this.title = (DocTagTitle) eval.value;
 		    return mi.fetch(2);
@@ -139,8 +140,10 @@ namespace JSDOC
          */
   	   private string nibbleType(string src) 
         {
-
-            
+		    MatchInfo mi;
+            if(! type_regex.match_all(src, 0, mi)) {
+         	   return src;
+     	   }
             if (src.match(/^\s*\{/)) {
                 var typeRange = this.balance(src,"{", "}");
                 if (typeRange[1] == -1) {
