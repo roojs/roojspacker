@@ -206,10 +206,10 @@ namespace JSDOC
            	
 
             return src;
-        },
+        }
          
          
-        private void balance functions(string str, char open, char close, out start, out stop) {
+        private void balance(string str, char open, char close, out start, out stop) {
             start = 0;
             stop  =-1;
             while (str.charAt(start) != open) {
