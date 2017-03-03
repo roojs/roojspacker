@@ -46,8 +46,8 @@ namespace JSDOC
                 }
             }
             catch(DocTagExcetion e) {
-                GLib.debug(e.toString());
-                else throw e;
+                GLib.debug(e.message);
+                throw e;
             }
             
             // if type == @cfg, and matches (|....|...)
