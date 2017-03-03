@@ -183,7 +183,7 @@ namespace JSDOC
             var src = in_src.strip();
             
             // is optional?
-            if (src.get(0) == "[") {
+            if (src.get(0) == '[') {
         		int start, stop;
                 var nameRange = this.balance(src,"[", "]", out start, out stop);
                 if (stop == -1) {
