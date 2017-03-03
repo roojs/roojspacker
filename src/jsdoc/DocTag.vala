@@ -177,10 +177,10 @@ namespace JSDOC
             @param {string} src
             @return src
          */
-        private string nibbleName( string src) {
+        private string nibbleName( string in_src) {
 
            
-            src = src.strip();
+            var src = in_src.strip();
             
             // is optional?
             if (src.get(0) == "[") {
