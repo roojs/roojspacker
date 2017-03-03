@@ -121,6 +121,13 @@ namespace JSDOC
     		throw new DocTagException.NO_TITLE("missing title");
     		return src;
         }
+        EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
+        unowned EnumValue? eval = enumc.get_value_by_name ( mi.fetch(1).upper());
+        if (eval == null) {
+    		throw new DocTagException.INVALID_TITLE("title not supported ??");
+        
+        this.title = 
+        return mi.fetch(2);
 
         if (parts && parts[1]) this.title = parts[1];
         if (parts && parts[2]) src = parts[2];
