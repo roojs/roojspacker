@@ -11,7 +11,7 @@ namespace JSDOC
 		EXAMPLE
 	}
 	
-	public Exception DocTagException {
+	errordomain DocTagException {
 		NO_TITLE,
 		INVALID_TITLE,
 		INVALID_NAME,
