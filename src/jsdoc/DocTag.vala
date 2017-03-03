@@ -20,7 +20,7 @@ namespace JSDOC
 		public bool isOptional = false;
 		public string defaultValue = "";
 		public string desc = "";
-		public ?? optvalues;
+		public Gee.ArrayList<string> optvalues;
 
 	
 	
@@ -29,6 +29,8 @@ namespace JSDOC
 	
 		public DocTag (string in_src)
 		{
+		    
+		    this. optvalues = new Gee.ArrayList<string>();
 		    
 		    var src = in_src;
 			
@@ -53,11 +55,13 @@ namespace JSDOC
             
             // if type == @cfg, and matches (|....|...)
             
-            src = src.trim();
-            if (this.title == "cfg" && src.match(/^\([^)]+\)/)) {
-                var m = src.match(/^\(([^)]+)\)/);
-                print(m);
-                if (m[1].match(/\|/)) {
+            src = src.strip();
+            var re = new GLib.Regex("^\\\([^)]+\\\)")
+            MatchInfo mi;
+            
+            if (this.title ==  DocTagTitle.CFG && re.match_all(src, 0, out mi )) {
+				
+				if (mi.fetch().contains("|")) {
                     var opts = m[1].trim().split(/\s*\|\s*/);
                     this.optvalues = opts;
                     src = src.substring(m[0].length).trim();
