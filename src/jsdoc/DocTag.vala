@@ -47,6 +47,7 @@ namespace JSDOC
             }
             catch(DocTagExcetion e) {
                 GLib.debug(e.message);
+                // only throw if in 'strict'??
                 throw e;
             }
             
