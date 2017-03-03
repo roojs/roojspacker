@@ -77,11 +77,11 @@ namespace JSDOC
             this.desc = src; // whatever is left
             
             // example tags need to have whitespace preserved
-            if (this.title != "example") this.desc = this.desc.trim();
+            if (this.title != DocTagTitle.EXAMPLE) {
+        		this.desc = this.desc.strip();
+    		}
             
-            //if (JSDOC.PluginManager) {
-            //    JSDOC.PluginManager.run("onDocTag", this);
-            //}
+
 		
 	
 
