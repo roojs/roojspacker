@@ -185,7 +185,7 @@ namespace JSDOC
             // is optional?
             if (src.get(0) == '[') {
         		int start, stop;
-                var nameRange = this.balance(src,"[", "]", out start, out stop);
+                 this.balance(src,'[', ']', out start, out stop);
                 if (stop == -1) {
                     throw new  DocTagException.INVALID_NAME("Malformed comment tag ignored. Tag optional name requires an opening [ and a closing ]: ");
                     return src;
