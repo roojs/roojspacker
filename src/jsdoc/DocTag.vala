@@ -138,24 +138,26 @@ namespace JSDOC
             @param {string} src
             @return src
          */
-  	   private string nibbleType(string src) 
+    	private string nibbleType(string src) 
         {
 		    MatchInfo mi;
             if(! type_regex.match_all(src, 0, mi)) {
          	   return src;
-     	   }
-            if (src.match(/^\s*\{/)) {
-                var typeRange = this.balance(src,"{", "}");
-                if (typeRange[1] == -1) {
-                    throw "Malformed comment tag ignored. Tag type requires an opening { and a closing }: "+src;
-                }
-                this.type = src.substring(typeRange[0]+1, typeRange[1]).trim();
-                this.type = this.type.replace(/\s*,\s*/g, "|"); // multiples can be separated by , or |
-                src = src.substring(typeRange[1]+1);
+     	    }
+            int start;
+            int stop;
+              
+			this.balance(src,"{", "}", out start, out stop);
+            if (stop == -1) {
+                throw new DocTag.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ");;
+                return src;
             }
+            this.type = src.substring(start]+1,stop).strip();
+            this.type = this.type.replace(",", "|"); // multiples can be separated by , or |
+            return src.substring(stop+1, stop+1-src.length);
             
             return src;
-        },
+        }
          
 	
 	
