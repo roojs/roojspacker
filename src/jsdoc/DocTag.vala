@@ -25,9 +25,9 @@ namespace JSDOC
 
 	
 	
-		static private GLib.Regex title_regex;
-		static private GLib.Regex opval_regex;
-		static private GLib.Regex type_regex;
+		 private static  GLib.Regex title_regex;
+		 private static GLib.Regex opval_regex;
+		 private static GLib.Regex type_regex;
 	
 		static bool done_init = false;
 		
@@ -36,10 +36,10 @@ namespace JSDOC
 			if (DocTag.done_init) {
 				return;
 			}
-			DocTag.title_regex = new Regex("^\s*(\S+)(?:\s([\s\S]*))?$");
-			DocTag.opval_regex = new GLib.Regex("^\\\([^)]+\\\)");
-			DocTag.type_regex = new GLib.Regex("^\s*\{");
-			DocTag.name_regex = new GLib.Regex("^(\S+)(?:\s([\s\S]*))?$");
+			DocTag.title_regex = new Regex("^\\s*(\\S+)(?:\\s([\\s\\S]*))?$");
+			DocTag.opval_regex = new GLib.Regex("^\\([^)]+\\)");
+			DocTag.type_regex = new GLib.Regex("^\\s*\\{");
+			DocTag.name_regex = new GLib.Regex("^(\\S+)(?:\\s([\\s\\S]*))?$");
 			
 			DocTag.done_init = true;
 		}
