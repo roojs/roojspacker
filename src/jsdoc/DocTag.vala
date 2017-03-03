@@ -125,15 +125,10 @@ namespace JSDOC
         unowned EnumValue? eval = enumc.get_value_by_name ( mi.fetch(1).upper());
         if (eval == null) {
     		throw new DocTagException.INVALID_TITLE("title not supported ??");
-        
-        this.title = 
+        }
+        this.title = (DocTagTitle) eval.value;
         return mi.fetch(2);
 
-        if (parts && parts[1]) this.title = parts[1];
-        if (parts && parts[2]) src = parts[2];
-        else src = "";
-        
-        return src;
     },
      
 	
