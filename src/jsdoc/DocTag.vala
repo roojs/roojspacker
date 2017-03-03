@@ -215,6 +215,7 @@ namespace JSDOC
             while (str.charAt(start) != open) {
                 if (start == str.length) {
             		return;
+        		}
                 start++;
             }
             
