@@ -131,8 +131,8 @@ namespace JSDOC
 				return src;
 		    }
 		    EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
-		    var mi_str =  mi.fetch(1);
-		    unowned EnumValue? eval = enumc.get_value_by_name ( mi_str.up());
+
+		    unowned EnumValue? eval = enumc.get_value_by_name (  mi.fetch(1).up());
 		    if (eval == null) {
 				throw new DocTagException.INVALID_TITLE("title not supported ??");
 				return src;
