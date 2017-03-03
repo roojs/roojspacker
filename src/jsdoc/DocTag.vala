@@ -177,7 +177,8 @@ namespace JSDOC
             @param {string} src
             @return src
          */
-        private string nibbleName( string in_src) {
+        private string nibbleName( string in_src) throws DocTagException
+         {
 
            
             var src = in_src.strip();
@@ -193,7 +194,7 @@ namespace JSDOC
                 this.name = src.substring(start+1, stop).strip();
                 this.isOptional = true;
                 
-                src = src.substring(nameRange[1]+1);
+                src = src.substring(stop+1);
                 
                 // has default value?
                 var nameAndValue = this.name.split("=");
@@ -208,7 +209,7 @@ namespace JSDOC
 
 		    MatchInfo mi;
 
-            if (name_regex.match_all(src, out mi)) {
+            if (name_regex.match_all(src, 0,  out mi)) {
         		this.name = mi.fetch(1);
 				return mi.fetch(2);        		
             }
