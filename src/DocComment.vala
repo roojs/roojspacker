@@ -12,7 +12,7 @@ public class DocComment : Object
 
 	bool isUserComment = true;
 	string src          = "";
-    string meta         =  "";
+    //string meta         =  "";
     Gee.ArrayList<string> tagTexts;
     Gee.ArrayList<DocTag>    tags;
  
@@ -44,24 +44,26 @@ public class DocComment : Object
         /**
         * @requires JSDOC.DocTag
         */
-        parse : function(/**String*/comment) {
-            if (comment == "") {
+        void parse( string comment) {
+            if (comment.strip() == "") {
                 comment = "/** @desc */";
                 this.isUserComment = false;
-                
             }
             
             this.src = DocComment.unwrapComment(comment);
             
             //println(this.src);
             
-            
+            // looks like #+ support???
+            /*
             this.meta = "";
             if (this.src.indexOf("#") == 0) {
                 this.src.match(/#(.+[+-])([\s\S]*)$/);
                 if (RegExp.$1) this.meta = RegExp.$1;
                 if (RegExp.$2) this.src = RegExp.$2;
             }
+            */
+            
             this.hasTags = true;
             if (!/^\s*@\s*\S+/m.test(this.src)) {
                 this.isUserComment = false;
