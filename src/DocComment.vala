@@ -37,8 +37,7 @@ namespace JSDOC
 		{
 		    
 		    DocComment.initRegex();
-		    
-		    this.tagTexts      = new Gee.ArrayList<string>();
+		     
 		    this.tags          = Gee.ArrayList<DocTag>();
 			this.parse(comment);
 		    
@@ -98,19 +97,19 @@ namespace JSDOC
 		        
 		        this.src = DocComment.shared+"\n"+this.src;
  
- 
+				//var tagTexts      = new Gee.ArrayList<string>();
+		        GLib.MatchInfo mi;
 		        
-	    		if (DocComment.
-		       
-		        this.tagTexts = 
-		            this.src
-		            .split(/(^|[\r\n])\s*@/)
-		            .filter(function($){return $.match(/\S/)});
-		        
-		        //println(this.tagTexts.toSource());
-		        // fix tagText
-		        
-		        
+	    		if (DocComment.tag_regex.match_all.match(this.src, 0, mi) {
+		   			while(mi.next()) {
+		   				var sa = mi.fetch(0);
+		   				if (sa.strip().length >0) {
+		   					this.tags.add(new DocTag(sa));
+			   				// tagTexts.add(sa); // ?? strip again?
+		   				}
+	   				}
+   				}
+		   				
 		        
 		        /**
 		            The tags found in the comment.
