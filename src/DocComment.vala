@@ -111,20 +111,6 @@ namespace JSDOC
    				}
 		   				
 		        
-		        /**
-		            The tags found in the comment.
-		            @type JSDOC.DocTag[]
-		         */
-		         
-		        this.tags = this.tagTexts.map(function($){return new DocTag($)});
-		        
-		        //println(this.tags.toSource());
-		        this.tagTexts = []; // we dont need to store this..
-		        
-		        
-		        //if (typeof JSDOC.PluginManager != "undefined") {
-		        //     JSDOC.PluginManager.run("onDocCommentTags", this);
-		        //}
 		    },
 		     
 
