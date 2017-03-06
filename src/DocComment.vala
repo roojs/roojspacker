@@ -18,7 +18,9 @@ namespace JSDOC
 		//Gee.ArrayList<string> tagTexts;
 		Gee.ArrayList<DocTag>    tags;
 	
- 
+		GLib.Regex hastag_regex;
+		GLib.Regex tag_regex;
+		
 		static bool done_init = false;
 	
 		static void initRegex()
@@ -27,6 +29,7 @@ namespace JSDOC
 				return;
 			}
 			DocComment.hastag_regex = new GLib.Regex("^\s*@\s*\S+"); // multiline?
+			DocComment.tag_regex = new GLib.Regex("(^|[\r\n])\s*@"); // empty line, then @ or starting with @?
 			DocComment.done_init = true;
 		}
 	 
@@ -97,7 +100,7 @@ namespace JSDOC
  
  
 		        
-		        
+	    		if (DocComment.
 		       
 		        this.tagTexts = 
 		            this.src
