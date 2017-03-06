@@ -15,7 +15,7 @@ namespace JSDOC
 		bool hasTags		= false;
 		string src          = "";
 		//string meta       =  "";
-		Gee.ArrayList<string> tagTexts;
+		//Gee.ArrayList<string> tagTexts;
 		Gee.ArrayList<DocTag>    tags;
 	
  
@@ -81,7 +81,7 @@ namespace JSDOC
 		        */
 		        
 
-		        if (!/^\s*@\s*\S+/m.test(this.src)) {
+		        if (!DocComment.hastag_regex.match(this.src)) {
 
 		            this.hasTags = false;
 		            
@@ -94,8 +94,8 @@ namespace JSDOC
 		        //}
 		        
 		        this.src = DocComment.shared+"\n"+this.src;
-		        this.tags = [];
-		        this.tagTexts = [];
+ 
+ 
 		        
 		        
 		       
