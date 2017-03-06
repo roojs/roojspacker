@@ -7,7 +7,7 @@
  */ 
  
 
-class DocComment : Object
+public class DocComment : Object
 {
 
 	bool isUserComment = true;
@@ -18,22 +18,16 @@ class DocComment : Object
  
  
  
-    function(/**String*/comment) {
-        this.isUserComment = true;
-        this.src           = "";
-        this.meta          = "";
-        this.tagTexts      = [];
-        this.tags          = []; // array of doctags..
-        if (typeof comment != "undefined") {
-            this.parse(comment);
-        }
-    }, 
-    Object, // extends
-    {
+    public DocComment (string comment) {
+        this.tagTexts      = new Gee.ArrayList<string>();
+        this.tags          = Gee.ArrayList<DocTag>();
+		this.parse(comment);
+        
     
         /**
          * serialize..
          */
+         /*
         toJSON :function(t)
         {
             
@@ -45,7 +39,8 @@ class DocComment : Object
             })
             
             return ret;
-        },    
+        }, 
+        */   
         /**
         * @requires JSDOC.DocTag
         */
