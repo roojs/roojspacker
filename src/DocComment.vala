@@ -10,12 +10,13 @@
 public class DocComment : Object
 {
 
-	bool isUserComment = true;
+	bool isUserComment  = true;
+	bool hasTags		= false;
 	string src          = "";
-    //string meta         =  "";
+    //string meta       =  "";
     Gee.ArrayList<string> tagTexts;
     Gee.ArrayList<DocTag>    tags;
- 
+	
  
  
     public DocComment (string comment) {
@@ -64,9 +65,9 @@ public class DocComment : Object
             }
             */
             
-            this.hasTags = true;
+
             if (!/^\s*@\s*\S+/m.test(this.src)) {
-                this.isUserComment = false;
+
                 this.hasTags = false;
                 
                 //return;
