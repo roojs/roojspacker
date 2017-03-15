@@ -43,7 +43,7 @@ namespace JSDOC
 
 			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
 			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\s*\* ?");
-			
+			DocComment.comment_needs_desc = new GLib.Regex("\s*@(class|event|property)");
 			DocComment.done_init = true;
 		}
 	 
