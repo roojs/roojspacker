@@ -7,7 +7,7 @@
  */ 
  
 namespace JSDOC 
-	{
+{
 	public class DocComment : Object
 	{
 
@@ -20,6 +20,14 @@ namespace JSDOC
 	
 		GLib.Regex hastag_regex;
 		GLib.Regex tag_regex;
+		
+		 /**
+		 * Used to store the currently shared tag text.
+		 * not sure where we use this yet..
+		 * but i think it's related to merging multiple comments together...
+		 */
+
+		private static string    shared : "",
 		
 		static bool done_init = false;
 	
@@ -41,79 +49,77 @@ namespace JSDOC
 		    this.tags          = Gee.ArrayList<DocTag>();
 			this.parse(comment);
 		    
-		
-		    /**
-		     * serialize..
-		     */
-		     /*
-		    toJSON :function(t)
-		    {
-		        
-		        var ret = { '*object' : 'DocComment' };
-		        
-		        var _this = this;
-		        ['isUserComment','src', 'meta',  'tags'].forEach(function(k) {
-		            ret[k] = _this[k];
-		        })
-		        
-		        return ret;
-		    }, 
-		    */   
+		 
+		    
 		    /**
 		    * @requires JSDOC.DocTag
 		    */
-		    void parse( string comment) {
-		        if (comment.strip() == "") {
-		            comment = "/** @desc */";
-		            this.isUserComment = false;
-		        }
-		        
-		        this.src = DocComment.unwrapComment(comment);
-		        
-		        //println(this.src);
-		        
-		        // looks like #+ support???
-		        /*
-		        this.meta = "";
-		        if (this.src.indexOf("#") == 0) {
-		            this.src.match(/#(.+[+-])([\s\S]*)$/);
-		            if (RegExp.$1) this.meta = RegExp.$1;
-		            if (RegExp.$2) this.src = RegExp.$2;
-		        }
-		        */
-		        
+	    void parse( string comment)
+	    {
+	        if (comment.strip() == "") {
+	            comment = "/** @desc */";
+	            this.isUserComment = false;
+	        }
+	        
+	        this.src = DocComment.unwrapComment(comment);
+	        
+	        //println(this.src);
+	        
+	        // looks like #+ support???
+	        /*
+	        this.meta = "";
+	        if (this.src.indexOf("#") == 0) {
+	            this.src.match(/#(.+[+-])([\s\S]*)$/);
+	            if (RegExp.$1) this.meta = RegExp.$1;
+	            if (RegExp.$2) this.src = RegExp.$2;
+	        }
+	        */
+	        
 
-		        if (!DocComment.hastag_regex.match(this.src)) {
+	        if (!DocComment.hastag_regex.match(this.src)) {
 
-		            this.hasTags = false;
-		            
-		            //return;
-		        }
-		        this.fixDesc();
-		        
-		        //if (typeof JSDOC.PluginManager != "undefined") {
-		        //    JSDOC.PluginManager.run("onDocCommentSrc", this);
-		        //}
-		        
-		        this.src = DocComment.shared+"\n"+this.src;
- 
-				//var tagTexts      = new Gee.ArrayList<string>();
-		        GLib.MatchInfo mi;
-		        
-	    		if (DocComment.tag_regex.match_all.match(this.src, 0, mi) {
-		   			while(mi.next()) {
-		   				var sa = mi.fetch(0);
-		   				if (sa.strip().length >0) {
-		   					this.tags.add(new DocTag(sa));
-			   				// tagTexts.add(sa); // ?? strip again?
-		   				}
+	            this.hasTags = false;
+	            
+	            //return;
+	        }
+	        this.fixDesc();
+	        
+	        //if (typeof JSDOC.PluginManager != "undefined") {
+	        //    JSDOC.PluginManager.run("onDocCommentSrc", this);
+	        //}
+	        
+	        this.src = DocComment.shared+"\n"+this.src;
+
+			//var tagTexts      = new Gee.ArrayList<string>();
+	        GLib.MatchInfo mi;
+	        
+    		if (DocComment.tag_regex.match_all.match(this.src, 0, mi) {
+	   			while(mi.next()) {
+	   				var sa = mi.fetch(0);
+	   				if (sa.strip().length >0) {
+	   					this.tags.add(new DocTag(sa));
+		   				// tagTexts.add(sa); // ?? strip again?
 	   				}
    				}
-		   				
-		        
-		    },
-		     
-
+			}
+	   				
+	        
+	    },
+	        
+		   
+		    
+		/**
+		 * Remove slash-star comment wrapper from a raw comment string.
+		 *  @type String
+		 */
+		public static string  unwrapComment( string comment) 
+		{
+		    if (comment.length < 1) {
+				 return "";
+			 }
+		    var unwrapped = comment.replace(/(^\/\*\*|\*\/$)/g, "").replace(/^\s*\* ?/gm, "");
+		    return unwrapped;
+		},
 		    /**
 		        If no @desc tag is provided, this function will add it.
 		     */
