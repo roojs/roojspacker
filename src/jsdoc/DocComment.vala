@@ -126,56 +126,57 @@ namespace JSDOC
 			 ret = DocComment.comment_line_start_white_space_regex.replace(ret, ret.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
 		   
 		    return ret;
-		},
-		    /**
-		        If no @desc tag is provided, this function will add it.
-		     */
-		    fixDesc : function() {
-		        if (this.meta && this.meta != "@+") return;
-		        
-		        
-		        
-		        // does not have any @ lines..
-		        // -- skip comments without @!!
-		        if (!/^\s*@\s*\S+/.test(this.src)) {
-		            this.src = "@desc "+this.src;
-		            // TAGS that are not \n prefixed!! ...
-		            this.src = this.src.replace(/@\s*type/g, '\n@type'); 
-		        
-		            return;
-		        }
-		        // kdludge for stuff...
-		        //this.src = this.src.replace(/@\s*type/g, '\n@type'); 
-		        
-		        // only apply @desc fix to classes..
-		        if (!/\s*@(class|event|property)/m.test(this.src) ) {
-		            return;
-		        }
-		        // if no desc - add it on the first line that is not a @
-		        var lines = this.src.split("\n");
-		        var nsrc = '';
-		        var gotf = false;
-		        
-		        for(var i =0; i < lines.length;i++) {
-		            var line = lines[i];
-		            if (gotf) {
-		                nsrc += line + "\n";
-		                continue;
-		            }
-		            if (/^\s*[@\s]/.test(line)) { // line with @
-		                nsrc += line + "\n";
-		                continue;
-		            }
-		            gotf = true;
-		            nsrc += '@desc ' + line + "\n";
-		            
-		        }
-		         
-		        this.src = nsrc;
-		        
-		        
-		        
-		    },
+		 }
+	    /**
+	        If no @desc tag is provided, this function will add it.
+	     */
+	    void fixDesc() 
+	    {
+	        //if (this.meta && this.meta != "@+") return;
+	        
+	        
+	        
+	        // does not have any @ lines..
+	        // -- skip comments without @!!
+	        if (!/^\s*@\s*\S+/.test(this.src)) {
+	            this.src = "@desc "+this.src;
+	            // TAGS that are not \n prefixed!! ...
+	            this.src = this.src.replace(/@\s*type/g, '\n@type'); 
+	        
+	            return;
+	        }
+	        // kdludge for stuff...
+	        //this.src = this.src.replace(/@\s*type/g, '\n@type'); 
+	        
+	        // only apply @desc fix to classes..
+	        if (!/\s*@(class|event|property)/m.test(this.src) ) {
+	            return;
+	        }
+	        // if no desc - add it on the first line that is not a @
+	        var lines = this.src.split("\n");
+	        var nsrc = '';
+	        var gotf = false;
+	        
+	        for(var i =0; i < lines.length;i++) {
+	            var line = lines[i];
+	            if (gotf) {
+	                nsrc += line + "\n";
+	                continue;
+	            }
+	            if (/^\s*[@\s]/.test(line)) { // line with @
+	                nsrc += line + "\n";
+	                continue;
+	            }
+	            gotf = true;
+	            nsrc += '@desc ' + line + "\n";
+	            
+	        }
+	         
+	        this.src = nsrc;
+	        
+	        
+	        
+	    },
 		  
 		/**
 		    Provides a printable version of the comment.
