@@ -160,7 +160,7 @@ namespace JSDOC
 	        }
 	        // if no desc - add it on the first line that is not a @
 	        var lines = this.src.split("\n");
-	        var nsrc = '';
+	        var nsrc = "";
 	        var gotf = false;
 	        
 	        for(var i =0; i < lines.length;i++) {
