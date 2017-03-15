@@ -21,6 +21,7 @@ namespace JSDOC
 		static GLib.Regex has_tag_regex;
 		static GLib.Regex tag_regex;
 		static GLib.Regex comment_line_start_regex;
+		static GLib.Regex comment_line_start_white_space_regex;
 		static GLib.Regex comment_needs_desc_regex;
 		 /**
 		 * Used to store the currently shared tag text.
