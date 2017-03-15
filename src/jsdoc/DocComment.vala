@@ -40,7 +40,7 @@ namespace JSDOC
 			DocComment.tag_regex = new GLib.Regex("(^|[\r\n])\s*@"); // empty line, then @ or starting with @?
 			
 			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
-			
+			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\s*\* ?");
 			
 			DocComment.done_init = true;
 		}
@@ -121,6 +121,9 @@ namespace JSDOC
 		     if (comment.length < 1) {
 				 return "";
 			 }
+			 
+			 var ret = DocComment.comment_line_start_regex.replace(comment, comment.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
+			 ret = DocComment.comment_line_start_white_space_regex.replace(ret, ret.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
 		    var unwrapped = comment.replace(/(^\/\*\*|\*\/$)/g, "").replace(/^\s*\* ?/gm, "");
 		    return unwrapped;
 		},
