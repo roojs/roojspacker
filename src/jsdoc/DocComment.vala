@@ -36,9 +36,11 @@ namespace JSDOC
 			if (DocComment.done_init) {
 				return;
 			}
-			DocComment.hastag_regex = new GLib.Regex("^\s*@\s*\S+"); // multiline?
+			DocComment.has_tag_regex = new GLib.Regex("^\s*@\s*\S+"); // multiline?
+
 			DocComment.tag_regex = new GLib.Regex("(^|[\r\n])\s*@"); // empty line, then @ or starting with @?
 			
+
 			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
 			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\s*\* ?");
 			
@@ -80,7 +82,7 @@ namespace JSDOC
 	        */
 	        
 
-	        if (!DocComment.hastag_regex.match(this.src)) {
+	        if (!DocComment.has_tag_regex.match(this.src)) {
 
 	            this.hasTags = false;
 	            
@@ -138,10 +140,11 @@ namespace JSDOC
 	        
 	        // does not have any @ lines..
 	        // -- skip comments without @!!
-	        if (!/^\s*@\s*\S+/.test(this.src)) {
-	            this.src = "@desc "+this.src;
+	        if (!this.hasTags) {
+	            this.src = "@desc "+ this.src;
 	            // TAGS that are not \n prefixed!! ...
-	            this.src = this.src.replace(/@\s*type/g, '\n@type'); 
+	            // does not make sense....???
+	            //this.src = this.src.replace(/@\s*type/g, '\n@type'); 
 	        
 	            return;
 	        }
