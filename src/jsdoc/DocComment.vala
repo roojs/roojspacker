@@ -21,6 +21,7 @@ namespace JSDOC
 		static GLib.Regex hastag_regex;
 		static GLib.Regex tag_regex;
 		static GLib.Regex comment_line_start_regex;
+		static GLib.Regex comment_needs_desc_regex;
 		 /**
 		 * Used to store the currently shared tag text.
 		 * not sure where we use this yet..
@@ -43,7 +44,7 @@ namespace JSDOC
 
 			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
 			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\s*\* ?");
-			DocComment.comment_needs_desc = new GLib.Regex("\s*@(class|event|property)");
+			DocComment.comment_needs_desc_regex = new GLib.Regex("\s*@(class|event|property)");
 			DocComment.done_init = true;
 		}
 	 
@@ -152,7 +153,7 @@ namespace JSDOC
 	        //this.src = this.src.replace(/@\s*type/g, '\n@type'); 
 	        
 	        // only apply @desc fix to classes..
-	        if (!/\s*@(class|event|property)/m.test(this.src) ) {
+	        if (!DocComment.comment_needs_desc_regex.match(this.src,GLib.RegexMatchFlags.NEWLINE_ANYCRLF) ) {
 	            return;
 	        }
 	        // if no desc - add it on the first line that is not a @
