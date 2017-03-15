@@ -124,8 +124,8 @@ namespace JSDOC
 			 
 			 var ret = DocComment.comment_line_start_regex.replace(comment, comment.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
 			 ret = DocComment.comment_line_start_white_space_regex.replace(ret, ret.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
-		    var unwrapped = comment.replace(/(^\/\*\*|\*\/$)/g, "").replace(/^\s*\* ?/gm, "");
-		    return unwrapped;
+		   
+		    return ret;
 		},
 		    /**
 		        If no @desc tag is provided, this function will add it.
