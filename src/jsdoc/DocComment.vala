@@ -18,7 +18,7 @@ namespace JSDOC
 		//Gee.ArrayList<string> tagTexts;
 		Gee.ArrayList<DocTag>    tags;
 	
-		static GLib.Regex hastag_regex;
+		static GLib.Regex has_tag_regex;
 		static GLib.Regex tag_regex;
 		static GLib.Regex comment_line_start_regex;
 		static GLib.Regex comment_needs_desc_regex;
@@ -45,6 +45,7 @@ namespace JSDOC
 			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
 			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\s*\* ?");
 			DocComment.comment_needs_desc_regex = new GLib.Regex("\s*@(class|event|property)");
+			
 			DocComment.done_init = true;
 		}
 	 
