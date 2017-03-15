@@ -18,9 +18,9 @@ namespace JSDOC
 		//Gee.ArrayList<string> tagTexts;
 		Gee.ArrayList<DocTag>    tags;
 	
-		GLib.Regex hastag_regex;
-		GLib.Regex tag_regex;
-		
+		static GLib.Regex hastag_regex;
+		static GLib.Regex tag_regex;
+		static GLib.Regex comment_line_start_regex;
 		 /**
 		 * Used to store the currently shared tag text.
 		 * not sure where we use this yet..
@@ -38,6 +38,10 @@ namespace JSDOC
 			}
 			DocComment.hastag_regex = new GLib.Regex("^\s*@\s*\S+"); // multiline?
 			DocComment.tag_regex = new GLib.Regex("(^|[\r\n])\s*@"); // empty line, then @ or starting with @?
+			
+			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
+			
+			
 			DocComment.done_init = true;
 		}
 	 
@@ -114,7 +118,7 @@ namespace JSDOC
 		 */
 		public static string  unwrapComment( string comment) 
 		{
-		    if (comment.length < 1) {
+		     if (comment.length < 1) {
 				 return "";
 			 }
 		    var unwrapped = comment.replace(/(^\/\*\*|\*\/$)/g, "").replace(/^\s*\* ?/gm, "");
