@@ -28,7 +28,7 @@ namespace JSDOC
 		public static string opt_target = null;
 		public static string opt_debug_target = null;
 //		public static string opt_tmpdir = null;
-		public static string opt_basedir = null;
+		private static string opt_basedir = null;
 		
 		public static string opt_doc_target = null;
 		public static string opt_doc_template_dir = null;
