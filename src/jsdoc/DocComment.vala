@@ -179,7 +179,7 @@ namespace JSDOC
 	    }
 		  
 		 
-	    public DocTag? getTag ( string tagTitle) {
+	    public DocTag? getTag ( DocTagTitle tagTitle) {
 	        foreach(var tag in this.tags) {
 	    		if (tag.title == tagTitle) {
 	    			return tag;
