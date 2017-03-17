@@ -95,13 +95,7 @@ namespace JSDOC
 		public string activeFile = "";
 		
 			
-		/**
-		* @cfg baseDir -- prefix the files listed in indexfiles with this.
-		*/
-		 
-		//public string baseDir = "";
-		
-		
+		 	
 		public  string outstr = ""; // if no target is specified - then this will contain the result
 		
 		
@@ -353,7 +347,7 @@ namespace JSDOC
 		    
 		    var srcfile = in_srcfile;
 		    if (srcfile[0] != '/') {
-				srcfile = this.baseDir + in_srcfile;
+				srcfile = PackerRun.real_basedir + in_srcfile;
 			}
 		    string str;
 		    FileUtils.get_contents(srcfile,out str);
@@ -381,7 +375,7 @@ namespace JSDOC
 		        var add = f.replace(".", "/") + ".js";
 		        
 		        if (add[0] != '/') {
-					add = this.baseDir + add;
+					add = PackerRun.real_basedir + add;
 				}
 		        
 		        if (this.files.contains(add)) {
@@ -503,13 +497,13 @@ namespace JSDOC
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
 		        		this.targetStream.write(("// " + 
-		        			( (file.length > this.baseDir.length) ? file.substring(this.baseDir.length)  : file ) + 
+		        			( (file.length > PackerRun.real_basedir.length) ? file.substring(PackerRun.real_basedir.length)  : file ) + 
 						"\n").data); 
 		        		this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
-		        		( (file.length > this.baseDir.length) ? file.substring(this.baseDir.length)  : file ) +  "\n";
+		        		( (file.length > PackerRun.real_basedir.length) ? file.substring(PackerRun.real_basedir.length)  : file ) +  "\n";
 		                this.outstr += str + "\n";
 		            }
 		            
