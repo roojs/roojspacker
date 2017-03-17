@@ -57,6 +57,21 @@ namespace JSDOC
 			{ "clean-cache", 'c', 0, OptionArg.NONE, ref opt_clean_cache, "Clean up the cache after running (slower)", null },
 			// fixme -- keepwhite.. cleanup 
 			
+			// documentation options
+			// usage: roojspacker --basedir roojs1 \
+			//       --doc-target roojs1/docs \
+			//       --index-files roojs1/buildSDK/dependancy_core.txt  \
+			//       --index-files roojs1/buildSDK/dependancy_ui.txt  \
+			//       --index-files roojs1/buildSDK/dependancy_bootstrap.txt  \
+			//       --doc-template-dir\
+			
+			
+			{ "doc-target", 'd', 0, OptionArg.STRING, ref opt_target, "Documentation Directory target", null },
+			{ "doc-template-dir", 'p', 0, OptionArg.STRING, ref opt_target, "Documentation Directory target", null },
+			
+			
+			
+			
 			{ null }
 		};
 		public static int main(string[] args) 
