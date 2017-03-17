@@ -489,7 +489,7 @@ namespace JSDOC
 			
 			
 			
-  			if (this.dumpTokens || this.hasErrors("")) {
+  			if (PackerRun.opt_dump_tokens || this.hasErrors("")) {
 				 
 				GLib.Process.exit(0);
 			}
