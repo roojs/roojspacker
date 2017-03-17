@@ -461,7 +461,7 @@ namespace JSDOC
 		         
 		        print("COMPRESSING to %s\n", minfile);
 		        //var codeComp = pack(str, 10, 0, 0);
-		        if (this.cleanup && FileUtils.test (minfile, FileTest.EXISTS)) {
+		        if (PackerRun.opt_clean_cache && FileUtils.test (minfile, FileTest.EXISTS)) {
 		            FileUtils.remove(minfile);
 		        }
 		        if (!loaded_string) {
