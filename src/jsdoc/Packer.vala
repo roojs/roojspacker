@@ -83,14 +83,7 @@ namespace JSDOC
 		 */
 		//public string tmpDir = "/tmp";  // FIXME??? in ctor?
 	
-	
-		  
-		/**
-		 * @cfg {Boolean} cleanup  (optional) clean up temp files after done - 
-		 *    Defaults to false if you set tmpDir, otherwise true.
-		 */
-		public bool cleanup =  false;
-		
+	 
 		 
 		// list of files to compile...
 		Gee.ArrayList<string> files;
