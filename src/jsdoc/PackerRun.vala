@@ -64,7 +64,7 @@ namespace JSDOC
 		
 		  
 		/**
-		 * @cfg {Boolean} clopt_clean_cache  (optional) clean up temp files after done - 
+		 * @cfg {Boolean} opt_clean_cache  (optional) clean up temp files after done - 
 		 *    Defaults to false if you set tmpDir, otherwise true.
 		 */
 		
@@ -160,10 +160,8 @@ namespace JSDOC
 			var p = new Packer(
 				
 			);
- 
   
- 
-			p.cleanup = opt_clean_cache;
+  
 			//if (opt_tmpdir == null) {
 			//	p.cleanup = false;
 			//} else {
