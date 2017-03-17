@@ -99,7 +99,7 @@ namespace JSDOC
 		* @cfg baseDir -- prefix the files listed in indexfiles with this.
 		*/
 		 
-		public string baseDir = "";
+		//public string baseDir = "";
 		
 		
 		public  string outstr = ""; // if no target is specified - then this will contain the result
