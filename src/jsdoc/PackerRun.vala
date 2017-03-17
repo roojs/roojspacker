@@ -41,6 +41,11 @@ namespace JSDOC
 		
 		
 		public static bool opt_debug = false;
+		
+		 /**
+		 * @cfg {Boolean} skipScope (optional) skip Scope parsing and replacement.
+		 *    usefull for debugging...
+		 */
 		public static bool opt_skip_scope = false;
 		
 		/**
