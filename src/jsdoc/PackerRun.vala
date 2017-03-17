@@ -135,7 +135,7 @@ namespace JSDOC
 			// now run the Packer...
 			var p = new Packer(
 				
-				);
+			);
 			p.keepWhite = opt_keep_whitespace;
 			p.skipScope = opt_skip_scope;
 			p.dumpTokens = opt_dump_tokens;
