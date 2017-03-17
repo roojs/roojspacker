@@ -43,7 +43,7 @@ namespace JSDOC
 		public static bool opt_debug = false;
 		
 		 /**
-		 * @cfg {Boolean} skipScope (optional) skip Scope parsing and replacement.
+		 * @cfg {Boolean} opt_skip_scope (optional) skip Scope parsing and replacement.
 		 *    usefull for debugging...
 		 */
 		public static bool opt_skip_scope = false;
@@ -54,6 +54,12 @@ namespace JSDOC
 		 */
 		
 		public static bool opt_keep_whitespace = false;	
+		
+			/**
+		 * @cfg {Boolean} opt_dump_tokens (optional) read the first file and dump the tokens.
+		 *    usefull for debugging...
+		 */
+		
 		public static bool opt_dump_tokens = false;	
 		public static bool opt_clean_cache = true;	
 		
