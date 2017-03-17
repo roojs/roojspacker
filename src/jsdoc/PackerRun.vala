@@ -148,7 +148,7 @@ namespace JSDOC
 				
 			);
  
-			p.skipScope = opt_skip_scope;
+ 
 			p.dumpTokens = opt_dump_tokens;
 			p.cleanup = opt_clean_cache;
 			//if (opt_tmpdir == null) {
