@@ -154,8 +154,8 @@ namespace JSDOC
 				
 			);
  
+  
  
-			p.dumpTokens = opt_dump_tokens;
 			p.cleanup = opt_clean_cache;
 			//if (opt_tmpdir == null) {
 			//	p.cleanup = false;
