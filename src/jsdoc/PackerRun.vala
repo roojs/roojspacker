@@ -42,7 +42,12 @@ namespace JSDOC
 		
 		public static bool opt_debug = false;
 		public static bool opt_skip_scope = false;
-
+		
+		/**
+		 * @cfg {Boolean} keepWhite (optional) do not remove white space in output.
+		 *    usefull for debugging compressed files.
+		 */
+		
 		public static bool opt_keep_whitespace = false;	
 		public static bool opt_dump_tokens = false;	
 		public static bool opt_clean_cache = true;	
@@ -131,6 +136,7 @@ namespace JSDOC
 					print("%s: %s\n", dom, msg);
 				});
 			}
+			
 			
 			// now run the Packer...
 			var p = new Packer(
