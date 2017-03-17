@@ -497,13 +497,13 @@ namespace JSDOC
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
 		        		this.targetStream.write(("// " + 
-		        			( (file.length > PackerRun.real_basedir.length) ? file.substring(PackerRun.real_basedir.length)  : file ) + 
+		        			( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) + 
 						"\n").data); 
 		        		this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
-		        		( (file.length > PackerRun.real_basedir.length) ? file.substring(PackerRun.real_basedir.length)  : file ) +  "\n";
+		        		( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) +  "\n";
 		                this.outstr += str + "\n";
 		            }
 		            
