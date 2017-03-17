@@ -96,7 +96,7 @@ namespace JSDOC
 			//var tagTexts      = new Gee.ArrayList<string>();
 	        GLib.MatchInfo mi;
 	        
-    		if (DocComment.tag_regex.match_all(this.src, 0, mi)) {
+    		if (DocComment.tag_regex.match_all(this.src, 0, out mi)) {
 	   			while(mi.next()) {
 	   				var sa = mi.fetch(0);
 	   				if (sa.strip().length >0) {
