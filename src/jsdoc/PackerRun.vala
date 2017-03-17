@@ -179,7 +179,7 @@ namespace JSDOC
 				opt_real_basedir  += Path.DIR_SEPARATOR_S;
 			}
 			
-			Glib.debug("real_base_dir  = '%s' : opt_basedir ='%s'\n", opt_real_basedir , opt_basedir);
+			GLib.debug("real_base_dir  = '%s' : opt_basedir ='%s'\n", opt_real_basedir , opt_basedir);
 			
 			
 			if (opt_files == null && opt_files_from == null) {
