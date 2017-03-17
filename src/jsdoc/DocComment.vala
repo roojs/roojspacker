@@ -185,43 +185,15 @@ namespace JSDOC
 	    },
 		  
 		 
-	    public DocTag getTag ( string tagTitle) {
+	    public DocTag? getTag ( string tagTitle) {
 	        foreach(var tag in this.tag) {
 	    		if (tag.title == tagTitle) {
 	    			return tag;
     			}
 			}
+			return null;
 	    }
 		    
-	});
+	}
+}
 
-
-	/// static methods..
-
-	XObject.extend(DocComment, 
-		{
-		    
-		    /**
-		     * Used to store the currently shared tag text.
-		     */
-		    shared : "",
-		    
-		    /**
-		     * Remove slash-star comment wrapper from a raw comment string.
-		     *  @type String
-		     */
-		    unwrapComment : function(/**String*/comment) {
-		        if (!comment) return "";
-		        var unwrapped = comment.replace(/(^\/\*\*|\*\/$)/g, "").replace(/^\s*\* ?/gm, "");
-		        return unwrapped;
-		    },
-
-		    fromDump : function(t)
-		    {
-		        var ns = new DocComment();
-		        for (var i in t) {
-		            ns[i] = t[i];
-		        }
-		        return ns;
-		    }
-	});
