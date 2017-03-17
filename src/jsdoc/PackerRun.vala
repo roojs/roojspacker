@@ -219,8 +219,8 @@ namespace JSDOC
 					stdout.printf ("%s", p.outstr);
 				}
 	        }
-	        if (opt_doc_target) {
-	    		var d = new DocBuilder(p);
+	        if (opt_doc_target != null) {
+	    		//var d = new DocBuilder(p);
 	        }
 	        
 	        
