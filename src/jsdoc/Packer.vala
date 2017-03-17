@@ -572,7 +572,7 @@ namespace JSDOC
 		
 			TokenArray toks = tr.tokenize(new TextStream(str)); // dont merge xxx + . + yyyy etc.
 		
-			if (this.dumpTokens) {
+			if (PackerRun.opt_dump_tokens) {
 				toks.dump();
 				return "";
 				//GLib.Process.exit(0);
