@@ -162,10 +162,7 @@ namespace JSDOC
 			}
 			
 			
-			// now run the Packer...
-			var p = new Packer(
-				
-			);
+		
   
   
 			 
@@ -208,7 +205,10 @@ namespace JSDOC
 				}
 			}  
 			
-			
+				// now run the Packer...
+			var p = new Packer(
+				
+			);
 			
 			p.pack(	opt_target == null ? "" : opt_target ,
 					opt_debug_target == null ? "" :  opt_debug_target );
