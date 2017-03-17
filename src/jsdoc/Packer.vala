@@ -599,7 +599,7 @@ namespace JSDOC
 			
 		   // print(JSON.stringify(ts.tokens, null,4 )); Seed.quit();
 			//return;//
-			if (!this.skipScope) {
+			if (!PackerRun.opt_skip_scope) {
 				var sp = new ScopeParser(ts, this, fn);
  
 				//sp.packer = this;
