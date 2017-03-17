@@ -167,18 +167,19 @@ namespace JSDOC
 			// set the base directory...
 			var curdir = Environment.get_current_dir() + Path.DIR_SEPARATOR_S;
 			if (opt_basedir == null) {
-				p.baseDir = curdir;
+
+				opt_real_basedir = curdir;
 			} else if (opt_basedir[0] == '/') {	
-				p.baseDir = opt_basedir;
+				opt_real_basedir  = opt_basedir;
 			} else {
-				p.baseDir = curdir + opt_basedir;
+				opt_real_basedir  = curdir + opt_basedir;
 			}
 			// suffix a slash..
-			if (p.baseDir[p.baseDir.length-1].to_string() != Path.DIR_SEPARATOR_S) {
-				p.baseDir += Path.DIR_SEPARATOR_S;
+			if (opt_real_basedir [opt_real_basedir .length-1].to_string() != Path.DIR_SEPARATOR_S) {
+				opt_real_basedir  += Path.DIR_SEPARATOR_S;
 			}
 			
-			print("BaseDir = '%s' : opt_basedir ='%s'\n", p.baseDir, opt_basedir);
+			Glib.debug("real_base_dir  = '%s' : opt_basedir ='%s'\n", opt_real_basedir , opt_basedir);
 			
 			
 			if (opt_files == null && opt_files_from == null) {
