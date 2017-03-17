@@ -347,7 +347,7 @@ namespace JSDOC
 		    
 		    var srcfile = in_srcfile;
 		    if (srcfile[0] != '/') {
-				srcfile = PackerRun.real_basedir + in_srcfile;
+				srcfile = PackerRun.opt_real_basedir + in_srcfile;
 			}
 		    string str;
 		    FileUtils.get_contents(srcfile,out str);
@@ -375,7 +375,7 @@ namespace JSDOC
 		        var add = f.replace(".", "/") + ".js";
 		        
 		        if (add[0] != '/') {
-					add = PackerRun.real_basedir + add;
+					add = PackerRun.opt_real_basedir + add;
 				}
 		        
 		        if (this.files.contains(add)) {
