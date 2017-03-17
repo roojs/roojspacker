@@ -169,12 +169,12 @@ namespace JSDOC
 	                nsrc += line + "\n";
 	                continue;
 	            }
-	            if (/^\s*[@\s]/.test(line)) { // line with @
+	            if (DocComment.has_tag_regex.match(line)) { // line with @
 	                nsrc += line + "\n";
 	                continue;
 	            }
 	            gotf = true;
-	            nsrc += '@desc ' + line + "\n";
+	            nsrc += "@desc " + line + "\n";
 	            
 	        }
 	         
