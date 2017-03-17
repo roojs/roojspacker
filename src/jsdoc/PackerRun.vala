@@ -210,18 +210,19 @@ namespace JSDOC
 			}  
 			
 			var run_pack = false;
-			if (opt_target != null || opt_target_debug != null) {
-				run_pack = true;
-			}
+			if (opt_target != null || opt_debug_target != null || opt_dump_tokens) {
 			
-			
-			p.pack(	opt_target == null ? "" : opt_target ,
-					opt_debug_target == null ? "" :  opt_debug_target );
-            
-        	if (p.outstr.length > 0 ) {
-				stdout.printf ("%s", p.outstr);
-			}
-            
+				p.pack(	opt_target == null ? "" : opt_target ,
+						opt_debug_target == null ? "" :  opt_debug_target );
+		        
+		    	if (p.outstr.length > 0 ) {
+					stdout.printf ("%s", p.outstr);
+				}
+	        }
+	        
+	        
+	        
+	        
 		}	 
 		
 	}
