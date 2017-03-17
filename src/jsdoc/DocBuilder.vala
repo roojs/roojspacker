@@ -8,8 +8,10 @@ namespace JSDOC
 	{
 		
 		// extractable via JSON?
-		string VERSION = "1.0.0" { get  set };
+		public string VERSION = "1.0.0" { get  set };
 		
+		
+		private Packer packer;
 	
 		public DocBuilder (Packer p) 
 		{
@@ -17,62 +19,27 @@ namespace JSDOC
 			
 		
         
-        if (Options.cacheDirectory.length && !File.isDirectory(Options.cacheDirectory)) {   
-            File.mkdir(Options.cacheDirectory)
-        }
+		    if (PackerRun.opt_tmp_dir != null && !FileUtils.test(PackerRun.opt_tmp_dir, GLib.FileTest.IS_DIR)) {   
+		        Posix.mkdir(PackerRun.opt_tmp_dir, 0700);
+		    }
         
-        Options.srcFiles = this._getSrcFiles();
-        this._parseSrcFiles();
-        this.symbolSet = Parser.symbols;
-        
-        // this currently uses the concept of publish.js...
-        
-        this.publish();
+	
+		    this.parseSrcFiles();
+		    this.symbolSet = Parser.symbols;
+		    
+		    // this currently uses the concept of publish.js...
+		    
+		    this.publish();
          
         
         
-    },
-    /**
-     * create a list of files in this.srcFiles using list of directories / files in Options.src
-     * 
-     */
-    
-    _getSrcFiles : function() 
-    {
-        this.srcFiles = [];
-        var _this = this;
-        var ext = ["js"];
-        if (Options.ext) {
-            ext = Options.ext.split(",").map(function($) {return $.toLowerCase()});
-        }
-        
-        for (var i = 0; i < Options.src.length; i++) {
-            // add to sourcefiles..
-            if (!File.isDirectory(Options.src[i])) {
-                _this.srcFiles.push(Options.src[i]);
-                continue;
-            }
-            File.list(Options.src[i] ).forEach(function($) {
-                if (Options['exclude-src'].indexOf($) > -1) {
-                    return;
-                }
-                var thisExt = $.split(".").pop().toLowerCase();
-                if (ext.indexOf(thisExt) < 0) {
-                    return;
-                }
-                _this.srcFiles.push(Options.src[i] + '/' + $);
-            });
-                
-        }
-        //Seed.print(JSON.stringify(this.srcFiles, null,4));Seed.quit();
-        return this.srcFiles;
-    },
+		}
     /**
      * Parse the source files.
      * 
      */
 
-    _parseSrcFiles : function() 
+    private void parseSrcFiles() 
     {
         Parser.init();
         
