@@ -92,14 +92,7 @@ namespace JSDOC
 		public bool cleanup =  false;
 		
 		
-		/**
-		 * @cfg {Boolean} keepWhite (optional) do not remove white space in output.
-		 *    usefull for debugging compressed files.
-		 */
-		
-		public bool keepWhite =  false;
-			
-		/**
+		 /**
 		 * @cfg {Boolean} skipScope (optional) skip Scope parsing and replacement.
 		 *    usefull for debugging...
 		 */

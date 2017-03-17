@@ -44,7 +44,7 @@ namespace JSDOC
 		public static bool opt_skip_scope = false;
 		
 		/**
-		 * @cfg {Boolean} keepWhite (optional) do not remove white space in output.
+		 * @cfg {Boolean} opt_keep_whitespace (optional) do not remove white space in output.
 		 *    usefull for debugging compressed files.
 		 */
 		
