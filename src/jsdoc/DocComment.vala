@@ -55,8 +55,8 @@ namespace JSDOC
 		    
 		    DocComment.initRegex();
 		     
-		    this.tags          = Gee.ArrayList<DocTag>();
-			this.parse(comment);
+		    this.tags          = new Gee.ArrayList<DocTag>();
+
 		    
 		 
 	        if (comment.strip() == "") {
@@ -96,7 +96,7 @@ namespace JSDOC
 			//var tagTexts      = new Gee.ArrayList<string>();
 	        GLib.MatchInfo mi;
 	        
-    		if (DocComment.tag_regex.match_all.match(this.src, 0, mi) {
+    		if (DocComment.tag_regex.match_all.match(this.src, 0, mi)) {
 	   			while(mi.next()) {
 	   				var sa = mi.fetch(0);
 	   				if (sa.strip().length >0) {
@@ -107,7 +107,7 @@ namespace JSDOC
 			}
 	   				
 	        
-	    },
+	    }
 	        
 		   
 		    
