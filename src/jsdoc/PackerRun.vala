@@ -61,6 +61,13 @@ namespace JSDOC
 		 */
 		
 		public static bool opt_dump_tokens = false;	
+		
+		  
+		/**
+		 * @cfg {Boolean} clopt_clean_cache  (optional) clean up temp files after done - 
+		 *    Defaults to false if you set tmpDir, otherwise true.
+		 */
+		
 		public static bool opt_clean_cache = true;	
 		
 		const OptionEntry[] options = {
