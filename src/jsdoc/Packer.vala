@@ -514,12 +514,12 @@ namespace JSDOC
 		            }
 		            
 		        }
-		        if (this.cleanup) {
+		        if (PackerRun.opt_clean_cache) {
 		            FileUtils.remove(minfile);
 		        }
 		        
 		    }
-		    if (this.cleanup) {
+		    if (PackerRun.opt_clean_cache) {
 				FileUtils.remove(tmpDir);
 			}
 		    
