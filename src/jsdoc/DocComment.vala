@@ -184,39 +184,14 @@ namespace JSDOC
 	        
 	    },
 		  
-		/**
-		    Provides a printable version of the comment.
-		    @type String
-		 */
-		    toString : function() {
-		        return this.src;
-		    },
-
-		/*~t
-		    assert("testing JSDOC.DocComment#fixDesc");
-		    var com = new JSDOC.DocComment();
-		    com.src = "foo";
-		    assertEqual(""+com, "foo", "stringifying a comment returns the unwrapped src.");
-		*/
-
-		/**
-		    Given the title of a tag, returns all tags that have that title.
-		    @type JSDOC.DocTag[]
-		 */
-		 /*
 		 
-		    toQDump : function(t)
-		    {
-		        //println(t.toSource());
-		        var r =  JSDOC.toQDump(t, 'JSDOC.DocComment.fromDump({', '})', {}); // send it an empty object..
-		        //println(r);
-		        return r;
-		    } ,
-		    */
-		 
-		    getTag : function(/**String*/tagTitle) {
-		        return this.tags.filter(function($){return (typeof($['title']) != 'undefined') && ($.title == tagTitle)});
-		    }
+	    public DocTag getTag ( string tagTitle) {
+	        foreach(var tag in this.tag) {
+	    		if (tag.title == tagTitle) {
+	    			return tag;
+    			}
+			}
+	    }
 		    
 	});
 
