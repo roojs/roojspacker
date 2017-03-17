@@ -29,7 +29,7 @@ namespace JSDOC
 		 * but i think it's related to merging multiple comments together...
 		 */
 
-		private static string    shared : "",
+		private static string    shared = "";
 		
 		static bool done_init = false;
 	
@@ -38,14 +38,14 @@ namespace JSDOC
 			if (DocComment.done_init) {
 				return;
 			}
-			DocComment.has_tag_regex = new GLib.Regex("^\s*@\s*\S+"); // multiline?
+			DocComment.has_tag_regex = new GLib.Regex("^\\s*@\\s*\\S+"); // multiline?
 
-			DocComment.tag_regex = new GLib.Regex("(^|[\r\n])\s*@"); // empty line, then @ or starting with @?
+			DocComment.tag_regex = new GLib.Regex("(^|[\\r\\n])\\s*@"); // empty line, then @ or starting with @?
 			
 
-			DocComment.comment_line_start_regex = new GLib.Regex("(^\/\*\*|\*\/$)");
-			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\s*\* ?");
-			DocComment.comment_needs_desc_regex = new GLib.Regex("\s*@(class|event|property)");
+			DocComment.comment_line_start_regex = new GLib.Regex("(^\\/\\*\\*|\\*\\/$)");
+			DocComment.comment_line_start_white_space_regex = new GLib.Regex("\\s*\\* ?");
+			DocComment.comment_needs_desc_regex = new GLib.Regex("\\s*@(class|event|property)");
 			
 			DocComment.done_init = true;
 		}
@@ -182,7 +182,7 @@ namespace JSDOC
 	        
 	         
 	        
-	    },
+	    }
 		  
 		 
 	    public DocTag? getTag ( string tagTitle) {
