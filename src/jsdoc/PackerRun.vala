@@ -29,6 +29,11 @@ namespace JSDOC
 		public static string opt_debug_target = null;
 //		public static string opt_tmpdir = null;
 		private static string opt_basedir = null;
+		
+		/**
+		* @cfg baseDir -- prefix the files listed in indexfiles with this.
+		*/
+		 
 		public static string opt_real_basedir = null;
 		
 		public static string opt_doc_target = null;
