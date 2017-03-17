@@ -29,11 +29,17 @@ namespace JSDOC
 		public static string opt_debug_target = null;
 //		public static string opt_tmpdir = null;
 		public static string opt_basedir = null;
+		
+		public static string opt_doc_target = null;
+		public static string opt_doc_template_dir = null;
+		
 				
 		[CCode (array_length = false, array_null_terminated = true)]
 		private static string[]? opt_files = null;
 		[CCode (array_length = false, array_null_terminated = true)]
 		private static string[]? opt_files_from = null;
+		
+		
 		public static bool opt_debug = false;
 		public static bool opt_skip_scope = false;
 
@@ -66,8 +72,8 @@ namespace JSDOC
 			//       --doc-template-dir\
 			
 			
-			{ "doc-target", 'd', 0, OptionArg.STRING, ref opt_target, "Documentation Directory target", null },
-			{ "doc-template-dir", 'p', 0, OptionArg.STRING, ref opt_target, "Documentation Directory target", null },
+			{ "doc-target", 'd', 0, OptionArg.STRING, ref opt_doc_target, "Documentation Directory target", null },
+			{ "doc-template-dir", 'p', 0, OptionArg.STRING, ref opt_doc_template_dir, "Documentation Directory target", null },
 			
 			
 			
