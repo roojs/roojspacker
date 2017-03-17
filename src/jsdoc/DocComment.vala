@@ -59,12 +59,6 @@ namespace JSDOC
 			this.parse(comment);
 		    
 		 
-		    
-		    /**
-		    * @requires JSDOC.DocTag
-		    */
-	    void parse( string comment)
-	    {
 	        if (comment.strip() == "") {
 	            comment = "/** @desc */";
 	            this.isUserComment = false;
