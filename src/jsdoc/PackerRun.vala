@@ -190,6 +190,12 @@ namespace JSDOC
 			}
 			
 			
+				// now run the Packer...
+			var p = new Packer(
+				
+			);
+			
+			
 			if (opt_files != null) {
 			 
 				foreach (var  f in opt_files) {
@@ -205,10 +211,6 @@ namespace JSDOC
 				}
 			}  
 			
-				// now run the Packer...
-			var p = new Packer(
-				
-			);
 			
 			p.pack(	opt_target == null ? "" : opt_target ,
 					opt_debug_target == null ? "" :  opt_debug_target );
