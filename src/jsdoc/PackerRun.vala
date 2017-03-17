@@ -209,6 +209,11 @@ namespace JSDOC
 				}
 			}  
 			
+			var run_pack = false;
+			if (opt_target != null || opt_target_debug != null) {
+				run_pack = true;
+			}
+			
 			
 			p.pack(	opt_target == null ? "" : opt_target ,
 					opt_debug_target == null ? "" :  opt_debug_target );
