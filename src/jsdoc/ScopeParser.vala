@@ -657,9 +657,9 @@ namespace JSDOC {
 			
 			
 
-			var expressionBraceNesting = this.braceNesting + 0;
-			var bracketNesting = 0;
-			var parensNesting = 0;
+			//var expressionBraceNesting = this.braceNesting + 0;
+			//var bracketNesting = 0;
+			//var parensNesting = 0;
 			 
 			var isObjectLitAr = new Gee.ArrayList<bool>();
 			isObjectLitAr.add( false);
