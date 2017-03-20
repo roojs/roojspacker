@@ -14,7 +14,7 @@ namespace JSDOC {
 		TokenStream ts;
 		Gee.ArrayList<string> warnings;
 
-		bool debug = false;
+	 
 		static Gee.ArrayList<string> idents;
 		static bool initialized = false;
 
@@ -202,20 +202,7 @@ namespace JSDOC {
 			// this.globalScope.dump();
 		}
 
-
-		void log(string str)
-		{
-			print(str);
-			//print ("                    ".substring(0, this.braceNesting*2) + str);
-			
-			//println("<B>LOG:</B>" + htmlescape(str) + "<BR/>\n");
-		}
-		void logR (string str)
-		{
-			    //println("<B>LOG:</B>" + str + "<BR/>");
-		}
-
-		 
+ 
 	
 
 
@@ -223,11 +210,7 @@ namespace JSDOC {
 		{
 			//this.timerPrint("parseScope EnterScope"); 
 			//this.log(">>> ENTER SCOPE" + this.scopes.length);
-		   
-			var expressionBraceNesting = this.braceNesting + 0;
-			
-			var parensNesting = 0;
-			
+		 
 			var isObjectLitAr = new Gee.ArrayList<bool>();
 			isObjectLitAr.add(false);
 		 
@@ -259,8 +242,7 @@ namespace JSDOC {
 							case TokenName.VAR:
 							case TokenName.CONST: // not really relivant as it's only mozzy that does this.
 							    //print('SCOPE-VAR:' + token.toString());
-							    var vstart = this.ts.cursor +1;
-							    
+							     
 							    //this.log("parseScope GOT VAR/CONST : " + token.toString()); 
 							    while (true) {
 							        token = this.ts.nextTok();
@@ -390,7 +372,7 @@ namespace JSDOC {
 
 							default:    
 								// print(" KEYW = %s\n", token.asString());
-								var symbol = token.data;
+								 
 					        
 							     if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
 									
