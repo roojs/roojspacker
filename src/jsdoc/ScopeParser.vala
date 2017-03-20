@@ -406,7 +406,6 @@ namespace JSDOC {
 							            if (token.prefix.length > 0 && Regex.match_simple ("eval",token.prefix)) {
 							                // look for eval:var:noreplace\n
 							                //print("MATCH!?");
-							                var _t = this;
 							                
 							                var regex = new GLib.Regex ("eval:var:([a-z_]+)",GLib.RegexCompileFlags.CASELESS );
 			 
