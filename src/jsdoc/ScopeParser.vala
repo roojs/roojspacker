@@ -966,7 +966,7 @@ namespace JSDOC {
 			//print("PARSE FUNCTION");
 			
 			 
-			var b4braceNesting = this.braceNesting + 0;
+			// var b4braceNesting = this.braceNesting + 0;
 			
 			//this.logR("<B>PARSING FUNCTION</B>");
 			
