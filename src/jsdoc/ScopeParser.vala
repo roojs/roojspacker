@@ -774,8 +774,8 @@ namespace JSDOC {
 			                   
 	 
 			     
-			                    parensNesting++;
-			                    break;
+			                   // parensNesting++;
+			                   // break;
 
 			                
 			                    
