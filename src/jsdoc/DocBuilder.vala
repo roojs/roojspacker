@@ -46,53 +46,56 @@ namespace JSDOC
     {
         DocParser.init();
         
+        
+        var useCache = PackerRun.opt_cache_dir == null ;
+        
         for (var i = 0, l = this.packer.files.size; i < l; i++) {
             
             var srcFile = this.packer.files.get(i);
             
+            if (useCache) {
             
-            var cacheFile = !Options.cacheDirectory.length ? false : 
-                Options.cacheDirectory + srcFile.replace(/\//g, '_') + ".cache";
-            
-            //print(cacheFile);
-            // disabled at present!@!!
-            
-            if (cacheFile  && File.exists(cacheFile)) {
-                // check filetime?
-                
-                var c_mt = File.mtime(cacheFile);
-                var o_mt = File.mtime(srcFile);
-                //println(c_mt.toSource());
-               // println(o_mt.toSource());
-               
-                // this check does not appear to work according to the doc's - need to check it out.
-               
-                if (c_mt > o_mt) { // cached time  > original time!
-                    // use the cached mtimes..
-                    print("Read " + cacheFile);
-                    var syms =  JSON.parse(File.read(cacheFile), function(k, v) {
-                        //print(k);
-                        if (typeof(v) != 'object') {
-                            return v;
-                        }
-                        if (typeof(v['*object']) == 'undefined') {
-                            return v;
-                        }
-                        var cls = imports[v['*object']][v['*object']];
-                        //print(v['*object']);
-                        delete v['*object'];
-                        var ret = new cls();
-                        XObject.extend(ret, v);
-                        return ret;
-                        
-                        
-                    });
-                    //print("Add sybmols " + cacheFile); 
-                    for (var sy in syms._index) {
-                      //  print("ADD:" + sy );
-                       Parser.symbols.addSymbol(syms._index[sy]);
-                    }
-                    continue;
+        		var cacheFile = PackerRun.opt_cache_dir + srcFile.replace(/\//g, '_') + ".cache";
+		        
+		        //print(cacheFile);
+		        // disabled at present!@!!
+		        
+		        if (GLib.FileUtils.test(cacheFile, GLib.FileTest.EXISTS)) {
+		            // check filetime?
+		            var cache_mt = File.new_for_path (cacheFile).queryInfo(FileAttribute.TIME_MODIFIED,
+				                GLib.FileQueryInfoFlags.NONE, null).
+				                get_modification_time();
+		            var original_mt = File.new_for_path (sourceInfo).queryInfo(FileAttribute.TIME_MODIFIED,
+				                GLib.FileQueryInfoFlags.NONE, null).
+				                get_modification_time();
+		            // this check does not appear to work according to the doc's - need to check it out.
+		           
+		            if (cache_mt > original_mt) { // cached time  > original time!
+		                // use the cached mtimes..
+		                print("Read " + cacheFile);
+		                var syms =  JSON.parse(File.read(cacheFile), function(k, v) {
+		                    //print(k);
+		                    if (typeof(v) != 'object') {
+		                        return v;
+		                    }
+		                    if (typeof(v['*object']) == 'undefined') {
+		                        return v;
+		                    }
+		                    var cls = imports[v['*object']][v['*object']];
+		                    //print(v['*object']);
+		                    delete v['*object'];
+		                    var ret = new cls();
+		                    XObject.extend(ret, v);
+		                    return ret;
+		                    
+		                    
+		                });
+		                //print("Add sybmols " + cacheFile); 
+		                for (var sy in syms._index) {
+		                  //  print("ADD:" + sy );
+		                   Parser.symbols.addSymbol(syms._index[sy]);
+		                }
+		                continue;
                 }
             }
             
