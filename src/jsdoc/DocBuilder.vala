@@ -72,7 +72,9 @@ namespace JSDOC
 		           
 		            if (cache_mt > original_mt) { // cached time  > original time!
 		                // use the cached mtimes..
-		                print("Read " + cacheFile);
+		                GLib.debug("Read %s" , cacheFile);
+		                
+		                
 		                var syms =  JSON.parse(File.read(cacheFile), function(k, v) {
 		                    //print(k);
 		                    if (typeof(v) != 'object') {
