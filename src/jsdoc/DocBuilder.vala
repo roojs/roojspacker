@@ -161,22 +161,22 @@ namespace JSDOC
         
         
         GLib.debug("Making directories");
-        if (!File.isDirectory(Options.target))
-            File.mkdir(Options.target);
-        if (!File.isDirectory(Options.target+"/symbols"))
-            File.mkdir(Options.target+"/symbols");
-        if (!File.isDirectory(Options.target+"/symbols/src"))
-            File.mkdir(Options.target+"/symbols/src");
+        if (!File.isDirectory(Options.opt_doc_target))
+            File.mkdir(Options.opt_doc_target);
+        if (!File.isDirectory(Options.opt_doc_target+"/symbols"))
+            File.mkdir(Options.opt_doc_target+"/symbols");
+        if (!File.isDirectory(Options.opt_doc_target+"/symbols/src"))
+            File.mkdir(Options.opt_doc_target+"/symbols/src");
         
-        if (!File.isDirectory(Options.target +"/json")) {
-            File.mkdir(Options.target +"/json");
+        if (!File.isDirectory(Options.opt_doc_target +"/json")) {
+            File.mkdir(Options.opt_doc_target +"/json");
         }
         
         GLib.debug("Copying files from static: %s " , Options.templateDir);
         // copy everything in 'static' into 
         File.list(Options.templateDir + '/static').forEach(function (f) {
-            GLib.debug("Copy %s/static/%s to %s/%s" , Options.templateDir , f,  Options.target + '/' + f);
-            File.copyFile(Options.templateDir + '/static/' + f, Options.target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
+            GLib.debug("Copy %s/static/%s to %s/%s" , Options.templateDir , f,  Options.opt_doc_target + '/' + f);
+            File.copyFile(Options.templateDir + '/static/' + f, Options.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
         });
         
         
@@ -234,7 +234,7 @@ namespace JSDOC
         
         for (var i = 0, l = files.length; i < l; i++) {
             var file = files[i];
-            var targetDir = Options.target + "/symbols/src/";
+            var targetDir = Options.opt_doc_target + "/symbols/src/";
             this.makeSrcFile(file, targetDir);
         }
         //print(JSON.stringify(symbols,null,4));
@@ -258,7 +258,7 @@ namespace JSDOC
             
             
             
-            File.write(Options.target+"/symbols/" +symbol.alias+'.' + Options.publishExt ,
+            File.write(Options.opt_doc_target+"/symbols/" +symbol.alias+'.' + Options.publishExt ,
                     classTemplate.process(symbol));
             
             jsonAll[symbol.alias] = this.publishJSON(symbol);
@@ -267,7 +267,7 @@ namespace JSDOC
             
         }
         
-        File.write(Options.target+"/json/roodata.json",
+        File.write(Options.opt_doc_target+"/json/roodata.json",
                 JSON.stringify({
                     success : true,
                     data : jsonAll
@@ -281,7 +281,7 @@ namespace JSDOC
         
         GLib.debug("build index");
         
-        File.write(Options.target +  "/index."+ Options.publishExt, 
+        File.write(Options.opt_doc_target +  "/index."+ Options.publishExt, 
             classesindexTemplate.process(classes)
         );
         
@@ -307,7 +307,7 @@ namespace JSDOC
         allFiles = allFiles.sort(makeSortby("name"));
         GLib.debug("write files index");
         
-        File.write(Options.target + "/files."+Options.publishExt, 
+        File.write(Options.opt_doc_target + "/files."+Options.publishExt, 
             fileindexTemplate.process(allFiles)
         );
         
@@ -425,9 +425,9 @@ namespace JSDOC
         
         var name = this.srcFileFlatName(sourceFile);
         
-        GLib.debug("Write Source file : " + Options.target+"/symbols/src/" + name);
+        GLib.debug("Write Source file : " + Options.opt_doc_target+"/symbols/src/" + name);
         var pretty = imports.PrettyPrint.toPretty(File.read(  sourceFile));
-        File.write(Options.target+"/symbols/src/" + name, 
+        File.write(Options.opt_doc_target+"/symbols/src/" + name, 
             '<html><head>' +
             '<title>' + sourceFile + '</title>' +
             '<link rel="stylesheet" type="text/css" href="../../../css/highlight-js.css"/>' + 
