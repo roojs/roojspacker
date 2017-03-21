@@ -99,10 +99,21 @@ namespace JSDOC
 
             var txs = new TextStream(src);
             
-            var tr = new TokenReader({ keepComments : true, keepWhite : true , sepIdents: false });
+            var tr = new  TokenReader(this);
+			tr.keepDocs = true;
+			tr.keepWhite = true;
+			tr.keepComments = true;
+			tr.sepIdents = false;
+			tr.collapseWhite = false;
+			tr.filename = src;
+            
+
             
             var ts = new TokenStream(tr.tokenize(txs));
         
+        
+        
+                     
             Parser.parse(ts, srcFile);
             
             if (cacheFile) {
