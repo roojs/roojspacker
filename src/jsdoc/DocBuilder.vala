@@ -175,8 +175,8 @@ namespace JSDOC
         GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
         // copy everything in 'static' into 
         File.list(PackerRun.opt_doc_template_dir + '/static').forEach(function (f) {
-            GLib.debug("Copy %s/static/%s to %s/%s" , PackerRun.opt_doc_template_dir , f,  Options.opt_doc_target + '/' + f);
-            File.copyFile(PackerRun.opt_doc_template_dir + '/static/' + f, Options.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
+            GLib.debug("Copy %s/static/%s to %s/%s" , PackerRun.opt_doc_template_dir , f,  PackerRun.opt_doc_target + '/' + f);
+            File.copyFile(PackerRun.opt_doc_template_dir + '/static/' + f, PackerRun.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
         });
         
         
@@ -230,7 +230,7 @@ namespace JSDOC
         
         var symbols = this.symbolSet.toArray();
         
-        var files = Options.srcFiles;
+        var files = this.packer.files;
         
         for (var i = 0, l = files.length; i < l; i++) {
             var file = files[i];
