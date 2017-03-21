@@ -87,13 +87,13 @@ namespace JSDOC
                 }
             }
             
-            var src = ''
+            var src = "";
             try {
-                Options.LOG.inform("reading : " + srcFile);
-                src = File.read(srcFile);
+                GLib.debug("reading : %s" , srcFile);
+                src = GLib.FileUtils.get_contents(srcFile);
             }
-            catch(e) {
-                Options.LOG.warn("Can't read source file '"+srcFile+"': "+e.message);
+            catch(GLib.FileError e) {
+                GLib.debug("Can't read source file '%s': %s", srcFile, e.message);
                 continue;
             }
 
