@@ -155,12 +155,12 @@ namespace JSDOC
      
         
     publish  : function() {
-        Options.LOG.inform("Publishing");
+        GLib.debug("Publishing");
          
         // link!!!
         
         
-        Options.LOG.inform("Making directories");
+        GLib.debug("Making directories");
         if (!File.isDirectory(Options.target))
             File.mkdir(Options.target);
         if (!File.isDirectory(Options.target+"/symbols"))
@@ -172,15 +172,15 @@ namespace JSDOC
             File.mkdir(Options.target +"/json");
         }
         
-        Options.LOG.inform("Copying files from static: " +Options.templateDir);
+        GLib.debug("Copying files from static: %s " , Options.templateDir);
         // copy everything in 'static' into 
         File.list(Options.templateDir + '/static').forEach(function (f) {
-            Options.LOG.inform("Copy " + Options.templateDir + '/static/' + f + ' to  ' + Options.target + '/' + f);
+            GLib.debug("Copy %s/static/%s to %s/%s" , Options.templateDir , f,  Options.target + '/' + f);
             File.copyFile(Options.templateDir + '/static/' + f, Options.target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
         });
         
         
-        Options.LOG.inform("Setting up templates");
+        GLib.debug("Setting up templates");
         // used to check the details of things being linked to
         Link.symbolSet = this.symbolSet;
         Link.base = "../";
@@ -241,11 +241,11 @@ namespace JSDOC
         
         var classes = symbols.filter(isaClass).sort(makeSortby("alias"));
          
-         //Options.LOG.inform("classTemplate Process : all classes");
+         //GLib.debug("classTemplate Process : all classes");
             
        // var classesIndex = classesTemplate.process(classes); // kept in memory
         
-        Options.LOG.inform("iterate classes");
+        GLib.debug("iterate classes");
         
         var jsonAll = {}; 
         
@@ -253,7 +253,7 @@ namespace JSDOC
             var symbol = classes[i];
             var output = "";
             
-            Options.LOG.inform("classTemplate Process : " + symbol.alias);
+            GLib.debug("classTemplate Process : " + symbol.alias);
             
             
             
@@ -279,7 +279,7 @@ namespace JSDOC
         Link.base = "";
         //var classesIndex = classesTemplate.process(classes);
         
-        Options.LOG.inform("build index");
+        GLib.debug("build index");
         
         File.write(Options.target +  "/index."+ Options.publishExt, 
             classesindexTemplate.process(classes)
@@ -305,7 +305,7 @@ namespace JSDOC
         }
             
         allFiles = allFiles.sort(makeSortby("name"));
-        Options.LOG.inform("write files index");
+        GLib.debug("write files index");
         
         File.write(Options.target + "/files."+Options.publishExt, 
             fileindexTemplate.process(allFiles)
@@ -425,7 +425,7 @@ namespace JSDOC
         
         var name = this.srcFileFlatName(sourceFile);
         
-        Options.LOG.inform("Write Source file : " + Options.target+"/symbols/src/" + name);
+        GLib.debug("Write Source file : " + Options.target+"/symbols/src/" + name);
         var pretty = imports.PrettyPrint.toPretty(File.read(  sourceFile));
         File.write(Options.target+"/symbols/src/" + name, 
             '<html><head>' +
