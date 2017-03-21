@@ -182,17 +182,13 @@ namespace JSDOC
 			FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
 			null);
         
-        File.list(PackerRun.opt_doc_template_dir + '/static').forEach(function (f) {
-            GLib.debug("Copy %s/static/%s to %s/%s" , PackerRun.opt_doc_template_dir , f,  PackerRun.opt_doc_target + '/' + f);
-            File.copyFile(PackerRun.opt_doc_template_dir + '/static/' + f, PackerRun.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
-        });
         
         while ( (info = enumerator.next_file (null)) != null)) {
 			if (info.get_file_type () == FileType.DIRECTORY) {
 				continue;
 			} 
 			var src = .File.new_from_path(info.get_name());
-			
+            GLib.debug("Copy %s to %s/%s" , info.get_name() , f,  PackerRun.opt_doc_target , src.get_basename());			
 			
 			src.copy(
 				GLib.File.new_from_path(PackerRun.opt_doc_target + '/' + src.get_basename()),
