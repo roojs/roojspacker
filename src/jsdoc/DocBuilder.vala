@@ -73,31 +73,17 @@ namespace JSDOC
 		            if (cache_mt > original_mt) { // cached time  > original time!
 		                // use the cached mtimes..
 		                GLib.debug("Read %s" , cacheFile);
-		                
-		                
-		                var syms =  JSON.parse(File.read(cacheFile), function(k, v) {
-		                    //print(k);
-		                    if (typeof(v) != 'object') {
-		                        return v;
-		                    }
-		                    if (typeof(v['*object']) == 'undefined') {
-		                        return v;
-		                    }
-		                    var cls = imports[v['*object']][v['*object']];
-		                    //print(v['*object']);
-		                    delete v['*object'];
-		                    var ret = new cls();
-		                    XObject.extend(ret, v);
-		                    return ret;
-		                    
-		                    
-		                });
-		                //print("Add sybmols " + cacheFile); 
-		                for (var sy in syms._index) {
-		                  //  print("ADD:" + sy );
-		                   Parser.symbols.addSymbol(syms._index[sy]);
-		                }
-		                continue;
+						var parser = new Json.Parser();
+		                parser.load_from_file(cacheFile);
+		                var ar = parser.get_root ().get_array();
+
+		                for(var i = 0;i < ar.get_length();i++) {
+		            		var o = ar.get_object_element(i);
+		            		var sym = Json.gobject_from_data(typeof(Symbol), o) as Symbol;
+		            		DocParser.symbols.add(sym);
+	            		}
+	            		continue;
+            		}
                 }
             }
             
