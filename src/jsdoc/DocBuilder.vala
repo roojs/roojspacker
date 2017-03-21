@@ -123,19 +123,24 @@ namespace JSDOC
                      
             DocParser.parse(ts, srcFile);
             
-            if (cacheFile) {
-                File.write(cacheFile,
-                  JSON.stringify(
-                    Parser.symbolsToObject(srcFile),
-                    null,2
-                  )
-                );
+            if (useCache) {
+        		
+        		var ar = DocParser.symbolsToObject(srcFile);
+        		
+        		var builder = new Json.Builder ();
+            	builder.begin_array ();
+            	for (var i=0;i<ar.size;i++) {
+            	
+					builder.add_object_value (ar.get(i));
+				}
+				builder.end_array ();
+				Json.Generator generator = new Json.Generator ();
+				Json.Node root = builder.get_root ();
+				generator.set_root (root);
+				generator.pretty=  true;
+				generator.ident = 2;
+				generator.to_file(cacheFile);
             
-            }
-            //var outstr = JSON.stringify(
-            //    Parser.filesSymbols[srcFile]._index
-            //);
-            //File.write(cacheFile, outstr);
              
                 
     //		}
