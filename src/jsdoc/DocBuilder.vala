@@ -161,24 +161,45 @@ namespace JSDOC
         
         
         GLib.debug("Making directories");
-        if (!File.isDirectory(PackerRun.opt_doc_target))
-            File.mkdir(PackerRun.opt_doc_target);
-        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols"))
-            File.mkdir(PackerRun.opt_doc_target+"/symbols");
-        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src"))
-            File.mkdir(PackerRun.opt_doc_target+"/symbols/src");
-        
+        if (!File.isDirectory(PackerRun.opt_doc_target)) {
+            Posix.mkdir(PackerRun.opt_doc_target,0755);
+        }
+        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols")) {
+            Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
+        }
+        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src")) {
+            Posix.mkdir(PackerRun.opt_doc_target+"/symbols/src",075);
+        }
         if (!File.isDirectory(PackerRun.opt_doc_target +"/json")) {
-            File.mkdir(PackerRun.opt_doc_target +"/json");
+            File.mkdir(PackerRun.opt_doc_target +"/json",0755);
         }
         
         GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
         // copy everything in 'static' into 
+        
+        var iter = GLib.File.new_from_path(PackerRun.opt_doc_template_dir + "/static")..enumerate_children (
+			"standard::*",
+			FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
+			null);
+        
         File.list(PackerRun.opt_doc_template_dir + '/static').forEach(function (f) {
             GLib.debug("Copy %s/static/%s to %s/%s" , PackerRun.opt_doc_template_dir , f,  PackerRun.opt_doc_target + '/' + f);
             File.copyFile(PackerRun.opt_doc_template_dir + '/static/' + f, PackerRun.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
         });
         
+        while ( (info = enumerator.next_file (null)) != null)) {
+			if (info.get_file_type () == FileType.DIRECTORY) {
+				continue;
+			} 
+			var src = .File.new_from_path(info.get_name());
+			
+			
+			src.copy(
+				GLib.File.new_from_path(PackerRun.opt_doc_target + '/' + src.get_basename()),
+				GLib.FileCopyFlags.OVERWRITE,
+			);
+		}
+	
         
         GLib.debug("Setting up templates");
         // used to check the details of things being linked to
