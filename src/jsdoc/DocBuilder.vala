@@ -161,22 +161,22 @@ namespace JSDOC
         
         
         GLib.debug("Making directories");
-        if (!File.isDirectory(Options.opt_doc_target))
-            File.mkdir(Options.opt_doc_target);
-        if (!File.isDirectory(Options.opt_doc_target+"/symbols"))
-            File.mkdir(Options.opt_doc_target+"/symbols");
-        if (!File.isDirectory(Options.opt_doc_target+"/symbols/src"))
-            File.mkdir(Options.opt_doc_target+"/symbols/src");
+        if (!File.isDirectory(PackerRun.opt_doc_target))
+            File.mkdir(PackerRun.opt_doc_target);
+        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols"))
+            File.mkdir(PackerRun.opt_doc_target+"/symbols");
+        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src"))
+            File.mkdir(PackerRun.opt_doc_target+"/symbols/src");
         
-        if (!File.isDirectory(Options.opt_doc_target +"/json")) {
-            File.mkdir(Options.opt_doc_target +"/json");
+        if (!File.isDirectory(PackerRun.opt_doc_target +"/json")) {
+            File.mkdir(PackerRun.opt_doc_target +"/json");
         }
         
-        GLib.debug("Copying files from static: %s " , Options.templateDir);
+        GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
         // copy everything in 'static' into 
-        File.list(Options.templateDir + '/static').forEach(function (f) {
-            GLib.debug("Copy %s/static/%s to %s/%s" , Options.templateDir , f,  Options.opt_doc_target + '/' + f);
-            File.copyFile(Options.templateDir + '/static/' + f, Options.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
+        File.list(PackerRun.opt_doc_template_dir + '/static').forEach(function (f) {
+            GLib.debug("Copy %s/static/%s to %s/%s" , PackerRun.opt_doc_template_dir , f,  Options.opt_doc_target + '/' + f);
+            File.copyFile(PackerRun.opt_doc_template_dir + '/static/' + f, Options.opt_doc_target + '/' + f,  Gio.FileCopyFlags.OVERWRITE);
         });
         
         
@@ -189,19 +189,19 @@ namespace JSDOC
         Link.srcFileRelName = this.srcFileRelName;
         
         var classTemplate = new Template({
-             templateFile : Options.templateDir  + "/class.html",
+             templateFile : PackerRun.opt_doc_template_dir  + "/class.html",
              Link : Link
         });
         var classesTemplate = new Template({
-            templateFile : Options.templateDir +"/allclasses.html",
+            templateFile : PackerRun.opt_doc_template_dir+"/allclasses.html",
             Link : Link
         });
         var classesindexTemplate = new Template({
-            templateFile : Options.templateDir +"/index.html",
+            templateFile :PackerRun.opt_doc_template_dir +"/index.html",
             Link : Link
         });
         var fileindexTemplate = new Template({   
-            templateFile : Options.templateDir +"/allfiles.html",
+            templateFile : PackerRun.opt_doc_template_dir +"/allfiles.html",
             Link: Link
         });
 
