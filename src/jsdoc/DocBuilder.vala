@@ -232,9 +232,9 @@ namespace JSDOC
         
         var files = this.packer.files;
         
-        for (var i = 0, l = files.length; i < l; i++) {
-            var file = files[i];
-            var targetDir = Options.opt_doc_target + "/symbols/src/";
+        for (var i = 0, l = files.size; i < l; i++) {
+            var file = files.get(i);
+            var targetDir = PackerRun.opt_doc_target + "/symbols/src/";
             this.makeSrcFile(file, targetDir);
         }
         //print(JSON.stringify(symbols,null,4));
@@ -258,7 +258,7 @@ namespace JSDOC
             
             
             
-            File.write(Options.opt_doc_target+"/symbols/" +symbol.alias+'.' + Options.publishExt ,
+            File.write(PackerRun.opt_doc_target+"/symbols/" +symbol.alias+'.' + PackerRun.publishExt ,
                     classTemplate.process(symbol));
             
             jsonAll[symbol.alias] = this.publishJSON(symbol);
@@ -267,7 +267,7 @@ namespace JSDOC
             
         }
         
-        File.write(Options.opt_doc_target+"/json/roodata.json",
+        File.write(PackerRun.opt_doc_target+"/json/roodata.json",
                 JSON.stringify({
                     success : true,
                     data : jsonAll
@@ -281,7 +281,7 @@ namespace JSDOC
         
         GLib.debug("build index");
         
-        File.write(Options.opt_doc_target +  "/index."+ Options.publishExt, 
+        File.write(PackerRun.opt_doc_target +  "/index.html" //+ PackerRun.publishExt, 
             classesindexTemplate.process(classes)
         );
         
