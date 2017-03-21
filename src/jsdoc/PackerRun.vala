@@ -34,7 +34,7 @@ namespace JSDOC
 		* @cfg baseDir -- prefix the files listed in indexfiles with this.
 		*/
 		 
-		public static string opt_real_basedir = null;
+		public static string opt_real_basedir = null; // USE this one it's calcuated based on current path..
 		
 		public static string opt_doc_target = null;
 		public static string opt_doc_template_dir = null;
