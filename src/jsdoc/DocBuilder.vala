@@ -307,7 +307,7 @@ namespace JSDOC
         allFiles = allFiles.sort(makeSortby("name"));
         GLib.debug("write files index");
         
-        File.write(Options.opt_doc_target + "/files.html"//+Options.publishExt, 
+        File.write(PackerRun.opt_doc_target + "/files.html" //+Options.publishExt, 
             fileindexTemplate.process(allFiles)
         );
         
@@ -408,7 +408,7 @@ namespace JSDOC
     },
     srcFileRelName : function(sourceFile)
     {
-      return sourceFile.substring(Options.baseDir.length+1);
+      return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
     },
     srcFileFlatName: function(sourceFile)
     {
@@ -425,9 +425,9 @@ namespace JSDOC
         
         var name = this.srcFileFlatName(sourceFile);
         
-        GLib.debug("Write Source file : " + Options.opt_doc_target+"/symbols/src/" + name);
+        GLib.debug("Write Source file : " + PackerRun.opt_doc_target+"/symbols/src/" + name);
         var pretty = imports.PrettyPrint.toPretty(File.read(  sourceFile));
-        File.write(Options.opt_doc_target+"/symbols/src/" + name, 
+        File.write(PackerRun.opt_doc_target+"/symbols/src/" + name, 
             '<html><head>' +
             '<title>' + sourceFile + '</title>' +
             '<link rel="stylesheet" type="text/css" href="../../../css/highlight-js.css"/>' + 
