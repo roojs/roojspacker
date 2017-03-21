@@ -93,7 +93,7 @@ namespace JSDOC
                 src = GLib.FileUtils.get_contents(srcFile);
             }
             catch(GLib.FileError e) {
-                GLib.debug("Can't read source file '%s': %s", srcFile, e.message);
+                GLib.debug("Can't read source file '%s': %s", srcFile, e.to_string());
                 continue;
             }
 
