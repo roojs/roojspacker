@@ -48,6 +48,7 @@ namespace JSDOC
         
         
         var useCache = PackerRun.opt_cache_dir == null ;
+        var cacheFile = "";
         
         for (var i = 0, l = this.packer.files.size; i < l; i++) {
             
@@ -55,7 +56,7 @@ namespace JSDOC
             
             if (useCache) {
             
-        		var cacheFile = PackerRun.opt_cache_dir + srcFile.replace(/\//g, '_') + ".cache";
+        		cacheFile = PackerRun.opt_cache_dir + srcFile.replace(/\//g, '_') + ".cache";
 		        
 		        //print(cacheFile);
 		        // disabled at present!@!!
