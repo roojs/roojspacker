@@ -99,7 +99,7 @@ namespace JSDOC
 
             var txs = new TextStream(src);
             
-            var tr = new  TokenReader(this);
+            var tr = new  TokenReader(this.packer);
 			tr.keepDocs = true;
 			tr.keepWhite = true;
 			tr.keepComments = true;
