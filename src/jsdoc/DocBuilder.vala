@@ -46,7 +46,7 @@ namespace JSDOC
     {
         DocParser.init();
         
-        for (var i = 0, l = this.srcFiles.length; i < l; i++) {
+        for (var i = 0, l = this.packer.files.length; i < l; i++) {
             
             var srcFile = this.srcFiles[i];
             
