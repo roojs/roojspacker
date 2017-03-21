@@ -86,7 +86,7 @@ namespace JSDOC
 	 
 		 
 		// list of files to compile...
-		Gee.ArrayList<string> files;
+		public Gee.ArrayList<string> files;
 		
 		/**
 		* @cfg activeFile ??? used???
