@@ -307,7 +307,7 @@ namespace JSDOC
         allFiles = allFiles.sort(makeSortby("name"));
         GLib.debug("write files index");
         
-        File.write(Options.opt_doc_target + "/files."+Options.publishExt, 
+        File.write(Options.opt_doc_target + "/files.html"//+Options.publishExt, 
             fileindexTemplate.process(allFiles)
         );
         
