@@ -97,7 +97,7 @@ namespace JSDOC
                 continue;
             }
 
-            var txs = new TextStream(src);
+            var txs =
             
             var tr = new  TokenReader(this.packer);
 			tr.keepDocs = true;
@@ -108,13 +108,20 @@ namespace JSDOC
 			tr.filename = src;
             
 
+            var toks = tr.tokenize( new TextStream(src);
+            if (PackerRun.opt_dump_tokens) {
+				toks.dump();
+				return "";
+				//GLib.Process.exit(0);
+			}
             
-            var ts = new TokenStream(tr.tokenize(txs));
+            
+            var ts = new TokenStream(toks);
         
         
         
                      
-            Parser.parse(ts, srcFile);
+            DocParser.parse(ts, srcFile);
             
             if (cacheFile) {
                 File.write(cacheFile,
