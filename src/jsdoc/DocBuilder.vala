@@ -48,7 +48,7 @@ namespace JSDOC
         
         for (var i = 0, l = this.packer.files.size; i < l; i++) {
             
-            var srcFile = this.srcFiles[i];
+            var srcFile = this.packer.files.get(i);
             
             
             var cacheFile = !Options.cacheDirectory.length ? false : 
