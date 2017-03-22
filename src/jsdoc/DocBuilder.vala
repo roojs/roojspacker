@@ -362,7 +362,7 @@ namespace JSDOC
             if (p.optvalues.size) {
         		add.set_array_member("desc",p.optvalues_as_json_array());
             }
-            props.push(add );
+            props.add_object(add );
         }
         
          
