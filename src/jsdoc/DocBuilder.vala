@@ -370,16 +370,18 @@ namespace JSDOC
     		var e = data.methods.get(i);
     		if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) != "") {
     			ownEvents.add(e);
+			}
+		};
+		ownEvents.sort((a,b) => {
+			return a.name.collate(b.name);
+		});
         
-        var ownEvents = data.methods.filter( function(e){
-                return e.isEvent && !e.comment.getTag('hide').length;
-            }).sort(makeSortby("name"));
-             
+       
         
-        var events = [];
-        var m;
-        for(var i =0; i < ownEvents.length;i++) {
-            m = ownEvents[i];
+        var events = new JSON.Array();
+         
+        for(var i =0; i < ownEvents.size;i++) {
+            var m = ownEvents.get(i);
             events.push( {
                 name : m.name.substring(1),
                 sig : this.makeFuncSkel(m.params),
