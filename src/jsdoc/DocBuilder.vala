@@ -385,7 +385,7 @@ namespace JSDOC
             add.set_string_member("name",m.name.substring(1,m.name.length-1);
             add.set_string_member("type","function");
             add.set_string_member("desc",m.desc);
-            add.set_string_member("sign", this.makeFuncSkel(m.params));
+            add.set_string_member("sig", this.makeFuncSkel(m.params));
             events.add(add);
         }
         
@@ -394,30 +394,25 @@ namespace JSDOC
         for(var i =0; i < data.methods.size;i++) {
     		var e = data.methods.get(i);
     		if (!e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
-    			ownEvents.add(e);
+    			ownMethods.add(e);
 			}
 		};
-		ownEvents.sort((a,b) => {
+		ownMethods.sort((a,b) => {
 			return a.name.collate(b.name);
 		});
         
-        var ownMethods = data.methods.filter( function(e){
-                return !e.isEvent && !e.comment.getTag('hide').length;
-            }).sort(makeSortby("name"));
-             
-        
-        var methods = [];
-        
-        for(var i =0; i < ownMethods.length;i++) {
-            m = ownMethods[i];
-            methods.push( {
-                name : m.name,
-                sig : this.makeMethodSkel(m.params),
-                type : 'function',
-                desc : m.desc
-            });
+  		var methods = new JSON.Array();
+         
+        for(var i =0; i < ownMethods.size;i++) {
+            var m = ownMethods.get(i);
+            var add = new JSON.Object();
+            add.set_string_member("name",m.name.substring(1,m.name.length-1);
+            add.set_string_member("type","function");
+            add.set_string_member("desc",m.desc);
+            add.set_string_member("sig", this.makeMethodSkel(m.params));
+            events.add(add);
         }
-        
+         
         //println(props.toSource());
         // we need to output:
         //classname => {
@@ -425,14 +420,12 @@ namespace JSDOC
         //        type=>
         //        desc=>
         //    }
-
-        var ret = {
-            props : props,
-            events: events,
-            methods : methods,
-        };
-        return ret;
-        
+		var ret =  new JSON.Object();
+		ret.set_object_member("props", props);
+		ret.set_object_member("events", events);
+		ret.set_object_member("methods", methods);
+		
+       return ret;
         
         
         // b) methods
