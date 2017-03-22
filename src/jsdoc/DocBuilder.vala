@@ -351,8 +351,8 @@ namespace JSDOC
         var props = []; 
         //println(cfgProperties.toSource());
         var p ='';
-        for(var i =0; i < cfgProperties.length;i++) {
-            p = cfgProperties[i];
+        for(var i =0; i < cfgProperties.size;i++) {
+            p = cfgPropertiesget(i);
             var add = {
                 name : p.name,
                 type : p.type,
