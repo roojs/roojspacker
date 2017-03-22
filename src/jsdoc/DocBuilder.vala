@@ -361,7 +361,6 @@ namespace JSDOC
                 
             if (p.optvalues.size) {
         		add.set_array_member("desc",p.optvalues_as_json_array());
-                add.optvals = p.optvalues;
             }
             props.push(add );
         }
