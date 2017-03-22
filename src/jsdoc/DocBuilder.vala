@@ -433,9 +433,12 @@ namespace JSDOC
         
         
     },
+    
+    /*
+    // in Link (js) ???
     srcFileRelName : function(sourceFile)
     {
-      return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
+  	  return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
     },
     srcFileFlatName: function(sourceFile)
     {
@@ -444,6 +447,7 @@ namespace JSDOC
         return name.replace(/\:/g, "_") + '.html'; //??;
         
     },
+    */
     
     makeSrcFile: function(sourceFile) 
     {
