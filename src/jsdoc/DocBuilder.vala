@@ -376,8 +376,6 @@ namespace JSDOC
 			return a.name.collate(b.name);
 		});
         
-       
-        
         var events = new JSON.Array();
          
         for(var i =0; i < ownEvents.size;i++) {
