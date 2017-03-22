@@ -342,7 +342,9 @@ namespace JSDOC
         var cfgProperties = new GLib.ArrayList<Symbol>();
         if (!data.comment.getTag(DocTagTitle.SINGLETON).length) {
             cfgProperties = data.configToArray();
-            cfgProperties = cfgProperties.sort(makeSortby("alias"));
+            cfgProperties = cfgProperties.sort((a,b) =>{
+        		return a.alias.collate(b.alias);
+            });
             
         }
         var props = []; 
