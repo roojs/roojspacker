@@ -456,15 +456,15 @@ namespace JSDOC
         
         var name = this.srcFileFlatName(sourceFile);
         
-        GLib.debug("Write Source file : " + PackerRun.opt_doc_target+"/symbols/src/" + name);
-        var pretty = imports.PrettyPrint.toPretty(File.read(  sourceFile));
+        GLib.debug("Write Source file : %s/symbols/src/%s", opt_doc_target, name);
+        var pretty = PrettyPrint.toPretty(FileUtils.get_contenst(sourceFile));
         File.write(PackerRun.opt_doc_target+"/symbols/src/" + name, 
-            '<html><head>' +
-            '<title>' + sourceFile + '</title>' +
-            '<link rel="stylesheet" type="text/css" href="../../../css/highlight-js.css"/>' + 
-            '</head><body class="highlightpage">' +
+            "<html><head>" +
+            "<title>" + sourceFile + "</title>" +
+            "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../css/highlight-js.css\"/>" + 
+            "</head><body class=\"highlightpage\">" +
             pretty +
-            '</body></html>');
+            "</body></html>");
     },
     /**
      * used by JSON output to generate a function skeleton
