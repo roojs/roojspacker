@@ -348,19 +348,19 @@ namespace JSDOC
             
         }
         
-        var props = []; 
+        var props = new JSON.Array();; 
         //println(cfgProperties.toSource());
-        var p ='';
+        
         for(var i =0; i < cfgProperties.size;i++) {
-            p = cfgPropertiesget(i);
-            var add = {
-                name : p.name,
-                type : p.type,
-                desc : p.desc,
+            var p = cfgPropertiesget.get(i);
+            var add = new JSON.Object();
+            add.set_string_member("name",p.name);
+            add.set_string_member("type",p.type);
+            add.set_string_member("desc",p.desc);
+            add.set_string_member("memberOf", p.memberOf == data.alias ? '' : p.memberOf);
                 
-                memberOf : p.memberOf == data.alias ? '' : p.memberOf
-            }
-            if (p.optvalues) {
+            if (p.optvalues.size) {
+        		add.set_array_member("desc",p.optvalues_as_json_array());
                 add.optvals = p.optvalues;
             }
             props.push(add );
