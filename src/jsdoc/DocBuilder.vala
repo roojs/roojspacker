@@ -347,6 +347,7 @@ namespace JSDOC
             });
             
         }
+        
         var props = []; 
         //println(cfgProperties.toSource());
         var p ='';
