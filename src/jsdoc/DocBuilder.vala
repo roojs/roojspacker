@@ -199,33 +199,21 @@ namespace JSDOC
         
         GLib.debug("Setting up templates");
         // used to check the details of things being linked to
-        Link.symbolSet = this.symbolSet;
+        Link.symbolSet = this.symbolSet;// need to work out where 'symbolset will be stored/set!
         Link.base = "../";
         
-        Link.srcFileFlatName = this.srcFileFlatName;
-        Link.srcFileRelName = this.srcFileRelName;
+        Link.srcFileFlatName = this.srcFileFlatName; // where set?
+        Link.srcFileRelName = this.srcFileRelName; // where set?
         
-        var classTemplate = new Template({
-             templateFile : PackerRun.opt_doc_template_dir  + "/class.html",
-             Link : Link
-        });
-        var classesTemplate = new Template({
-            templateFile : PackerRun.opt_doc_template_dir+"/allclasses.html",
-            Link : Link
-        });
-        var classesindexTemplate = new Template({
-            templateFile :PackerRun.opt_doc_template_dir +"/index.html",
-            Link : Link
-        });
-        var fileindexTemplate = new Template({   
-            templateFile : PackerRun.opt_doc_template_dir +"/allfiles.html",
-            Link: Link
-        });
+        var classTemplate = new Template( PackerRun.opt_doc_template_dir  + "/class." + PackerRun.opt_doc_ext );
+        var classesTemplate = new Template( PackerRun.opt_doc_template_dir+"/allclasses." + PackerRun.opt_doc_ext  );
+        var classesindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/index."  + PackerRun.opt_doc_ext );
+        var fileindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/allfiles."+ PackerRun.opt_doc_ext );
 
         
-        classTemplate.symbolSet = this.symbolSet;
+        classTemplate.symbolSet = this.symbolSet; // where?
         
-        
+        /*
         function hasNoParent($) {
             return ($.memberOf == "")
         }
@@ -235,7 +223,7 @@ namespace JSDOC
         function isaClass($) {
             return ($.is("CONSTRUCTOR") || $.isNamespace || $.isClass); 
         }
-        
+        */
         
         
         
@@ -255,8 +243,16 @@ namespace JSDOC
             this.makeSrcFile(file, targetDir);
         }
         //print(JSON.stringify(symbols,null,4));
+        var classes = new Gee.ArrayList<Symbol>();
         
-        var classes = symbols.filter(isaClass).sort(makeSortby("alias"));
+        for(var symbol in symbol) {
+    		if (symbol.isaClass()) { 
+    			classes.add(symbol).;
+			}
+        }   
+        classes.sort( (a,b) => {
+    		return a.alias.collate(b.alias); 
+		});
          
          //GLib.debug("classTemplate Process : all classes");
             
@@ -264,32 +260,31 @@ namespace JSDOC
         
         GLib.debug("iterate classes");
         
-        var jsonAll = {}; 
+        var jsonAll = new JSON.Object(); 
         
-        for (var i = 0, l = classes.length; i < l; i++) {
-            var symbol = classes[i];
+        for (var i = 0, l = classes.size; i < l; i++) {
+            var symbol = classes.get(i);
             var output = "";
             
-            GLib.debug("classTemplate Process : " + symbol.alias);
+            GLib.debug("classTemplate Process : %s" , symbol.alias);
             
             
             
             
-            File.write(PackerRun.opt_doc_target+"/symbols/" +symbol.alias+'.' + PackerRun.publishExt ,
-                    classTemplate.process(symbol));
+            FileUtils.set_contents(
+    				PackerRun.opt_doc_target+"/symbols/" +symbol.alias+'.' + PackerRun.opt_doc_ext ,
+                    classTemplate.process(symbol)
+            );
             
-            jsonAll[symbol.alias] = this.publishJSON(symbol);
-            
-            
-            
+            jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
+
         }
-        
-        File.write(PackerRun.opt_doc_target+"/json/roodata.json",
-                JSON.stringify({
-                    success : true,
-                    data : jsonAll
-                }, null, 1)
-        );
+        Json.Generator generator = new Json.Generator ();
+		generator.set_root (jsonAll.get_node());
+		generator.pretty=  true;
+		generator.ident = 2;
+		generator.to_file(PackerRun.opt_doc_target+"/json/roodata.json",);
+
         
         
         // regenrate the index with different relative links
@@ -298,14 +293,15 @@ namespace JSDOC
         
         GLib.debug("build index");
         
-        File.write(PackerRun.opt_doc_target +  "/index.html" //+ PackerRun.publishExt, 
+        FileUtils.set_contents(
+    		PackerRun.opt_doc_target +  "/index." _ PackerRun.opt_doc_ext  
             classesindexTemplate.process(classes)
         );
         
         // blank everything???? classesindexTemplate = classesIndex = classes = null;
         
  
-        
+        /*
         var documentedFiles = symbols.filter(function ($) {
             return ($.is("FILE"))
         });
@@ -313,7 +309,7 @@ namespace JSDOC
         var allFiles = [];
         
         for (var i = 0; i < files.length; i++) {
-            allFiles.push(new  Symbol(files[i], [], "FILE", new DocComment("/** */")));
+            allFiles.push(new  Symbol(files[i], [], "FILE", new DocComment("/** *" + "/")));
         }
         
         for (var i = 0; i < documentedFiles.length; i++) {
@@ -324,26 +320,27 @@ namespace JSDOC
         allFiles = allFiles.sort(makeSortby("name"));
         GLib.debug("write files index");
         
-        File.write(PackerRun.opt_doc_target + "/files.html" //+Options.publishExt, 
+        FileUtils.set_contents(
+    		PackerRun.opt_doc_target + "/files." + PackerRun.opt_doc_ext , 
             fileindexTemplate.process(allFiles)
         );
+        */
         
         
         
-        
-    },
+    }
     /**
      * JSON files are lookup files for the documentation
      * - can be used by IDE's or AJAX based doc tools
      * 
      * 
      */
-    publishJSON : function(data)
+    JSON.Object publishJSON (Symbol data)
     {
         // what we need to output to be usefull...
         // a) props..
-        var cfgProperties = [];
-        if (!data.comment.getTag('singleton').length) {
+        var cfgProperties = new GLib.ArrayList<Symbol>();
+        if (!data.comment.getTag(DocTagTitle.SINGLETON).length) {
             cfgProperties = data.configToArray();
             cfgProperties = cfgProperties.sort(makeSortby("alias"));
             
