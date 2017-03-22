@@ -382,20 +382,12 @@ namespace JSDOC
          
         for(var i =0; i < ownEvents.size;i++) {
             var m = ownEvents.get(i);
-              var add = new JSON.Object();
-            add.set_string_member("name",p.name);
-            add.set_string_member("type",p.type);
-            add.set_string_member("desc",p.desc);
-            add.set_string_member("memberOf", p.memberOf == data.alias ? '' : p.memberOf);
-            
-            
-            
-            events.push( {
-                name : m.name.substring(1),
-                sig : this.makeFuncSkel(m.params),
-                type : 'function',
-                desc : m.desc
-            });
+            var add = new JSON.Object();
+            add.set_string_member("name",m.name.substring(1,m.name.length-1);
+            add.set_string_member("type","function");
+            add.set_string_member("desc",m.desc);
+            add.set_string_member("sign", this.makeFuncSkel(m.params));
+            events.add(add);
         }
         
         var ownMethods = data.methods.filter( function(e){
