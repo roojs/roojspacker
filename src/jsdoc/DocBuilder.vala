@@ -469,8 +469,11 @@ namespace JSDOC
     /**
      * used by JSON output to generate a function skeleton
      */
-    makeFuncSkel :function(params) {
-        if (!params) return "function ()\n{\n\n}";
+    string makeFuncSkel(Gee.ArrayList<Symbol> params) {
+        if (params.length < 0) {
+    		 return "function ()\n{\n\n}";
+		}
+		
         return "function ("	+
             params.filter(
                 function($) {
