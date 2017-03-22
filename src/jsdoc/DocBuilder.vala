@@ -449,7 +449,7 @@ namespace JSDOC
     },
     */
     
-    makeSrcFile: function(sourceFile) 
+    void makeSrcFile(string sourceFile) 
     {
         // this stuff works...
      
