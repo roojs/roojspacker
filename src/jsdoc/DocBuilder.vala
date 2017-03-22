@@ -365,10 +365,11 @@ namespace JSDOC
             props.add_object(add );
         }
         
+        ///// --- events
         var ownEvents = new Gee.ArrayList<Symbol>();
         for(var i =0; i < data.methods.size;i++) {
     		var e = data.methods.get(i);
-    		if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) != "") {
+    		if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
     			ownEvents.add(e);
 			}
 		};
@@ -387,6 +388,18 @@ namespace JSDOC
             add.set_string_member("sign", this.makeFuncSkel(m.params));
             events.add(add);
         }
+        
+        // methods
+        var ownMethods = new Gee.ArrayList<Symbol>();
+        for(var i =0; i < data.methods.size;i++) {
+    		var e = data.methods.get(i);
+    		if (!e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
+    			ownEvents.add(e);
+			}
+		};
+		ownEvents.sort((a,b) => {
+			return a.name.collate(b.name);
+		});
         
         var ownMethods = data.methods.filter( function(e){
                 return !e.isEvent && !e.comment.getTag('hide').length;
