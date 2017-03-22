@@ -365,7 +365,12 @@ namespace JSDOC
             props.add_object(add );
         }
         
-         
+        var ownEvents = new Gee.ArrayList<Symbol>();
+        for(var i =0; i < data.methods.size;i++) {
+    		var e = data.methods.get(i);
+    		if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) != "") {
+    			ownEvents.add(e);
+        
         var ownEvents = data.methods.filter( function(e){
                 return e.isEvent && !e.comment.getTag('hide').length;
             }).sort(makeSortby("name"));
