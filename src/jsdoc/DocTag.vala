@@ -8,7 +8,8 @@ namespace JSDOC
 		PARAM,
 		PROPERTY,
 		CFG,
-		EXAMPLE
+		EXAMPLE,
+		SINGLETON,
 	}
 	
 	errordomain DocTagException {
