@@ -40,13 +40,17 @@ namespace JSDOC
 		
 		static bool done_init = false;
 		
+		static GLib.Regex regex_dotdot;
+		
 		static init()
 		{
 			if (done_init) {
 				return;
 			}
-			
-			
+			// ./ or ../
+			DocBuilder.regex_dotdot = new Regex("\\\\.\\\\.?[/]");
+
+
 		}
 		
 		
