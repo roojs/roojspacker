@@ -41,7 +41,7 @@ namespace JSDOC
 		
 		static GLib.Regex regex_dotdot;
 		
-		static init()
+		static void init()
 		{
 			if (done_init) {
 				return;
@@ -72,7 +72,7 @@ namespace JSDOC
 		        
 		        if (useCache) {
 		        
-		    		cacheFile = PackerRun.opt_cache_dir + srcFile.replace(/\//g, '_') + ".cache";
+		    		cacheFile = PackerRun.opt_cache_dir + srcFile.replace("/", '_') + ".cache";
 				    
 				    //print(cacheFile);
 				    // disabled at present!@!!
