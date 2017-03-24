@@ -456,15 +456,14 @@ namespace JSDOC
     string srcFileRelName(string sourceFile)
     {
   		return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
-    },
+    }
     string srcFileFlatName(string sourceFile)
     {
         var name = this.srcFileRelName(sourceFile);
+        name = DocBuilder.regex_dotdot.replace(name, name.length, 0, "");
+        name = name.replace("/", "_").replace(":", "_") + .".html";
         
-        name = name.replace(/\.\.?[\\\/]/g, "").replace(/[\\\/]/g, "_");
-        return name.replace(/\:/g, "_") + '.html'; //??;
-        
-    },
+    }
     
     
     void makeSrcFile(string sourceFile) 
