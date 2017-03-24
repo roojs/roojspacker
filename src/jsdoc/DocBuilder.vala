@@ -33,7 +33,6 @@ namespace JSDOC
 		    // this currently uses the concept of publish.js...
 		    
 		    this.publish();
-         
         
         
 		}

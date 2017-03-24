@@ -19,7 +19,8 @@
             "/src/jsdoc/Token.vala",
             "/src/jsdoc",
             "/src/jsdoc/DocTag.vala",
-            "/src/jsdoc/DocComment.vala"
+            "/src/jsdoc/DocComment.vala",
+            "/src/jsdoc/DocBuilder.vala"
         ],
         "packages" : [
         ]
