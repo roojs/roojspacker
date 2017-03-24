@@ -114,7 +114,7 @@ namespace JSDOC
 		            continue;
 		        }
 
-		        var txs =
+		          
 		        
 		        var tr = new  TokenReader(this.packer);
 				tr.keepDocs = true;
