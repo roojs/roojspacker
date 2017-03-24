@@ -166,7 +166,7 @@ namespace JSDOC {
             
                
         },
-
+/*
         serialize : function() {
             var keys = [];
             for (var p in this) {
@@ -187,7 +187,8 @@ namespace JSDOC {
             }
             return "\n{\n" + out + "}\n";
         },
-
+*/
+/*
         clone : function() {
             var clone = new Symbol();
             clone.populate.apply(clone, this.$args); // repopulate using the original arguments
@@ -195,7 +196,7 @@ namespace JSDOC {
             return clone;
         },
 
-
+*/
 
 
         //__defineSetter__("name",
