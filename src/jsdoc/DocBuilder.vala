@@ -311,7 +311,7 @@ namespace JSDOC
 		    GLib.debug("build index");
 		    
 		    FileUtils.set_contents(
-				PackerRun.opt_doc_target +  "/index." _ PackerRun.opt_doc_ext , 
+				PackerRun.opt_doc_target +  "/index." + PackerRun.opt_doc_ext , 
 		        classesindexTemplate.process(classes)
 		    );
 		    
