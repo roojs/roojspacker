@@ -16,7 +16,7 @@ namespace JSDOC
 		public DocBuilder (Packer p) 
 		{
 			
-			
+			DocBuilder.init();
 			GLib.debug("Roo JsDoc Toolkit started  at %s ",  (new GLib.DateTime()).format("Y/m/d H:i:s"));
 			
 			this.packer = p;
@@ -37,13 +37,26 @@ namespace JSDOC
         
         
 		}
-    /**
-     * Parse the source files.
-     * 
-     */
+		
+		static bool done_init = false;
+		
+		static init()
+		{
+			if (done_init) {
+				return;
+			}
+			
+			
+		}
+		
+		
+		/**
+		 * Parse the source files.
+		 * 
+		 */
 
-    private void parseSrcFiles() 
-    {
+		private void parseSrcFiles() 
+		{
         DocParser.init();
         
         
