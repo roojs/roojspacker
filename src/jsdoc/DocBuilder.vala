@@ -96,7 +96,7 @@ namespace JSDOC
 
 				            for(var i = 0;i < ar.get_length();i++) {
 				        		var o = ar.get_object_element(i);
-				        		var sym = Json.gobject_from_data(typeof(Symbol), o) as Symbol;
+				        		var sym = JSON.gobject_from_data(typeof(Symbol), o) as Symbol;
 				        		DocParser.symbols.add(sym);
 			        		}
 			        		continue;
