@@ -346,172 +346,173 @@ namespace JSDOC
 		    
 		    
 		}
-    /**
-     * JSON files are lookup files for the documentation
-     * - can be used by IDE's or AJAX based doc tools
-     * 
-     * 
-     */
-    JSON.Object publishJSON (Symbol data)
-    {
-        // what we need to output to be usefull...
-        // a) props..
-        var cfgProperties = new GLib.ArrayList<Symbol>();
-        if (!data.comment.getTag(DocTagTitle.SINGLETON).length) {
-            cfgProperties = data.configToArray();
-            cfgProperties = cfgProperties.sort((a,b) =>{
-        		return a.alias.collate(b.alias);
-            });
-            
-        }
-        
-        var props = new JSON.Array();; 
-        //println(cfgProperties.toSource());
-        
-        for(var i =0; i < cfgProperties.size;i++) {
-            var p = cfgPropertiesget.get(i);
-            var add = new JSON.Object();
-            add.set_string_member("name",p.name);
-            add.set_string_member("type",p.type);
-            add.set_string_member("desc",p.desc);
-            add.set_string_member("memberOf", p.memberOf == data.alias ? '' : p.memberOf);
-                
-            if (p.optvalues.size) {
-        		add.set_array_member("desc",p.optvalues_as_json_array());
-            }
-            props.add_object(add );
-        }
-        
-        ///// --- events
-        var ownEvents = new Gee.ArrayList<Symbol>();
-        for(var i =0; i < data.methods.size;i++) {
-    		var e = data.methods.get(i);
-    		if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
-    			ownEvents.add(e);
-			}
-		};
-		ownEvents.sort((a,b) => {
-			return a.name.collate(b.name);
-		});
-        
-        var events = new JSON.Array();
-         
-        for(var i =0; i < ownEvents.size;i++) {
-            var m = ownEvents.get(i);
-            var add = new JSON.Object();
-            add.set_string_member("name",m.name.substring(1,m.name.length-1));
-            add.set_string_member("type","function");
-            add.set_string_member("desc",m.desc);
-            add.set_string_member("sig", this.makeFuncSkel(m.params));
-            events.add(add);
-        }
-        
-        // methods
-        var ownMethods = new Gee.ArrayList<Symbol>();
-        for(var i =0; i < data.methods.size;i++) {
-    		var e = data.methods.get(i);
-    		if (!e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
-    			ownMethods.add(e);
-			}
-		};
-		ownMethods.sort((a,b) => {
-			return a.name.collate(b.name);
-		});
-        
-  		var methods = new JSON.Array();
-         
-        for(var i =0; i < ownMethods.size;i++) {
-            var m = ownMethods.get(i);
-            var add = new JSON.Object();
-            add.set_string_member("name",m.name.substring(1,m.name.length-1);
-            add.set_string_member("type","function");
-            add.set_string_member("desc",m.desc);
-            add.set_string_member("sig", this.makeMethodSkel(m.params));
-            events.add(add);
-        }
-         
-        //println(props.toSource());
-        // we need to output:
-        //classname => {
-        //    propname => 
-        //        type=>
-        //        desc=>
-        //    }
-		var ret =  new JSON.Object();
-		ret.set_object_member("props", props);
-		ret.set_object_member("events", events);
-		ret.set_object_member("methods", methods);
+		/**
+		 * JSON files are lookup files for the documentation
+		 * - can be used by IDE's or AJAX based doc tools
+		 * 
+		 * 
+		 */
+		JSON.Object publishJSON (Symbol data)
+		{
+		    // what we need to output to be usefull...
+		    // a) props..
+		    var cfgProperties = new GLib.ArrayList<Symbol>();
+		    if (!data.comment.getTag(DocTagTitle.SINGLETON).length) {
+		        cfgProperties = data.configToArray();
+		        cfgProperties = cfgProperties.sort((a,b) =>{
+		    		return a.alias.collate(b.alias);
+		        });
+		        
+		    }
+		    
+		    var props = new JSON.Array();; 
+		    //println(cfgProperties.toSource());
+		    
+		    for(var i =0; i < cfgProperties.size;i++) {
+		        var p = cfgPropertiesget.get(i);
+		        var add = new JSON.Object();
+		        add.set_string_member("name",p.name);
+		        add.set_string_member("type",p.type);
+		        add.set_string_member("desc",p.desc);
+		        add.set_string_member("memberOf", p.memberOf == data.alias ? '' : p.memberOf);
+		            
+		        if (p.optvalues.size) {
+		    		add.set_array_member("desc",p.optvalues_as_json_array());
+		        }
+		        props.add_object(add );
+		    }
+		    
+		    ///// --- events
+		    var ownEvents = new Gee.ArrayList<Symbol>();
+		    for(var i =0; i < data.methods.size;i++) {
+				var e = data.methods.get(i);
+				if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
+					ownEvents.add(e);
+				}
+			};
+			ownEvents.sort((a,b) => {
+				return a.name.collate(b.name);
+			});
+		    
+		    var events = new JSON.Array();
+		     
+		    for(var i =0; i < ownEvents.size;i++) {
+		        var m = ownEvents.get(i);
+		        var add = new JSON.Object();
+		        add.set_string_member("name",m.name.substring(1,m.name.length-1));
+		        add.set_string_member("type","function");
+		        add.set_string_member("desc",m.desc);
+		        add.set_string_member("sig", this.makeFuncSkel(m.params));
+		        events.add(add);
+		    }
+		    
+		    // methods
+		    var ownMethods = new Gee.ArrayList<Symbol>();
+		    for(var i =0; i < data.methods.size;i++) {
+				var e = data.methods.get(i);
+				if (!e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
+					ownMethods.add(e);
+				}
+			};
+			ownMethods.sort((a,b) => {
+				return a.name.collate(b.name);
+			});
+		    
+	  		var methods = new JSON.Array();
+		     
+		    for(var i =0; i < ownMethods.size;i++) {
+		        var m = ownMethods.get(i);
+		        var add = new JSON.Object();
+		        add.set_string_member("name",m.name.substring(1,m.name.length-1));
+		        add.set_string_member("type","function");
+		        add.set_string_member("desc",m.desc);
+		        add.set_string_member("sig", this.makeMethodSkel(m.params));
+		        events.add(add);
+		    }
+		     
+		    //println(props.toSource());
+		    // we need to output:
+		    //classname => {
+		    //    propname => 
+		    //        type=>
+		    //        desc=>
+		    //    }
+			var ret =  new JSON.Object();
+			ret.set_object_member("props", props);
+			ret.set_object_member("events", events);
+			ret.set_object_member("methods", methods);
 		
-       return ret;
-        
-        
-        // b) methods
-        // c) events
-        
-        
-    },
-     
-    // in Link (js) ???
-    string srcFileRelName(string sourceFile)
-    {
-  		return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
-    }
-    string srcFileFlatName(string sourceFile)
-    {
-        var name = this.srcFileRelName(sourceFile);
-        name = DocBuilder.regex_dotdot.replace(name, name.length, 0, "");
-        name = name.replace("/", "_").replace(":", "_") + .".html";
-        
-    }
-    
-    
-    void makeSrcFile(string sourceFile) 
-    {
-        // this stuff works...
-     
-        
-        var name = this.srcFileFlatName(sourceFile);
-        
-        GLib.debug("Write Source file : %s/symbols/src/%s", opt_doc_target, name);
-        var pretty = PrettyPrint.toPretty(FileUtils.get_contenst(sourceFile));
-        File.write(PackerRun.opt_doc_target+"/symbols/src/" + name, 
-            "<html><head>" +
-            "<title>" + sourceFile + "</title>" +
-            "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../css/highlight-js.css\"/>" + 
-            "</head><body class=\"highlightpage\">" +
-            pretty +
-            "</body></html>");
-    },
-    /**
-     * used by JSON output to generate a function skeleton
-     */
-     /*
-    string makeFuncSkel(Gee.ArrayList<Symbol> params) {
-        if (params.length < 0) {
-    		 return "function ()\n{\n\n}";
+		   return ret;
+		    
+		    
+		    // b) methods
+		    // c) events
+		    
+		    
+		}
+		 
+		// in Link (js) ???
+		string srcFileRelName(string sourceFile)
+		{
+	  		return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
+		}
+		string srcFileFlatName(string sourceFile)
+		{
+		    var name = this.srcFileRelName(sourceFile);
+		    name = DocBuilder.regex_dotdot.replace(name, name.length, 0, "");
+		    name = name.replace("/", "_").replace(":", "_") + ".html";
+		    
 		}
 		
-        return "function ("	+
-            params.filter(
-                function($) {
-                    return $.name.indexOf(".") == -1; // don't show config params in signature
-                }
-            ).map( function($) { return $.name == 'this' ? '_self' : $.name; } ).join(", ") +
-        ")\n{\n\n}";
-    },
-	makeMethodSkel :function(params) {
-        if (!params) return "()";
-        return "("	+
-            params.filter(
-                function($) {
-                    return $.name.indexOf(".") == -1; // don't show config params in signature
-                }
-            ).map( function($) { return  $.type + " "  +(  $.name == 'this' ? '_self' : $.name ); } ).join(", ") +
-        ")";
-    }
- 
+		
+		void makeSrcFile(string sourceFile) 
+		{
+		    // this stuff works...
+		 
+		    
+		    var name = this.srcFileFlatName(sourceFile);
+		    
+		    GLib.debug("Write Source file : %s/symbols/src/%s", opt_doc_target, name);
+		    var pretty = PrettyPrint.toPretty(FileUtils.get_contenst(sourceFile));
+		    File.write(PackerRun.opt_doc_target+"/symbols/src/" + name, 
+		        "<html><head>" +
+		        "<title>" + sourceFile + "</title>" +
+		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../css/highlight-js.css\"/>" + 
+		        "</head><body class=\"highlightpage\">" +
+		        pretty +
+		        "</body></html>");
+		}
+		/**
+		 * used by JSON output to generate a function skeleton
+		 */
+		 /*
+		string makeFuncSkel(Gee.ArrayList<Symbol> params) {
+		    if (params.length < 0) {
+				 return "function ()\n{\n\n}";
+			}
+		
+		    return "function ("	+
+		        params.filter(
+		            function($) {
+		                return $.name.indexOf(".") == -1; // don't show config params in signature
+		            }
+		        ).map( function($) { return $.name == 'this' ? '_self' : $.name; } ).join(", ") +
+		    ")\n{\n\n}";
+		},
+		makeMethodSkel :function(params) {
+		    if (!params) return "()";
+		    return "("	+
+		        params.filter(
+		            function($) {
+		                return $.name.indexOf(".") == -1; // don't show config params in signature
+		            }
+		        ).map( function($) { return  $.type + " "  +(  $.name == 'this' ? '_self' : $.name ); } ).join(", ") +
+		    ")";
+		}
+	 
     */
-};
+	}
+}
   
 
 
