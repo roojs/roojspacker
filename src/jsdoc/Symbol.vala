@@ -1,64 +1,81 @@
-//<script type="text/javascript">
-
-XObject         = imports.XObject.XObject;
-
-SymbolSet       = imports.SymbolSet.SymbolSet;
-//Parser          = imports.Parser.Parser;
-DocComment      = imports.DocComment.DocComment;
-DocTag          = imports.DocTag.DocTag;
+ 
 /**
 	Create a new Symbol.
 	@class Represents a symbol in the source code.
  */
-Symbol = XObject.define(
-    function() {
-        this.init();
-        if (arguments.length) this.populate.apply(this, arguments);
+ 
+ 
+namespace JSDOC {
+
+
+	public  class Symbol : Object
+	{
+	
+	
+//		public Symbol() {
+//		    this.init();
+//		},
+
+// probably needs vairous CTORS..
+
         
-    },
-    Object,
-    {
+        string name : "",
+        string defaultValue : "",
         
         
-        name : "",
-        defaultValue : "",
+        
         params : [],
-        $args : [], // original arguments used when constructing.
-        addOn : "",
-        alias : "",
         augments : [], // Doctag[]
-        author : "",
-        classDesc : "",
-        comment : {},
-        deprecated : "",
-        desc : "",
-        //events : false,
-        example : "",
         exceptions : [],  // Doctag[]
         inherits : [],  // Doctag[]
-        //inheritsFrom : [],
-        isa : "OBJECT", // OBJECT//FUNCTION
-        isEvent : false,
-        isConstant : false,
-        isIgnored : false,
-        isInner : false,
-        isNamespace : false,
-        isPrivate : false,
-        isStatic : false,
-        memberOf : "",
         methods : [], // Symbol[]
-        _name : "",
+		//??
         _params : [], //Doctag[]
-        properties : [], //Doctag[]
+		 properties : [], //Doctag[]
         requires : [],  //Doctag[]
         returns : [], //Doctag[]
         see : [], //Doctag[]
-        since : "",
-        srcFile : {},
-        type : "",
-        version : "",
+
+        srcFile : {}, //??
         childClasses : [],
         cfgs : {},
+        
+        
+        DocComment comment;
+                
+        //$args : [], // original arguments used when constructing.
+        string addOn : "",
+        string alias : "",
+        
+        string author : "",
+        string classDesc : "",
+
+        string deprecated : "",
+        string desc : "",
+        //events : false,
+        string example : "",
+        
+        //inheritsFrom : [],
+        string isa : "OBJECT", // OBJECT//FUNCTION
+        
+        bool isEvent : false,
+        bool isConstant : false,
+        bool isIgnored : false,
+        bool isInner : false,
+        bool isNamespace : false,
+        bool isPrivate : false,
+        bool isStatic : false,
+        
+        string memberOf : "",
+
+        string _name : "",
+
+       
+        string since : "",
+
+        string type : "",
+        string version : "",
+        
         
         
             
