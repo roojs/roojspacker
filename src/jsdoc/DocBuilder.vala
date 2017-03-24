@@ -469,6 +469,7 @@ namespace JSDOC
     /**
      * used by JSON output to generate a function skeleton
      */
+     /*
     string makeFuncSkel(Gee.ArrayList<Symbol> params) {
         if (params.length < 0) {
     		 return "function ()\n{\n\n}";
@@ -493,7 +494,7 @@ namespace JSDOC
         ")";
     }
  
-    
+    */
 };
   
 
