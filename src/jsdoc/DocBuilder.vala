@@ -61,117 +61,118 @@ namespace JSDOC
 
 		private void parseSrcFiles() 
 		{
-        DocParser.init();
-        
-        
-        var useCache = PackerRun.opt_cache_dir == null ;
-        var cacheFile = "";
-        
-        for (var i = 0, l = this.packer.files.size; i < l; i++) {
-            
-            var srcFile = this.packer.files.get(i);
-            
-            if (useCache) {
-            
-        		cacheFile = PackerRun.opt_cache_dir + srcFile.replace(/\//g, '_') + ".cache";
+		    DocParser.init();
+		    
+		    
+		    var useCache = PackerRun.opt_cache_dir == null ;
+		    var cacheFile = "";
+		    
+		    for (var i = 0, l = this.packer.files.size; i < l; i++) {
 		        
-		        //print(cacheFile);
-		        // disabled at present!@!!
+		        var srcFile = this.packer.files.get(i);
 		        
-		        if (GLib.FileUtils.test(cacheFile, GLib.FileTest.EXISTS)) {
-		            // check filetime?
-		            var cache_mt = File.new_for_path (cacheFile).queryInfo(FileAttribute.TIME_MODIFIED,
-				                GLib.FileQueryInfoFlags.NONE, null).
-				                get_modification_time();
-		            var original_mt = File.new_for_path (sourceInfo).queryInfo(FileAttribute.TIME_MODIFIED,
-				                GLib.FileQueryInfoFlags.NONE, null).
-				                get_modification_time();
-		            // this check does not appear to work according to the doc's - need to check it out.
-		           
-		            if (cache_mt > original_mt) { // cached time  > original time!
-		                // use the cached mtimes..
-		                GLib.debug("Read %s" , cacheFile);
-						var parser = new Json.Parser();
-		                parser.load_from_file(cacheFile);
-		                var ar = parser.get_root ().get_array();
+		        if (useCache) {
+		        
+		    		cacheFile = PackerRun.opt_cache_dir + srcFile.replace(/\//g, '_') + ".cache";
+				    
+				    //print(cacheFile);
+				    // disabled at present!@!!
+				    
+				    if (GLib.FileUtils.test(cacheFile, GLib.FileTest.EXISTS)) {
+				        // check filetime?
+				        var cache_mt = File.new_for_path (cacheFile).queryInfo(FileAttribute.TIME_MODIFIED,
+						            GLib.FileQueryInfoFlags.NONE, null).
+						            get_modification_time();
+				        var original_mt = File.new_for_path (sourceInfo).queryInfo(FileAttribute.TIME_MODIFIED,
+						            GLib.FileQueryInfoFlags.NONE, null).
+						            get_modification_time();
+				        // this check does not appear to work according to the doc's - need to check it out.
+				       
+				        if (cache_mt > original_mt) { // cached time  > original time!
+				            // use the cached mtimes..
+				            GLib.debug("Read %s" , cacheFile);
+							var parser = new Json.Parser();
+				            parser.load_from_file(cacheFile);
+				            var ar = parser.get_root ().get_array();
 
-		                for(var i = 0;i < ar.get_length();i++) {
-		            		var o = ar.get_object_element(i);
-		            		var sym = Json.gobject_from_data(typeof(Symbol), o) as Symbol;
-		            		DocParser.symbols.add(sym);
-	            		}
-	            		continue;
-            		}
-                }
-            }
-            
-            var src = "";
-            try {
-                GLib.debug("reading : %s" , srcFile);
-                src = GLib.FileUtils.get_contents(srcFile);
-            }
-            catch(GLib.FileError e) {
-                GLib.debug("Can't read source file '%s': %s", srcFile, e.to_string());
-                continue;
-            }
+				            for(var i = 0;i < ar.get_length();i++) {
+				        		var o = ar.get_object_element(i);
+				        		var sym = Json.gobject_from_data(typeof(Symbol), o) as Symbol;
+				        		DocParser.symbols.add(sym);
+			        		}
+			        		continue;
+		        		}
+		            }
+		        }
+		        
+		        var src = "";
+		        try {
+		            GLib.debug("reading : %s" , srcFile);
+		            src = GLib.FileUtils.get_contents(srcFile);
+		        }
+		        catch(GLib.FileError e) {
+		            GLib.debug("Can't read source file '%s': %s", srcFile, e.to_string());
+		            continue;
+		        }
 
-            var txs =
-            
-            var tr = new  TokenReader(this.packer);
-			tr.keepDocs = true;
-			tr.keepWhite = true;
-			tr.keepComments = true;
-			tr.sepIdents = false;
-			tr.collapseWhite = false;
-			tr.filename = src;
-            
+		        var txs =
+		        
+		        var tr = new  TokenReader(this.packer);
+				tr.keepDocs = true;
+				tr.keepWhite = true;
+				tr.keepComments = true;
+				tr.sepIdents = false;
+				tr.collapseWhite = false;
+				tr.filename = src;
+		        
 
-            var toks = tr.tokenize( new TextStream(src);
-            if (PackerRun.opt_dump_tokens) {
-				toks.dump();
-				return "";
-				//GLib.Process.exit(0);
-			}
-            
-            
-            var ts = new TokenStream(toks);
-        
-        
-        
-                     
-            DocParser.parse(ts, srcFile);
-            
-            if (useCache) {
-        		
-        		var ar = DocParser.symbolsToObject(srcFile);
-        		
-        		var builder = new Json.Builder ();
-            	builder.begin_array ();
-            	for (var i=0;i<ar.size;i++) {
-            	
-					builder.add_object_value (ar.get(i));
+		        var toks = tr.tokenize( new TextStream(src);
+		        if (PackerRun.opt_dump_tokens) {
+					toks.dump();
+					return "";
+					//GLib.Process.exit(0);
 				}
-				builder.end_array ();
-				Json.Generator generator = new Json.Generator ();
-				Json.Node root = builder.get_root ();
-				generator.set_root (root);
-				generator.pretty=  true;
-				generator.ident = 2;
-				generator.to_file(cacheFile);
-            
-             
-                
-    //		}
-        }
-        
-        
-        
-        Parser.finish();
-    },
-    
+		        
+		        
+		        var ts = new TokenStream(toks);
+		    
+		    
+		    
+		                 
+		        DocParser.parse(ts, srcFile);
+		        
+		        if (useCache) {
+		    		
+		    		var ar = DocParser.symbolsToObject(srcFile);
+		    		
+		    		var builder = new Json.Builder ();
+		        	builder.begin_array ();
+		        	for (var i=0;i<ar.size;i++) {
+		        	
+						builder.add_object_value (ar.get(i));
+					}
+					builder.end_array ();
+					Json.Generator generator = new Json.Generator ();
+					Json.Node root = builder.get_root ();
+					generator.set_root (root);
+					generator.pretty=  true;
+					generator.ident = 2;
+					generator.to_file(cacheFile);
+		        
+		         
+		            
+		//		}
+		    }
+		    
+		    
+		    
+		    Parser.finish();
+		},
+		
      
         
-    publish  : function() {
+    publish  : function() 
+    {
         GLib.debug("Publishing");
          
         // link!!!
@@ -450,21 +451,21 @@ namespace JSDOC
         
         
     },
-    
-    /*
+     
     // in Link (js) ???
-    srcFileRelName : function(sourceFile)
+    string srcFileRelName(string sourceFile)
     {
-  	  return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
+  		return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
     },
-    srcFileFlatName: function(sourceFile)
+    string srcFileFlatName(string sourceFile)
     {
         var name = this.srcFileRelName(sourceFile);
+        
         name = name.replace(/\.\.?[\\\/]/g, "").replace(/[\\\/]/g, "_");
         return name.replace(/\:/g, "_") + '.html'; //??;
         
     },
-    */
+    
     
     void makeSrcFile(string sourceFile) 
     {
