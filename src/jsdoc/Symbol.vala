@@ -79,7 +79,7 @@ namespace JSDOC {
         
         
             
-        
+       /* 
         toJSON : function()
         {
             
@@ -135,7 +135,7 @@ namespace JSDOC {
             return ret;
             
         },
-        
+        */
         init : function() 
         {
             // only initialize arrays / objects..
