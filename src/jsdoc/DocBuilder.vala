@@ -166,11 +166,11 @@ namespace JSDOC
 		    
 		    
 		    Parser.finish();
-		},
+		}
 		
      
         
-    publish  : function() 
+    void publish() 
     {
         GLib.debug("Publishing");
          
