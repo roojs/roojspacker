@@ -160,7 +160,7 @@ namespace JSDOC
 		        
 		         
 		            
-		//		}
+				 }
 		    }
 		    
 		    
@@ -170,182 +170,182 @@ namespace JSDOC
 		
      
         
-    void publish() 
-    {
-        GLib.debug("Publishing");
-         
-        // link!!!
-        
-        
-        GLib.debug("Making directories");
-        if (!File.isDirectory(PackerRun.opt_doc_target)) {
-            Posix.mkdir(PackerRun.opt_doc_target,0755);
-        }
-        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols")) {
-            Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
-        }
-        if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src")) {
-            Posix.mkdir(PackerRun.opt_doc_target+"/symbols/src",075);
-        }
-        if (!File.isDirectory(PackerRun.opt_doc_target +"/json")) {
-            File.mkdir(PackerRun.opt_doc_target +"/json",0755);
-        }
-        
-        GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
-        // copy everything in 'static' into 
-        
-        var iter = GLib.File.new_from_path(PackerRun.opt_doc_template_dir + "/static")..enumerate_children (
-			"standard::*",
-			FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
-			null);
-        
-        
-        while ( (info = enumerator.next_file (null)) != null)) {
-			if (info.get_file_type () == FileType.DIRECTORY) {
-				continue;
-			} 
-			var src = .File.new_from_path(info.get_name());
-            GLib.debug("Copy %s to %s/%s" , info.get_name() , f,  PackerRun.opt_doc_target , src.get_basename());			
+		void publish() 
+		{
+		    GLib.debug("Publishing");
+		     
+		    // link!!!
+		    
+		    
+		    GLib.debug("Making directories");
+		    if (!File.isDirectory(PackerRun.opt_doc_target)) {
+		        Posix.mkdir(PackerRun.opt_doc_target,0755);
+		    }
+		    if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols")) {
+		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
+		    }
+		    if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src")) {
+		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols/src",075);
+		    }
+		    if (!File.isDirectory(PackerRun.opt_doc_target +"/json")) {
+		        File.mkdir(PackerRun.opt_doc_target +"/json",0755);
+		    }
+		    
+		    GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
+		    // copy everything in 'static' into 
+		    
+		    var iter = GLib.File.new_from_path(PackerRun.opt_doc_template_dir + "/static").enumerate_children (
+				"standard::*",
+				FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
+				null);
+		    
+		    
+		    while ( (info = enumerator.next_file (null)) != null) {
+				if (info.get_file_type () == FileType.DIRECTORY) {
+					continue;
+				} 
+				var src = File.new_from_path(info.get_name());
+		        GLib.debug("Copy %s to %s/%s" , info.get_name() , f,  PackerRun.opt_doc_target , src.get_basename());			
 			
-			src.copy(
-				GLib.File.new_from_path(PackerRun.opt_doc_target + '/' + src.get_basename()),
-				GLib.FileCopyFlags.OVERWRITE,
-			);
-		}
-	
-        
-        GLib.debug("Setting up templates");
-        // used to check the details of things being linked to
-        Link.symbolSet = this.symbolSet;// need to work out where 'symbolset will be stored/set!
-        Link.base = "../";
-        
-        Link.srcFileFlatName = this.srcFileFlatName; // where set?
-        Link.srcFileRelName = this.srcFileRelName; // where set?
-        
-        var classTemplate = new Template( PackerRun.opt_doc_template_dir  + "/class." + PackerRun.opt_doc_ext );
-        var classesTemplate = new Template( PackerRun.opt_doc_template_dir+"/allclasses." + PackerRun.opt_doc_ext  );
-        var classesindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/index."  + PackerRun.opt_doc_ext );
-        var fileindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/allfiles."+ PackerRun.opt_doc_ext );
-
-        
-        classTemplate.symbolSet = this.symbolSet; // where?
-        
-        /*
-        function hasNoParent($) {
-            return ($.memberOf == "")
-        }
-        function isaFile($) {
-            return ($.is("FILE"))
-        }
-        function isaClass($) {
-            return ($.is("CONSTRUCTOR") || $.isNamespace || $.isClass); 
-        }
-        */
-        
-        
-        
-        
-        
-        
-        
-        
-        
-        var symbols = this.symbolSet.toArray();
-        
-        var files = this.packer.files;
-        
-        for (var i = 0, l = files.size; i < l; i++) {
-            var file = files.get(i);
-            var targetDir = PackerRun.opt_doc_target + "/symbols/src/";
-            this.makeSrcFile(file, targetDir);
-        }
-        //print(JSON.stringify(symbols,null,4));
-        var classes = new Gee.ArrayList<Symbol>();
-        
-        for(var symbol in symbol) {
-    		if (symbol.isaClass()) { 
-    			classes.add(symbol).;
+				src.copy(
+					GLib.File.new_from_path(PackerRun.opt_doc_target + '/' + src.get_basename()),
+					GLib.FileCopyFlags.OVERWRITE
+				);
 			}
-        }   
-        classes.sort( (a,b) => {
-    		return a.alias.collate(b.alias); 
-		});
-         
-         //GLib.debug("classTemplate Process : all classes");
-            
-       // var classesIndex = classesTemplate.process(classes); // kept in memory
-        
-        GLib.debug("iterate classes");
-        
-        var jsonAll = new JSON.Object(); 
-        
-        for (var i = 0, l = classes.size; i < l; i++) {
-            var symbol = classes.get(i);
-            var output = "";
-            
-            GLib.debug("classTemplate Process : %s" , symbol.alias);
-            
-            
-            
-            
-            FileUtils.set_contents(
-    				PackerRun.opt_doc_target+"/symbols/" +symbol.alias+'.' + PackerRun.opt_doc_ext ,
-                    classTemplate.process(symbol)
-            );
-            
-            jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
+	
+		    
+		    GLib.debug("Setting up templates");
+		    // used to check the details of things being linked to
+		    Link.symbolSet = this.symbolSet;// need to work out where 'symbolset will be stored/set!
+		    Link.base = "../";
+		    
+		    Link.srcFileFlatName = this.srcFileFlatName; // where set?
+		    Link.srcFileRelName = this.srcFileRelName; // where set?
+		    
+		    var classTemplate = new Template( PackerRun.opt_doc_template_dir  + "/class." + PackerRun.opt_doc_ext );
+		    var classesTemplate = new Template( PackerRun.opt_doc_template_dir+"/allclasses." + PackerRun.opt_doc_ext  );
+		    var classesindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/index."  + PackerRun.opt_doc_ext );
+		    var fileindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/allfiles."+ PackerRun.opt_doc_ext );
 
-        }
-        Json.Generator generator = new Json.Generator ();
-		generator.set_root (jsonAll.get_node());
-		generator.pretty=  true;
-		generator.ident = 2;
-		generator.to_file(PackerRun.opt_doc_target+"/json/roodata.json",);
+		    
+		    classTemplate.symbolSet = this.symbolSet; // where?
+		    
+		    /*
+		    function hasNoParent($) {
+		        return ($.memberOf == "")
+		    }
+		    function isaFile($) {
+		        return ($.is("FILE"))
+		    }
+		    function isaClass($) {
+		        return ($.is("CONSTRUCTOR") || $.isNamespace || $.isClass); 
+		    }
+		    */
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    
+		    var symbols = this.symbolSet.toArray();
+		    
+		    var files = this.packer.files;
+		    
+		    for (var i = 0, l = files.size; i < l; i++) {
+		        var file = files.get(i);
+		        var targetDir = PackerRun.opt_doc_target + "/symbols/src/";
+		        this.makeSrcFile(file, targetDir);
+		    }
+		    //print(JSON.stringify(symbols,null,4));
+		    var classes = new Gee.ArrayList<Symbol>();
+		    
+		    foreach(var symbol in symbols) {
+				if (symbol.isaClass()) { 
+					classes.add(symbol);
+				}
+		    }   
+		    classes.sort( (a,b) => {
+				return a.alias.collate(b.alias); 
+			});
+		     
+		     //GLib.debug("classTemplate Process : all classes");
+		        
+		   // var classesIndex = classesTemplate.process(classes); // kept in memory
+		    
+		    GLib.debug("iterate classes");
+		    
+		    var jsonAll = new JSON.Object(); 
+		    
+		    for (var i = 0, l = classes.size; i < l; i++) {
+		        var symbol = classes.get(i);
+		        var output = "";
+		        
+		        GLib.debug("classTemplate Process : %s" , symbol.alias);
+		        
+		        
+		        
+		        
+		        FileUtils.set_contents(
+						PackerRun.opt_doc_target+"/symbols/" +symbol.alias+'.' + PackerRun.opt_doc_ext ,
+		                classTemplate.process(symbol)
+		        );
+		        
+		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
-        
-        
-        // regenrate the index with different relative links
-        Link.base = "";
-        //var classesIndex = classesTemplate.process(classes);
-        
-        GLib.debug("build index");
-        
-        FileUtils.set_contents(
-    		PackerRun.opt_doc_target +  "/index." _ PackerRun.opt_doc_ext  
-            classesindexTemplate.process(classes)
-        );
-        
-        // blank everything???? classesindexTemplate = classesIndex = classes = null;
-        
- 
-        /*
-        var documentedFiles = symbols.filter(function ($) {
-            return ($.is("FILE"))
-        });
-        
-        var allFiles = [];
-        
-        for (var i = 0; i < files.length; i++) {
-            allFiles.push(new  Symbol(files[i], [], "FILE", new DocComment("/** *" + "/")));
-        }
-        
-        for (var i = 0; i < documentedFiles.length; i++) {
-            var offset = files.indexOf(documentedFiles[i].alias);
-            allFiles[offset] = documentedFiles[i];
-        }
-            
-        allFiles = allFiles.sort(makeSortby("name"));
-        GLib.debug("write files index");
-        
-        FileUtils.set_contents(
-    		PackerRun.opt_doc_target + "/files." + PackerRun.opt_doc_ext , 
-            fileindexTemplate.process(allFiles)
-        );
-        */
-        
-        
-        
-    }
+		    }
+		    Json.Generator generator = new Json.Generator ();
+			generator.set_root (jsonAll.get_node());
+			generator.pretty=  true;
+			generator.ident = 2;
+			generator.to_file(PackerRun.opt_doc_target+"/json/roodata.json");
+
+		    
+		    
+		    // regenrate the index with different relative links
+		    Link.base = "";
+		    //var classesIndex = classesTemplate.process(classes);
+		    
+		    GLib.debug("build index");
+		    
+		    FileUtils.set_contents(
+				PackerRun.opt_doc_target +  "/index." _ PackerRun.opt_doc_ext  
+		        classesindexTemplate.process(classes)
+		    );
+		    
+		    // blank everything???? classesindexTemplate = classesIndex = classes = null;
+		    
+	 
+		    /*
+		    var documentedFiles = symbols.filter(function ($) {
+		        return ($.is("FILE"))
+		    });
+		    
+		    var allFiles = [];
+		    
+		    for (var i = 0; i < files.length; i++) {
+		        allFiles.push(new  Symbol(files[i], [], "FILE", new DocComment("/** *" + "/")));
+		    }
+		    
+		    for (var i = 0; i < documentedFiles.length; i++) {
+		        var offset = files.indexOf(documentedFiles[i].alias);
+		        allFiles[offset] = documentedFiles[i];
+		    }
+		        
+		    allFiles = allFiles.sort(makeSortby("name"));
+		    GLib.debug("write files index");
+		    
+		    FileUtils.set_contents(
+				PackerRun.opt_doc_target + "/files." + PackerRun.opt_doc_ext , 
+		        fileindexTemplate.process(allFiles)
+		    );
+		    */
+		    
+		    
+		    
+		}
     /**
      * JSON files are lookup files for the documentation
      * - can be used by IDE's or AJAX based doc tools
