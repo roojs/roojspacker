@@ -125,7 +125,7 @@ namespace JSDOC
 				tr.filename = src;
 		        
 
-		        var toks = tr.tokenize( new TextStream(src);
+		        var toks = tr.tokenize( new TextStream(src) );
 		        if (PackerRun.opt_dump_tokens) {
 					toks.dump();
 					return "";
