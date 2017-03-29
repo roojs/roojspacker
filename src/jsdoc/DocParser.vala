@@ -14,7 +14,7 @@ namespace JSDOC
 		static DocWalker walker ;
 	    static SymbolSet symbols ;
 	    
-	    static string currentSourceFile;
+	    public static string currentSourceFile;
     
 	    //filesSymbols : { },
 		
