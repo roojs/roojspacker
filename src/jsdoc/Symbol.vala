@@ -112,38 +112,18 @@ namespace JSDOC {
             
                
         },
-/*
-        serialize : function() {
-            var keys = [];
-            for (var p in this) {
-                keys.push (p);
-            }
-            keys = keys.sort();
-            
-            var out = "";
-            for (var i in keys) {
-                if (typeof this[keys[i]] == "function") continue;
-                out += "     " +keys[i]+" => "+
-                    (   
-                        (typeof(this[keys[i]]) != "object") ?  
-                            this[keys[i]] :
-                            "[" +typeof(this[keys[i]])+"]"
-                    ) + 
-                    ",\n";
-            }
-            return "\n{\n" + out + "}\n";
-        },
-*/
-/*
-        clone : function() {
-            var clone = new Symbol();
-            clone.populate.apply(clone, this.$args); // repopulate using the original arguments
-            clone.srcFile = this.srcFile; // not the current srcFile, the one when the original was made
-            return clone;
-        },
-
-*/
-
+		
+		Public Symbol.new_builtin(string name)
+		{
+			this.setName( name );
+			this.alias = this.getName();
+			this.isa = "CONSTRUCTOR";
+			this.comment = new DocComment("");
+			this.isNamespace = false;
+			this.srcFile = "";
+			this.isPrivate = false;
+		}
+		
 
         //__defineSetter__("name",
         setName  : function(n) { 
