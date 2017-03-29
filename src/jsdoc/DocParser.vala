@@ -139,17 +139,15 @@ namespace JSDOC
 		    }
 		
 			DocParser.symbols.addSymbol(symbol);
-		},
+		}
 	
-	addBuiltin: function(name) {
-  
-		var builtin = new Symbol(name, [], "CONSTRUCTOR", new DocComment(""));
-		builtin.isNamespace = false;
-		builtin.srcFile = "";
-		builtin.isPrivate = false;
-        this.addSymbol(builtin);
-		return builtin;
-	},
+		public Symbol addBuiltin(string name) {
+	  
+			var builtin = new Symbol.new_builtin(name);
+			 
+		    DocParser.addSymbol(builtin);
+			return builtin;
+		},
 	
 		
 	finish: function() {
