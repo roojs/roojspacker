@@ -2,7 +2,7 @@
 namespace JSDOC
 {
 
-	class DocParser : Object 
+	public class DocParser : Object 
 	{
 		// options?
 		bool ignoreAnonymous =            true; 
