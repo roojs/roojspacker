@@ -121,6 +121,8 @@ namespace JSDOC {
 		
 		Public Symbol.new_builtin(string name)
 		{
+            
+            this.initArrays();
             this.srcFile = DocParser.currentSourceFile;
 			this.setName( name );
 			this.alias = this.getName();
