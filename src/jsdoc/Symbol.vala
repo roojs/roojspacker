@@ -25,7 +25,7 @@ namespace JSDOC {
 			Symbol.regex_prototype = new GLib.Regex("\\.prototype\\.?");
 		}
 
-		private string __name = ""; // should not be directly accessed ??
+		private string private_name = ""; // should not be directly accessed ??
 		
 		private string _name {
 			set { 
@@ -39,15 +39,13 @@ namespace JSDOC {
         			n = n.substring(0, n.length-1);
     			}
     			
-                this.__name = n;
+                this.private_name = n;
             }
-            get {
-        		return this.__name;
-			}
+             
 		}
         		
         public string name {
-    		get { return this.__name; }
+    		get { return this.private_name; }
 		}
 		
         : "",
