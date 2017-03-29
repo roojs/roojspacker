@@ -5,12 +5,12 @@ namespace JSDOC
 	public class DocParser : Object 
 	{
 		// options?
-		bool ignoreAnonymous =            true; 
-		bool treatUnderscoredAsPrivate = true;
-		bool explain=             false;
+		static bool ignoreAnonymous =            true; 
+		static bool treatUnderscoredAsPrivate = true;
+		static bool explain=             false;
  
 		
-		bool has_init = false;
+		static bool has_init = false;
 		static DocWalker walker ;
 	    static SymbolSet symbols ;
 	    
@@ -18,11 +18,7 @@ namespace JSDOC
     
 	    static Gee.HashMap<string,SymbolSet> filesSymbols;
 		
-		public DocParser{) {
-			//this.walker = new JSDOC.Walker();
-		    //JSDOC.Parser.filesSymbols = {};
-		}
-
+		// no CTOR.. it's mostly static!!
 
 		private static void initStatic()
 		{
