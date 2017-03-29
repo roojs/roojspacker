@@ -80,7 +80,7 @@ namespace JSDOC {
         
         
         
-        public Symbol() 
+        public void initArrays()
         {
             // only initialize arrays / objects..
 
@@ -123,6 +123,10 @@ namespace JSDOC {
 			this.isNamespace = false;
 			this.srcFile = "";
 			this.isPrivate = false;
+			// init arrays....
+			
+			
+			
 		}
 		
 
