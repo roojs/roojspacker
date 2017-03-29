@@ -189,6 +189,7 @@ namespace JSDOC {
                 string isa,
                 string comment
         ) {
+            Symbol.regexInit();
             this.initArrays();
             this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
