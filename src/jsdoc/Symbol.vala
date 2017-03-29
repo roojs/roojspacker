@@ -176,8 +176,9 @@ namespace JSDOC {
             this.alias = this.getName();
             this.setParams(params);
             this.isa = (isa == "VIRTUAL")? "OBJECT":isa;
-            this.comment = comment || new DocComment("");
-            this.srcFile = Symbol.srcFile;
+            this.comment = comment || new DocComment("")
+            ;
+            this.srcFile = DocParser.currentSourceFile;
             
            
             
