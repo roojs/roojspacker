@@ -9,24 +9,31 @@ namespace JSDOC
 		bool treatUnderscoredAsPrivate = true;
 		bool explain=             false;
  
- 
-    
+		
+		bool has_init = false;
 		static DocWalker walker ;
 	    static SymbolSet symbols ;
 	    
 	    public static string currentSourceFile;
     
-	    //filesSymbols : { },
+	    static Gee.HashMap<string,SymbolSet> filesSymbols;
 		
 		public DocParser{) {
-		
-			this.symbols = new  SymbolSet();
 			//this.walker = new JSDOC.Walker();
 		    //JSDOC.Parser.filesSymbols = {};
 		}
 
 
-
+		private initStatic()
+		{
+			if (DocParser.has_init) {
+				return ;
+			}
+			DocParser.symbols = new  SymbolSet();
+			
+			
+			DocParser.has_init = true;
+		
 		/**
 		 * Parse a token stream.
 		 * @param {JSDOC.TokenStream} token stream
@@ -40,8 +47,7 @@ namespace JSDOC
 		    
 		    DocParser.currentSourceFile = srcFile;
 		    // not a nice way to set stuff...
-		    
-		    Symbol.srcFile = (srcFile || "");
+		   
 		    DocComment.shared = ""; // shared comments don't cross file boundaries
 		    
 		   
