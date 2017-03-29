@@ -135,10 +135,10 @@ namespace JSDOC
 			}
 		    // add it to the file's list... (for dumping later..)
 		    if (Symbol.srcFile != null) {
-		        this.filesSymbols.get(Symbol.srcFile).addSymbol(symbol);
+		        DocParser.filesSymbols.get(Symbol.srcFile).addSymbol(symbol);
 		    }
 		
-			this.symbols.addSymbol(symbol);
+			DocParser.symbols.addSymbol(symbol);
 		},
 	
 	addBuiltin: function(name) {
