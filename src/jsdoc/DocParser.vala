@@ -11,8 +11,10 @@ namespace JSDOC
  
  
     
-		DocWalker walker ;
-	    SymbolSet symbols ;
+		static DocWalker walker ;
+	    static SymbolSet symbols ;
+	    
+	    static string currentSourceFile;
     
 	    //filesSymbols : { },
 		
@@ -33,9 +35,8 @@ namespace JSDOC
 		 */
 		
 		
-		parse : function(ts, srcFile) 
+		static void parse(TokenStream ts, string srcFile) 
 		{
-		    this.init();
 		    
 		    
 		    // not a nice way to set stuff...
