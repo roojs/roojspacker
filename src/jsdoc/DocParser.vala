@@ -92,8 +92,8 @@ namespace JSDOC
 		    }
 		    //print(prettyDump(toQDump(this.filesSymbols[Symbol.srcFile]._index,'{','}')));
 		    //print("AfterParse: " + this.symbols.keys().toSource().split(",").join(",\n   "));
-		    return this.symbols.toArray();
-		},
+		    return; //this.symbols.toArray();
+		}
 
 	
 	addSymbol: function(symbol) 
