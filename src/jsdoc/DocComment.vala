@@ -11,8 +11,8 @@ namespace JSDOC
 	public class DocComment : Object
 	{
 
-		bool isUserComment  = true;
-		bool hasTags		= false;
+		public bool isUserComment  = true;
+		public bool hasTags		= false;
 		string src          = "";
 		//string meta       =  "";
 		//Gee.ArrayList<string> tagTexts;
