@@ -85,7 +85,7 @@ namespace JSDOC {
             // only initialize arrays / objects..
             this.srcFile = DocParser.currentSourceFile;
             
-            this.params = [];
+            //this.params = [];
             this.$args = [];
             
             //this.events = [];
