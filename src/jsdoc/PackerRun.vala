@@ -90,6 +90,7 @@ namespace JSDOC
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
 			{ "dump-tokens", 'k', 0, OptionArg.NONE, ref opt_dump_tokens, "Dump the tokens from a file", null },
 			{ "clean-cache", 'c', 0, OptionArg.NONE, ref opt_clean_cache, "Clean up the cache after running (slower)", null },
+
 			// fixme -- keepwhite.. cleanup 
 			
 			// documentation options
@@ -103,7 +104,7 @@ namespace JSDOC
 			
 			{ "doc-target", 'd', 0, OptionArg.STRING, ref opt_doc_target, "Documentation Directory target", null },
 			{ "doc-template-dir", 'p', 0, OptionArg.STRING, ref opt_doc_template_dir, "Documentation Directory target", null },
-			
+			{ "doc-private", 'p', 0, OptionArg.NONE, ref opt_doc_private, "Document Private functions", null },						
 			
 			
 			
