@@ -120,6 +120,7 @@ namespace JSDOC {
 			this.alias = this.getName();
 			this.isa = "CONSTRUCTOR";
 			this.comment = new DocComment("");
+			this.comment.isUserComment =  false;
 			this.isNamespace = false;
 			this.srcFile = "";
 			this.isPrivate = false;
