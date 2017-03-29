@@ -143,20 +143,22 @@ namespace JSDOC
 		public static  void finish() {
 			this.symbols.relate();		
 		
-		// make a litle report about what was found
-		if (this.conf.explain) {
-			var symbols = this.symbols.toArray();
-			var srcFile = "";
-			for (var i = 0, l = symbols.length; i < l; i++) {
-				var symbol = symbols[i];
-				if (srcFile != symbol.srcFile) {
-					srcFile = symbol.srcFile;
-					print("\n"+srcFile+"\n-------------------");
+			// make a litle report about what was found
+			/*
+			if (this.conf.explain) {
+				var symbols = this.symbols.toArray();
+				var srcFile = "";
+				for (var i = 0, l = symbols.length; i < l; i++) {
+					var symbol = symbols[i];
+					if (srcFile != symbol.srcFile) {
+						srcFile = symbol.srcFile;
+						print("\n"+srcFile+"\n-------------------");
+					}
+					print(i+":\n  alias => "+symbol.alias + "\n  name => "+symbol.name+ "\n  isa => "+symbol.isa + "\n  memberOf => " + symbol.memberOf + "\n  isStatic => " + symbol.isStatic + ",  isInner => " + symbol.isInner);
 				}
-				print(i+":\n  alias => "+symbol.alias + "\n  name => "+symbol.name+ "\n  isa => "+symbol.isa + "\n  memberOf => " + symbol.memberOf + "\n  isStatic => " + symbol.isStatic + ",  isInner => " + symbol.isInner);
+				print("-------------------\n");
 			}
-			print("-------------------\n");
-		}
+			*/
 	},
     /**
      * return symbols so they can be serialized.
