@@ -38,7 +38,7 @@ namespace JSDOC
 		
 		public static string opt_doc_target = null;
 		public static string opt_doc_template_dir = null;
-		
+		public static bool opt_doc_include_private = false;		
 				
 		[CCode (array_length = false, array_null_terminated = true)]
 		private static string[]? opt_files = null;
