@@ -18,8 +18,14 @@ namespace JSDOC {
 
 // probably needs vairous CTORS..
 
-        
-        string name : "",
+
+		private string _name = "";        
+        public string name {
+    		get { return this._name; }
+    		set { this._name = value }
+		}
+		
+        : "",
         string defaultValue : "",
         
         
