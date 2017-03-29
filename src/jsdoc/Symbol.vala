@@ -164,11 +164,11 @@ namespace JSDOC {
         getParams : function() { return this._params; },
         //);
 
-        populate : function(
-                /** String */ name,
-                /** Object[] */ params,
-                /** String */ isa,
-                /** DocComment */ comment
+        public Symbol.new_populate(
+                string  name,
+                Gee.ArrayList<string> params, // fixme???
+                string isa,
+                string comment
         ) {
             this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
