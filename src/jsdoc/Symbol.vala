@@ -82,6 +82,8 @@ namespace JSDOC {
         public Symbol() 
         {
             // only initialize arrays / objects..
+            this.srcFile = DocParser.currentSourceFile;
+            
             this.params = [];
             this.$args = [];
             
