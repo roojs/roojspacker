@@ -63,7 +63,7 @@ namespace JSDOC
 		   // throw "done sym tree";
 		    //Options.LOG.inform("Parser - checking symbols");
 		    // filter symbols by option
-		    for (p in this.symbols._index) {
+		    for (p in DocParser.symbols._index) {
 		        var symbol = this.symbols.getSymbol(p);
 		        
 		       // print(JSON.stringify(symbol, null,4));
@@ -78,24 +78,11 @@ namespace JSDOC
 		        if (symbol.is("FILE") || symbol.is("GLOBAL")) {
 		            continue;
 		        }
-		        //else if (!Options.a && !symbol.comment.isUserComment) {
-		            //print("Deleting Symbols (no a / user comment): " + symbol.alias);
-		            //this.symbols.deleteSymbol(symbol.alias);
-		            //this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
-		        //}
+		       
 		        
-		        if (/#$/.test(symbol.alias)) { // we don't document prototypes - this should not happen..
-		            // rename the symbol ??
-		            /*if (!this.symbols.getSymbol(symbol.alias.substring(0,symbol.alias.length-1))) {
-		                // rename it..
-		                print("Renaming Symbol (got  a #): " + symbol.alias);
-		                var n = '' + symbol.alias;
-		                this.symbols.renameSymbol( n ,n.substring(0,n-1));
-		                this.filesSymbols[Symbol.srcFile].renameSymbol( n ,n.substring(0,n-1));
-		                continue;
-		            }
-		            */
-		            print("Deleting Symbols (got  a #): " + symbol.alias);
+		        if (symbol.alias.substring(symbol.alias-1) = "#")) { // we don't document prototypes - this should not happen..
+		            
+		            print("Deleting Symbols (alias ends in #): " + symbol.alias);
 		            
 		            this.symbols.deleteSymbol(symbol.alias);
 		            this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
