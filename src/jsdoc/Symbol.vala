@@ -44,27 +44,27 @@ namespace JSDOC {
         DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
-        string addOn : "",
-        string alias : "",
+        string addOn = "";
+        string alias = "";
         
-        string author : "",
-        string classDesc : "",
+        string author = "";
+        string classDesc = "";
 
-        string deprecated : "",
-        string desc : "",
+        string deprecated = "";
+        string desc = "";
         //events : false,
-        string example : "",
+        string example = "";
         
         //inheritsFrom : [],
-        string isa : "OBJECT", // OBJECT//FUNCTION
+        string isa = "OBJECT"; // OBJECT//FUNCTION
         
-        bool isEvent : false,
-        bool isConstant : false,
-        bool isIgnored : false,
-        bool isInner : false,
-        bool isNamespace : false,
-        bool isPrivate : false,
-        bool isStatic : false,
+        bool isEvent = false;
+        bool isConstant = false;
+        bool isIgnored = false;
+        bool isInner = false;
+        bool isNamespace = false;
+        bool isPrivate = false;
+        bool isStatic = false;
         
         string memberOf : "",
 
@@ -76,6 +76,7 @@ namespace JSDOC {
         string type : "",
         string version : "",
         
+        string srcFile = ""
         
         
         
