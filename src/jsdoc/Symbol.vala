@@ -99,7 +99,7 @@ namespace JSDOC {
             this.requires = [];
             this.returns = [];
             this.see = [];
-            this.srcFile = {};
+ 
             
             
             this.cfgs = {};
