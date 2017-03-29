@@ -107,6 +107,7 @@ namespace JSDOC
 				if (oldSymbol.comment.isUserComment && !oldSymbol.comment.hasTags) {
 					if (symbol.comment.isUserComment) { // old and new are both documented
 						GLib.debug("The symbol '%s' is documented more than once.",symbol.alias);
+						// we use the new one???
 					} else { // old is documented but new isn't
 						return;
 					}
