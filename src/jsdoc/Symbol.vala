@@ -45,7 +45,7 @@ namespace JSDOC {
                 
         //$args : [], // original arguments used when constructing.
         string addOn = "";
-        string alias = "";
+        public string alias = "";
         
         string author = "";
         string classDesc = "";
