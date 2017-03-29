@@ -38,7 +38,7 @@ namespace JSDOC
 		static void parse(TokenStream ts, string srcFile) 
 		{
 		    
-		    
+		    DocParser.currentSourceFile = srcFile;
 		    // not a nice way to set stuff...
 		    
 		    Symbol.srcFile = (srcFile || "");
