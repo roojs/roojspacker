@@ -127,13 +127,15 @@ namespace JSDOC
 			// -p flag is required to document private things
 			if ((symbol.isInner || symbol.isPrivate) && !PackerRun.opt_doc_include_private) {
 				 return;
-			 }
+			}
 		
 			// ignored things are not documented, this doesn't cascade
-			if (symbol.isIgnored) return;
+			if (symbol.isIgnored) {
+				return;
+			}
 		    // add it to the file's list... (for dumping later..)
-		    if (Symbol.srcFile) {
-		        this.filesSymbols[Symbol.srcFile].addSymbol(symbol);
+		    if (Symbol.srcFile != null) {
+		        this.filesSymbols.get(Symbol.srcFile).addSymbol(symbol);
 		    }
 		
 			this.symbols.addSymbol(symbol);
