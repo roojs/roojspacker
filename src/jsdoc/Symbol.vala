@@ -182,15 +182,12 @@ namespace JSDOC {
             
            
             
-            if (this.is("FILE") && !this.alias) {
+            if (this.is("FILE") && !this.alias) { // this will never hapen???
         		this.alias = this.srcFile;
     		}
 
             this.setTags();
             
-            //if (typeof PluginManager != "undefined") {
-            //    PluginManager.run("onSymbol", this);
-            //}
         },
 
         setTags : function() {
