@@ -96,17 +96,17 @@ namespace JSDOC
 		}
 
 	
-		addSymbol: function(symbol) 
+		public void addSymbol(Symbol symbol) 
 		{
 		    //print("PARSER addSYMBOL : " + symbol.alias);
 		    
 			// if a symbol alias is documented more than once the last one with the user docs wins
-			if (this.symbols.hasSymbol(symbol.alias)) {
-				var oldSymbol = this.symbols.getSymbol(symbol.alias);
+			if (DocParser.symbols.hasSymbol(symbol.alias)) {
+				var oldSymbol = DocParser.symbols.getSymbol(symbol.alias);
 		        
 				if (oldSymbol.comment.isUserComment && !oldSymbol.comment.hasTags) {
 					if (symbol.comment.isUserComment) { // old and new are both documented
-						Options.LOG.warn("The symbol '"+symbol.alias+"' is documented more than once.");
+						GLib.debug("The symbol '%s' is documented more than once.",symbol.alias);
 					}
 					else { // old is documented but new isn't
 						return;
@@ -115,7 +115,9 @@ namespace JSDOC
 			}
 		
 			// we don't document anonymous things
-			if (this.conf.ignoreAnonymous && symbol.name.match(/\$anonymous\b/)) return;
+			if (DocParser.ignoreAnonymous && symbol.name.index_of("$anonymous\b") > -1) {
+				 return;
+			 }
 
 			// uderscored things may be treated as if they were marked private, this cascades
 			if (this.conf.treatUnderscoredAsPrivate && symbol.name.match(/[.#-]_[^.#-]+$/)) {
