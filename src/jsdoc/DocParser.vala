@@ -64,15 +64,15 @@ namespace JSDOC
 		    //Options.LOG.inform("Parser - checking symbols");
 		    // filter symbols by option
 		    for (p in DocParser.symbols._index) {
-		        var symbol = this.symbols.getSymbol(p);
+		        var symbol = DocParser.symbols.getSymbol(p);
 		        
 		       // print(JSON.stringify(symbol, null,4));
 		        
 		        if (!symbol) continue;
 		        
 		        if (symbol.isPrivate) {
-		            this.symbols.deleteSymbol(symbol.alias);
-		            this.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
+		            DocParser.symbols.deleteSymbol(symbol.alias);
+		            DocParser.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
 		            continue;
 		        }
 		        
@@ -85,8 +85,8 @@ namespace JSDOC
 		            
 		            print("Deleting Symbols (alias ends in #): " + symbol.alias);
 		            
-		            this.symbols.deleteSymbol(symbol.alias);
-		            this.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
+		            DocParser.symbols.deleteSymbol(symbol.alias);
+		            DocParser.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
 		        
 		        }
 		    }
@@ -96,44 +96,44 @@ namespace JSDOC
 		}
 
 	
-	addSymbol: function(symbol) 
-    {
-        //print("PARSER addSYMBOL : " + symbol.alias);
-        
-		// if a symbol alias is documented more than once the last one with the user docs wins
-		if (this.symbols.hasSymbol(symbol.alias)) {
-			var oldSymbol = this.symbols.getSymbol(symbol.alias);
-            
-			if (oldSymbol.comment.isUserComment && !oldSymbol.comment.hasTags) {
-				if (symbol.comment.isUserComment) { // old and new are both documented
-					Options.LOG.warn("The symbol '"+symbol.alias+"' is documented more than once.");
-				}
-				else { // old is documented but new isn't
-					return;
+		addSymbol: function(symbol) 
+		{
+		    //print("PARSER addSYMBOL : " + symbol.alias);
+		    
+			// if a symbol alias is documented more than once the last one with the user docs wins
+			if (this.symbols.hasSymbol(symbol.alias)) {
+				var oldSymbol = this.symbols.getSymbol(symbol.alias);
+		        
+				if (oldSymbol.comment.isUserComment && !oldSymbol.comment.hasTags) {
+					if (symbol.comment.isUserComment) { // old and new are both documented
+						Options.LOG.warn("The symbol '"+symbol.alias+"' is documented more than once.");
+					}
+					else { // old is documented but new isn't
+						return;
+					}
 				}
 			}
-		}
 		
-		// we don't document anonymous things
-		if (this.conf.ignoreAnonymous && symbol.name.match(/\$anonymous\b/)) return;
+			// we don't document anonymous things
+			if (this.conf.ignoreAnonymous && symbol.name.match(/\$anonymous\b/)) return;
 
-		// uderscored things may be treated as if they were marked private, this cascades
-		if (this.conf.treatUnderscoredAsPrivate && symbol.name.match(/[.#-]_[^.#-]+$/)) {
-			symbol.isPrivate = true;
-		}
+			// uderscored things may be treated as if they were marked private, this cascades
+			if (this.conf.treatUnderscoredAsPrivate && symbol.name.match(/[.#-]_[^.#-]+$/)) {
+				symbol.isPrivate = true;
+			}
 		
-		// -p flag is required to document private things
-		if ((symbol.isInner || symbol.isPrivate) && !Options.p) return;
+			// -p flag is required to document private things
+			if ((symbol.isInner || symbol.isPrivate) && !Options.p) return;
 		
-		// ignored things are not documented, this doesn't cascade
-		if (symbol.isIgnored) return;
-        // add it to the file's list... (for dumping later..)
-        if (Symbol.srcFile) {
-            this.filesSymbols[Symbol.srcFile].addSymbol(symbol);
-        }
+			// ignored things are not documented, this doesn't cascade
+			if (symbol.isIgnored) return;
+		    // add it to the file's list... (for dumping later..)
+		    if (Symbol.srcFile) {
+		        this.filesSymbols[Symbol.srcFile].addSymbol(symbol);
+		    }
 		
-		this.symbols.addSymbol(symbol);
-	},
+			this.symbols.addSymbol(symbol);
+		},
 	
 	addBuiltin: function(name) {
   
