@@ -117,7 +117,7 @@ namespace JSDOC
 			// we don't document anonymous things
 			if (DocParser.ignoreAnonymous && symbol.name.index_of("$anonymous\b") > -1) {
 				 return;
-			 }
+			}
 
 			// uderscored things may be treated as if they were marked private, this cascades
 			if (this.conf.treatUnderscoredAsPrivate && symbol.name.match(/[.#-]_[^.#-]+$/)) {
