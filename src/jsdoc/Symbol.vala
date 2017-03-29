@@ -10,19 +10,34 @@ namespace JSDOC {
 
 	public  class Symbol : Object
 	{
-	
-	
-//		public Symbol() {
-//		    this.init();
-//		},
-
-// probably needs vairous CTORS..
-
+		
+		private static bool regex_init = false;
+		private GLib.Regex regex_global;
+		private GLib.Regex regex_prototype;
+		
+		static void  regexInit()
+		{
+			if (Symbol.regex_init = true) {
+				return;
+			}
+			Symbol.regex_init = true;
+			Symbol.regex_global = new GLib.Regex("^_global_[.#-]");
+			Symbol.regex_prototype = new GLib.Regex("\\.prototype\\.?");
+		}
 
 		private string _name = "";        
         public string name {
     		get { return this._name; }
-    		set { this._name = value }
+    		set { 
+				var n = value.
+                n = n.replace(/^_global_[.#-]/, ""); 
+                n = n.replace(/\.prototype\.?/g, '#'); 
+                 n = n.replace(/#$/g, ''); 
+                this._name = n;
+                this.name = n; // real!
+            },
+    			
+    		this._name = value }
 		}
 		
         : "",
@@ -121,7 +136,7 @@ namespace JSDOC {
 		
 		Public Symbol.new_builtin(string name)
 		{
-            
+            Symbol.regexInit();
             this.initArrays();
             this.srcFile = DocParser.currentSourceFile;
 			this.setName( name );
@@ -140,13 +155,7 @@ namespace JSDOC {
 		
 
         //__defineSetter__("name",
-        setName  : function(n) { 
-                n = n.replace(/^_global_[.#-]/, ""); 
-                n = n.replace(/\.prototype\.?/g, '#'); 
-                 n = n.replace(/#$/g, ''); 
-                this._name = n;
-                this.name = n; // real!
-            },
+       
         //);
         //__defineGetter__("name",
         getName : function() { return this._name; },
