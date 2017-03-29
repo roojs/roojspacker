@@ -48,7 +48,6 @@ namespace JSDOC {
         		
         public string name {
     		get { return this.__name; }
-    		
 		}
 		
         : "",
@@ -150,8 +149,8 @@ namespace JSDOC {
             Symbol.regexInit();
             this.initArrays();
             this.srcFile = DocParser.currentSourceFile;
-			this.setName( name );
-			this.alias = this.getName();
+			this._name = name;
+			this.alias = this.name;
 			this.isa = "CONSTRUCTOR";
 			this.comment = new DocComment("");
 			this.comment.isUserComment =  false;
