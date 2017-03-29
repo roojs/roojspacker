@@ -141,13 +141,12 @@ namespace JSDOC
 			DocParser.symbols.addSymbol(symbol);
 		}
 	
-		public Symbol addBuiltin(string name) {
-	  
+		public Symbol addBuiltin(string name) 
+		{
 			var builtin = new Symbol.new_builtin(name);
-			 
 		    DocParser.addSymbol(builtin);
 			return builtin;
-		},
+		}
 	
 		
 	finish: function() {
