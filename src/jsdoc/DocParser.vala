@@ -30,7 +30,7 @@ namespace JSDOC
 				return ;
 			}
 			DocParser.symbols = new  SymbolSet();
-			
+			DocParser.filesSymbols = new  Gee.HashMap<string,SymbolSet>();
 			
 			DocParser.has_init = true;
 		
