@@ -72,6 +72,7 @@ namespace JSDOC
 		        
 		        if (symbol.isPrivate) {
 		            this.symbols.deleteSymbol(symbol.alias);
+		            this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
 		            continue;
 		        }
 		        
