@@ -180,6 +180,7 @@ namespace JSDOC {
                 string isa,
                 string comment
         ) {
+            this.initArrays();
             this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
             this.setName(name);
