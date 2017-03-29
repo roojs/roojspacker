@@ -161,8 +161,10 @@ namespace JSDOC {
 
 
         //__defineGetter__("params",
-        getParams : function() { return this._params; },
-        //);
+        public getParams : function() { 
+    		return this._params; 
+		},
+ 
 
         public Symbol.new_populate_with_args(
                 string  name,
