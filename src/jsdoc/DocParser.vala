@@ -18,90 +18,90 @@ namespace JSDOC
 		
 		public DocParser{) {
 		
-		this.symbols = new  SymbolSet();
-		//this.walker = new JSDOC.Walker();
-        //JSDOC.Parser.filesSymbols = {};
-			}
+			this.symbols = new  SymbolSet();
+			//this.walker = new JSDOC.Walker();
+		    //JSDOC.Parser.filesSymbols = {};
+		}
 
 
 
-    /**
-     * Parse a token stream.
-     * @param {JSDOC.TokenStream} token stream
-     * @param {String} filename 
-         
-     */
-    
-    
-    parse : function(ts, srcFile) 
-    {
-        this.init();
-        
-        
-        // not a nice way to set stuff...
-        
-        Symbol.srcFile = (srcFile || "");
-        DocComment.shared = ""; // shared comments don't cross file boundaries
-        
-       
-        
-        
-        
-        this.filesSymbols[Symbol.srcFile] = new SymbolSet();
-        
-        //Options.LOG.inform("Parser - run walker");
-        this.walker = new  Walker2(ts);
-        this.walker.buildSymbolTree();
-        
-        
-        
-        //this.walker.walk(ts); // adds to our symbols
-       // throw "done sym tree";
-        //Options.LOG.inform("Parser - checking symbols");
-        // filter symbols by option
-        for (p in this.symbols._index) {
-            var symbol = this.symbols.getSymbol(p);
-            
-           // print(JSON.stringify(symbol, null,4));
-            
-            if (!symbol) continue;
-            
-            if (symbol.isPrivate) {
-                this.symbols.deleteSymbol(symbol.alias);
-                continue;
-            }
-            
-            if (symbol.is("FILE") || symbol.is("GLOBAL")) {
-                continue;
-            }
-            //else if (!Options.a && !symbol.comment.isUserComment) {
-                //print("Deleting Symbols (no a / user comment): " + symbol.alias);
-                //this.symbols.deleteSymbol(symbol.alias);
-                //this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
-            //}
-            
-            if (/#$/.test(symbol.alias)) { // we don't document prototypes - this should not happen..
-                // rename the symbol ??
-                /*if (!this.symbols.getSymbol(symbol.alias.substring(0,symbol.alias.length-1))) {
-                    // rename it..
-                    print("Renaming Symbol (got  a #): " + symbol.alias);
-                    var n = '' + symbol.alias;
-                    this.symbols.renameSymbol( n ,n.substring(0,n-1));
-                    this.filesSymbols[Symbol.srcFile].renameSymbol( n ,n.substring(0,n-1));
-                    continue;
-                }
-                */
-                print("Deleting Symbols (got  a #): " + symbol.alias);
-                
-                this.symbols.deleteSymbol(symbol.alias);
-                this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
-            
-            }
-        }
-        //print(prettyDump(toQDump(this.filesSymbols[Symbol.srcFile]._index,'{','}')));
-        //print("AfterParse: " + this.symbols.keys().toSource().split(",").join(",\n   "));
-        return this.symbols.toArray();
-    },
+		/**
+		 * Parse a token stream.
+		 * @param {JSDOC.TokenStream} token stream
+		 * @param {String} filename 
+		     
+		 */
+		
+		
+		parse : function(ts, srcFile) 
+		{
+		    this.init();
+		    
+		    
+		    // not a nice way to set stuff...
+		    
+		    Symbol.srcFile = (srcFile || "");
+		    DocComment.shared = ""; // shared comments don't cross file boundaries
+		    
+		   
+		    
+		    
+		    
+		    this.filesSymbols[Symbol.srcFile] = new SymbolSet();
+		    
+		    //Options.LOG.inform("Parser - run walker");
+		    this.walker = new  Walker2(ts);
+		    this.walker.buildSymbolTree();
+		    
+		    
+		    
+		    //this.walker.walk(ts); // adds to our symbols
+		   // throw "done sym tree";
+		    //Options.LOG.inform("Parser - checking symbols");
+		    // filter symbols by option
+		    for (p in this.symbols._index) {
+		        var symbol = this.symbols.getSymbol(p);
+		        
+		       // print(JSON.stringify(symbol, null,4));
+		        
+		        if (!symbol) continue;
+		        
+		        if (symbol.isPrivate) {
+		            this.symbols.deleteSymbol(symbol.alias);
+		            continue;
+		        }
+		        
+		        if (symbol.is("FILE") || symbol.is("GLOBAL")) {
+		            continue;
+		        }
+		        //else if (!Options.a && !symbol.comment.isUserComment) {
+		            //print("Deleting Symbols (no a / user comment): " + symbol.alias);
+		            //this.symbols.deleteSymbol(symbol.alias);
+		            //this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
+		        //}
+		        
+		        if (/#$/.test(symbol.alias)) { // we don't document prototypes - this should not happen..
+		            // rename the symbol ??
+		            /*if (!this.symbols.getSymbol(symbol.alias.substring(0,symbol.alias.length-1))) {
+		                // rename it..
+		                print("Renaming Symbol (got  a #): " + symbol.alias);
+		                var n = '' + symbol.alias;
+		                this.symbols.renameSymbol( n ,n.substring(0,n-1));
+		                this.filesSymbols[Symbol.srcFile].renameSymbol( n ,n.substring(0,n-1));
+		                continue;
+		            }
+		            */
+		            print("Deleting Symbols (got  a #): " + symbol.alias);
+		            
+		            this.symbols.deleteSymbol(symbol.alias);
+		            this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
+		        
+		        }
+		    }
+		    //print(prettyDump(toQDump(this.filesSymbols[Symbol.srcFile]._index,'{','}')));
+		    //print("AfterParse: " + this.symbols.keys().toSource().split(",").join(",\n   "));
+		    return this.symbols.toArray();
+		},
 
 	
 	addSymbol: function(symbol) 
