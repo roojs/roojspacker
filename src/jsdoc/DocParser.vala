@@ -72,7 +72,7 @@ namespace JSDOC
 		        
 		        if (symbol.isPrivate) {
 		            this.symbols.deleteSymbol(symbol.alias);
-		            this.filesSymbols.get(Symbol.srcFile).deleteSymbol(symbol.alias);
+		            this.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
 		            continue;
 		        }
 		        
@@ -86,7 +86,7 @@ namespace JSDOC
 		            print("Deleting Symbols (alias ends in #): " + symbol.alias);
 		            
 		            this.symbols.deleteSymbol(symbol.alias);
-		            this.filesSymbols[Symbol.srcFile].deleteSymbol(symbol.alias);
+		            this.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
 		        
 		        }
 		    }
