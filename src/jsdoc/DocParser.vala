@@ -163,12 +163,11 @@ namespace JSDOC
     /**
      * return symbols so they can be serialized.
      */
-    symbolsToObject : function(srcFile)
+    SymbolSet symbolsToObject(string srcFile)
     {
-        //this.filesSymbols[srcFile] is a symbolset..
-        return this.filesSymbols[srcFile];
-        
-            //    Parser.filesSymbols[srcFile]._index
+
+        return this.filesSymbols.get(srcFile);
+
     }
 
 }
