@@ -4,7 +4,7 @@ namespace JSDOC
 
 	public class DocParser : Object 
 	{
-		// options?
+		// options - should they bee in PackerRun?
 		static bool ignoreAnonymous =            true; 
 		static bool treatUnderscoredAsPrivate = true;
 		static bool explain=             false;
