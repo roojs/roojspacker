@@ -27,7 +27,7 @@ namespace JSDOC {
 
 		private string private_name = ""; // should not be directly accessed ??
 		
-		private string _name {
+		private string set_name {
 			set { 
     		
 				var n = Symbol.regex_global(value, value.length, 0, "")
@@ -41,7 +41,6 @@ namespace JSDOC {
     			
                 this.private_name = n;
             }
-             
 		}
         		
         public string name {
