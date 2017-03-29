@@ -24,7 +24,7 @@ namespace JSDOC
 		}
 
 
-		private initStatic()
+		private static void initStatic()
 		{
 			if (DocParser.has_init) {
 				return ;
@@ -34,12 +34,7 @@ namespace JSDOC
 			
 			DocParser.has_init = true;
 		
-		/**
-		 * Parse a token stream.
-		 * @param {JSDOC.TokenStream} token stream
-		 * @param {String} filename 
-		     
-		 */
+	   }
 		
 		
 		public static void parse(TokenStream ts, string srcFile) 
