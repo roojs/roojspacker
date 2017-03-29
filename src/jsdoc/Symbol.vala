@@ -78,65 +78,8 @@ namespace JSDOC {
         
         
         
-            
-       /* 
-        toJSON : function()
-        {
-            
-           
-            var ret = { '*object' : 'Symbol' };
-            for (var i in this) {
-                if (Symbol.hide.indexOf(i) > -1) {
-                    continue;
-                }
-                switch (typeof(this[i])) {
-                    case 'function':
-                        continue;
-                    case 'object':
-                        switch(i) {
-                            //arrays..
-                            case 'params' : 
-                            case 'augments' :                             
-                            case 'exceptions' :  
-                            case 'inherits' :
-                            case 'methods' :
-                            case '_params': 
-                            case 'properties': 
-                            case 'requires':
-                            case 'returns':
-                            case 'see':
-                            case 'cfgs': // key val of doctags..
-                            case 'comment' :
-                                ret[i] = this[i]
-                                continue; 
-                            
-                            //skip
-                            case 'inheritsFrom':
-                            case 'childClasses':
-                                continue;
-            
-                            default:
-                                print("object? :" + i);
-                                Seed.quit();
-                        }
-                        
-                        
-                    case 'string':
-                    case 'number':
-                    case 'boolean':
-                        ret[i] = this[i]; continue;
-                    default:
-                        
-                        print("unknown type:" + typeof(this[i]));
-                        print(JSON.stringify(this));
-                        Seed.quit();
-                   }
-            }
-            return ret;
-            
-        },
-        */
-        init : function() 
+        
+        public Symbol() 
         {
             // only initialize arrays / objects..
             this.params = [];
