@@ -164,7 +164,7 @@ namespace JSDOC {
         getParams : function() { return this._params; },
         //);
 
-        public Symbol.new_populate(
+        public Symbol.new_populate_with_args(
                 string  name,
                 Gee.ArrayList<string> params, // fixme???
                 string isa,
