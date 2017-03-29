@@ -27,20 +27,19 @@ namespace JSDOC {
 
 		private string private_name = ""; // should not be directly accessed ??
 		
-		private string set_name {
-			set { 
-    		
-				var n = Symbol.regex_global(value, value.length, 0, "")
-                n =  Symbol.regex_prototype(n,n.length, 0, "#");
-                while (true) {
-            		if (!n.has_suffix("#")) {
-            			break;
-        			}
-        			n = n.substring(0, n.length-1);
+		private void setName (value) 
+		{
+			var n = Symbol.regex_global(value, value.length, 0, "")
+            n =  Symbol.regex_prototype(n,n.length, 0, "#");
+            while (true) {
+        		if (!n.has_suffix("#")) {
+        			break;
     			}
-    			
-                this.private_name = n;
-            }
+    			n = n.substring(0, n.length-1);
+			}
+			
+            this.private_name = n;
+            
 		}
         		
         public string name {
@@ -146,7 +145,7 @@ namespace JSDOC {
             Symbol.regexInit();
             this.initArrays();
             this.srcFile = DocParser.currentSourceFile;
-			this._name = name;
+			this.setName( name );
 			this.alias = this.name;
 			this.isa = "CONSTRUCTOR";
 			this.comment = new DocComment("");
@@ -161,13 +160,7 @@ namespace JSDOC {
 		}
 		
 
-        //__defineSetter__("name",
-       
-        //);
-        //__defineGetter__("name",
-        getName : function() { return this._name; },
-        //);
-        //__defineSetter__("params", 
+        
         setParams  :function(v) {
                 for (var i = 0, l = v.length; i < l; i++) {
                     if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
