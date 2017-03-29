@@ -10,38 +10,18 @@ namespace JSDOC
 		bool explain=             false;
  
  
-const Parser = {
-	conf: { 
-        loaded: false 
-    },
     
-    walker : false, // will be JSDOC.Walker()
-    symbols : false, //will be JSDOC.SymbolSet()
+		DocWalker walker ;
+	    SymbolSet symbols ;
     
-    filesSymbols : { },
-    
-    /** 
-    * global init once 
-    * 
-    */
-         
-    init: function() {
-        if (this.conf.loaded) {
-            return;
-        }
-        //print("init parser conf!?");
-        this.conf = {
-            loaded : true,
-            //ignoreCode:                 Options.n,
-            ignoreAnonymous:           true, // factory: true
-            treatUnderscoredAsPrivate: true, // factory: true
-            explain:                   false // factory: false
-        };
-         
+	    //filesSymbols : { },
+		
+		public DocParser{) {
+		
 		this.symbols = new  SymbolSet();
 		//this.walker = new JSDOC.Walker();
         //JSDOC.Parser.filesSymbols = {};
-	},
+			}
 
 
 
