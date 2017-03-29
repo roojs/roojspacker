@@ -58,13 +58,13 @@ namespace JSDOC {
         //inheritsFrom : [],
         string isa = "OBJECT"; // OBJECT//FUNCTION
         
-        bool isEvent = false;
-        bool isConstant = false;
-        bool isIgnored = false;
-        bool isInner = false;
-        bool isNamespace = false;
-        bool isPrivate = false;
-        bool isStatic = false;
+        public bool isEvent = false;
+        public bool isConstant = false;
+        public bool isIgnored = false;
+        public bool isInner = false;
+        public bool isNamespace = false;
+        public bool isPrivate = false;
+        public bool isStatic = false;
         
         string memberOf : "",
 
