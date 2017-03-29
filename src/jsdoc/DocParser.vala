@@ -42,7 +42,7 @@ namespace JSDOC
 		 */
 		
 		
-		static void parse(TokenStream ts, string srcFile) 
+		public static void parse(TokenStream ts, string srcFile) 
 		{
 		    
 		    DocParser.currentSourceFile = srcFile;
@@ -96,7 +96,7 @@ namespace JSDOC
 		}
 
 	
-		public void addSymbol(Symbol symbol) 
+		public static void addSymbol(Symbol symbol) 
 		{
 		    //print("PARSER addSYMBOL : " + symbol.alias);
 		    
@@ -141,7 +141,7 @@ namespace JSDOC
 			DocParser.symbols.addSymbol(symbol);
 		}
 	
-		public Symbol addBuiltin(string name) 
+		public static Symbol addBuiltin(string name) 
 		{
 			var builtin = new Symbol.new_builtin(name);
 		    DocParser.addSymbol(builtin);
@@ -149,8 +149,8 @@ namespace JSDOC
 		}
 	
 		
-	finish: function() {
-		this.symbols.relate();		
+		public static  void finish() {
+			this.symbols.relate();		
 		
 		// make a litle report about what was found
 		if (this.conf.explain) {
