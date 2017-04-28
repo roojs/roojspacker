@@ -39,7 +39,7 @@ namespace JSDOC {
 		        this.private_name = n;
     		}
 		
-		};  
+		}
 		 
         public string name {
     		get { return this.private_name; }
@@ -50,7 +50,30 @@ namespace JSDOC {
         
         
         
-        params : [],
+        Gee.ArrayList<DocTag> params {
+    		set (Gee.ArrayList<DocTag> v) {
+                for (var i = 0; i < v.size; i++) {
+                    //if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
+                    //    var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
+                    //    this._params[i] = new DocTag(
+                    //        "param"+((ty)?" {"+ty+"}":"")+" "+v[i].name);
+                    //}
+                    //else {
+                    //    this._params[i] = v[i];
+                    //}
+                    this.params.add(v.get(i));
+                }
+                //this.params = this._params;
+            },
+        //);
+
+
+        //__defineGetter__("params",
+        public getParams : function() { 
+    		return this._params; 
+		},
+        
+        
         augments : [], // Doctag[]
         exceptions : [],  // Doctag[]
         inherits : [],  // Doctag[]
@@ -159,27 +182,6 @@ namespace JSDOC {
 		}
 		
 
-        
-        setParams  :function(v) {
-                for (var i = 0, l = v.length; i < l; i++) {
-                    if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
-                        var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
-                        this._params[i] = new DocTag(
-                            "param"+((ty)?" {"+ty+"}":"")+" "+v[i].name);
-                    }
-                    else {
-                        this._params[i] = v[i];
-                    }
-                }
-                this.params = this._params;
-            },
-        //);
-
-
-        //__defineGetter__("params",
-        public getParams : function() { 
-    		return this._params; 
-		},
  
 
         public Symbol.new_populate_with_args(
