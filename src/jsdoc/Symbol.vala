@@ -27,7 +27,7 @@ namespace JSDOC {
 
 		private string private_name {
     		set {
-				var n = Symbol.regex_global(value, value.length, 0, "")
+				var n = Symbol.regex_global(value, value.length, 0, "");
 		        n =  Symbol.regex_prototype(n,n.length, 0, "#");
 		        while (true) {
 		    		if (!n.has_suffix("#")) {
