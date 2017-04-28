@@ -49,7 +49,7 @@ namespace JSDOC {
         string defaultValue = "";
         
         
-        
+        private Gee.ArrayList<DocTag> private_params;
         Gee.ArrayList<DocTag> params {
     		set  {
                 for (var i = 0; i < value.size; i++) {
@@ -61,18 +61,15 @@ namespace JSDOC {
                     //else {
                     //    this._params[i] = v[i];
                     //}
-                    this.params.add(v.get(i));
+                    this.private_params.add(v.get(i));
                 }
                 //this.params = this._params;
-            }
+            },
+            get {
+        		return this.private_params;
+    		}
+        		
         }
-        //);
-
-
-        //__defineGetter__("params",
-        public getParams : function() { 
-    		return this._params; 
-		},
         
         
         augments : [], // Doctag[]
