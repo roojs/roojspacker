@@ -39,7 +39,7 @@ namespace JSDOC {
 		        this.private_name = n;
     		}
 		
-		}; // should not be directly accessed ??
+		};  
 		
         		
         public string name {
