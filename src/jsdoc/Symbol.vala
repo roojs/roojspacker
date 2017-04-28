@@ -46,7 +46,7 @@ namespace JSDOC {
     		get { return this.private_name; }
 		}
 		
-        : "",
+      
         string defaultValue : "",
         
         
