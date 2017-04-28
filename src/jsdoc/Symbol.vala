@@ -25,22 +25,22 @@ namespace JSDOC {
 			Symbol.regex_prototype = new GLib.Regex("\\.prototype\\.?");
 		}
 
-		private string private_name = ""; // should not be directly accessed ??
-		
-		private void setName (value) 
-		{
-			var n = Symbol.regex_global(value, value.length, 0, "")
-            n =  Symbol.regex_prototype(n,n.length, 0, "#");
-            while (true) {
-        		if (!n.has_suffix("#")) {
-        			break;
-    			}
-    			n = n.substring(0, n.length-1);
-			}
+		private string private_name {
+    		set {
+				var n = Symbol.regex_global(value, value.length, 0, "")
+		        n =  Symbol.regex_prototype(n,n.length, 0, "#");
+		        while (true) {
+		    		if (!n.has_suffix("#")) {
+		    			break;
+					}
+					n = n.substring(0, n.length-1);
+				}
 			
-            this.private_name = n;
-            
-		}
+		        this.private_name = n;
+    		}
+		
+		}; // should not be directly accessed ??
+		
         		
         public string name {
     		get { return this.private_name; }
