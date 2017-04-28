@@ -73,7 +73,7 @@ namespace JSDOC {
         }
         
         
-        DocTag augments = null; // Doctag[]
+        DocTag? augments = null; // Doctag[]
         exceptions : [],  // Doctag[]
         inherits : [],  // Doctag[]
         methods : [], // Symbol[]
