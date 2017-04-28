@@ -48,12 +48,13 @@ namespace JSDOC {
       
         string defaultValue = "";
         
+        private Gee.ArrayList<DocTag> private_doctag_params;
         
         private Gee.ArrayList<DocTag> private_params{
     		set  {
                 for (var i = 0; i < value.size; i++) {
                    
-                    this.private_params.add(v.get(i));
+                    this.private_doctag_params.add(v.get(i));
                 }
                 //this.params = this._params;
             }
@@ -64,21 +65,18 @@ namespace JSDOC {
                 for (var i = 0; i < value.size; i++) {
 
                     //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
-                    this._params[i] = new DocTag(value.get(i));
-                           //"param"+((ty)?" {"+ty+"}":"")+" "+v[i].name);
-                           //"param"+((ty)?" {"+ty+"}":"")+" "+v.get(i).name);
-                    }
-                    //else {
-                    //    this._params[i] = v[i];
-                    //}
-                    this.private_params.add(v.get(i));
+                    this.private_doctag_params.add( new DocTag(value.get(i));
+                           
+                   //"param"+((ty)?" {"+ty+"}":"")+" "+v.get(i).name);
+                   
+ 
                 }
                 //this.params = this._params;
             }
         }
-         public Gee.ArrayList<DocTag> params {
+      public Gee.ArrayList<DocTag> params {
             get {
-        		return this.private_params;
+        		return this.private_doctag_params;
     		}
         		
         }
