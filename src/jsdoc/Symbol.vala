@@ -81,7 +81,7 @@ namespace JSDOC {
         private Gee.ArrayList<DocTag>  methods;
 
 		private Gee.ArrayList<DocTag> properties;
-        private Gee.ArrayList<DocTag> requires ;
+        private Gee.ArrayList<DocTag> requires;
         private Gee.ArrayList<DocTag> returns;
         private Gee.ArrayList<DocTag> see ;
 
@@ -115,15 +115,15 @@ namespace JSDOC {
         public bool isPrivate = false;
         public bool isStatic = false;
         
-        string memberOf : "",
+        string memberOf = "";
 
-        string _name : "",
+
 
        
-        string since : "",
+        string since = "",
 
-        string type : "",
-        string version : "",
+        string type = "",
+        string version = "",
         
         string srcFile = ""
         
@@ -135,19 +135,19 @@ namespace JSDOC {
 
             
             //this.params = [];
-            this.$args = [];
+            //this.$args = [];
             
             //this.events = [];
-            this.exceptions = [];
-            this.inherits = [];
+            this.exceptions = new Gee.ArrayList<DocTag>();
+            this.inherits = new Gee.ArrayList<DocTag>();
             //
             this.isa = "OBJECT"; // OBJECT//FUNCTION
-            this.methods = [];
-            this._params = [];
-            this.properties = [];
-            this.requires = [];
-            this.returns = [];
-            this.see = [];
+            this.methods = new Gee.ArrayList<DocTag>();
+            //this.private_params = new Gee.ArrayList<DocTag>();
+            this.properties = new Gee.ArrayList<DocTag>();
+            this.requires = new Gee.ArrayList<DocTag>();
+            this.returns = new Gee.ArrayList<DocTag>();
+            this.see = new Gee.ArrayList<DocTag>();
  
             
             
