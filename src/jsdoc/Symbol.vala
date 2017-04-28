@@ -192,7 +192,7 @@ namespace JSDOC {
         ) {
             Symbol.regexInit();
             this.initArrays();
-            this.$args = arguments;
+           // this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
             this.private_name = name;
             this.alias = this.getName();
