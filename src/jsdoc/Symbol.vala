@@ -40,8 +40,7 @@ namespace JSDOC {
     		}
 		
 		};  
-		
-        		
+		 
         public string name {
     		get { return this.private_name; }
 		}
