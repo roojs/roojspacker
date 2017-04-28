@@ -85,7 +85,7 @@ namespace JSDOC {
         private Gee.ArrayList<DocTag> returns;
         private Gee.ArrayList<DocTag> see ;
 
-        //srcFile : {}, //??
+         
         //childClasses : [],
         //cfgs : {},
         
@@ -120,12 +120,12 @@ namespace JSDOC {
 
 
        
-        string since = "",
+        string since = "";
 
-        string type = "",
-        string version = "",
-        
-        string srcFile = ""
+        string type = "";
+        string version = "";
+       
+        string srcFile = "";
         
         
         
