@@ -47,7 +47,7 @@ namespace JSDOC {
 		}
 		
       
-        string defaultValue : "",
+        string defaultValue = "";
         
         
         
