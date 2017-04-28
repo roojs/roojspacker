@@ -73,21 +73,21 @@ namespace JSDOC {
         }
         
         
-        private DocTag? augments = null;  
+        private Gee.ArrayList<DocTag>  augments ;  
         
-        exceptions : [],  // Doctag[]
-        inherits : [],  // Doctag[]
-        methods : [], // Symbol[]
-		//??
-        _params : [], //Doctag[]
-		 properties : [], //Doctag[]
-        requires : [],  //Doctag[]
-        returns : [], //Doctag[]
-        see : [], //Doctag[]
+        private Gee.ArrayList<DocTag>  exceptions ;
+       
+        Gee.ArrayList<DocTag>  inherits; 
+        Gee.ArrayList<DocTag>  methods;
 
-        srcFile : {}, //??
-        childClasses : [],
-        cfgs : {},
+		Gee.ArrayList<DocTag> properties;
+        Gee.ArrayList<DocTag> requires ;
+        Gee.ArrayList<DocTag> returns;
+        Gee.ArrayList<DocTag> see ;
+
+        //srcFile : {}, //??
+        //childClasses : [],
+        //cfgs : {},
         
         
         DocComment comment;
