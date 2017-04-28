@@ -49,8 +49,7 @@ namespace JSDOC {
         string defaultValue = "";
         
         
-        private Gee.ArrayList<DocTag> private_params;
-        public Gee.ArrayList<DocTag> params {
+        private Gee.ArrayList<DocTag> private_params{
     		set  {
                 for (var i = 0; i < value.size; i++) {
                     //if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
@@ -64,7 +63,9 @@ namespace JSDOC {
                     this.private_params.add(v.get(i));
                 }
                 //this.params = this._params;
-            },
+            }
+        }
+        public Gee.ArrayList<DocTag> params {
             get {
         		return this.private_params;
     		}
