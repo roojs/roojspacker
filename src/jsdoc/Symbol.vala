@@ -50,7 +50,7 @@ namespace JSDOC {
         
         
         private Gee.ArrayList<DocTag> private_params;
-        Gee.ArrayList<DocTag> params {
+        public Gee.ArrayList<DocTag> params {
     		set  {
                 for (var i = 0; i < value.size; i++) {
                     //if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
