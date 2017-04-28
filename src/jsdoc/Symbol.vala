@@ -216,11 +216,11 @@ namespace JSDOC {
         		this.alias = this.srcFile;
     		}
 
-            this.setTags();
+            this.tagsFromComment();
             
         }
 
-        void setTags() {
+        void tagsFromComment() {
             // @author
             var authors = this.comment.getTag("author");
             if (authors.length) {
