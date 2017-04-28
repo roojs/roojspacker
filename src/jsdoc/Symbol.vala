@@ -218,9 +218,9 @@ namespace JSDOC {
 
             this.setTags();
             
-        },
+        }
 
-        setTags : function() {
+        void setTags() {
             // @author
             var authors = this.comment.getTag("author");
             if (authors.length) {
