@@ -65,7 +65,7 @@ namespace JSDOC {
                 for (var i = 0; i < value.size; i++) {
 
                     //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
-                    this.private_doctag_params.add( new DocTag(value.get(i));
+                    this.private_doctag_params.add( new DocTag(value.get(i)));
                            
                    //"param"+((ty)?" {"+ty+"}":"")+" "+v.get(i).name);
                    
