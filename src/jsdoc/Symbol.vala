@@ -194,7 +194,7 @@ namespace JSDOC {
             this.initArrays();
             this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
-            this.setName(name);
+            this.private_name = name;
             this.alias = this.getName();
             this.setParams(params);
             this.isa = (isa == "VIRTUAL")? "OBJECT":isa;
