@@ -25,6 +25,7 @@ namespace JSDOC {
 			Symbol.regex_prototype = new GLib.Regex("\\.prototype\\.?");
 		}
 
+		private string private_string_name = "";
 		private string private_name {
     		set {
 				var n = Symbol.regex_global(value, value.length, 0, "");
@@ -36,62 +37,61 @@ namespace JSDOC {
 					n = n.substring(0, n.length-1);
 				}
 			
-		        this.private_name = n;
+		        this.private_string_name = n;
     		}
 		
 		}
 		 
         public string name {
-    		get { return this.private_name; }
+    		get { return this.private_string_name; }
 		}
 		
       
         string defaultValue = "";
         
-        private Gee.ArrayList<DocTag> private_doctag_params;
-        
-        private Gee.ArrayList<DocTag> private_params{
-    		set  {
-                for (var i = 0; i < value.size; i++) {
-                   
-                    this.private_doctag_params.add(v.get(i));
-                }
-                //this.params = this._params;
-            }
-        }
-     
-         private Gee.ArrayList<string> private_string_params{
-    		set  {
-                for (var i = 0; i < value.size; i++) {
+		private Gee.ArrayList<DocTag> private_doctag_params;
 
-                    //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
-                    this.private_doctag_params.add( new DocTag(value.get(i)));
-                           
-                   //"param"+((ty)?" {"+ty+"}":"")+" "+v.get(i).name);
-                   
- 
-                }
-                //this.params = this._params;
-            }
-        }
-      public Gee.ArrayList<DocTag> params {
-            get {
-        		return this.private_doctag_params;
-    		}
-        		
-        }
-        
-        private Gee.ArrayList<DocTag>  augments ;  
-        
-        private Gee.ArrayList<DocTag>  exceptions ;
-       
-        private Gee.ArrayList<DocTag>  inherits; 
-        private Gee.ArrayList<DocTag>  methods;
+		private Gee.ArrayList<DocTag> private_params{
+			set  {
+				for (var i = 0; i < value.size; i++) {
+				   
+				    this.private_doctag_params.add(v.get(i));
+				}
+				//this.params = this._params;
+			}
+		}
+     
+		Gee.ArrayList<string> private_string_params{
+			set  {
+				for (var i = 0; i < value.size; i++) {
+
+				    //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
+				    this.private_doctag_params.add( new DocTag(value.get(i)));
+				           
+				   //"param"+((ty)?" {"+ty+"}":"")+" "+v.get(i).name);
+				    
+				}
+				
+			}
+		}
+		public Gee.ArrayList<DocTag> params {
+			get {
+				return this.private_doctag_params;
+			}
+		
+		}
+
+		private Gee.ArrayList<DocTag>  augments ;  
+
+		private Gee.ArrayList<DocTag>  exceptions ;
+
+		private Gee.ArrayList<DocTag>  inherits; 
+		private Gee.ArrayList<DocTag>  methods;
 
 		private Gee.ArrayList<DocTag> properties;
-        private Gee.ArrayList<DocTag> requires;
-        private Gee.ArrayList<DocTag> returns;
-        private Gee.ArrayList<DocTag> see ;
+		private Gee.ArrayList<DocTag> requires;
+		private Gee.ArrayList<DocTag> returns;
+		private Gee.ArrayList<DocTag> see ;
 
          
         //childClasses : [],
