@@ -52,11 +52,22 @@ namespace JSDOC {
         private Gee.ArrayList<DocTag> private_params{
     		set  {
                 for (var i = 0; i < value.size; i++) {
-                    //if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
-                    //    var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
-                    //    this._params[i] = new DocTag(
-                    //        "param"+((ty)?" {"+ty+"}":"")+" "+v[i].name);
-                    //}
+                   
+                    this.private_params.add(v.get(i));
+                }
+                //this.params = this._params;
+            }
+        }
+     
+         private Gee.ArrayList<string> private_string_params{
+    		set  {
+                for (var i = 0; i < value.size; i++) {
+
+                    //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
+                    this._params[i] = new DocTag(value.get(i));
+                           //"param"+((ty)?" {"+ty+"}":"")+" "+v[i].name);
+                           //"param"+((ty)?" {"+ty+"}":"")+" "+v.get(i).name);
+                    }
                     //else {
                     //    this._params[i] = v[i];
                     //}
@@ -65,13 +76,12 @@ namespace JSDOC {
                 //this.params = this._params;
             }
         }
-        public Gee.ArrayList<DocTag> params {
+         public Gee.ArrayList<DocTag> params {
             get {
         		return this.private_params;
     		}
         		
         }
-        
         
         private Gee.ArrayList<DocTag>  augments ;  
         
