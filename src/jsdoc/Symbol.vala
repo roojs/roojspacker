@@ -196,7 +196,7 @@ namespace JSDOC {
             //println("Symbol created: " + isa + ":" + name);
             this.private_name = name;
             this.alias = this.getName();
-            this.private_params = params; 
+            this.private_params_string = params; 
             this.isa = (isa == "VIRTUAL")? "OBJECT":isa;
             this.comment =  new DocComment(comment);
             
