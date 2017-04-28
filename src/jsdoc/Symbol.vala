@@ -51,8 +51,8 @@ namespace JSDOC {
         
         
         Gee.ArrayList<DocTag> params {
-    		set (Gee.ArrayList<DocTag> v) {
-                for (var i = 0; i < v.size; i++) {
+    		set  {
+                for (var i = 0; i < value.size; i++) {
                     //if (v[i].constructor != DocTag) { // may be a generic object parsed from signature, like {type:..., name:...}
                     //    var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
                     //    this._params[i] = new DocTag(
@@ -64,7 +64,8 @@ namespace JSDOC {
                     this.params.add(v.get(i));
                 }
                 //this.params = this._params;
-            },
+            }
+        }
         //);
 
 
