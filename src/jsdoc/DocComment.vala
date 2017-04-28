@@ -179,13 +179,14 @@ namespace JSDOC
 	    }
 		  
 		 
-	    public DocTag? getTag ( DocTagTitle tagTitle) {
+	    public ArrayList<DocTag> getTag ( DocTagTitle tagTitle) {
+			var ret = new ArrayList<DocTag>();
 	        foreach(var tag in this.tags) {
 	    		if (tag.title == tagTitle) {
-	    			return tag;
+	    			ret.add(tag);
     			}
 			}
-			return null;
+			return ret;
 	    }
 		    
 	}
