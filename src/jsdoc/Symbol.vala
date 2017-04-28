@@ -223,7 +223,9 @@ namespace JSDOC {
         void tagsFromComment() {
             // @author
             var authors = this.comment.getTag("author");
-            if (authors.length) {
+            if (authors.size) {
+        		// turns author into a string....
+        		
                 this.author = authors.map(function($){return $.desc;}).join(", ");
             }
             
