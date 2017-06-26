@@ -76,6 +76,10 @@ namespace JSDOC
 		
 		public static bool opt_clean_cache = true;	
 		
+		// not actually an option yet..
+		
+		public static string opt_doc_ext = "html";
+		
 		const OptionEntry[] options = {
 		
 			{ "jsfile", 'f', 0, OptionArg.FILENAME_ARRAY, ref opt_files ,"add a file to compile", null },

@@ -9,6 +9,8 @@ namespace JSDOC
 		
 
 		public string VERSION = "1.0.0";
+		// extractable via JSON?
+		public string VERSION = "1.0.0" ;
 		
 		
 		private Packer packer;
@@ -168,6 +170,61 @@ namespace JSDOC
 		    Parser.finish();
 		}
 		
+=======
+            //var txs =
+            
+            var tr = new  TokenReader(this.packer);
+			tr.keepDocs = true;
+			tr.keepWhite = true;
+			tr.keepComments = true;
+			tr.sepIdents = false;
+			tr.collapseWhite = false;
+			tr.filename = src;
+            
+
+            var toks = tr.tokenize( new TextStream(src));
+            if (PackerRun.opt_dump_tokens) {
+				toks.dump();
+				return "";
+				//GLib.Process.exit(0);
+			}
+            
+            
+            var ts = new TokenStream(toks);
+        
+        
+        
+                     
+            DocParser.parse(ts, srcFile);
+            
+            if (useCache) {
+        		
+        		var ar = DocParser.symbolsToObject(srcFile);
+        		
+        		var builder = new Json.Builder ();
+            	builder.begin_array ();
+            	for (var i=0;i<ar.size;i++) {
+            	
+					builder.add_object_value (ar.get(i));
+				}
+				builder.end_array ();
+				Json.Generator generator = new Json.Generator ();
+				Json.Node root = builder.get_root ();
+				generator.set_root (root);
+				generator.pretty=  true;
+				generator.ident = 2;
+				generator.to_file(cacheFile);
+            
+             
+                
+    //		}
+        }
+        
+        
+        
+        Parser.finish();
+    }
+    
      
         
 		void publish() 
