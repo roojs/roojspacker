@@ -347,7 +347,7 @@ namespace JSDOC
 		    
 		    var srcfile = in_srcfile;
 		    if (srcfile[0] != '/') {
-				srcfile = PackerRun.opt_real_basedir + in_srcfile;
+			//	srcfile = PackerRun.opt_real_basedir + in_srcfile;
 			}
 		    string str;
 		    FileUtils.get_contents(srcfile,out str);
@@ -375,7 +375,7 @@ namespace JSDOC
 		        var add = f.replace(".", "/") + ".js";
 		        
 		        if (add[0] != '/') {
-					add = PackerRun.opt_real_basedir + add;
+			//		add = PackerRun.opt_real_basedir + add;
 				}
 		        
 		        if (this.files.contains(add)) {
@@ -455,9 +455,9 @@ namespace JSDOC
 		         
 		        print("COMPRESSING to %s\n", minfile);
 		        //var codeComp = pack(str, 10, 0, 0);
-		        if (PackerRun.opt_clean_cache && FileUtils.test (minfile, FileTest.EXISTS)) {
-		            FileUtils.remove(minfile);
-		        }
+		       // if (PackerRun.opt_clean_cache && FileUtils.test (minfile, FileTest.EXISTS)) {
+		       //     FileUtils.remove(minfile);
+		       // }
 		        if (!loaded_string) {
 		    		FileUtils.get_contents(file,out file_contents);
 	    		}
@@ -476,10 +476,10 @@ namespace JSDOC
 			
 			
 			
-  			if (PackerRun.opt_dump_tokens || this.hasErrors("")) {
+  		//	if (PackerRun.opt_dump_tokens || this.hasErrors("")) {
 				 
-				GLib.Process.exit(0);
-			}
+		//		GLib.Process.exit(0);
+		//	}
 		    print("MERGING SOURCE\n");
 		    
 		    for(var i=0; i < this.files.size; i++)  {
@@ -499,7 +499,7 @@ namespace JSDOC
 		        		this.targetStream.write(("// " + 
 		        			( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) + 
 						"\n").data); 
-		        		this.targetStream.write((str + "\n").data); 
+		        		this.targetStream.write(("// " + file ) + "\n").data); 		        		this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
