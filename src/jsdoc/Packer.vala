@@ -476,7 +476,7 @@ namespace JSDOC
 			
 			
 			
-  		//	if (PackerRun.opt_dump_tokens || this.hasErrors("")) {
+  		//	if (packerrun.opt_dump_tokens || this.hasErrors("")) {
 				 
 		//		GLib.Process.exit(0);
 		//	}
@@ -499,24 +499,26 @@ namespace JSDOC
 //		        		this.targetStream.write(("// " + 
 //		        			( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) + 
 //						"\n").data); 
-		        		this.targetStream.write(("// " + file ) + "\n").data); 		        		
+		        		this.targetStream.write(("// " + file  + "\n").data); 		        		
 					this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
 		        		( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) +  "\n";
-		                this.outstr += "//" +  file  +  		                this.outstr += str + "\n";
+		                this.outstr += "//" +  file  +"\n";
+
+				     this.outstr += str + "\n";
 		            }
 		            
 		        }
-		        if (PackerRun.opt_clean_cache) {
-		            FileUtils.remove(minfile);
-		        }
+//		        if (PackerRun.opt_clean_cache) {
+//		            FileUtils.remove(minfile);
+//		        }
 		        
 		    }
-		    if (PackerRun.opt_clean_cache) {
-				FileUtils.remove(tmpDir);
-			}
+//		    if (PackerRun.opt_clean_cache) {
+//				FileUtils.remove(tmpDir);
+//			}
 		    
 		    if (this.target.length > 0 ) {
 			    print("Output file: " + this.target);
@@ -560,11 +562,11 @@ namespace JSDOC
 		
 			TokenArray toks = tr.tokenize(new TextStream(str)); // dont merge xxx + . + yyyy etc.
 		
-			if (PackerRun.opt_dump_tokens) {
-				toks.dump();
-				return "";
-				//GLib.Process.exit(0);
-			}
+//			if (PackerRun.opt_dump_tokens) {
+//				toks.dump();
+//				return "";
+//				//GLib.Process.exit(0);
+//			}
 		
 			this.activeFile = fn;
 		
@@ -579,7 +581,7 @@ namespace JSDOC
 			
 		   // print(JSON.stringify(ts.tokens, null,4 )); Seed.quit();
 			//return;//
-			if (!PackerRun.opt_skip_scope) {
+//			if (!PackerRun.opt_skip_scope) {
 				var sp = new ScopeParser(ts, this, fn);
  
 				//sp.packer = this;
@@ -594,10 +596,10 @@ namespace JSDOC
 			//print(sp.warnings.join("\n"));
 			//(new TokenStream(toks.tokens)).dumpAll(""); GLib.Process.exit(1);
 			// compress works on the original array - in theory the replacements have already been done by now 
-			var outf = CompressWhite(new TokenStream(toks.tokens), this, PackerRun.opt_keep_whitespace); // do not kill whitespace..
+//			var outf = CompressWhite(new TokenStream(toks.tokens), this, PackerRun.opt_keep_whitespace); // do not kill whitespace..
 		
 			
-			debug("RESULT: \n %s\n", outf);
+	//		debug("RESULT: \n %s\n", outf);
 			
 			
 			
