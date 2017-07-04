@@ -496,15 +496,16 @@ namespace JSDOC
 		        print("using MIN FILE  %s\n", minfile);
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
-		        		this.targetStream.write(("// " + 
-		        			( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) + 
-						"\n").data); 
-		        		this.targetStream.write(("// " + file ) + "\n").data); 		        		this.targetStream.write((str + "\n").data); 
+//		        		this.targetStream.write(("// " + 
+//		        			( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) + 
+//						"\n").data); 
+		        		this.targetStream.write(("// " + file ) + "\n").data); 		        		
+					this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
 		        		( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) +  "\n";
-		                this.outstr += str + "\n";
+		                this.outstr += "//" +  file  +  		                this.outstr += str + "\n";
 		            }
 		            
 		        }
