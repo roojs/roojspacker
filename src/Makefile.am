@@ -43,6 +43,7 @@ libroojspacker_1_0_la_SOURCES = \
 		jsdoc/Identifier.vala \
 		jsdoc/Lang.vala \
 		jsdoc/Packer.vala \
+
 		jsdoc/ScopeParser.vala \
 		jsdoc/Scope.vala \
 		jsdoc/TextStream.vala \
