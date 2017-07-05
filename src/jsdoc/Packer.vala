@@ -18,7 +18,7 @@ x.srcfiles = array of files (that list other files...) << not supported?
 x.target = "output.pathname.js"
 x.debugTarget = "output.pathname.debug.js"
 
- 
+  
     
 x.pack();  // writes files  etc..
     
