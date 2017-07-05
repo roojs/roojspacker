@@ -126,7 +126,9 @@ namespace JSDOC
 			);
 #endif					 
 			 
-			
+		}
+		public run()
+		{	
 			// what's required...
 			if (opt_debug) {
 				GLib.Log.set_handler(null, 
