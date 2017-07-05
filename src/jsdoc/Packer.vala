@@ -103,7 +103,7 @@ namespace JSDOC
 		
 		public Packer(PackerRun config)
 		{
-			this.config = PackerRun;
+			this.config = config;
 #if HAVE_JSON_GLIB
 			this.result = new Json.Object();
 #else
@@ -477,10 +477,10 @@ namespace JSDOC
 			
 			
 			
-  		//	if (packerrun.opt_dump_tokens || this.hasErrors("")) {
+  			if (config.opt_dump_tokens || this.hasErrors("")) {
 				 
-		//		GLib.Process.exit(0);
-		//	}
+				GLib.Process.exit(0);
+			}
 		    print("MERGING SOURCE\n");
 		    
 		    for(var i=0; i < this.files.size; i++)  {
@@ -497,29 +497,29 @@ namespace JSDOC
 		        print("using MIN FILE  %s\n", minfile);
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
-//		        		this.targetStream.write(("// " + 
-//		        			( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) + 
-//						"\n").data); 
-		        		this.targetStream.write(("// " + file  + "\n").data); 		        		
+		        		this.targetStream.write(("// " + 
+		        			( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) + 
+						"\n").data); 
+
 					this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
-		        		( (file.length > PackerRun.opt_real_basedir.length) ? file.substring(PackerRun.opt_real_basedir.length)  : file ) +  "\n";
+		        		( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) +  "\n";
 		                this.outstr += "//" +  file  +"\n";
 
 				     this.outstr += str + "\n";
 		            }
 		            
 		        }
-//		        if (PackerRun.opt_clean_cache) {
-//		            FileUtils.remove(minfile);
-//		        }
+		        if (config.opt_clean_cache) {
+		            FileUtils.remove(minfile);
+		        }
 		        
 		    }
-//		    if (PackerRun.opt_clean_cache) {
-//				FileUtils.remove(tmpDir);
-//			}
+		    if (config.opt_clean_cache) {
+				FileUtils.remove(tmpDir);
+			}
 		    
 		    if (this.target.length > 0 ) {
 			    print("Output file: " + this.target);
@@ -563,11 +563,11 @@ namespace JSDOC
 		
 			TokenArray toks = tr.tokenize(new TextStream(str)); // dont merge xxx + . + yyyy etc.
 		
-//			if (PackerRun.opt_dump_tokens) {
-//				toks.dump();
-//				return "";
-//				//GLib.Process.exit(0);
-//			}
+			if (config.opt_dump_tokens) {
+				toks.dump();
+				return "";
+				//GLib.Process.exit(0);
+			}
 		
 			this.activeFile = fn;
 		
