@@ -93,11 +93,8 @@ namespace JSDOC
 		*/
 		 
 		public string activeFile = "";
-		
-			
 		 	
 		public  string outstr = ""; // if no target is specified - then this will contain the result
-		
 		
 		public PackerRun config;
 		
