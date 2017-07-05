@@ -25,6 +25,8 @@ public static int main(string[] args)
 			 
 		}
 
-	new JSDOC.PackerRun(args);
+	var pr = new JSDOC.PackerRun(args);
+	pr.run;
+	
 	return 0;
 }
