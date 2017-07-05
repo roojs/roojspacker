@@ -96,4 +96,4 @@ AC_SUBST(ROOJSPACKER_CFLAGS)
 AC_SUBST(ROOJSPACKER_LIBS)
 
 
-AC_OUTPUT([roojspacker-1.0.pc])
+AC_OUTPUT([roojspacker-1.1.pc])
