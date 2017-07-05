@@ -348,7 +348,7 @@ namespace JSDOC
 		    
 		    var srcfile = in_srcfile;
 		    if (srcfile[0] != '/') {
-			//	srcfile = PackerRun.opt_real_basedir + in_srcfile;
+				srcfile = config.opt_real_basedir + in_srcfile;
 			}
 		    string str;
 		    FileUtils.get_contents(srcfile,out str);
@@ -376,7 +376,7 @@ namespace JSDOC
 		        var add = f.replace(".", "/") + ".js";
 		        
 		        if (add[0] != '/') {
-			//		add = PackerRun.opt_real_basedir + add;
+					add = config.opt_real_basedir + add;
 				}
 		        
 		        if (this.files.contains(add)) {
@@ -456,9 +456,9 @@ namespace JSDOC
 		         
 		        print("COMPRESSING to %s\n", minfile);
 		        //var codeComp = pack(str, 10, 0, 0);
-		       // if (PackerRun.opt_clean_cache && FileUtils.test (minfile, FileTest.EXISTS)) {
-		       //     FileUtils.remove(minfile);
-		       // }
+		        if (config.opt_clean_cache && FileUtils.test (minfile, FileTest.EXISTS)) {
+		            FileUtils.remove(minfile);
+		        }
 		        if (!loaded_string) {
 		    		FileUtils.get_contents(file,out file_contents);
 	    		}
@@ -582,7 +582,7 @@ namespace JSDOC
 			
 		   // print(JSON.stringify(ts.tokens, null,4 )); Seed.quit();
 			//return;//
-//			if (!PackerRun.opt_skip_scope) {
+			if (!config.opt_skip_scope) {
 				var sp = new ScopeParser(ts, this, fn);
  
 				//sp.packer = this;
@@ -597,7 +597,7 @@ namespace JSDOC
 			//print(sp.warnings.join("\n"));
 			//(new TokenStream(toks.tokens)).dumpAll(""); GLib.Process.exit(1);
 			// compress works on the original array - in theory the replacements have already been done by now 
-//			var outf = CompressWhite(new TokenStream(toks.tokens), this, PackerRun.opt_keep_whitespace); // do not kill whitespace..
+			var outf = CompressWhite(new TokenStream(toks.tokens), this, config.opt_keep_whitespace); // do not kill whitespace..
 		
 			
 	//		debug("RESULT: \n %s\n", outf);
