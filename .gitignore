@@ -8,6 +8,7 @@ src/*.stamp
 src/*.stamp-t
 src/*.la
 src/roojspacker-1.0.h
+src/roojspacker-1.1.h
 src/roojspacker
 src/*.vapi
 src/*.typelib
