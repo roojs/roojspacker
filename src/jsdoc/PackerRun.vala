@@ -117,7 +117,7 @@ namespace JSDOC
 		 
 
 	
-		public PackerRun (string[] args)
+		public PackerRun ()
 		{
 #if !HAVE_OLD_GLIB		
 			Object(
@@ -127,7 +127,7 @@ namespace JSDOC
 #endif					 
 			 
 		}
-		public run()
+		public void  run()
 		{	
 			// what's required...
 			if (opt_debug) {
