@@ -90,9 +90,10 @@ namespace JSDOC
 				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
 			);
 #endif		
-
 		}
-		void parseArgs(string[] args)
+		
+		
+		public void parseArgs(string[] args)
 		{
 			GLib.OptionEntry[] options 	 = {
 				OptionEntry() {
