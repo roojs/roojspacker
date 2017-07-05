@@ -25,48 +25,48 @@ namespace JSDOC
 	class PackerRun : Application  	
 #endif
 	{
-		public static string opt_target = null;
-		public static string opt_debug_target = null;
-//		public static string opt_tmpdir = null;
-		private static string opt_basedir = null;
+		public  string opt_target = null;
+		public string opt_debug_target = null;
+//		public  string opt_tmpdir = null;
+		private  string opt_basedir = null;
 		
 		/**
 		* @cfg baseDir -- prefix the files listed in indexfiles with this.
 		*/
 		 
-		public static string opt_real_basedir = null; // USE this one it's calcuated based on current path..
+		public  string opt_real_basedir = null; // USE this one it's calcuated based on current path..
 		
-		public static string opt_doc_target = null;
-		public static string opt_doc_template_dir = null;
-		public static bool opt_doc_include_private = false;		
+		public  string opt_doc_target = null;
+		public  string opt_doc_template_dir = null;
+		public  bool opt_doc_include_private = false;		
 				
 		[CCode (array_length = false, array_null_terminated = true)]
-		private static string[]? opt_files = null;
+		private string[]? opt_files = null;
 		[CCode (array_length = false, array_null_terminated = true)]
-		private static string[]? opt_files_from = null;
+		private  string[]? opt_files_from = null;
 		
 		
-		public static bool opt_debug = false;
+		public  bool opt_debug = false;
 		
 		 /**
 		 * @cfg {Boolean} opt_skip_scope (optional) skip Scope parsing and replacement.
 		 *    usefull for debugging...
 		 */
-		public static bool opt_skip_scope = false;
+		public  bool opt_skip_scope = false;
 		
 		/**
 		 * @cfg {Boolean} opt_keep_whitespace (optional) do not remove white space in output.
 		 *    usefull for debugging compressed files.
 		 */
 		
-		public static bool opt_keep_whitespace = false;	
+		public  bool opt_keep_whitespace = false;	
 		
 			/**
 		 * @cfg {Boolean} opt_dump_tokens (optional) read the first file and dump the tokens.
 		 *    usefull for debugging...
 		 */
 		
-		public static bool opt_dump_tokens = false;	
+		public  bool opt_dump_tokens = false;	
 		
 		  
 		/**
@@ -74,11 +74,11 @@ namespace JSDOC
 		 *    Defaults to false if you set tmpDir, otherwise true.
 		 */
 		
-		public static bool opt_clean_cache = true;	
+		public  bool opt_clean_cache = true;	
 		
 		// not actually an option yet..
 		
-		public static string opt_doc_ext = "html";
+		public  string opt_doc_ext = "html";
 		
 		const OptionEntry[] options = {
 		
