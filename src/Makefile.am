@@ -12,7 +12,7 @@ AM_CPPFLAGS =  \
 
 
 bin_PROGRAMS = roojspacker
-lib_LTLIBRARIES = libroojspacker-1.0.la
+lib_LTLIBRARIES = libroojspacker-1.1.la
 
 
  
@@ -54,9 +54,9 @@ libroojspacker_1_0_la_SOURCES = \
 # not sure if -g is needed..???
 
 libroojspacker_1_0_la_VALAFLAGS = \
-    --library roojspacker-1.0 \
-    -H roojspacker-1.0.h \
-    --gir JSDOC-1.0.gir \
+    --library roojspacker-1.1 \
+    -H roojspacker-1.1.h \
+    --gir JSDOC-1.1.gir \
     -X -shared -X -lm \
     --thread \
     --target-glib=2.32 \
@@ -68,8 +68,8 @@ libroojspacker_1_0_la_VALAFLAGS = \
 libroojspacker_1_0_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
 
 roojspacker_SOURCES =  main.vala
-roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
-roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   \
+roojspacker_LDADD = libroojspacker-1.1.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
+roojspacker_VALAFLAGS =  --pkg roojspacker-1.1 --thread -X -lm --target-glib=2.32   \
     --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS) \
      $(roojspacker_OLD_GLIB_FLAGS) $(roojspacker_JSON_GLIB_FLAGS)
      
@@ -80,7 +80,7 @@ CLEANFILES = *.h *.c *.vapi *.stamp *.gir
 roojspackerincludedir = $(includedir)/roojspacker
 
 roojspackerinclude_HEADERS = \
-	roojspacker-1.0.h \
+	roojspacker-1.1.h \
 	$(NULL)
 
 
@@ -88,23 +88,23 @@ roojspackerinclude_HEADERS = \
 vapidir = $(datadir)/vala/vapi
 
 dist_vapi_DATA = \
-    roojspacker-1.0.vapi
+    roojspacker-1.1.vapi
 
  
 
 
-# girdir = $(datadir)/gir-1.0
-# gir_DATA =  JSDOC-1.0.gir
+# girdir = $(datadir)/gir-1.1
+# gir_DATA =  JSDOC-1.1.gir
     
-# typelibdir = $(libdir)/girepository-1.0
-# typelib_DATA = JSDOC-1.0.typelib
+# typelibdir = $(libdir)/girepository-1.1
+# typelib_DATA = JSDOC-1.1.typelib
 
 # would be better to include INTROSPECTION_MAKEFILE - but I think it's problematic...
     
-# JSDOC-1.0.typelib:
+# JSDOC-1.1.typelib:
 # 	g-ir-compiler \
 #         --includedir=$(srcdir) \
-# 		--shared-library=libroojspacker-1.0.so \
+# 		--shared-library=libroojspacker-1.1.so \
 # 		--output=$(typelib_DATA) \
 # 		$(gir_DATA)
     
