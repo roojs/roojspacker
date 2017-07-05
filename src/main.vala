@@ -8,7 +8,7 @@ public static int main(string[] args)
 
 	var pr = new JSDOC.PackerRun( );
 	pr.parseArgs(args);
-	pr.run();
+	pr.runPack();
 	
 	return 0;
 }
