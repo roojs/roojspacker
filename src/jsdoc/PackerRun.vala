@@ -168,7 +168,7 @@ namespace JSDOC
 			
 			
 				// now run the Packer...
-			var p = new Packer(			);
+			var p = new Packer(	this );
 			
 			
 			if (opt_files != null) {
