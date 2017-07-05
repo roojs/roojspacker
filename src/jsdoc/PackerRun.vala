@@ -20,9 +20,9 @@ namespace JSDOC
 	// --------------- <<<<<<< <MAIN HERE....
 	
 #if HAVE_OLD_GLIB
-	class PackerRun : Object 
+	public class PackerRun : Object 
 #else
-	class PackerRun : Application  	
+	public class PackerRun : Application  	
 #endif
 	{
 		public  string opt_target = null;
