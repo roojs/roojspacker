@@ -80,7 +80,18 @@ namespace JSDOC
 		
 		public  string opt_doc_ext = "html";
 		
-		const OptionEntry[] options = {
+	
+		public   OptionEntry[] options;
+	
+		public PackerRun ()
+		{
+#if !HAVE_OLD_GLIB		
+			Object(
+			    application_id: "org.roojs.jsdoc.packerrun",
+				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
+			);
+#endif		
+			this.options	 = {
 		
 			{ "jsfile", 'f', 0, OptionArg.FILENAME_ARRAY, ref opt_files ,"add a file to compile", null },
 			{ "target", 't', 0, OptionArg.STRING, ref opt_target, "Target File to write (eg. roojs.js)", null },
@@ -114,17 +125,7 @@ namespace JSDOC
 			
 			{ null }
 		};
-		  
-
-	
-		public PackerRun ()
-		{
-#if !HAVE_OLD_GLIB		
-			Object(
-			    application_id: "org.roojs.jsdoc.packerrun",
-				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
-			);
-#endif					 
+		  			 
 			 
 		}
 		public void  run()
