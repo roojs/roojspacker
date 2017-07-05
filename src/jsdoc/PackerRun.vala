@@ -259,7 +259,7 @@ namespace JSDOC
 		  			 
 			 
 		}
-		public void  run()
+		public void  runPack()
 		{	
 			// what's required...
 			if (opt_debug) {
