@@ -92,14 +92,75 @@ namespace JSDOC
 			);
 #endif		
 			this.options	 = {
-		
-			{ "jsfile", 'f', 0, OptionArg.FILENAME_ARRAY, ref opt_files ,"add a file to compile", null },
-			{ "target", 't', 0, OptionArg.STRING, ref opt_target, "Target File to write (eg. roojs.js)", null },
-			{ "debug-target", 'T', 0, OptionArg.STRING, ref opt_debug_target, "Target File to write debug code (eg. roojs-debug.js)", null },
-			//{ "tmpdir", 'm', 0, OptionArg.STRING, ref opt_tmpdir, "Temporary Directory to use (defaults to /tmp)", null },
-			{ "basedir", 'b', 0, OptionArg.STRING, ref opt_basedir, "Base directory (where the files listed in index files are located.)", null },
+				OptionEntry() {
+					long_name = "jsfile",
+					short_name = 'f',
+					flags = 0,
+					arg =  OptionArg.FILENAME_ARRAY,
+					arg_data = &opt_files,
+					description = "add a file to compile",
+					arg_description = null
+				},
+				OptionEntry() {
+					long_name = "target",
+					short_name = 't',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_target,
+					description = "Target File to write (eg. roojs.js)",
+					arg_description = null
+				},
+				OptionEntry() {
+					long_name = "debug-target",
+					short_name = 'T',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_debug_target,
+					description = "Target File to write debug code (eg. roojs-debug.js)",
+					arg_description = null
+				},
+				//{ "tmpdir", 'm', 0, OptionArg.STRING, ref opt_tmpdir, "Temporary Directory to use (defaults to /tmp)", null },
+				
+				OptionEntry() {
+					long_name = "basedir",
+					short_name = 'b',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_basedir,
+					description = "Base directory (where the files listed in index files are located.)",
+					arg_description = null
+				}, 
 
-			{ "index-files", 'i', 0, OptionArg.FILENAME_ARRAY, ref opt_files_from ,"files that contain listing of files to compile", null },		 
+				OptionEntry() {
+					long_name = "index-files",
+					short_name = 'i',
+					flags = 0,
+					arg =  OptionArg.FILENAME_ARRAY,
+					arg_data = &opt_files_from,
+					description = "files that contain listing of files to compile",
+					arg_description = null
+				}, 
+
+				OptionEntry() {
+					long_name = "keep-whitespace",
+					short_name = 'w',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_keep_whitespace,
+					description = "Keep whitespace",
+					arg_description = null
+				}, 
+			 
+				OptionEntry() {
+					long_name = "skip-scope",
+					short_name = 's',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_skip_scope,
+					description = "Skip scope parsing and variable replacement",
+					arg_description = null
+				}, 
+
 			{ "keep-whitespace", 'w', 0, OptionArg.NONE, ref opt_keep_whitespace, "Keep whitespace", null },
 			{ "skip-scope", 's', 0, OptionArg.NONE, ref opt_skip_scope, "Skip scope parsing and variable replacement", null },
 			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
