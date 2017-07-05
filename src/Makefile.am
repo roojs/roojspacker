@@ -48,7 +48,8 @@ libroojspacker_1_0_la_SOURCES = \
 		jsdoc/TextStream.vala \
 		jsdoc/TokenReader.vala \
 		jsdoc/TokenStream.vala \
-		jsdoc/Token.vala
+		jsdoc/Token.vala \
+		jsdoc/PackerRun.vala
 
 # not sure if -g is needed..???
 
@@ -66,7 +67,7 @@ libroojspacker_1_0_la_VALAFLAGS = \
 
 libroojspacker_1_0_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
 
-roojspacker_SOURCES =  jsdoc/PackerRun.vala
+roojspacker_SOURCES =  main.vala
 roojspacker_LDADD = libroojspacker-1.0.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
 roojspacker_VALAFLAGS =  --pkg roojspacker-1.0 --thread -X -lm --target-glib=2.32   \
     --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS) \
