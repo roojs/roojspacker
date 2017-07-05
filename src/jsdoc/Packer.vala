@@ -99,10 +99,11 @@ namespace JSDOC
 		public  string outstr = ""; // if no target is specified - then this will contain the result
 		
 		
+		public PackerRun config;
 		
-		
-		public Packer()
+		public Packer(PackerRun config)
 		{
+			this.config = PackerRun;
 #if HAVE_JSON_GLIB
 			this.result = new Json.Object();
 #else
