@@ -37,7 +37,7 @@ if HAVE_JSON_GLIB
 endif
 
 
-libroojspacker_1_0_la_SOURCES = \
+libroojspacker_1_1_la_SOURCES = \
 		jsdoc/Collapse.vala \
 		jsdoc/CompressWhite.vala \
 		jsdoc/Identifier.vala \
@@ -53,7 +53,7 @@ libroojspacker_1_0_la_SOURCES = \
 
 # not sure if -g is needed..???
 
-libroojspacker_1_0_la_VALAFLAGS = \
+libroojspacker_1_1_la_VALAFLAGS = \
     --library roojspacker-1.1 \
     -H roojspacker-1.1.h \
     --gir JSDOC-1.1.gir \
@@ -65,7 +65,7 @@ libroojspacker_1_0_la_VALAFLAGS = \
     $(roojspacker_PKGS) \
      $(roojspacker_OLD_GLIB_FLAGS)  $(roojspacker_JSON_GLIB_FLAGS)
 
-libroojspacker_1_0_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
+libroojspacker_1_1_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
 
 roojspacker_SOURCES =  main.vala
 roojspacker_LDADD = libroojspacker-1.1.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
