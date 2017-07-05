@@ -91,6 +91,10 @@ namespace JSDOC
 				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
 			);
 #endif		
+
+		}
+		void parseArgs(string[] args)
+		{
 			this.options	 = {
 				OptionEntry() {
 					long_name = "jsfile",
@@ -160,12 +164,36 @@ namespace JSDOC
 					description = "Skip scope parsing and variable replacement",
 					arg_description = null
 				}, 
+				OptionEntry() {
+					long_name = "debug",
+					short_name = 'D',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_debug,
+					description = "Show debug messages",
+					arg_description = null
+				}, 
 
-			{ "keep-whitespace", 'w', 0, OptionArg.NONE, ref opt_keep_whitespace, "Keep whitespace", null },
-			{ "skip-scope", 's', 0, OptionArg.NONE, ref opt_skip_scope, "Skip scope parsing and variable replacement", null },
-			{ "debug", 0, 0, OptionArg.NONE, ref opt_debug, "Show debug messages", null },
-			{ "dump-tokens", 'k', 0, OptionArg.NONE, ref opt_dump_tokens, "Dump the tokens from a file", null },
-			{ "clean-cache", 'c', 0, OptionArg.NONE, ref opt_clean_cache, "Clean up the cache after running (slower)", null },
+				OptionEntry() {
+					long_name = "dump-tokens",
+					short_name = 'k',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_dump_tokens,
+					description = "Dump the tokens from a file",
+					arg_description = null
+				}, 
+
+				OptionEntry() {
+					long_name = "clean-cache",
+					short_name = 'c',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_clean_cache,
+					description = "Clean up the cache after running (slower)",
+					arg_description = null
+				}, 
+
 
 			// fixme -- keepwhite.. cleanup 
 			
@@ -175,16 +203,38 @@ namespace JSDOC
 			//       --index-files roojs1/buildSDK/dependancy_core.txt  \
 			//       --index-files roojs1/buildSDK/dependancy_ui.txt  \
 			//       --index-files roojs1/buildSDK/dependancy_bootstrap.txt  \
-			//       --doc-template-dir\
+			//       --doc-template-dir \
 			
-			
-			{ "doc-target", 'd', 0, OptionArg.STRING, ref opt_doc_target, "Documentation Directory target", null },
-			{ "doc-template-dir", 'p', 0, OptionArg.STRING, ref opt_doc_template_dir, "Documentation Directory target", null },
-			{ "doc-private", 'p', 0, OptionArg.NONE, ref opt_doc_include_private, "Document Private functions", null },						
-			
-			
-			
-			{ null }
+				OptionEntry() {
+					long_name = "doc-target",
+					short_name = 'd',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_doc_target,
+					description = "Clean up the cache after running (slower)",
+					arg_description = null
+				}, 
+
+				OptionEntry() {
+					long_name = "doc-template-dir",
+					short_name = 'p',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_doc_template_dir,
+					description = "Documentation Directory target",
+					arg_description = null
+				}, 			
+
+
+				OptionEntry() {
+					long_name = "doc-private",
+					short_name = 'P',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_doc_include_private,
+					description = "Document Private functions",
+					arg_description = null
+				}, 		
 		};
 		  			 
 			 
