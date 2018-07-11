@@ -226,7 +226,7 @@ namespace JSDOC {
             if (authors.size) {
         		// turns author into a string....
         		this.author = "";
-                foreach(authors as a) {
+                foreach(var a in authors) {
                     this.author += (this.author == "") ? "": ", ";
                     this.author += a.desc;
                 }
@@ -250,7 +250,12 @@ namespace JSDOC {
             // @desc
             var descs = this.comment.getTag("desc");
             if (descs.length) {
-                this.desc = descs.map(function($){return $.desc;}).join("\n"); // multiple descriptions are concatenated into one
+                this.desc = "";
+                foreach(var d in desc) {
+                    this.desc = this.desc == "" ? "": "\n";
+                    this.desc += d.desc;
+                }
+
             }
             
             /*~t
@@ -264,7 +269,10 @@ namespace JSDOC {
                 
                 var overviews = this.comment.getTag("overview");
                 if (overviews.length) {
-                    this.desc = [this.desc].concat(overviews.map(function($){return $.desc;})).join("\n");
+                    foreach(var d in this.overviews) {
+                        this.desc = this.desc == "" ? "": "\n";
+                        this.desc += d.desc;
+                    }
                 }
             }
             
