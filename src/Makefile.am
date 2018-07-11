@@ -49,7 +49,8 @@ libroojspacker_1_1_la_SOURCES = \
 		jsdoc/TokenReader.vala \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala \
-		jsdoc/PackerRun.vala
+		jsdoc/PackerRun.vala \
+		jsdoc/DocBuilder.vala 
 
 # not sure if -g is needed..???
 
