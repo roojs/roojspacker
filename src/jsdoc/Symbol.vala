@@ -352,8 +352,10 @@ namespace JSDOC {
             var sees = this.comment.getTag("see");
             if (sees.length) {
                 var thisSee = this.see;
-                sees.map(function($){thisSee.push($.desc);});
-            }
+                foreach(var s in sees) {
+                    this.see.add(s.desc);
+                }
+          }
             
             /*~t
                 var sym = new Symbol("foo", [], "FILE", new DocComment("/**@see The other thing.*"+"/"));
