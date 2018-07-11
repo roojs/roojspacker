@@ -269,7 +269,7 @@ namespace JSDOC {
                 
                 var overviews = this.comment.getTag("overview");
                 if (overviews.length) {
-                    foreach(var d in this.overviews) {
+                    foreach(var d in overviews) {
                         this.desc = this.desc == "" ? "": "\n";
                         this.desc += d.desc;
                     }
@@ -284,7 +284,10 @@ namespace JSDOC {
             // @since
             var sinces = this.comment.getTag("since");
             if (sinces.length) {
-                this.since = sinces.map(function($){return $.desc;}).join(", ");
+                foreach(var d in sinces) {
+                    this.desc = this.desc == "" ? "": "\n";
+                    this.desc += d.desc;
+                }
             }
             
             /*~t
