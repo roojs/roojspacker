@@ -285,8 +285,8 @@ namespace JSDOC {
             var sinces = this.comment.getTag("since");
             if (sinces.length) {
                 foreach(var d in sinces) {
-                    this.desc = this.desc == "" ? "": "\n";
-                    this.desc += d.desc;
+                    this.sinces = this.desc == "" ? "": "\n";
+                    this.sinces += d.desc;
                 }
             }
             
@@ -298,7 +298,7 @@ namespace JSDOC {
             // @constant
             if (this.comment.getTag("constant").length) {
                 this.isConstant = true;
-                this.isa = 'OBJECT';
+                this.isa = "OBJECT";
             }
             
             /*~t
@@ -309,6 +309,10 @@ namespace JSDOC {
             // @version
             var versions = this.comment.getTag("version");
             if (versions.length) {
+                 foreach(var d in versions) {
+                    this.desc = this.desc == "" ? "": "\n";
+                    this.desc += d.desc;
+                }
                 this.version = versions.map(function($){return $.desc;}).join(", ");
             }
             
