@@ -50,7 +50,8 @@ libroojspacker_1_1_la_SOURCES = \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala \
 		jsdoc/PackerRun.vala \
-		jsdoc/DocBuilder.vala 
+		jsdoc/DocBuilder.vala \
+        jsdoc/Symbol.vala
 
 # not sure if -g is needed..???
 
