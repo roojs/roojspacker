@@ -169,7 +169,7 @@ namespace JSDOC
 		    
 		    Parser.finish();
 		}
-		
+		/*
 
             //var txs =
             
@@ -225,7 +225,7 @@ namespace JSDOC
         Parser.finish();
     }
     
-     
+     */
         
 		void publish() 
 		{
