@@ -8,7 +8,7 @@ namespace JSDOC
 	{
 		
 
-		public string VERSION = "1.0.0";
+
 		// extractable via JSON?
 		public string VERSION = "1.0.0" ;
 		
@@ -170,7 +170,7 @@ namespace JSDOC
 		    Parser.finish();
 		}
 		
-=======
+
             //var txs =
             
             var tr = new  TokenReader(this.packer);
