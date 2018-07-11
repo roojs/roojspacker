@@ -601,7 +601,10 @@ namespace JSDOC {
             // @requires
             var requires = this.comment.getTag("requires");
             if (requires.length) {
-                this.requires = requires.map(function($){return $.desc});
+                this.requires = new Gee.ArrayList<string>();
+                foreach(var r in requires) {
+                    this.requires.push(r.desc);
+                }
             }
             
             /*~t
