@@ -284,6 +284,7 @@ namespace JSDOC {
             // @since
             var sinces = this.comment.getTag("since");
             if (sinces.length) {
+                this.sinces = "";
                 foreach(var d in sinces) {
                     this.sinces = this.desc == "" ? "": "\n";
                     this.sinces += d.desc;
@@ -309,8 +310,9 @@ namespace JSDOC {
             // @version
             var versions = this.comment.getTag("version");
             if (versions.length) {
+                this.version = "";
                  foreach(var d in versions) {
-                    this.desc = this.desc == "" ? "": "\n";
+                    this.versions = this.desc == "" ? "": "\n";
                     this.desc += d.desc;
                 }
                 this.version = versions.map(function($){return $.desc;}).join(", ");
