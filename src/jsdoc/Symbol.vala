@@ -579,8 +579,13 @@ namespace JSDOC {
             var returns = this.comment.getTag("return");
             if (returns.length) { // there can be many return tags in a single doclet
                 this.returns = returns;
-                this.type = returns.map(function($){return $.type}).join(", ");
-            }
+
+                this.type = "";
+                foreach(var r in returns) {
+                    this.type += this.type == "" ? "": ", ";
+                    this.type += r.type;
+                } 
+             }
             
             /*~t
                 // todo
