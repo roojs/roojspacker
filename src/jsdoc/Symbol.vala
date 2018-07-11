@@ -196,7 +196,7 @@ namespace JSDOC {
                 string  name,
                 Gee.ArrayList<string> params, // fixme???
                 string isa,
-                string comment
+                DocComment comment
         ) {
             Symbol.regexInit();
             this.initArrays();
@@ -206,7 +206,7 @@ namespace JSDOC {
             this.alias = this.getName();
             this.private_string_params = params; 
             this.isa = (isa == "VIRTUAL")? "OBJECT":isa;
-            this.comment =  new DocComment(comment);
+            this.comment =  comment;
             
             this.srcFile = DocParser.currentSourceFile;
             
@@ -542,9 +542,13 @@ namespace JSDOC {
             if (properties.length) {
                 thisProperties = this.properties;
                 for (var i = 0; i < properties.length; i++) {
-                    var property = new Symbol(
+
+ 
+
+
+                    var property = new Symbol.new_populate_with_args(
                         this.alias+"#"+properties[i].name,
-                         [], 
+                         new Gee.ArrayList<string>(), 
                         "OBJECT",
                          new DocComment(
                             "/**"+properties[i].desc+"\n@name "+properties[i].name+"\n@memberOf "+this.alias+"#*/"
