@@ -326,11 +326,10 @@ namespace JSDOC {
             var deprecateds = this.comment.getTag("deprecated");
             if (deprecateds.length) {
                 this.deprecated = "";
-                 foreach(var d in versions) {
+                 foreach(var d in deprecateds) {
                     this.deprecated = this.deprecated == "" ? "": "\n";
                     this.deprecated += d.desc;
                 }
-            this.deprecated = deprecateds.map(function($){return $.desc;}).join("\n");
             }
             
             /*~t
