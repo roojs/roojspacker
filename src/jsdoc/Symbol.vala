@@ -284,10 +284,10 @@ namespace JSDOC {
             // @since
             var sinces = this.comment.getTag("since");
             if (sinces.length) {
-                this.sinces = "";
+                this.since = "";
                 foreach(var d in sinces) {
-                    this.sinces = this.desc == "" ? "": "\n";
-                    this.sinces += d.desc;
+                    this.since = this.since == "" ? "": "\n";
+                    this.since += d.desc;
                 }
             }
             
@@ -312,10 +312,9 @@ namespace JSDOC {
             if (versions.length) {
                 this.version = "";
                  foreach(var d in versions) {
-                    this.versions = this.desc == "" ? "": "\n";
-                    this.desc += d.desc;
+                    this.version = this.version == "" ? "": "\n";
+                    this.version += d.desc;
                 }
-                this.version = versions.map(function($){return $.desc;}).join(", ");
             }
             
             /*~t
@@ -326,7 +325,12 @@ namespace JSDOC {
             // @deprecated
             var deprecateds = this.comment.getTag("deprecated");
             if (deprecateds.length) {
-                this.deprecated = deprecateds.map(function($){return $.desc;}).join("\n");
+                this.deprecated = "";
+                 foreach(var d in versions) {
+                    this.deprecated = this.deprecated == "" ? "": "\n";
+                    this.deprecated += d.desc;
+                }
+            this.deprecated = deprecateds.map(function($){return $.desc;}).join("\n");
             }
             
             /*~t
