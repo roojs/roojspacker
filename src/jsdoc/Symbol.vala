@@ -542,7 +542,13 @@ namespace JSDOC {
             if (properties.length) {
                 thisProperties = this.properties;
                 for (var i = 0; i < properties.length; i++) {
-                    var property = new Symbol(this.alias+"#"+properties[i].name, [], "OBJECT", new DocComment("/**"+properties[i].desc+"\n@name "+properties[i].name+"\n@memberOf "+this.alias+"#*/"));
+                    var property = new Symbol(
+                        this.alias+"#"+properties[i].name,
+                         [], 
+                        "OBJECT",
+                         new DocComment(
+                            "/**"+properties[i].desc+"\n@name "+properties[i].name+"\n@memberOf "+this.alias+"#*/"
+                    ));
                     // TODO: shouldn't the following happen in the addProperty method of Symbol?
                     property.name = properties[i].name;
                     property.memberOf = this.alias;
