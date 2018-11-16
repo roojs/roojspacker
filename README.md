@@ -5,7 +5,7 @@ Installation Procedure (Debian/Ubuntu)
 
 git clone https://github.com/roojs/roojspacker.git
 
-apt-get install valac autoconf automake gcc libgee-0.8-dev make libtool
+apt-get install valac autoconf automake gcc libgee-0.8-dev make libtool libjson-glib-dev
 
 cd roojspacker
 ./autogen.sh --prefix=/usr
