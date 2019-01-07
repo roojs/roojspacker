@@ -140,6 +140,8 @@ namespace JSDOC
 	
 		
 		public static  void finish() {
+			
+
 			this.symbols.relate();		
 		
 			// make a litle report about what was found
