@@ -122,7 +122,7 @@ namespace JSDOC
 			// ignored things are not documented, this doesn't cascade
 			if (symbol.isIgnored) {
 				return;
-			}
+			} 
 		    // add it to the file's list... (for dumping later..)
 		    if (Symbol.srcFile != null) {
 		        DocParser.filesSymbols.get(Symbol.srcFile).addSymbol(symbol);
