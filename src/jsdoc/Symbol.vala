@@ -788,7 +788,7 @@ namespace JSDOC {
             return false;
         }
 
-        void addProperty(Symobl symbol) {
+        void addProperty(Symbol symbol) {
             var propertyAlias = symbol.alias;
             var thisProperties = this.properties;
             for (var i = 0, l = thisProperties.length; i < l; i++) {
@@ -839,7 +839,7 @@ namespace JSDOC {
 	}
 	static string[] hide = { "$args" };
 	static string srcFile = "";
-	static 
+	 
 }
 
 
