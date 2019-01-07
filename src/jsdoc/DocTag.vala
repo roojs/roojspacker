@@ -63,6 +63,7 @@ namespace JSDOC
 		public string defaultValue = "";
 		public string desc = "";
 		public Gee.ArrayList<string> optvalues;
+		public string memberOf = ""; // set by add addMember..
 
 	
 	
