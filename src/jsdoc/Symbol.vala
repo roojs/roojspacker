@@ -323,8 +323,8 @@ namespace JSDOC {
             */
             
             // @deprecated
-            var deprecateds = this.comment.getTag("deprecated");
-            if (deprecateds.length) {
+            var deprecateds = this.comment.getTag(DocTagTitle.DEPRICATED);
+            if (deprecateds.size > 0) {
                 this.deprecated = "";
                  foreach(var d in deprecateds) {
                     this.deprecated = this.deprecated == "" ? "": "\n";
