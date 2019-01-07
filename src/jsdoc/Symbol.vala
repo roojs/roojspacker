@@ -692,7 +692,9 @@ namespace JSDOC {
             var memberOfs = this.comment.getTag("memberOf");
             if (memberOfs.length) {
                 this.memberOf = memberOfs[0].desc;
-                this.memberOf = this.memberOf.replace(/\.prototype\.?/, "#");
+                var pr_reg = /\.prototype\.?/;
+                
+                this.memberOf = pr_reg.repleace(this.memberOf, this.memberOf.length, 0, "#");
                 this.name = this.name.split('.').pop();
                 this.name = this.name.split('#').pop();
                 this.name = this.memberOf + this.name;
