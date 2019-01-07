@@ -251,7 +251,7 @@ namespace JSDOC {
             var descs = this.comment.getTag(DocTagTitle.DESC);
             if (descs.size>  0) {
                 this.desc = "";
-                foreach(var d in desc) {
+                foreach(var d in descs) {
                     this.desc = this.desc == "" ? "": "\n";
                     this.desc += d.desc;
                 }
