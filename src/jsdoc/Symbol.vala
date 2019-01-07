@@ -762,9 +762,9 @@ namespace JSDOC {
 
         bool hasMethod (string name) {
             var thisMethods = this.methods;
-            for (var i = 0, l = thisMethods.length; i < l; i++) {
-                if (thisMethods[i].name == name) return true;
-                if (thisMethods[i].alias == name) return true;
+            for (var i = 0, l = thisMethods.size; i < l; i++) {
+                if (thisMethods.get(i).name == name) return true;
+                if (thisMethods.get(i).alias == name) return true;
             }
             return false;
         }
