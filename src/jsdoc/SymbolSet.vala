@@ -3,26 +3,27 @@ namespace JSDOC {
 
 	public class SymbolSet  : Object {
 
-		Gee.HashMap<string,string _index;
+		Gee.HashMap<string,Symbol> _index;
 		
 		public SymbolSet ()
 		{
-			this._index = new Gee.HashMap<string,string>();
+			this._index = new Gee.HashMap<string,Symbol>();
 
 		}
 
-        Gee.ArrayList<string> keys() 
+        public Gee.ArrayList<string> keys() 
         {
             this._index.keys;
         }
 
 
-        hasSymbol : function(alias) {
-            return typeof(this._index[alias]) != 'undefined';
+        public bool hasSymbol(string alias) 
+        {
+            return this._index.hasKey(alias);
             //return this.keys().indexOf(alias) > -1;
-        },
+        }
 
-        addSymbol : function(symbol) {
+        public void addSymbol (Symbol symbol) {
             //print("ADDING SYMBOL:"+symbol.alias.toString());
             
             
