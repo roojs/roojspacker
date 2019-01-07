@@ -540,7 +540,7 @@ namespace JSDOC {
             // @property
             var properties = this.comment.getTag(DocTagTitle.PROPERTY);
             if (properties.size > 0) {
-                var thisProperties = this.properties;
+                //var thisProperties = this.properties;
                 for (var i = 0; i < properties.size; i++) {
 
  
