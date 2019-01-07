@@ -244,7 +244,7 @@ namespace JSDOC {
             */
             // @desc
             var mth = this.comment.getTag(DocTagTitle.METHOD);
-            if (mth.length) {
+            if (mth.length  > 0) {
                 this.isa = "FUNCTION";
             }
             // @desc
