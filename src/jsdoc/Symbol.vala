@@ -350,7 +350,7 @@ namespace JSDOC {
             
             // @see
             var sees = this.comment.getTag(DocTagTitle.SEE);
-            if (sees.length) {
+            if (sees.size > 0) {
                 var thisSee = this.see;
                 foreach(var s in sees) {
                     this.see.add(s.desc);
