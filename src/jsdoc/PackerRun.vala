@@ -1,5 +1,8 @@
 
 /** 
+
+  THIS IS THE ENTRY POINT...
+
   the application
   -- in theory this code  can be used as a library... but this is the standard command line version...
   
