@@ -784,8 +784,8 @@ namespace JSDOC {
         bool hasProperty(string name) {
             var thisProperties = this.properties;
             for (var i = 0, l = thisProperties.size; i < l; i++) {
-                if (thisProperties[i].name == name) return true;
-                if (thisProperties[i].alias == name) return true;
+                if (thisProperties.get(i).name == name) return true;
+                if (thisProperties.get(i).alias == name) return true;
             }
             return false;
         }
