@@ -180,7 +180,7 @@ namespace JSDOC
 		  
 		 
 	    public Gee.ArrayList<DocTag> getTag ( DocTagTitle tagTitle) {
-			var ret = new ArrayList<DocTag>();
+			var ret = new Gee.ArrayList<DocTag>();
 	        foreach(var tag in this.tags) {
 	    		if (tag.title == tagTitle) {
 	    			ret.add(tag);
