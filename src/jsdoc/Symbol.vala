@@ -88,7 +88,7 @@ namespace JSDOC {
 		private Gee.ArrayList<DocTag>  inherits; 
 		private Gee.ArrayList<Symbol>  methods;
 
-		private Gee.ArrayList<DocTag> properties;
+		private Gee.ArrayList<Symbol> properties;
 		private Gee.ArrayList<string> requires;
 		private Gee.ArrayList<DocTag> returns;
 		private Gee.ArrayList<DocTag> see ;
@@ -150,7 +150,7 @@ namespace JSDOC {
             this.inherits = new Gee.ArrayList<DocTag>();
             //
             this.isa = "OBJECT"; // OBJECT//FUNCTION
-            this.methods = new Gee.ArrayList<DocTag>();
+            this.methods = new Gee.ArrayList<Symbol>();
             //this.private_params = new Gee.ArrayList<DocTag>();
             this.properties = new Gee.ArrayList<Symbol>();
             this.requires = new Gee.ArrayList<string>();
