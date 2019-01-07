@@ -368,9 +368,9 @@ namespace JSDOC {
                 //print(JSON.stringify(this,null,4));
                 this.isa = "CONSTRUCTOR";
                 this.classDesc = classes[0].desc; // desc can't apply to the constructor as there is none.
-                if (!this.classDesc) {
-                    this.classDesc = this.desc;
-                   }
+                //if (this.classDesc.leg) {
+                //    this.classDesc = this.desc;
+                //   }
                 
                 
             }
