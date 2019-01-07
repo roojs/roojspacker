@@ -724,7 +724,7 @@ namespace JSDOC {
             return SymbolSet.isBuiltin(this.alias);
         }
 
-        void setType(String comment,bool overwrite) {
+        void setType(string comment,bool overwrite) {
             if (!overwrite && this.type.length > 0) {
             	 return;
         	 }
@@ -739,13 +739,13 @@ namespace JSDOC {
                 else if (symbol.is("OBJECT"))
                     this.properties.add(symbol);
             }
-        },
+        }
 
-        hasMember : function(name) {
+        bool hasMember (string name) {
             return (this.hasMethod(name) || this.hasProperty(name));
-        },
+        }
 
-        addMember : function(symbol) {
+        void addMember (Symbol symbol) {
             //println("ADDMEMBER: " + this.name +  " ++ " + symbol.name);
             
             if (symbol.comment.getTag("cfg").length == 1) { 
@@ -756,18 +756,18 @@ namespace JSDOC {
             
             if (symbol.is("FUNCTION")) { this.addMethod(symbol); }
             else if (symbol.is("OBJECT")) { this.addProperty(symbol); }
-        },
+        }
 
-        hasMethod : function(name) {
+        bool hasMethod (string name) {
             var thisMethods = this.methods;
             for (var i = 0, l = thisMethods.length; i < l; i++) {
                 if (thisMethods[i].name == name) return true;
                 if (thisMethods[i].alias == name) return true;
             }
             return false;
-        },
+        }
 
-        addMethod : function(symbol) {
+        void addMethod (Symbol symbol) {
             var methodAlias = symbol.alias;
             var thisMethods = this.methods;
             for (var i = 0, l = thisMethods.length; i < l; i++) {
@@ -777,18 +777,18 @@ namespace JSDOC {
                 }
             }
             thisMethods.push(symbol); // new method with this alias
-        },
+        }
 
-        hasProperty : function(name) {
+        bool hasProperty(string name) {
             var thisProperties = this.properties;
             for (var i = 0, l = thisProperties.length; i < l; i++) {
                 if (thisProperties[i].name == name) return true;
                 if (thisProperties[i].alias == name) return true;
             }
             return false;
-        },
+        }
 
-        addProperty : function(symbol) {
+        void addProperty(Symobl symbol) {
             var propertyAlias = symbol.alias;
             var thisProperties = this.properties;
             for (var i = 0, l = thisProperties.length; i < l; i++) {
