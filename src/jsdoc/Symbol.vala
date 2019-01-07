@@ -412,9 +412,9 @@ namespace JSDOC {
                             np.desc = params[i].desc;
                             np.isOptional = params[i].isOptional;
                             np.defaultValue = params[i].defaultValue;
-                            thisParams.set(i, np); ///?? needed??
+                            //thisParams.set(i, np); ///?? needed OO ?
                         }
-                        else thisParams[i] = params[i];
+                        else thisParams.set(i, params[i]);
                     }
                     this.private_params = thisParams;
                 }
