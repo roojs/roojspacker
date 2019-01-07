@@ -35,6 +35,8 @@ namespace JSDOC
 		THROWS,
 		REQUIRES,
 		TYPE,
+		PRIVATE,
+		IGNORE,
  
 	}
 	

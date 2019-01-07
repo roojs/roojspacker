@@ -622,7 +622,7 @@ namespace JSDOC {
             */
             
             // @private
-            if (this.comment.getTag("private").length || this.isInner) {
+            if (this.comment.getTag(DocTagTitle.PRIVATE).size > 0 || this.isInner) {
                 this.isPrivate = true;
             }
             
