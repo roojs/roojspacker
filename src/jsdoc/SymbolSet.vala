@@ -31,13 +31,13 @@ namespace JSDOC {
                 GLib.warn("Overwriting symbol documentation for: %s.",symbol.alias);
             }
             this._index.set(symbol.alias,  symbol);
-        },
+        }
 
         public Symbol? getSymbol (string alias) {
             
             if (this.hasSymbol(alias)) return this._index.get(alias);
             return null;
-        },
+        }
 /*/
         toArray : function() {
             var found = [];
@@ -62,9 +62,9 @@ namespace JSDOC {
         public void deleteSymbol  (string alias) {
             if (!this.hasSymbol(alias)) return;
             this._index.remove(alias);
-        }
+        } 
 
-        renameSymbol : function(string oldName, string newName) {
+        public renameSymbol : function(string oldName, string newName) {
             // todo: should check if oldname or newname already exist
             if (!this.hasSymbol(oldName)) {
                 throw new Exception("Cant rename " + oldName + " to " + newName + " As it doesnt exist");
