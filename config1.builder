@@ -20,7 +20,8 @@
             "/src/jsdoc",
             "/src/jsdoc/DocTag.vala",
             "/src/jsdoc/DocBuilder.vala",
-            "/src/jsdoc/Symbol.vala"
+            "/src/jsdoc/Symbol.vala",
+            "/src/jsdoc/DocComment.vala"
         ],
         "packages" : [
         ]

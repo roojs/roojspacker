@@ -10,7 +10,7 @@ namespace JSDOC
 {
 	public class DocComment : Object
 	{
-
+ 
 		public bool isUserComment  = true;
 		public bool hasTags		= false;
 		string src          = "";
