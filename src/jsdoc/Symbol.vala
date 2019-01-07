@@ -592,15 +592,15 @@ namespace JSDOC {
             */
             
             // @exception
-            this.exceptions = this.comment.getTag("throws");
+            this.exceptions = this.comment.getTag(DocTagTitle.THROWS);
             
             /*~t
                 // todo
             */
             
             // @requires
-            var requires = this.comment.getTag("requires");
-            if (requires.length) {
+            var requires = this.comment.getTag(DocTagTitle.REQUIRES);
+            if (requires.size > 0) {
                 this.requires = new Gee.ArrayList<string>();
                 foreach(var r in requires) {
                     this.requires.push(r.desc);
