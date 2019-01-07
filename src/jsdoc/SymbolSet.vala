@@ -330,14 +330,23 @@ namespace JSDOC {
             */
             
         }
+        static bool isBuiltin(string name)
+		{
+			for (var i =0 ; i < SymbolSet.coreObjects.length; i++ ){ 
+				if (name ==  SymbolSet.coreObjects[i]) {
+					return true;
+				}
+			}
+			return false;
+		}
+		static string[] coreObjects  = {
+			"_global_", "Array" , "Boolean", "Date", "Function", 
+			    "Math", "Number", "Object", "RegExp", "String"
+		};
          
 	}
+	
 }
 
-SymbolSet.isBuiltin = function(name) {
-    return (SymbolSet.isBuiltin.coreObjects.indexOf(name) > -1);
-}
-SymbolSet.isBuiltin .coreObjects = [
-    '_global_', 'Array', 'Boolean', 'Date', 'Function', 
-    'Math', 'Number', 'Object', 'RegExp', 'String'
+
 ];
