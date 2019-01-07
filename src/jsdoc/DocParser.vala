@@ -53,7 +53,7 @@ namespace JSDOC
 		    //this.walker.walk(ts); // adds to our symbols
 		   // throw "done sym tree";
 		    //Options.LOG.inform("Parser - checking symbols");
-		    // filter symbols by option
+		    // filter symbols by option 
 		    foreach (var p in DocParser.symbols._index) {
 		        var symbol = DocParser.symbols.getSymbol(p);
 		        
