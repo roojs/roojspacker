@@ -64,11 +64,11 @@ namespace JSDOC {
             this._index.remove(alias);
         }
 
-        renameSymbol : function(oldName, newName) {
+        renameSymbol : function(string oldName, string newName) {
             // todo: should check if oldname or newname already exist
-            if (typeof(this._index[oldName]) == "undefined") {
-                throw "Cant rename " + oldName + " to " + newName + " As it doesnt exist";
-               }
+            if (!this.hasSymbol(oldName)) {
+                throw new Exception("Cant rename " + oldName + " to " + newName + " As it doesnt exist");
+            } 
             this._index[newName] = this._index[oldName];
             this.deleteSymbol(oldName);
             this._index[newName].alias = newName;
