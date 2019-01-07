@@ -635,7 +635,7 @@ namespace JSDOC {
                 // todo
             */
             
-            // @inherits ... as ...
+            // @inherits ... as ... -- not used!!!
             /*
             var inherits = this.comment.getTag("inherits");
             if (inherits.length) {
