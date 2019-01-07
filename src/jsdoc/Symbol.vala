@@ -752,7 +752,7 @@ namespace JSDOC {
             
             if (symbol.comment.getTag(DocTagTitle.CFG).size == 1) { 
                 symbol.comment.getTag(DocTagTitle.CFG).get(0).memberOf = this.alias;
-                this.addConfig(symbol.comment.getTag("cfg")[0]);
+                this.addConfig(symbol.comment.getTag("cfg").get(0));
                 return;
             }
             
