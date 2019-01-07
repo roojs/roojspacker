@@ -774,16 +774,16 @@ namespace JSDOC {
             var thisMethods = this.methods;
             for (var i = 0, l = thisMethods.size; i < l; i++) {
                 if (thisMethods.get(i).alias == methodAlias) {
-                    thisMethods.get(i) = symbol; // overwriting previous method
+                    thisMethods.set(i, symbol); // overwriting previous method
                     return;
                 }
             }
-            thisMethods.push(symbol); // new method with this alias
+            thisMethods.add(symbol); // new method with this alias
         }
 
         bool hasProperty(string name) {
             var thisProperties = this.properties;
-            for (var i = 0, l = thisProperties.length; i < l; i++) {
+            for (var i = 0, l = thisProperties.size; i < l; i++) {
                 if (thisProperties[i].name == name) return true;
                 if (thisProperties[i].alias == name) return true;
             }
