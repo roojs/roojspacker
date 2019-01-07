@@ -804,7 +804,7 @@ namespace JSDOC {
         void addDocTag(DocTag docTag)
         {
             this.comment.tags.push(docTag);
-            if (docTag.title == 'cfg') {
+            if (docTag.title == "cfg") {
                 this.addConfig(docTag);
             }
             
@@ -822,11 +822,11 @@ namespace JSDOC {
             //    this.cfgs[docTag.name] = docTag;
             //}
             
-        },
-        configToArray: function()
+        }
+        Gee.ArrayList<string> configToArray()
         {
-            var r = [];
-            for(var ci in this.cfgs) {
+            var r = new  Gee.ArrayList<string>();
+            foreach(var ci in this.cfgs) {
                 // dont show hidden!!
                 if (this.cfgs[ci].desc.match(/@hide/)) {
                     continue;
@@ -836,19 +836,14 @@ namespace JSDOC {
             }
             return r;
         }
-});
-
-/**
- * Elements that are not serialized
- * 
- */
-Symbol.hide = [ 
-    '$args' // not needed AFAIK
-]
-
-Symbol.srcFile = ""; //running reference to the current file being parsed
+	}
+	static string[] hide = { "$args" };
+	static string srcFile = "";
+	static 
+}
 
 
+/*
 Symbol.fromDump = function(t)
 {
     var ns = new Symbol();
@@ -860,3 +855,4 @@ Symbol.fromDump = function(t)
     }
     return ns;
 }
+*/
