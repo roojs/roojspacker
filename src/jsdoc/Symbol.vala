@@ -248,8 +248,8 @@ namespace JSDOC {
                 this.isa = "FUNCTION";
             }
             // @desc
-            var descs = this.comment.getTag("desc");
-            if (descs.length) {
+            var descs = this.comment.getTag(DocTagTitle.DESC);
+            if (descs.size>  0) {
                 this.desc = "";
                 foreach(var d in desc) {
                     this.desc = this.desc == "" ? "": "\n";
