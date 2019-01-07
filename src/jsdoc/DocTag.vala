@@ -21,7 +21,10 @@ namespace JSDOC
  
 		SEE,
 		CLASS,
-		NAMESPACE
+		NAMESPACE,
+		CONSTRUCTOR,
+		STATIC,
+		SINGLETON
 	}
 	
 	errordomain DocTagException {
