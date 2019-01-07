@@ -26,7 +26,7 @@ namespace JSDOC {
 		}
 
 		private string private_string_name = "";
-		private string private_name {
+		private string private_name(string value) {
     		set {
 				var n = Symbol.regex_global(value, value.length, 0, "");
 		        n =  Symbol.regex_prototype(n,n.length, 0, "#");
