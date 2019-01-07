@@ -689,7 +689,7 @@ namespace JSDOC {
             */
             
             // @memberOf
-            var memberOfs = this.comment.getTag("memberOf");
+            var memberOfs = this.comment.getTag(DocTagTitle.MEMBEROF);
             if (memberOfs.length) {
                 this.memberOf = memberOfs[0].desc;
                 var pr_reg = /\.prototype\.?/;
