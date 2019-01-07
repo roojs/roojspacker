@@ -559,7 +559,7 @@ namespace JSDOC {
                     if (properties[i].type.length > 0) property.type = properties[i].type;
                     if (properties[i].defaultValue.length > 0) property.defaultValue = properties[i].defaultValue;
                     this.addProperty(property);
-                    imports.Parser.Parser.addSymbol(property);
+                    JSON.Parser.addSymbol(property);
                 }
             }
             
