@@ -698,8 +698,7 @@ namespace JSDOC {
                 var dname = this.name.split(".");
                 var name = dname[dname.length-1];
                 
-
-                var hname = name.split('#');
+                var hname = name.split("#");
                 name = hname[hname.length-1];
                 this.private_name = this.memberOf + "." + name; //?? "." ???
                 this.alias = this.name;
