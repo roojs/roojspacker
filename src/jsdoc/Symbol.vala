@@ -841,8 +841,8 @@ namespace JSDOC {
         }
         */
 	}
-	static string[] hide = { "$args" };
-	static string srcFile = "";
+	//static string[] hide = { "$args" };
+	//static string srcFile = "";
 	 
 }
 
