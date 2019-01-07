@@ -441,7 +441,7 @@ namespace JSDOC {
             */
             
             // @constructor
-            if (this.comment.getTag("constructor").length) {
+            if (this.comment.getTag(DocTagTitle.CONSTRUCTOR).length) {
                 this.isa = "CONSTRUCTOR";
             }
             
