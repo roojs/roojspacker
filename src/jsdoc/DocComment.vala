@@ -50,7 +50,7 @@ namespace JSDOC
 			DocComment.done_init = true;
 		}
 	 
-		public DocComment (string comment) 
+		public DocComment (string comment = "") 
 		{
 		    
 		    DocComment.initRegex();

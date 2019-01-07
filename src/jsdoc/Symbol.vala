@@ -163,7 +163,7 @@ namespace JSDOC {
             // derived later?
             //this.inheritsFrom = [];
             //this.childClasses = [];
-            
+             
             this.comment = new DocComment();
             this.comment.isUserComment =  false;
             
