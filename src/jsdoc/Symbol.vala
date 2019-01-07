@@ -363,7 +363,7 @@ namespace JSDOC {
             */
             
             // @class
-            var classes = this.comment.getTag("class");
+            var classes = this.comment.getTag(DocTagTitle.CLASS);
             if (classes.length) {
                 //print(JSON.stringify(this,null,4));
                 this.isa = "CONSTRUCTOR";
@@ -382,7 +382,7 @@ namespace JSDOC {
             */
             
             // @namespace
-            var namespaces = this.comment.getTag("namespace");
+            var namespaces = this.comment.getTag(DocTagTitle.NAMESPACE);
             if (namespaces.length) {
                 this.classDesc = namespaces[0].desc+"\n"+this.desc; // desc can't apply to the constructor as there is none.
                 this.isNamespace = true;
