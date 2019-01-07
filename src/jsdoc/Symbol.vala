@@ -576,8 +576,8 @@ namespace JSDOC {
             */
 
             // @return
-            var returns = this.comment.getTag("return");
-            if (returns.length) { // there can be many return tags in a single doclet
+            var returns = this.comment.getTag(DocTagTitle.RETURN);
+            if (returns.size > 0) { // there can be many return tags in a single doclet
                 this.returns = returns;
 
                 this.type = "";
