@@ -27,6 +27,7 @@ namespace JSDOC
 		SINGLETON,
 		
 		INNER,
+		FIELD,
 	}
 	
 	errordomain DocTagException {

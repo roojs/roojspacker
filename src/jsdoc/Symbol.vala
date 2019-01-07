@@ -476,7 +476,7 @@ namespace JSDOC {
             */
             
             // @inner
-            if (this.comment.getTag("inner").length) {
+            if (this.comment.getTag(DocTagTitle.INNER).size > 0) {
                 this.isInner = true;
                 this.isStatic = false;
             }
@@ -488,7 +488,7 @@ namespace JSDOC {
             */
             
             // @field
-            if (this.comment.getTag("field").length) {
+            if (this.comment.getTag(DocTagTitle.FIELD).length) {
                 this.isa = "OBJECT";
             }
             
