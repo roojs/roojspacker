@@ -603,7 +603,7 @@ namespace JSDOC {
             if (requires.size > 0) {
                 this.requires = new Gee.ArrayList<string>();
                 foreach(var r in requires) {
-                    this.requires.push(r.desc);
+                    this.requires.add(r.desc);
                 }
             }
             
