@@ -174,7 +174,7 @@ namespace JSDOC {
 		{
             Symbol.regexInit();
             this.initArrays();
-            this.srcFile = DocParser.currentSourceFile;
+            this.srcFile = JSDOC.DocParser.currentSourceFile;
 			this.prviate_name =  name ;
 			this.alias = this.name;
 			this.isa = "CONSTRUCTOR";
