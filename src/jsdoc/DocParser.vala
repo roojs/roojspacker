@@ -58,7 +58,7 @@ namespace JSDOC
 		        
 		       // print(JSON.stringify(symbol, null,4));
 		        
-		        if (!symbol) continue;
+		        if (symbol == null) continue;
 		        
 		        if (symbol.isPrivate) {
 		            DocParser.symbols.deleteSymbol(symbol.alias);
