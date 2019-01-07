@@ -31,6 +31,7 @@ namespace JSDOC
 		FUNCTION,
 		EVENT,
 		NAME,
+ 
 	}
 	
 	errordomain DocTagException {

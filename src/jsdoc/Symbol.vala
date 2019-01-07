@@ -538,8 +538,8 @@ namespace JSDOC {
             */
             
             // @property
-            var properties = this.comment.getTag("property");
-            if (properties.length) {
+            var properties = this.comment.getTag(DocTagTitle.PROPERTY);
+            if (properties.size > 0) {
                 thisProperties = this.properties;
                 for (var i = 0; i < properties.length; i++) {
 
