@@ -397,7 +397,7 @@ namespace JSDOC {
             var params = this.comment.getTag(DocTagTitle.PARAM);
             if (params.size > 0) {
                 // user-defined params overwrite those with same name defined by the parser
-                var thisParams = this.getParams();
+                var thisParams = this.params;
 
                 if (thisParams.length == 0) { // none exist yet, so just bung all these user-defined params straight in
                     this.setParams(params);
