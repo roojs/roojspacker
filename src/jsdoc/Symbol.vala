@@ -698,7 +698,7 @@ namespace JSDOC {
                 this.name = this.name.split('.').pop();
                 this.name = this.name.split('#').pop();
                 this.name = this.memberOf + this.name;
-                this._name = this.name
+                this._name = this.name;
                 this.alias = this.name;
             }
 
