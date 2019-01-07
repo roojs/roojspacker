@@ -714,18 +714,20 @@ namespace JSDOC {
             /*~t
                 // todo
             */
-        },
+        }
 
-        is : function(what) {
-            return this.isa === what;
-        },
+        bool is (string what) {
+            return this.isa == what;
+        }
 
-        isBuiltin : function() {
+        bool isBuiltin() {
             return SymbolSet.isBuiltin(this.alias);
-        },
+        }
 
-        setType : function(/**String*/comment, /**Boolean*/overwrite) {
-            if (!overwrite && this.type) return;
+        void setType(String comment,bool overwrite) {
+            if (!overwrite && this.type.length > 0) {
+            	 return;
+        	 }
             var typeComment = DocComment.unwrapComment(comment);
             this.type = typeComment;
         },
