@@ -33,12 +33,12 @@ namespace JSDOC {
             this._index.set(symbol.alias,  symbol);
         },
 
-        Symbol? getSymbol (string alias) {
+        public Symbol? getSymbol (string alias) {
             
             if (this.hasSymbol(alias)) return this._index.get(alias);
             return null;
         },
-
+/*/
         toArray : function() {
             var found = [];
             for (var p in this._index) {
@@ -46,9 +46,10 @@ namespace JSDOC {
             }
             return found;
         },
+        */
         /**
          * for serializing
-         */
+         *
         toJSON : function() {
             return {
                 '*object' : 'SymbolSet',
@@ -56,9 +57,9 @@ namespace JSDOC {
             };
             
         },
+*/
 
-
-        deleteSymbol : function(alias) {
+        public void deleteSymbol : function(alias) {
             if (!this.hasSymbol(alias)) return;
             delete this._index[alias];
         },
