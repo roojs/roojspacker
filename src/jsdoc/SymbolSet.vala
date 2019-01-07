@@ -19,7 +19,7 @@ namespace JSDOC {
 
         public bool hasSymbol(string alias) 
         {
-            return this._index.hasKey(alias);
+            return this._index.has_key(alias);
             //return this.keys().indexOf(alias) > -1;
         }
 
