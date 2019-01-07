@@ -12,7 +12,7 @@ namespace JSDOC {
 		}
 		public Gee.HashMap<string,Symbol> index()
 		{
-			return _this.index;
+			return this._index;
 		}
 
         public Gee.ArrayList<string> keys() 

@@ -40,8 +40,7 @@ namespace JSDOC
 		    // not a nice way to set stuff...
 		   
 		    DocComment.shared = ""; // shared comments don't cross file boundaries
-		    
-		   
+		     
 		    DocParser.filesSymbols.set(srcFile, new SymbolSet());
 		    
 		    //Options.LOG.inform("Parser - run walker");
