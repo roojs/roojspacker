@@ -7,8 +7,7 @@ namespace JSDOC
 	class DocBuilder : Object 
 	{
 		
-
-
+ 
 		// extractable via JSON?
 		public string VERSION = "1.0.0" ;
 		

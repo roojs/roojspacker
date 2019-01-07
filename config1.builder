@@ -18,7 +18,8 @@
             "/src/jsdoc/TokenStream.vala",
             "/src/jsdoc/Token.vala",
             "/src/jsdoc",
-            "/src/jsdoc/DocTag.vala"
+            "/src/jsdoc/DocTag.vala",
+            "/src/jsdoc/DocBuilder.vala"
         ],
         "packages" : [
         ]
