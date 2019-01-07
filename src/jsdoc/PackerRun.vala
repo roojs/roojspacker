@@ -85,7 +85,13 @@ namespace JSDOC
 		
 		public  string opt_doc_ext = "html";
 		
-	
+		static PackerRun singleton()
+		{
+			if (_PackerRun == null) {
+				_PackerRun = new PackerRun();
+			}
+			return _PackerRun;
+		}
  
 		public PackerRun ()
 		{
