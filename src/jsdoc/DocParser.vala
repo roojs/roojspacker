@@ -115,7 +115,7 @@ namespace JSDOC
 			}
 		
 			// -p flag is required to document private things
-			if ((symbol.isInner || symbol.isPrivate) && !PackerRun.opt_doc_include_private) {
+			if ((symbol.isInner || symbol.isPrivate) && !PackerRun.singleton().opt_doc_include_private) {
 				 return;
 			}
 		
