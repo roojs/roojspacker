@@ -309,7 +309,7 @@ namespace JSDOC
 			 
 				foreach (var  f in opt_files) {
 					GLib.debug("Adding File %s", f);
-					p.loadFile(f);
+					p.loadFile(f);  // just adds to list of files to parse (no parsing yet..)
 				}
 			}  
 			if (opt_files_from != null) {
