@@ -732,12 +732,12 @@ namespace JSDOC {
             this.type = typeComment;
         }
 
-        inherit : function(symbol) {
+        void inherit (Symbol symbol) {
             if (!this.hasMember(symbol.name) && !symbol.isInner) {
                 if (symbol.is("FUNCTION"))
                     this.methods.push(symbol);
                 else if (symbol.is("OBJECT"))
-                    this.properties.push(symbol);
+                    this.properties.add(symbol);
             }
         },
 
