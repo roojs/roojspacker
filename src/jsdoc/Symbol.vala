@@ -12,8 +12,8 @@ namespace JSDOC {
 	{
 		 
 		private static bool regex_init = false;
-		private GLib.Regex regex_global;
-		private GLib.Regex regex_prototype;
+		private static GLib.Regex regex_global;
+		private static GLib.Regex regex_prototype;
 		
 		static void  regexInit()
 		{
