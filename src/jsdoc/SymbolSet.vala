@@ -15,7 +15,7 @@ namespace JSDOC {
         {
             this._index.keys;
         }
-
+ 
 
         public bool hasSymbol(string alias) 
         {
