@@ -211,7 +211,7 @@ namespace JSDOC
 					flags = 0,
 					arg =  OptionArg.STRING,
 					arg_data = &opt_doc_target,
-					description = "Clean up the cache after running (slower)",
+					description = "Target location for documetnation",
 					arg_description = null
 				}, 
 
@@ -221,7 +221,7 @@ namespace JSDOC
 					flags = 0,
 					arg =  OptionArg.STRING,
 					arg_data = &opt_doc_template_dir,
-					description = "Documentation Directory target",
+					description = "Template directory for documentation",
 					arg_description = null
 				}, 			
 
