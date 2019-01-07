@@ -24,10 +24,11 @@ namespace JSDOC
 		NAMESPACE,
 		CONSTRUCTOR,
 		STATIC,
-		SINGLETON,
+ 
 		
 		INNER,
 		FIELD,
+		FUNCTION,
 	}
 	
 	errordomain DocTagException {
