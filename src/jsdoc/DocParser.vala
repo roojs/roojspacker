@@ -11,7 +11,7 @@ namespace JSDOC
  
 		
 		static bool has_init = false;
-		static DocWalker walker ;
+		//static DocWalker walker ;
 	    static SymbolSet symbols ;
 	    
 	    public static string currentSourceFile;
