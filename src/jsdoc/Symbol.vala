@@ -793,19 +793,19 @@ namespace JSDOC {
         void addProperty(Symbol symbol) {
             var propertyAlias = symbol.alias;
             var thisProperties = this.properties;
-            for (var i = 0, l = thisProperties.length; i < l; i++) {
-                if (thisProperties[i].alias == propertyAlias) {
-                    thisProperties[i] = symbol; // overwriting previous property
+            for (var i = 0, l = thisProperties.size; i < l; i++) {
+                if (thisProperties.get(i).alias == propertyAlias) {
+                    thisProperties.set(i, symbol); // overwriting previous property
                     return;
                 }
             }
 
-            thisProperties.push(symbol); // new property with this alias
+            thisProperties.add(symbol); // new property with this alias
         }
         
         void addDocTag(DocTag docTag)
         {
-            this.comment.tags.push(docTag);
+            this.comment.tags.add(docTag);
             if (docTag.title == "cfg") {
                 this.addConfig(docTag);
             }
