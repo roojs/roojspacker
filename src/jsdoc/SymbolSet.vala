@@ -12,7 +12,7 @@ namespace JSDOC {
 		}
 		public index()
 		{
-			return index;
+			return _this.index;
 		}
 
         public Gee.ArrayList<string> keys() 
