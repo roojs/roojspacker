@@ -243,7 +243,7 @@ namespace JSDOC {
                 assertEqual(sym.author, "Joe Smith", "@author tag, author is found.");
             */
             // @desc
-            var mth = this.comment.getTag("method");
+            var mth = this.comment.getTag(DocTagTitle.METHOD);
             if (mth.length) {
                 this.isa = "FUNCTION";
             }
