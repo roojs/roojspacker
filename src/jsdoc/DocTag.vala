@@ -29,6 +29,8 @@ namespace JSDOC
 		INNER,
 		FIELD,
 		FUNCTION,
+		EVENT,
+		NAME,
 	}
 	
 	errordomain DocTagException {
