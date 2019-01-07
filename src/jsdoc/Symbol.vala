@@ -556,8 +556,8 @@ namespace JSDOC {
                     // TODO: shouldn't the following happen in the addProperty method of Symbol?
                     property.private_name = properties[i].name;
                     property.memberOf = this.alias;
-                    if (properties[i].type) property.type = properties[i].type;
-                    if (properties[i].defaultValue) property.defaultValue = properties[i].defaultValue;
+                    if (properties[i].type.length > 0) property.type = properties[i].type;
+                    if (properties[i].defaultValue.length > 0) property.defaultValue = properties[i].defaultValue;
                     this.addProperty(property);
                     imports.Parser.Parser.addSymbol(property);
                 }
