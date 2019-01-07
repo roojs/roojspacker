@@ -10,6 +10,10 @@ namespace JSDOC {
 			this._index = new Gee.HashMap<string,Symbol>();
 
 		}
+		public index()
+		{
+			return index;
+		}
 
         public Gee.ArrayList<string> keys() 
         {
