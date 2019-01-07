@@ -297,7 +297,7 @@ namespace JSDOC {
             */
             
             // @constant
-            if (this.comment.getTag("constant").length) {
+            if (this.comment.getTag(DocTagTitle.CONSTANT).size > 0) {
                 this.isConstant = true;
                 this.isa = "OBJECT";
             }
