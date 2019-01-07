@@ -282,8 +282,8 @@ namespace JSDOC {
             */
             
             // @since
-            var sinces = this.comment.getTag("since");
-            if (sinces.length) {
+            var sinces = this.comment.getTag(DocTagTitle.SINCE);
+            if (sinces.size > 0) {
                 this.since = "";
                 foreach(var d in sinces) {
                     this.since = this.since == "" ? "": "\n";

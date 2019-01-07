@@ -14,6 +14,7 @@ namespace JSDOC
 		METHOD,
 		DESC,
 		OVERVIEW,
+		SINCE,
 	}
 	
 	errordomain DocTagException {
