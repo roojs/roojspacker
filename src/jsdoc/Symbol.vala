@@ -3,7 +3,7 @@
 	Create a new Symbol.
 	@class Represents a symbol in the source code.
  */
- 
+
  
 namespace JSDOC {
 
