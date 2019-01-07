@@ -695,9 +695,13 @@ namespace JSDOC {
                 var pr_reg = /\.prototype\.?/;
                 
                 this.memberOf = pr_reg.replace(this.memberOf, this.memberOf.length, 0, "#");
-                var name = this.name.split(".").pop();
-                var name = name.split('#').pop();
-                this.private_name = this.memberOf + name;
+                var dname = this.name.split(".");
+                var name = dname[dname.length-1];
+                
+
+                var hname = name.split('#')
+                name = hname[hname.length-1];
+                this.private_name = this.memberOf "." + name; //?? "." ???
                 this._name = this.name;
                 this.alias = this.name;
             }
