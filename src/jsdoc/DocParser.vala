@@ -72,7 +72,7 @@ namespace JSDOC
 		        }
 		       
 		        
-		        if (symbol.alias.substring(symbol.alias-1) == "#")) { // we don't document prototypes - this should not happen..
+		        if (symbol.alias.substring(symbol.alias-1) == "#") { // we don't document prototypes - this should not happen..
 		            
 		            print("Deleting Symbols (alias ends in #): " + symbol.alias);
 		            
@@ -159,7 +159,7 @@ namespace JSDOC
 				print("-------------------\n");
 			}
 			*/
-	},
+	}
     /**
      * return symbols so they can be serialized.
      */
