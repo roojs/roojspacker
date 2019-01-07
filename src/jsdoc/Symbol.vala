@@ -737,7 +737,7 @@ namespace JSDOC {
         void inherit (Symbol symbol) {
             if (!this.hasMember(symbol.name) && !symbol.isInner) {
                 if (symbol.is("FUNCTION"))
-                    this.methods.push(symbol);
+                    this.methods.add(symbol);
                 else if (symbol.is("OBJECT"))
                     this.properties.add(symbol);
             }
