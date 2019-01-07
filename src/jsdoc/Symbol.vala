@@ -709,7 +709,7 @@ namespace JSDOC {
             */
             
             // @public
-            if (this.comment.getTag("public").length) {
+            if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
             }
             
