@@ -155,7 +155,7 @@ namespace JSDOC {
             this.properties = new Gee.ArrayList<Symbol>();
             this.requires = new Gee.ArrayList<string>();
             this.returns = new Gee.ArrayList<DocTag>();
-            this.see = new Gee.ArrayList<DocTag>();
+            this.see = new Gee.ArrayList<string>();
  
             
             
