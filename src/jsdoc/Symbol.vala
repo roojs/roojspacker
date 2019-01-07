@@ -267,8 +267,8 @@ namespace JSDOC {
             if (this.is("FILE")) {
                 if (this.alias.length < 1) this.alias = this.srcFile;
                 
-                var overviews = this.comment.getTag("overview");
-                if (overviews.length) {
+                var overviews = this.comment.getTag(DocTagTitle.OVERVIEW);
+                if (overviews.size > 0) {
                     foreach(var d in overviews) {
                         this.desc = this.desc == "" ? "": "\n";
                         this.desc += d.desc;
