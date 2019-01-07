@@ -540,8 +540,8 @@ namespace JSDOC {
             // @property
             var properties = this.comment.getTag(DocTagTitle.PROPERTY);
             if (properties.size > 0) {
-                thisProperties = this.properties;
-                for (var i = 0; i < properties.length; i++) {
+                var thisProperties = this.properties;
+                for (var i = 0; i < properties.size; i++) {
 
  
 
@@ -566,8 +566,8 @@ namespace JSDOC {
             // config..
             var conf = this.comment.getTag(DocTagTitle.CFG);
             if (conf.size > 0) {
-                for (var i = 0; i < conf.length; i++) {
-                    this.addConfig(conf[i]);
+                for (var i = 0; i < conf.size; i++) {
+                    this.addConfig(conf.get(i));
                 }
             }
             
