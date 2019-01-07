@@ -73,12 +73,16 @@ namespace JSDOC {
             this.deleteSymbol(oldName);
             this._index.get(newName).alias = newName;
             return newName;
-        },
+        }
 
-        relate : function() {
+        public void relate() 
+        {
+            GLib.error("Not implemented");
+            /*
             this.resolveBorrows();
             this.resolveMemberOf();
             this.resolveAugments();
+            */
         },
 
         resolveBorrows : function() {
