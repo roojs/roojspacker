@@ -35,8 +35,8 @@ namespace JSDOC {
 
         Symbol? getSymbol (string alias) {
             
-            if (this.hasSymbol(alias)) return this._index[alias];
-            return false;
+            if (this.hasSymbol(alias)) return this._index.get(alias);
+            return null;
         },
 
         toArray : function() {
