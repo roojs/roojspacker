@@ -627,7 +627,7 @@ namespace JSDOC {
             }
             
             // @ignore
-            if (this.comment.getTag("ignore").length) {
+            if (this.comment.getTag(DocTagTitle.IGNORE).size > 0) {
                 this.isIgnored = true;
             }
             
