@@ -18,6 +18,8 @@
   
 */
 
+PackerRun _PackerRun;
+
 namespace JSDOC
 {
 	// --------------- <<<<<<< <MAIN HERE....
@@ -93,6 +95,8 @@ namespace JSDOC
 				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
 			);
 #endif		
+			
+
 		}
 		
 		
