@@ -276,16 +276,18 @@ namespace JSDOC {
                         //LOG.warn("We only have the following symbols: \n" + 
                           //      this.keys().toSource().split(",").join(",    \n"));
                        }
-
+	
                 }
             }
             */
         }
 
-        buildAugmentsList : function(symbol)
+        int buildAugmentsList (Symbol symbol)
         {
-            // basic idea is to add all the child extends to the parent.. without looping forever..
-            
+	        // basic idea is to add all the child extends to the parent.. without looping forever..
+            GLib.error("Not implemented");
+            return 0;
+            /*
             if (!symbol.augments.length) {
                 return;
             }
@@ -325,10 +327,12 @@ namespace JSDOC {
             }
             addAugments(symbol.augments, true);
             //while(addAugments(symbol.augments) >  0) { }
+            */
             
         }
          
-})
+	}
+}
 
 SymbolSet.isBuiltin = function(name) {
     return (SymbolSet.isBuiltin.coreObjects.indexOf(name) > -1);
