@@ -404,7 +404,8 @@ namespace JSDOC {
                 }
                 else { // need to overlay these user-defined params on to existing parser-defined params
                     for (var i = 0, l = params.size; i < l; i++) {
-                        if (thisParams.get(i)) {
+                        if (thisParams.has_key(i)) {
+                        
                             if (params[i].type) thisParams[i].type = params[i].type;
                             thisParams[i].name = params[i].name;
                             thisParams[i].desc = params[i].desc;
