@@ -308,8 +308,8 @@ namespace JSDOC {
             */
             
             // @version
-            var versions = this.comment.getTag("version");
-            if (versions.length) {
+            var versions = this.comment.getTag(DocTagTitle.VERSION);
+            if (versions.size > 0 ) {
                 this.version = "";
                  foreach(var d in versions) {
                     this.version = this.version == "" ? "": "\n";
