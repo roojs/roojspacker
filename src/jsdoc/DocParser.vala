@@ -110,9 +110,9 @@ namespace JSDOC
 			}
 
 			// uderscored things may be treated as if they were marked private, this cascades
-			if (DocParser.treatUnderscoredAsPrivate && symbol.name.match(/[.#-]_[^.#-]+$/)) {
-				symbol.isPrivate = true;
-			}
+			//if (DocParser.treatUnderscoredAsPrivate && symbol.name.match(/[.#-]_[^.#-]+$/)) {
+			//	symbol.isPrivate = true;
+			//}
 		 
 			// -p flag is required to document private things
 			if ((symbol.isInner || symbol.isPrivate) && !PackerRun.singleton().opt_doc_include_private) {
