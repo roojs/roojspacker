@@ -86,7 +86,7 @@ namespace JSDOC {
 		private Gee.ArrayList<DocTag>  exceptions ;
 
 		private Gee.ArrayList<DocTag>  inherits; 
-		private Gee.ArrayList<DocTag>  methods;
+		private Gee.ArrayList<Symbol>  methods;
 
 		private Gee.ArrayList<DocTag> properties;
 		private Gee.ArrayList<string> requires;
