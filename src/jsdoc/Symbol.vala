@@ -668,7 +668,7 @@ namespace JSDOC {
             */
 
             // @augments
-            this.augments = this.comment.getTag("augments");
+            this.augments = this.comment.getTag(DocTagTitle.ARGUMENTS);
             
             //@extends - Ext
             if (this.comment.getTag("extends")) {   
