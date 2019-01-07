@@ -29,7 +29,7 @@ namespace JSDOC
 		 * but i think it's related to merging multiple comments together...
 		 */
 
-		private static string    shared = "";
+		public static string    shared = "";
 		
 		static bool done_init = false;
 	
