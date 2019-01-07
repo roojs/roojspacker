@@ -93,7 +93,7 @@ namespace JSDOC
 			// if a symbol alias is documented more than once the last one with the user docs wins
 			if (DocParser.symbols.hasSymbol(symbol.alias)) {
 				var oldSymbol = DocParser.symbols.getSymbol(symbol.alias);
-		        
+		         
 				if (oldSymbol.comment.isUserComment && !oldSymbol.comment.hasTags) {
 					if (symbol.comment.isUserComment) { // old and new are both documented
 						GLib.debug("The symbol '%s' is documented more than once.",symbol.alias);
