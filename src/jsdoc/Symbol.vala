@@ -498,12 +498,12 @@ namespace JSDOC {
             */
             
             // @function
-            if (this.comment.getTag("function").length) {
+            if (this.comment.getTag(DocTagTitle.FUNCTION).length) {
                 this.isa = "FUNCTION";
             }
             
             // @param
-            if (this.comment.getTag("param").length && this.isa == "OBJECT" ) {
+            if (this.comment.getTag(DocTagTitle.PARAM).length && this.isa == "OBJECT" ) {
                 // change a property to a function..
                 this.isa = "FUNCTION";
             }
