@@ -65,7 +65,7 @@ namespace JSDOC
 		            DocParser.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
 		            continue;
 		        }
-		        
+		         
 		        if (symbol.is("FILE") || symbol.is("GLOBAL")) {
 		            continue;
 		        }

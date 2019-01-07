@@ -722,7 +722,7 @@ namespace JSDOC {
             */
         }
 
-        bool is (string what) {
+        public bool is (string what) {
             return this.isa == what;
         }
  
