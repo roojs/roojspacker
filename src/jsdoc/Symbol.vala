@@ -636,6 +636,7 @@ namespace JSDOC {
             */
             
             // @inherits ... as ...
+            /*
             var inherits = this.comment.getTag("inherits");
             if (inherits.length) {
                 for (var i = 0; i < inherits.length; i++) {
@@ -661,7 +662,7 @@ namespace JSDOC {
                     this.inherits.push({alias: inAlias, as: inAs});
                 }
             }
-            
+            */
             /*~t
                 // todo
             */
