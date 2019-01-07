@@ -41,7 +41,8 @@ namespace JSDOC
 		EXTENDS,
 		DEFAULT,
 		MEMBEROF,
- 
+		PUBLIC,
+  
 	}
 	
 	errordomain DocTagException {

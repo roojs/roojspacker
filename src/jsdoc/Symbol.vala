@@ -707,7 +707,7 @@ namespace JSDOC {
             /*~t
                 // todo
             */
-            
+             
             // @public
             if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
