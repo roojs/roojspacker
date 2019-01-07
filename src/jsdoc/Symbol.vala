@@ -338,8 +338,8 @@ namespace JSDOC {
             */
             
             // @example
-            var examples = this.comment.getTag("example");
-            if (examples.length) {
+            var examples = this.comment.getTag(DocTagTitle.EXAMPLE);
+            if (examples.size > 0) {
                 this.example = examples[0];
             }
             
@@ -349,7 +349,7 @@ namespace JSDOC {
             */
             
             // @see
-            var sees = this.comment.getTag("see");
+            var sees = this.comment.getTag(DocTagTitle.SEE);
             if (sees.length) {
                 var thisSee = this.see;
                 foreach(var s in sees) {
