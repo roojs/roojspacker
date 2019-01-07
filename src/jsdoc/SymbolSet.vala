@@ -61,7 +61,7 @@ namespace JSDOC {
 
         public void deleteSymbol  (string alias) {
             if (!this.hasSymbol(alias)) return;
-            this._index.remove(alias);
+            this._index.unset(alias);
         } 
 
         public string renameSymbol (string oldName, string newName) {
