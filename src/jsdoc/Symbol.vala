@@ -564,8 +564,8 @@ namespace JSDOC {
             }
             
             // config..
-            var conf = this.comment.getTag("cfg");
-            if (conf.length) {
+            var conf = this.comment.getTag(DocTagTitle.CFG);
+            if (conf.size > 0) {
                 for (var i = 0; i < conf.length; i++) {
                     this.addConfig(conf[i]);
                 }
