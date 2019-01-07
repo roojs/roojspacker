@@ -414,7 +414,7 @@ namespace JSDOC {
                         }
                         else thisParams[i] = params[i];
                     }
-                    this.private_params = params;
+                    this.private_params = thisParams;
                 }
             }
             
