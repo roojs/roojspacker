@@ -133,7 +133,7 @@ namespace JSDOC {
         string type = "";
         string version = "";
        
-        public string srcFile = "";
+        public static string srcFile = "";
         
         
         
