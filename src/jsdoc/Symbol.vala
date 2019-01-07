@@ -203,7 +203,7 @@ namespace JSDOC {
            // this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
             this.private_name = name;
-            this.alias = this.getName();
+            this.alias = this.name;
             this.private_string_params = params; 
             this.isa = (isa == "VIRTUAL")? "OBJECT":isa;
             this.comment =  comment;
