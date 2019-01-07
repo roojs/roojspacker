@@ -34,6 +34,7 @@ namespace JSDOC
 		RETURN,
 		THROWS,
 		REQUIRES,
+		TYPE,
  
 	}
 	

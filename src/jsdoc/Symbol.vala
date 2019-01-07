@@ -613,8 +613,8 @@ namespace JSDOC {
             
             // @type
             var types = this.comment.getTag(DocTagTitle.TYPE);
-            if (types.length) {
-                this.type = types[0].desc; //multiple type tags are ignored
+            if (types.size > 0) {
+                this.type = types.get(0).desc; //multiple type tags are ignored
             }
             
             /*~t
