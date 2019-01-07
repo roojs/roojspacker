@@ -30,7 +30,7 @@ namespace JSDOC {
             if (this.hasSymbol(symbol.alias)) {
                 GLib.warn("Overwriting symbol documentation for: %s.",symbol.alias);
             }
-            this._index[symbol.alias] = symbol;
+            this._index.set(symbol.alias,  symbol);
         },
 
         getSymbol : function(alias) {
