@@ -368,7 +368,7 @@ namespace JSDOC {
                 //print(JSON.stringify(this,null,4));
                 this.isa = "CONSTRUCTOR";
                 this.classDesc = classes[0].desc; // desc can't apply to the constructor as there is none.
-                //if (this.classDesc.leg) {
+                //if (!this.classDesc.leg) {
                 //    this.classDesc = this.desc;
                 //   }
                 
@@ -554,7 +554,7 @@ namespace JSDOC {
                             "/**"+properties[i].desc+"\n@name "+properties[i].name+"\n@memberOf "+this.alias+"#*/"
                     ));
                     // TODO: shouldn't the following happen in the addProperty method of Symbol?
-                    property.name = properties[i].name;
+                    property.private_name = properties[i].name;
                     property.memberOf = this.alias;
                     if (properties[i].type) property.type = properties[i].type;
                     if (properties[i].defaultValue) property.defaultValue = properties[i].defaultValue;
