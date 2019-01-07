@@ -54,7 +54,7 @@ namespace JSDOC
 		   // throw "done sym tree";
 		    //Options.LOG.inform("Parser - checking symbols");
 		    // filter symbols by option
-		    for (p in DocParser.symbols._index) {
+		    foreach (p in DocParser.symbols._index) {
 		        var symbol = DocParser.symbols.getSymbol(p);
 		        
 		       // print(JSON.stringify(symbol, null,4));
