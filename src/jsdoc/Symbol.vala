@@ -98,7 +98,7 @@ namespace JSDOC {
         //cfgs : {},
         
         
-        DocComment comment;
+        public DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
         string addOn = "";
