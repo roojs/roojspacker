@@ -677,10 +677,10 @@ namespace JSDOC {
             
             
             // @default
-            var defaults = this.comment.getTag("default");
-            if (defaults.length) {
+            var defaults = this.comment.getTag(DocTagTitle.DEFAULT);
+            if (defaults.size > 0) {
                 if (this.is("OBJECT")) {
-                    this.defaultValue = defaults[0].desc;
+                    this.defaultValue = defaults.get(0).desc;
                 }
             }
             
