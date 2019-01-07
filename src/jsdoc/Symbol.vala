@@ -441,7 +441,7 @@ namespace JSDOC {
             */
             
             // @constructor
-            if (this.comment.getTag(DocTagTitle.CONSTRUCTOR).length) {
+            if (this.comment.getTag(DocTagTitle.CONSTRUCTOR).size > 0) {
                 this.isa = "CONSTRUCTOR";
             }
             
@@ -451,7 +451,7 @@ namespace JSDOC {
             */
             
             // @static
-            if (this.comment.getTag("static").length) {
+            if (this.comment.getTag(DocTagTitle.STATIC).size > 0) {
                 this.isStatic = true;
                 if (this.isa == "CONSTRUCTOR") {
                     this.isNamespace = true;
@@ -459,7 +459,7 @@ namespace JSDOC {
             }
             
                 // @static
-            if (this.comment.getTag("singleton").length) {
+            if (this.comment.getTag(DocTagTitle.SINGLETON).size > 0) {
                 this.isStatic = true;
                 //print('------------- got singleton ---------------' + this.isa);
                 //if (this.isa == "CONSTRUCTOR") {
