@@ -32,6 +32,8 @@ namespace JSDOC
 		EVENT,
 		NAME,
 		RETURN,
+		THROWS,
+		REQUIRES,
  
 	}
 	
