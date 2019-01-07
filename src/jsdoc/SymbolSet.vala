@@ -28,7 +28,7 @@ namespace JSDOC {
             
              
             if (this.hasSymbol(symbol.alias)) {
-                GLib.warn("Overwriting symbol documentation for: %s.",symbol.alias);
+                GLib.warning("Overwriting symbol documentation for: %s.",symbol.alias);
             }
             this._index.set(symbol.alias,  symbol);
         }
