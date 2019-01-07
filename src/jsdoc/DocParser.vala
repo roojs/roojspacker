@@ -127,7 +127,7 @@ namespace JSDOC
 		    if (Symbol.srcFile != null) {
 		        DocParser.filesSymbols.get(Symbol.srcFile).addSymbol(symbol);
 		    }
-		
+		 
 			DocParser.symbols.addSymbol(symbol);
 		}
 	
