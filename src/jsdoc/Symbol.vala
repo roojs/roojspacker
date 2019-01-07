@@ -812,15 +812,15 @@ namespace JSDOC {
         
         void addConfig(DocTag docTag)
         {
-            if (typeof(docTag['memberOf']) == 'undefined') {
+            if (docTag.memberOf == "") {
                 // remove prototype data...
                 //var a = this.alias.split('#')[0];
                 //docTag.memberOf = a;
                 docTag.memberOf = this.alias;
             }
-            if (typeof(this.cfgs[docTag.name]) == 'undefined') {
-                this.cfgs[docTag.name] = docTag;
-            }
+            //if (typeof(this.cfgs[docTag.name]) == 'undefined') {
+            //    this.cfgs[docTag.name] = docTag;
+            //}
             
         },
         configToArray: function()
