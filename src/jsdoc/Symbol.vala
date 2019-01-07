@@ -730,7 +730,7 @@ namespace JSDOC {
         	 }
             var typeComment = DocComment.unwrapComment(comment);
             this.type = typeComment;
-        },
+        }
 
         inherit : function(symbol) {
             if (!this.hasMember(symbol.name) && !symbol.isInner) {
