@@ -799,18 +799,18 @@ namespace JSDOC {
             }
 
             thisProperties.push(symbol); // new property with this alias
-        },
+        }
         
-        addDocTag : function(docTag)
+        void addDocTag(DocTag docTag)
         {
             this.comment.tags.push(docTag);
             if (docTag.title == 'cfg') {
                 this.addConfig(docTag);
             }
             
-        },
+        }
         
-        addConfig : function(docTag)
+        void addConfig(DocTag docTag)
         {
             if (typeof(docTag['memberOf']) == 'undefined') {
                 // remove prototype data...
