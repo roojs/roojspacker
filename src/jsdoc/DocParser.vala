@@ -42,7 +42,7 @@ namespace JSDOC
 		    DocComment.shared = ""; // shared comments don't cross file boundaries
 		    
 		   
-		    this.filesSymbols.set(srcFile, new SymbolSet());
+		    DocParser.filesSymbols.set(srcFile, new SymbolSet());
 		    
 		    //Options.LOG.inform("Parser - run walker");
 		    this.walker = new  Walker2(ts);
