@@ -152,7 +152,7 @@ namespace JSDOC {
             this.isa = "OBJECT"; // OBJECT//FUNCTION
             this.methods = new Gee.ArrayList<DocTag>();
             //this.private_params = new Gee.ArrayList<DocTag>();
-            this.properties = new Gee.ArrayList<DocTag>();
+            this.properties = new Gee.ArrayList<Symbol>();
             this.requires = new Gee.ArrayList<string>();
             this.returns = new Gee.ArrayList<DocTag>();
             this.see = new Gee.ArrayList<DocTag>();
