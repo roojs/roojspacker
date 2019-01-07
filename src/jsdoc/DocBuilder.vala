@@ -408,7 +408,7 @@ namespace JSDOC
 		 * 
 		 * 
 		 */
-		JSON.Object publishJSON (Symbol data)
+		Json.Object publishJSON (Symbol data)
 		{
 		    // what we need to output to be usefull...
 		    // a) props..
