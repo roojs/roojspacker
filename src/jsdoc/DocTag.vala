@@ -17,6 +17,7 @@ namespace JSDOC
 		SINCE,
 		CONSTANT,
 		VERSION,
+		DEPRICATED
 	}
 	
 	errordomain DocTagException {
