@@ -37,6 +37,9 @@ namespace JSDOC
 		TYPE,
 		PRIVATE,
 		IGNORE,
+		ARGUMENTS,
+		EXTENDS,
+		DEFAULT,
  
 	}
 	
