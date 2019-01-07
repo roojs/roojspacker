@@ -26,7 +26,7 @@ namespace JSDOC {
         public void addSymbol (Symbol symbol) {
             //print("ADDING SYMBOL:"+symbol.alias.toString());
             
-            
+             
             if (this.hasSymbol(symbol.alias)) {
                 GLib.warn("Overwriting symbol documentation for: %s.",symbol.alias);
             }
