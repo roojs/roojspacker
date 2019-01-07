@@ -172,7 +172,7 @@ namespace JSDOC {
 		
 		public Symbol.new_builtin(string name)
 		{
-            Symbol.regexInit();
+            Symbol.regexInit(); 
             this.initArrays();
             this.srcFile = JSDOC.DocParser.currentSourceFile;
 			this.prviate_name =  name ;
