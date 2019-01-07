@@ -18,7 +18,7 @@ namespace JSDOC
 		CONSTANT,
 		VERSION,
 		DEPRICATED,
-		EXAMPLE,
+ 
 		SEE,
 		CLASS,
 		NAMESPACE
