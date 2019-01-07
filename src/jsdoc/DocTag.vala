@@ -20,6 +20,8 @@ namespace JSDOC
 		DEPRICATED,
 		EXAMPLE,
 		SEE,
+		CLASS,
+		NAMESPACE
 	}
 	
 	errordomain DocTagException {
