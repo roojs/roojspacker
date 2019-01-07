@@ -399,8 +399,8 @@ namespace JSDOC {
                 // user-defined params overwrite those with same name defined by the parser
                 var thisParams = this.params;
 
-                if (thisParams.length == 0) { // none exist yet, so just bung all these user-defined params straight in
-                    this.setParams(params);
+                if (thisParams.size == 0) { // none exist yet, so just bung all these user-defined params straight in
+                    this.private_params = params;
                 }
                 else { // need to overlay these user-defined params on to existing parser-defined params
                     for (var i = 0, l = params.length; i < l; i++) {
