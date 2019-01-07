@@ -503,7 +503,7 @@ namespace JSDOC {
             }
             
             // @param
-            if (this.comment.getTag(DocTagTitle.PARAM).length && this.isa == "OBJECT" ) {
+            if (this.comment.getTag(DocTagTitle.PARAM).size > 0 && this.isa == "OBJECT" ) {
                 // change a property to a function..
                 this.isa = "FUNCTION";
             }
@@ -515,8 +515,8 @@ namespace JSDOC {
             */
             
             // @event
-            var events = this.comment.getTag("event");
-            if (events.length) {
+            var events = this.comment.getTag(DocTagTitle.EVENT);
+            if (events.size > 0) {
                 this.isa = "FUNCTION";
                 this.isEvent = true;
             }
@@ -528,8 +528,8 @@ namespace JSDOC {
             */
             
             // @name
-            var names = this.comment.getTag("name");
-            if (names.length) {
+            var names = this.comment.getTag(DocTagTitle.NAME);
+            if (names.size > 0) {
                 this.setName(names[0].desc);
             }
             
