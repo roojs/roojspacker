@@ -751,7 +751,7 @@ namespace JSDOC {
             //println("ADDMEMBER: " + this.name +  " ++ " + symbol.name);
             
             if (symbol.comment.getTag(DocTagTitle.CFG).size == 1) { 
-                symbol.comment.getTag("cfg")[0].memberOf = this.alias;
+                symbol.comment.getTag(DocTagTitle.CFG).get(0).memberOf = this.alias;
                 this.addConfig(symbol.comment.getTag("cfg")[0]);
                 return;
             }
