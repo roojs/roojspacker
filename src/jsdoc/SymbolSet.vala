@@ -10,7 +10,7 @@ namespace JSDOC {
 			this._index = new Gee.HashMap<string,Symbol>();
 
 		}
-		public index()
+		publicGee.HashMap<string,Symbol> index()
 		{
 			return _this.index;
 		}
