@@ -301,7 +301,7 @@ namespace JSDOC
 			}
 			
 			
-				// now run the Packer...
+				// initialize the Packer (does not parse anything..)
 			var p = new Packer(	this );
 			
 			
