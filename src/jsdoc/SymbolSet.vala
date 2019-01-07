@@ -33,7 +33,7 @@ namespace JSDOC {
             this._index.set(symbol.alias,  symbol);
         },
 
-        getSymbol : function(alias) {
+        Symbol? getSymbol (string alias) {
             
             if (this.hasSymbol(alias)) return this._index[alias];
             return false;
