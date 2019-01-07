@@ -11,7 +11,8 @@ namespace JSDOC
 		EXAMPLE,
 		SINGLETON,
 		AUTHOR,
-		METHOD
+		METHOD,
+		DESC,
 	}
 	
 	errordomain DocTagException {
