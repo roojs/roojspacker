@@ -805,7 +805,7 @@ namespace JSDOC {
         
         void addDocTag(DocTag docTag)
         {
-            this.comment.add(docTag);
+            this.comment.tags.add(docTag);
             if (docTag.title == DocTagTitle.CFG) {
                 this.addConfig(docTag);
             }
