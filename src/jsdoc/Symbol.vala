@@ -10,7 +10,7 @@ namespace JSDOC {
 
 	public  class Symbol : Object
 	{
-		
+		 
 		private static bool regex_init = false;
 		private GLib.Regex regex_global;
 		private GLib.Regex regex_prototype;
