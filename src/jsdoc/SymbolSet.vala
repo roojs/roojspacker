@@ -69,9 +69,9 @@ namespace JSDOC {
             if (!this.hasSymbol(oldName)) {
                 throw new Exception("Cant rename " + oldName + " to " + newName + " As it doesnt exist");
             } 
-            this._index[newName] = this._index[oldName];
+            this._index.set(newName, this._index.get(oldName));
             this.deleteSymbol(oldName);
-            this._index[newName].alias = newName;
+            this._index.get(newName).alias = newName;
             return newName;
         },
 
