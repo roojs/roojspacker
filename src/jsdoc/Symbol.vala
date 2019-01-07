@@ -91,7 +91,7 @@ namespace JSDOC {
 		private Gee.ArrayList<Symbol> properties;
 		private Gee.ArrayList<string> requires;
 		private Gee.ArrayList<DocTag> returns;
-		private Gee.ArrayList<DocTag> see ;
+		private Gee.ArrayList<string> see ;
 
          
         //childClasses : [],
