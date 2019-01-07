@@ -322,7 +322,7 @@ namespace JSDOC
 			
 			var run_pack = false;
 			if (opt_target != null || opt_debug_target != null || opt_dump_tokens) {
-			
+				// do the actual packing...
 				p.pack(	opt_target == null ? "" : opt_target ,
 						opt_debug_target == null ? "" :  opt_debug_target );
 		        
@@ -331,7 +331,7 @@ namespace JSDOC
 				}
 	        }
 	        if (opt_doc_target != null) {
-	    		//var d = new DocBuilder(p);
+	    		var d = new DocBuilder(p);
 	        }
 	        
 	        
