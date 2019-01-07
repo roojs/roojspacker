@@ -16,7 +16,7 @@ namespace JSDOC
 		string src          = "";
 		//string meta       =  "";
 		//Gee.ArrayList<string> tagTexts;
-		Gee.ArrayList<DocTag>    tags;
+		public Gee.ArrayList<DocTag>    tags;
 	
 		static GLib.Regex has_tag_regex;
 		static GLib.Regex tag_regex;

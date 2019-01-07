@@ -809,7 +809,7 @@ namespace JSDOC {
             if (docTag.title == DocTagTitle.CFG) {
                 this.addConfig(docTag);
             }
-            
+             
         }
         
         void addConfig(DocTag docTag)
