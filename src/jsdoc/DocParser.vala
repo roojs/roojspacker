@@ -159,15 +159,16 @@ namespace JSDOC
 				print("-------------------\n");
 			}
 			*/
+		}
+		/**
+		 * return symbols so they can be serialized.
+		 */
+		SymbolSet symbolsToObject(string srcFile)
+		{
+
+		    return this.filesSymbols.get(srcFile);
+
+		}
+
 	}
-    /**
-     * return symbols so they can be serialized.
-     */
-    SymbolSet symbolsToObject(string srcFile)
-    {
-
-        return this.filesSymbols.get(srcFile);
-
-    }
-
 }
