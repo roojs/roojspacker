@@ -488,7 +488,7 @@ namespace JSDOC {
             */
             
             // @field
-            if (this.comment.getTag(DocTagTitle.FIELD).length) {
+            if (this.comment.getTag(DocTagTitle.FIELD).size > 0) {
                 this.isa = "OBJECT";
             }
             
@@ -498,7 +498,7 @@ namespace JSDOC {
             */
             
             // @function
-            if (this.comment.getTag(DocTagTitle.FUNCTION).length) {
+            if (this.comment.getTag(DocTagTitle.FUNCTION).size > 0) {
                 this.isa = "FUNCTION";
             }
             
