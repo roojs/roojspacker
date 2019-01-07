@@ -55,7 +55,7 @@ namespace JSDOC {
 			set  {
 				for (var i = 0; i < value.size; i++) {
 				   
-				    this.private_doctag_params.add(v.get(i));
+				    this.private_doctag_params.add(value.get(i));
 				}
 				//this.params = this._params;
 			}
