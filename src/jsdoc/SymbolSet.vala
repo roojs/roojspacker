@@ -4,7 +4,7 @@ namespace JSDOC {
 	public class SymbolSet  : Object {
 
 		Gee.HashMap<string,Symbol> _index;
-		
+		 
 		public SymbolSet ()
 		{
 			this._index = new Gee.HashMap<string,Symbol>();
