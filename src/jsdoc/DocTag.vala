@@ -24,7 +24,9 @@ namespace JSDOC
 		NAMESPACE,
 		CONSTRUCTOR,
 		STATIC,
-		SINGLETON
+		SINGLETON,
+		
+		INNER,
 	}
 	
 	errordomain DocTagException {
