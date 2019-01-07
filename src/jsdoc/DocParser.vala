@@ -142,7 +142,7 @@ namespace JSDOC
 		public static  void finish() {
 			
 
-			this.symbols.relate();		
+			DocParser.symbols.relate();		
 		
 			// make a litle report about what was found
 			/*
@@ -167,7 +167,7 @@ namespace JSDOC
 		SymbolSet symbolsToObject(string srcFile)
 		{
 
-		    return this.filesSymbols.get(srcFile);
+		    return DocParser.filesSymbols.get(srcFile);
 
 		}
 
