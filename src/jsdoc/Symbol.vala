@@ -750,7 +750,7 @@ namespace JSDOC {
         void addMember (Symbol symbol) {
             //println("ADDMEMBER: " + this.name +  " ++ " + symbol.name);
             
-            if (symbol.comment.getTag("cfg").length == 1) { 
+            if (symbol.comment.getTag(DocTagTitle.CFG).size == 1) { 
                 symbol.comment.getTag("cfg")[0].memberOf = this.alias;
                 this.addConfig(symbol.comment.getTag("cfg")[0]);
                 return;
