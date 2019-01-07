@@ -265,7 +265,7 @@ namespace JSDOC {
             
             // @overview
             if (this.is("FILE")) {
-                if (!this.alias) this.alias = this.srcFile;
+                if (this.alias.length < 1) this.alias = this.srcFile;
                 
                 var overviews = this.comment.getTag("overview");
                 if (overviews.length) {
