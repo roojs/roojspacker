@@ -18,7 +18,7 @@
   
 */
 
-PackerRun _PackerRun;
+JSDOC.PackerRun _PackerRun;
 
 namespace JSDOC
 {
