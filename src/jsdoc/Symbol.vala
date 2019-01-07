@@ -159,7 +159,7 @@ namespace JSDOC {
  
             
             
-            this.cfgs = {};
+            //this.cfgs = {};
             // derived later?
             //this.inheritsFrom = [];
             //this.childClasses = [];
