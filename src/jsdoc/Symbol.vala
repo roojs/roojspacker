@@ -530,7 +530,7 @@ namespace JSDOC {
             // @name
             var names = this.comment.getTag(DocTagTitle.NAME);
             if (names.size > 0) {
-                this.setName(names[0].desc);
+                this.DocTagTitle = names.get(0).desc.strip();
             }
             
             /*~t
