@@ -133,7 +133,7 @@ namespace JSDOC {
             */
         }
 
-        resolveMemberOf : function() 
+        void resolveMemberOf () 
         {
             GLib.error("Not implemented");
             /*
@@ -228,10 +228,13 @@ namespace JSDOC {
                 }
             }
             */
-        },
+        }
 
-        resolveAugments : function() {
+        void resolveAugments () 
+        	{
+                    GLib.error("Not implemented");
             // does this sort out multiple extends???
+            /*
             for (var p in this._index) {
                 var symbol = this.getSymbol(p);
                 this.buildAugmentsList(symbol); /// build heirachy of inheritance...
@@ -276,7 +279,8 @@ namespace JSDOC {
 
                 }
             }
-        },
+            */
+        }
 
         buildAugmentsList : function(symbol)
         {
