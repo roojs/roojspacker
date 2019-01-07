@@ -212,7 +212,7 @@ namespace JSDOC {
             
            
             
-            if (this.is("FILE") && !this.alias) { // this will never hapen???
+            if (this.is("FILE") && this.alias.length < 1) { // this will never hapen???
         		this.alias = this.srcFile;
     		}
 
