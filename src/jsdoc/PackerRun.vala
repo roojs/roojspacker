@@ -271,9 +271,7 @@ namespace JSDOC
 				});
 			}
 			
-			
-		
-  
+			 
   
 			 
 			// set the base directory...
