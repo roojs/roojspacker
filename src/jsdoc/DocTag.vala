@@ -13,6 +13,7 @@ namespace JSDOC
 		AUTHOR,
 		METHOD,
 		DESC,
+		OVERVIEW,
 	}
 	
 	errordomain DocTagException {
