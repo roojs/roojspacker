@@ -170,7 +170,7 @@ namespace JSDOC {
                
         }
 		
-		Public Symbol.new_builtin(string name)
+		public Symbol.new_builtin(string name)
 		{
             Symbol.regexInit();
             this.initArrays();
