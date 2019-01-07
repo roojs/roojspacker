@@ -340,7 +340,7 @@ namespace JSDOC {
             // @example
             var examples = this.comment.getTag(DocTagTitle.EXAMPLE);
             if (examples.size > 0) {
-                this.example = examples.get(0).desc;
+                this.example = examples.get(0);
             }
             
             /*~t
