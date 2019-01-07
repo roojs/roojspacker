@@ -11,9 +11,9 @@ namespace JSDOC {
 	public  class Symbol : Object
 	{
 		 
-		private static bool regex_init = false;
-		private static GLib.Regex regex_global;
-		private static GLib.Regex regex_prototype;
+		public static bool regex_init = false;
+		public static GLib.Regex regex_global;
+		public static GLib.Regex regex_prototype;
 		
 		static void  regexInit()
 		{
