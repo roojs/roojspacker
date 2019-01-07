@@ -59,10 +59,10 @@ namespace JSDOC {
         },
 */
 
-        public void deleteSymbol : function(alias) {
+        public void deleteSymbol  (string alias) {
             if (!this.hasSymbol(alias)) return;
-            delete this._index[alias];
-        },
+            this._index.remove(alias);
+        }
 
         renameSymbol : function(oldName, newName) {
             // todo: should check if oldname or newname already exist
