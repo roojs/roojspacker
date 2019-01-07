@@ -67,7 +67,7 @@ namespace JSDOC {
         public string renameSymbol (string oldName, string newName) {
             // todo: should check if oldname or newname already exist
             if (!this.hasSymbol(oldName)) {
-                throw new Exception("Cant rename " + oldName + " to " + newName + " As it doesnt exist");
+                throw new Error("Cant rename " + oldName + " to " + newName + " As it doesnt exist");
             } 
             this._index.set(newName, this._index.get(oldName));
             this.deleteSymbol(oldName);
