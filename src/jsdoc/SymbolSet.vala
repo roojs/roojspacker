@@ -83,9 +83,12 @@ namespace JSDOC {
             this.resolveMemberOf();
             this.resolveAugments();
             */
-        },
+        }
 
-        resolveBorrows : function() {
+        void resolveBorrows() 
+        {
+            GLib.error("Not implemented");
+            /*
             for (p in this._index) {
                 var symbol = this._index[p];
                 
@@ -127,9 +130,13 @@ namespace JSDOC {
                     this.addSymbol(clone);
                 }
             }
-        },
+            */
+        }
 
-        resolveMemberOf : function() {
+        resolveMemberOf : function() 
+        {
+            GLib.error("Not implemented");
+            /*
             for (var p in this._index) {
                 var symbol = this.getSymbol(p);
                 
@@ -220,6 +227,7 @@ namespace JSDOC {
                     if (container && !container.isNamespace) container.addMember(symbol);
                 }
             }
+            */
         },
 
         resolveAugments : function() {
