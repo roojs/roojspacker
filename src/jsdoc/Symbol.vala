@@ -772,9 +772,9 @@ namespace JSDOC {
         void addMethod (Symbol symbol) {
             var methodAlias = symbol.alias;
             var thisMethods = this.methods;
-            for (var i = 0, l = thisMethods.length; i < l; i++) {
-                if (thisMethods[i].alias == methodAlias) {
-                    thisMethods[i] = symbol; // overwriting previous method
+            for (var i = 0, l = thisMethods.size; i < l; i++) {
+                if (thisMethods.get(i).alias == methodAlias) {
+                    thisMethods.get(i) = symbol; // overwriting previous method
                     return;
                 }
             }
