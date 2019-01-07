@@ -10,6 +10,7 @@ namespace JSDOC
 		CFG,
 		EXAMPLE,
 		SINGLETON,
+		AUTHOR
 	}
 	
 	errordomain DocTagException {
