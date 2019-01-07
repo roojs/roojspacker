@@ -1,7 +1,7 @@
 
 namespace JSDOC
 {
-
+ 
 	public class DocParser : Object 
 	{
 		// options - should they bee in PackerRun?
