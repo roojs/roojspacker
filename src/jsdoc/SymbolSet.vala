@@ -330,7 +330,7 @@ namespace JSDOC {
             */
             
         }
-        static bool isBuiltin(string name)
+        public static bool isBuiltin(string name)
 		{
 			for (var i =0 ; i < SymbolSet.coreObjects.length; i++ ){ 
 				if (name ==  SymbolSet.coreObjects[i]) {

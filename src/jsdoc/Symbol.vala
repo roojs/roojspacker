@@ -721,7 +721,7 @@ namespace JSDOC {
         bool is (string what) {
             return this.isa == what;
         }
-
+ 
         bool isBuiltin() {
             return SymbolSet.isBuiltin(this.alias);
         }
