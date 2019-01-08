@@ -131,15 +131,15 @@ namespace JSDOC {
             
             
             //print(JSON.stringify(this.ts, null, 4)); Seed.quit();
-            
-            while (null != (var token = this.ts.next())) {
+            Token token;
+            while (null != ( token = this.ts.next())) {
                 //print("TOK"+ token.toString());
                 //  this.timerPrint("parseScope AFTER lookT: " + token.toString()); 
                   
-                if (token.is('COMM')) {
+                if (token.isType(TokenType.COMM)) {
                       
                  
-                    if (token.name != 'JSDOC') {
+                    if (!token.isName(TokenName.JSDOC) {
                         //print("Walker2 : spce is not JSDOC");
                         continue; //skip.
                     }
