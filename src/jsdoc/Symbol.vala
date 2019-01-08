@@ -835,7 +835,7 @@ namespace JSDOC {
             //}
             
         }
-        /*
+         
         Gee.ArrayList<string> configToArray()
         {
             var r = new  Gee.ArrayList<string>();
@@ -849,7 +849,7 @@ namespace JSDOC {
             }
             return r;
         }
-        */
+        
 	}
 	//static string[] hide = { "$args" };
 	//static string srcFile = "";
