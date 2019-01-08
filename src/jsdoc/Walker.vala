@@ -289,7 +289,7 @@ namespace JSDOC {
                         // ignore test for ( a and ,
                         token = this.ts.lookTok(-2);
                         scopeName = token.data;
-                        if (this.currentDoc) {
+                        if (this.currentDoc != null) {
                             this.addSymbol(scopeName,false,"OBJECT");
 
                         }
