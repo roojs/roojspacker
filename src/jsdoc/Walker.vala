@@ -438,11 +438,11 @@ namespace JSDOC {
                         //print("ADD SYM:" + atype + ":" + token.toString() + this.ts.lookTok(1).toString() + this.ts.lookTok(2).toString());
                         
                         this.addSymbol(
-                            this.ts.lookTok(-1).data == "." ? token.data :    fixAlias(token.data),
+                            this.ts.lookTok(-1).data == "." ? token.data :    this.fixAlias(aliases,token.data),
                             false,
                             atype);
                         
-                        this.currentDoc = false;
+                        this.currentDoc = null;
                         
                         
                     }
