@@ -481,7 +481,7 @@ namespace JSDOC {
         
                     if (
                             (this.ts.lookTok(-1).data == "=") && 
-                            (this.ts.lookTok(-2).type == "NAME")
+                            (this.ts.lookTok(-2).isType(TokenType.NAME))
                         ) {
                         scopeName = this.ts.lookTok(-2).data;
                         this.ts.balance("(");
