@@ -135,7 +135,7 @@ namespace JSDOC
 				}
 		        
 		        
-		        var ts = new TokenStream(toks);
+		        var ts = new TokenStream(toks.tokens);
 		    
 		    
 		    
