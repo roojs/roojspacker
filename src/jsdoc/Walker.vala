@@ -96,9 +96,11 @@ namespace JSDOC {
 
         
 
-        void parseScope (Scope scope, Gee.HashMap<string,string> ealiases) // parse a token stream..
+        void parseScope (Scope in_scope, Gee.HashMap<string,string> ealiases) // parse a token stream..
         {
             //this.timerPrint("parseScope EnterScope"); 
+            
+            var scope = in_scope;
             
             var aliases = new Gee.HashMap<string,string>();
 
