@@ -835,9 +835,9 @@ namespace JSDOC {
             
         }
          
-        Gee.ArrayList<string> configToArray()
+        Gee.ArrayList<DocTag> configToArray()
         {
-            var r = new  Gee.ArrayList<string>();
+            var r = new  Gee.ArrayList<DocTag>();
             foreach(var ci in this.cfgs.keys) {
                 // dont show hidden!!
                 if (this.cfgs.get(ci).desc.contains("@hide")) {
