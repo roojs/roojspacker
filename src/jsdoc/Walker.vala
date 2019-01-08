@@ -26,7 +26,7 @@ namespace JSDOC {
 			this.ts  = ts;
 			this.warnings= new Gee.ArrayList<string>();
 			this.scopes = new Gee.ArrayList<Scope>();
-			this.indexedScopes = new Gee.ArrayList<string,Scope>();
+			this.indexedScopes = new Gee.ArrayList<int,Scope>();
 			this.symbols = new Gee.ArrayList<Symbol>();
 			this.aliases = new Gee.HashMap<string,string>();
 			this.braceNesting = 0;
@@ -53,7 +53,8 @@ namespace JSDOC {
 			this.aliases = new Gee.HashMap<string,string>();
              
             this.globalScope = new Scope(-1, null, -1, "$global$");
-            indexedScopes = { 0 : this.globalScope };
+            this.indexedScopes = new Gee.ArrayList<int,Scope>();
+            this.indexedScopes.set(  0,  this.globalScope );
             
             this.mode = 'BUILDING_SYMBOL_TREE';
             this.parseScope(this.globalScope);
