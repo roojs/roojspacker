@@ -788,7 +788,7 @@ namespace JSDOC {
                 //print("FULLSCOPE: " + JSON.stringify(s));
                 
                 
-                var s = string.joinv("|", s).join("|").split("|");
+                s = string.joinv("|", s).split("|");
                 //print("FULLSCOPE: " + s);
              //  print("Walker:ADDSymbol: " + s.join("|") );
                 var _t = "";
