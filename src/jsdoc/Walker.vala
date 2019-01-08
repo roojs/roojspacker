@@ -139,7 +139,7 @@ namespace JSDOC {
                 if (token.isType(TokenType.COMM)) {
                       
                  
-                    if (!token.isName(TokenName.JSDOC) {
+                    if (!token.isName(TokenName.JSDOC)) {
                         //print("Walker2 : spce is not JSDOC");
                         continue; //skip.
                     }
