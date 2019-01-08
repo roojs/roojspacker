@@ -260,8 +260,12 @@ namespace JSDOC {
                             
                         scopeName = this.fixAlias(aliases, scopeName);
                         
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                            "$this$=" + scopeName  + "|"+scopeName+".prototype");
+                        var fnScope = new Scope(this.braceNesting, scope, token.n,
+            				new Token("$this$=" + scopeName  + "|"+scopeName+".prototype",
+            					 TokenType.NAME, TokenName.NAME)
+			        	);
+                        
+    
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         scope = fnScope;
                         this.scopesIn(fnScope);
