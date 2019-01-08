@@ -469,8 +469,8 @@ namespace JSDOC {
                     // see if we have an unconsumed doc...
                     
                     if (this.currentDoc != null) {
-	                    	token.dump();
-                            GLib.error("Unhandled doc (TOKfunction)");
+
+                            GLib.error("Unhandled doc (TOKfunction) %s", token.asString());
 
                             
                             //this.addSymbol(this.currentDoc.getTag("class")[0].name, true);
