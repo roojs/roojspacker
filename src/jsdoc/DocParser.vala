@@ -12,7 +12,7 @@ namespace JSDOC
 		
 		static bool has_init = false;
 		static Walker walker ;
-	    public static SymbolSet symbols = null;
+	    public static SymbolSet? symbols = null;
 	    
 	    public static string currentSourceFile;
     
