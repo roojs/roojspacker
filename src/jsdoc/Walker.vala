@@ -521,14 +521,13 @@ namespace JSDOC {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
-                            scopeName = this.fixAlias(aliases, scopeName);
-                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+                        scopeName = this.fixAlias(aliases, scopeName);
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
             				new Token("$private$", TokenType.NAME, TokenName.NAME)
 			        	); 
                         
                         
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, "$private$");
-                        this.indexedScopes[this.ts.cursor] = fnScope;
+                        this.indexedScopes.set(this.ts.cursor,  fnScope);
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
                         this.parseScope(fnScope, aliases);
