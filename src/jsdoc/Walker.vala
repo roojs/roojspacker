@@ -717,10 +717,10 @@ namespace JSDOC {
             }
             
             
-        },
+        }
      
          
-        addSymbol: function(lastIdent, appendIt, atype )
+        void addSymbol(int lastIdent, bool appendIt, int atype )
         {
             
             if (this.currentDoc.getTag("private").length) {
