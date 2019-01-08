@@ -16,7 +16,7 @@ namespace JSDOC {
 
     public class TokenArray: Object {
         
-        private Packer packer;
+        private Packer? packer;
         private TokenReader reader;
         
         public Gee.ArrayList<Token> tokens;
@@ -26,7 +26,7 @@ namespace JSDOC {
             get { return this.tokens.size; }
         }
         
-        public TokenArray(Packer packer, TokenReader reader)
+        public TokenArray(Packer? packer, TokenReader reader)
         {
             this.packer = packer;
             this.reader  = reader;
@@ -185,9 +185,9 @@ namespace JSDOC {
         
         int line = 0;
         
-        private Packer packer;
+        private Packer? packer;
         
-        public TokenReader(Packer packer)
+        public TokenReader(Packer? packer)
         {
     		this.packer = packer;
 		}
