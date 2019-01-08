@@ -65,13 +65,13 @@ namespace JSDOC
 		    DocParser.initStatic();
 		    
 		    
-		    var useCache = PackerRun.opt_cache_dir == null ;
-		    var cacheFile = "";
+		    //var useCache = PackerRun.opt_cache_dir == null ;
+		    //var cacheFile = "";
 		    
 		    for (var i = 0, l = this.packer.files.size; i < l; i++) {
 		        
 		        var srcFile = this.packer.files.get(i);
-		        
+		     /*   
 		        if (useCache) {
 		        
 		    		cacheFile = PackerRun.opt_cache_dir + srcFile.replace("/", '_') + ".cache";
@@ -105,11 +105,11 @@ namespace JSDOC
 		        		}
 		            }
 		        }
-		        
+		       */ 
 		        var src = "";
 		        try {
 		            GLib.debug("reading : %s" , srcFile);
-		            src = GLib.FileUtils.get_contents(srcFile);
+		            GLib.FileUtils.get_contents(srcFile. out src);
 		        }
 		        catch(GLib.FileError e) {
 		            GLib.debug("Can't read source file '%s': %s", srcFile, e.to_string());
