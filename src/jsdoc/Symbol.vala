@@ -728,7 +728,7 @@ namespace JSDOC {
         public bool isaClass()
         {
         
-	        return (this.is("CONSTRUCTOR") || this.isNamespace || this.isClass); 
+	        return (this.is("CONSTRUCTOR") || this.isNamespace ); //|| this.isClass); 
         }
         
  
