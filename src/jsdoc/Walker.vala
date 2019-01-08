@@ -856,7 +856,7 @@ namespace JSDOC {
                     }
                         
                     for (var i =0; i < this.currentDoc.tags.size;i++) {
-                        this.symbols.get(_s).addDocTag(this.currentDoc.tags[i]);
+                        this.symbols.get(_s).addDocTag(this.currentDoc.tags.get(i));
                     }
                     this.currentDoc = null;
                     return;
