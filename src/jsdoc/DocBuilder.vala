@@ -59,7 +59,7 @@ namespace JSDOC
 		 * Parse the source files.
 		 * 
 		 */
-
+ 
 		private void parseSrcFiles() 
 		{
 		    DocParser.initStatic();

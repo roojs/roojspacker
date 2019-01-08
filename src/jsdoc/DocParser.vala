@@ -20,7 +20,7 @@ namespace JSDOC
 		
 		// no CTOR.. it's mostly static!!
 
-		private static void initStatic()
+		public static void initStatic()
 		{
 			if (DocParser.has_init) {
 				return ;
