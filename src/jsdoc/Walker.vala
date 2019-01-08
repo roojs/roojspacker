@@ -828,7 +828,7 @@ namespace JSDOC {
                         _s = this.currentDoc.getTag(DocTagTitle.CLASS).get(0).desc;
                         var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(),
                         		 "CONSTRUCTOR", this.currentDoc);
-                        Parser       = imports.Parser.Parser;
+                       
                         Parser.addSymbol(symbol);
                         this.symbols[_s] = symbol;
                         return;
