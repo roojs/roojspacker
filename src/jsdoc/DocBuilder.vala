@@ -530,7 +530,7 @@ namespace JSDOC
 		    var name = this.srcFileRelName(sourceFile);
 		    name = DocBuilder.regex_dotdot.replace(name, name.length, 0, "");
 		    name = name.replace("/", "_").replace(":", "_") + ".html";
-		    
+		    return name;
 		}
 		
 		
