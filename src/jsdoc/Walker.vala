@@ -157,7 +157,7 @@ namespace JSDOC {
                     var newDoc = new DocComment(token.data);
                     
                     // it"s a scope changer..
-                    if (newDoc.getTag("scope").length) {
+                    if (newDoc.getTag(TokenName.SCOPE).length) {
                         //print("Walker2 : doctag changes scope");
                         //throw "done";
                         scope.ident = "$private$|" + newDoc.getTag("scope").get(0).desc;
