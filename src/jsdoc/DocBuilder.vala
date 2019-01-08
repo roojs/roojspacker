@@ -458,7 +458,7 @@ namespace JSDOC
 				if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE) == "") {
 					ownEvents.add(e);
 				}
-			};
+			}; 
 			ownEvents.sort((a,b) => {
 				return a.name.collate(b.name);
 			});
