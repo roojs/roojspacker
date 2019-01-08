@@ -781,7 +781,7 @@ namespace JSDOC {
                     
                 //print("WALKER ADDsymbol: " + lastIdent);
                 
-                string s[] = {};
+                string[] s = {};
                 for (var i = 0; i < this.scopes.size;i++) {
 	                var adds = this.scopes.get(i).ident;
                     s = s + adds;
