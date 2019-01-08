@@ -792,6 +792,30 @@ namespace JSDOC {
         }
         
 	}
+	
+	 makeFuncSkel :function(params) {
+        if (!params) return "function ()\n{\n\n}";
+        return "function ("	+
+            params.filter(
+                function($) {
+                    return $.name.indexOf(".") == -1; // don't show config params in signature
+                }
+            ).map( function($) { return $.name == 'this' ? '_self' : $.name; } ).join(", ") +
+        ")\n{\n\n}";
+    },
+	makeMethodSkel :function(params) {
+        if (!params) return "()";
+        return "("	+
+            params.filter(
+                function($) {
+                    return $.name.indexOf(".") == -1; // don't show config params in signature
+                }
+            ).map( function($) { return  $.type + " "  +(  $.name == 'this' ? '_self' : $.name ); } ).join(", ") +
+        ")";
+    }
+ 
+	
+	
 	//static string[] hide = { "$args" };
 	//static string srcFile = "";
 	 
