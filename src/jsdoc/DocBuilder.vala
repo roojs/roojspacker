@@ -352,13 +352,13 @@ namespace JSDOC
 		        
 		        
 		        
-		        
+		        /*
 		        FileUtils.set_contents(
 						PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+"." +
 							 PackerRun.singleton().opt_doc_ext ,
 		                classTemplate.process(symbol)
 		        );
-		        
+		        */
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
 		    }
