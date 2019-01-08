@@ -654,7 +654,7 @@ namespace JSDOC {
                             (this.ts.lookTok(-3).isName(TokenName.VAR))  
                         ) {
                             
-                            scopeName = this.ts.look(-2).data;
+                            scopeName = this.ts.look(-2,false).data;
                             //print(scopeName);
                             scopeName = this.fixAlias(aliases, scopeName);
                             
