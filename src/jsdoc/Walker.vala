@@ -651,7 +651,7 @@ namespace JSDOC {
                     if (
                             (this.ts.lookTok(-1).data == "=") &&
                             (this.ts.lookTok(-2).isType(TokenType.NAME)) &&
-                            (this.ts.lookTok(-3).name != "VAR")  
+                            (this.ts.lookTok(-3).isName(TokenName.VAR))  
                         ) {
                             
                             scopeName = this.ts.look(-2).data;
