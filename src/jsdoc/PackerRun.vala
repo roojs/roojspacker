@@ -352,7 +352,7 @@ namespace JSDOC
 				}
 	        }
 	        if (opt_doc_target != null) {
-	    		var d = new DocBuilder(p);
+	    		var d = new JSDOC.DocBuilder(p);
 	        } 
 	        
 	        

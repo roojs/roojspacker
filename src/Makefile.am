@@ -49,7 +49,7 @@ libroojspacker_1_2_la_SOURCES = \
 		jsdoc/TokenReader.vala \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala \
-		jsdoc/PackerRun.vala
+		jsdoc/PackerRun.vala \
 		jsdoc/Walker.vala \
 		jsdoc/SymbolSet.vala \
 		jsdoc/DocBuilder.vala \
