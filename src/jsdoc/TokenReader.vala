@@ -76,13 +76,14 @@ namespace JSDOC {
 					)
 				) {
 					//print("%s\n%s\n", this.lastAdded.asString(), t.asString());
-					
-					this.packer.logError(
-		        		Packer.ResultType.err,
-		        		this.reader.filename,
-		        		t.line,
-		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
-		    		);
+					if (this.packer != null) {
+						this.packer.logError(
+				    		Packer.ResultType.err,
+				    		this.reader.filename,
+				    		t.line,
+				    		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
+						);
+					}
 					
 					 
 				}
