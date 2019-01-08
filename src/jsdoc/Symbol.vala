@@ -806,8 +806,8 @@ namespace JSDOC {
 		return ret + ")\n{\n\n}";
     }
     public string makeMethodSkel() {
-        if (this.params.size < 1) return "function ()\n{\n\n}";
-		var ret = "function (";
+        if (this.params.size < 1) return "()\n{\n\n}";
+		var ret = "(";
 		var f = false;
 		foreach(var p in this.params) {
 			if (p.name.contains(".")) continue;
@@ -815,20 +815,10 @@ namespace JSDOC {
 			f = true;
 			ret +=  p.name == "this" ? "_self" : p.name;
 		}
-		return ret + ")\n{\n\n}";
+		return ret + ")";
     }
     
-    
-	makeMethodSkel :function(params) {
-        if (!params) return "()";
-        return "("	+
-            params.filter(
-                function($) {
-                    return $.name.indexOf(".") == -1; // don't show config params in signature
-                }
-            ).map( function($) { return  $.type + " "  +(  $.name == 'this' ? '_self' : $.name ); } ).join(", ") +
-        ")";
-    }
+     
  
 	
 	
