@@ -61,7 +61,7 @@ namespace JSDOC {
 				
 		}
 		
-		string toStyle(Token tok)
+		static string toStyle(Token tok)
 		{
 
 			if (tok.is("WHIT") || tok.is("COMM") ) {
