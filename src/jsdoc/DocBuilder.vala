@@ -264,8 +264,9 @@ namespace JSDOC
 				if (info.get_file_type () == FileType.DIRECTORY) {
 					continue;
 				} 
-				var src = File.new_from_path(info.get_name());
-		        GLib.debug("Copy %s to %s/%s" , info.get_name() , f,  PackerRun.opt_doc_target , src.get_basename());			
+				var src = File.new_for_path(info.get_name());
+		        GLib.debug("Copy %s to %s/%s" , info.get_name() , f,
+		        	  PackerRun.singleton().opt_doc_target , src.get_basename());			
 			
 				src.copy(
 					GLib.File.new_from_path(PackerRun.opt_doc_target + '/' + src.get_basename()),
