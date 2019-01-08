@@ -1,7 +1,13 @@
 // this walks through the code, and tries to find patterns that match documentable elements..
 
 
-Walker2 = XObject.define(
+namespace JSDOC {
+
+	TokenStream ts;
+	Gee.ArrayList<string> warnings;
+	Gee.ArrayList<Scope> scopes;
+	class Walker  : Object
+
     function(ts) {
         this.ts = ts;
         this.warnings = [];
