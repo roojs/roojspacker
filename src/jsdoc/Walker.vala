@@ -775,7 +775,7 @@ namespace JSDOC {
             }
             
             var _s = lastIdent;
-            if (!/\./.test(_s)) {
+            if (!/\./.match(_s)) {
                     
                 //print("WALKER ADDsymbol: " + lastIdent);
                 
