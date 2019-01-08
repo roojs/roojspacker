@@ -236,10 +236,10 @@ namespace JSDOC
 		    
 		    
 		    GLib.debug("Making directories");
-		    if (!File.isDirectory(PackerRun.opt_doc_target)) {
-		        Posix.mkdir(PackerRun.opt_doc_target,0755);
+		    if (File.isDirectory(PackerRun.singleton().opt_doc_target.length > 0)) {
+		        Posix.mkdir(PackerRun.singleton().opt_doc_target,0755);
 		    }
-		    if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols")) {
+		    if (!File.isDirectory(PackerRun.singleton().opt_doc_target+"/symbols")) {
 		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
 		    }
 		    if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src")) {
