@@ -163,10 +163,10 @@ namespace JSDOC {
                         //throw "done";
                         scope.ident = "$private$|" + newDoc.getTag(DocTagTitle.SCOPE).get(0).desc;
                         continue;
-                    }
+                    } 
                     
                     // it"s a scope changer..
-                    if (newDoc.getTag(DocTagTitle.SCOPEALIAS).length) {
+                    if (newDoc.getTag(DocTagTitle.SCOPEALIAS).size > 0) {
                         //print(newDoc.getTag("scopeAlias").toSource());
                         // @scopeAlias a=b
                         //print("Walker2 : doctag changes scope (alias)");
@@ -190,7 +190,7 @@ namespace JSDOC {
                 
                 // things that stop comments carrying on...??
                 
-                if (this.currentDoc && (
+                if (this.currentDoc != null && (
                         token.data == ";" || 
                         token.data == "}")) {
                     this.addSymbol("", true);
@@ -218,7 +218,7 @@ namespace JSDOC {
                 }
                 
                 if ((token.data == "eval") || /\.eval$/.match(token.data)) {
-                    this.currentDoc = false;
+                    this.currentDoc = null;
                     continue;
                 }
               
