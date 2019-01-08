@@ -158,8 +158,7 @@ namespace JSDOC {
             this.see = new Gee.ArrayList<string>();
  
             
-            
-            //this.cfgs = {};
+            this.cfgs = new Gee.HashMap<string,DocTag>();
             // derived later?
             //this.inheritsFrom = [];
             //this.childClasses = [];
@@ -839,12 +838,12 @@ namespace JSDOC {
         Gee.ArrayList<string> configToArray()
         {
             var r = new  Gee.ArrayList<string>();
-            foreach(var ci in this.cfgs) {
+            foreach(var ci in this.cfgs.keys) {
                 // dont show hidden!!
-                if (this.cfgs[ci].desc.match(/@hide/)) {
+                if (this.cfgs.get(ci).desc.contains("@hide")) {
                     continue;
                 }
-                r.push(this.cfgs[ci]); 
+                r.push(this.cfgs.get(ci)); 
                
             }
             return r;
