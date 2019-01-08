@@ -14,7 +14,12 @@ namespace JSDOC {
 
         public Gee.ArrayList<string> keys() 
         {
-            return this._index.keys;
+            var  r= new Gee.ArrayList<string>();
+            foreach(this._index.keys as k) {
+            	r.add(k);
+        	}
+        	return r;
+
         }
     	 public Gee.ArrayList<Symbol> values() 
         {
