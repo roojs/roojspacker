@@ -341,7 +341,7 @@ namespace JSDOC
 		   // var classesIndex = classesTemplate.process(classes); // kept in memory
 		    
 		    GLib.debug("iterate classes");
-		    
+		   
 		    var jsonAll = new Json.Object(); 
 		    
 		    for (var i = 0, l = classes.size; i < l; i++) {
@@ -363,10 +363,12 @@ namespace JSDOC
 
 		    }
 		    var   generator = new Json.Generator ();
-			generator.set_root (jsonAll);
+    	    var  root = new Json.Node(Json.NodeType.OBJECT);
+			root.init_object(jsonAll);
+			generator.set_root (root);
 			generator.pretty=  true;
-			generator.ident = 2;
-			generator.to_file(PackerRun.opt_doc_target+"/json/roodata.json");
+			generator.indent = 2;
+			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 
 		    
 		    
