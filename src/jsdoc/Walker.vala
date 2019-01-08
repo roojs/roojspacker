@@ -260,7 +260,7 @@ namespace JSDOC {
                             
                         scopeName = this.fixAlias(aliases, scopeName);
                         
-                        var fnScope = new Scope(this.braceNesting, scope, token.n,
+                        var fnScope = new Scope(this.braceNesting, scope, token.id, // was token.n?
             				new Token("$this$=" + scopeName  + "|"+scopeName+".prototype",
             					 TokenType.NAME, TokenName.NAME)
 			        	);
@@ -278,7 +278,7 @@ namespace JSDOC {
                     
                     // a = Roo.extend(parentname, {
                         
-                     if (/\.extend$/.test(token.data) &&
+                     if (/\.extend$/.match(token.data) &&
                         this.ts.lookTok(-2).type == "NAME"  &&
                         this.ts.lookTok(-1).data == "=" &&
                         this.ts.lookTok(1).data == "(" &&
