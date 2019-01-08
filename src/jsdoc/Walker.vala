@@ -100,7 +100,7 @@ namespace JSDOC {
             
             var aliases = new Gee.HashMap<string,string>();
 
-            for(var i in ealiases.keys) {
+            for(var i in ealiases) {
                 aliases.set(i, ealiases.get(i);
             }
                 
