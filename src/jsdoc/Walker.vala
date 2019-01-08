@@ -201,9 +201,9 @@ namespace JSDOC {
                 
                  if (token.isName(TokenName.VAR) &&
                  
-                        this.ts.lookTok(1).isType(TokenType.NAM)' &&
+                        this.ts.lookTok(1).isType(TokenType.NAME) &&
                         this.ts.lookTok(2).data == '=' &&
-                        this.ts.lookTok(3).type == 'NAME'  &&
+                        this.ts.lookTok(3).isType(TokenType.NAME) &&
                         this.ts.lookTok(4).data == ';'  
                         
                  
