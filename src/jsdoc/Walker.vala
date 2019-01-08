@@ -556,7 +556,7 @@ namespace JSDOC {
                         //print("got for : function() {"); 
                             
                         //scopeName = this.ts.look(-3).data;
-                        this.ts.balance("(");
+                        this.ts.balance(TokenName.LEFT_PAREN);
                         //print(token.toString())
                         token = this.ts.nextTok(); // should be {
                         //print(token.toString())
