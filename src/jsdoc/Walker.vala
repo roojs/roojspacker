@@ -606,7 +606,7 @@ namespace JSDOC {
                     
                     if (
                            // (this.ts.lookTok(-1).tokN == Script.TOKlparen) && 
-                            (this.ts.lookTok(1).name != "NAME")   
+                            (!this.ts.lookTok(1).isType(TokenType.NAME))   
                             
                         //    (this.ts.lookTok(-2).tokN == Script.TOKnew) &&
                          //   (this.ts.lookTok(-3).tokN == Script.TOKassign) &&
