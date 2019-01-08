@@ -35,7 +35,7 @@ namespace JSDOC
 		
 		public static void parse(TokenStream ts, string srcFile) 
 		{
-		    
+	    	DocParser.initStatic();
 		    DocParser.currentSourceFile = srcFile;
 		    // not a nice way to set stuff...
 		   
