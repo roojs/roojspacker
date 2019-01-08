@@ -22,9 +22,9 @@ namespace JSDOC
 			
 			this.packer = p;
         
-		    if (PackerRun.singleton().opt_tmp_dir != null && !FileUtils.test(PackerRun.singleton().opt_tmp_dir, GLib.FileTest.IS_DIR)) {   
-		        Posix.mkdir(PackerRun.singleton().opt_tmp_dir, 0700);
-		    }
+		    //if (PackerRun.singleton().opt_tmp_dir != null && !FileUtils.test(PackerRun.singleton().opt_tmp_dir, GLib.FileTest.IS_DIR)) {   
+		    //    Posix.mkdir(PackerRun.singleton().opt_tmp_dir, 0700);
+		    //}
         
 	
 		    this.parseSrcFiles();
