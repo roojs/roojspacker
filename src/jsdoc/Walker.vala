@@ -484,7 +484,7 @@ namespace JSDOC {
                             (this.ts.lookTok(-2).isType(TokenType.NAME))
                         ) {
                         scopeName = this.ts.lookTok(-2).data;
-                        this.ts.balance("(");
+                        this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
                         //print("FOO=FUNCITON() {}" + this.ts.context() + "\n" + token.toString());
                         
