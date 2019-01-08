@@ -108,7 +108,7 @@ namespace JSDOC {
         string classDesc = "";
 
         string deprecated = "";
-        string desc = "";
+        public string desc = "";
         //events : false,
         string example = "";
         
@@ -419,39 +419,14 @@ namespace JSDOC {
                 }
             }
             
-            /*~t
-                var sym = new Symbol("foo", [{type: "array", name: "pages"}], "FUNCTION", new DocComment("/**Description.*"+"/"));
-                assertEqual(sym.params.length, 1, "parser defined param is found.");
-                
-                sym = new Symbol("foo", [], "FUNCTION", new DocComment("/**Description.\n@param {array} pages*"+"/"));
-                assertEqual(sym.params.length, 1, "user defined param is found.");
-                assertEqual(sym.params[0].type, "array", "user defined param type is found.");
-                assertEqual(sym.params[0].name, "pages", "user defined param name is found.");
-                
-                sym = new Symbol("foo", [{type: "array", name: "pages"}], "FUNCTION", new DocComment("/**Description.\n@param {string} uid*"+"/"));
-                assertEqual(sym.params.length, 1, "user defined param overwrites parser defined param.");
-                assertEqual(sym.params[0].type, "string", "user defined param type overwrites parser defined param type.");
-                assertEqual(sym.params[0].name, "uid", "user defined param name overwrites parser defined param name.");
             
-                sym = new Symbol("foo", [{type: "array", name: "pages"}, {type: "number", name: "count"}], "FUNCTION", new DocComment("/**Description.\n@param {string} uid*"+"/"));
-                assertEqual(sym.params.length, 2, "user defined params  overlay parser defined params.");
-                assertEqual(sym.params[1].type, "number", "user defined param type overlays parser defined param type.");
-                assertEqual(sym.params[1].name, "count", "user defined param name overlays parser defined param name.");
-
-                sym = new Symbol("foo", [], "FUNCTION", new DocComment("/**Description.\n@param {array} pages The pages description.*"+"/"));
-                assertEqual(sym.params.length, 1, "user defined param with description is found.");
-                assertEqual(sym.params[0].desc, "The pages description.", "user defined param description is found.");
-            */
             
             // @constructor
             if (this.comment.getTag(DocTagTitle.CONSTRUCTOR).size > 0) {
                 this.isa = "CONSTRUCTOR";
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@constructor*"+"/"));
-                assertEqual(sym.isa, "CONSTRUCTOR", "@constructor tag, makes symbol a constructor.");
-            */
+         
             
             // @static
             if (this.comment.getTag(DocTagTitle.STATIC).size > 0) {
@@ -472,33 +447,19 @@ namespace JSDOC {
             
             
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@static\n@constructor*"+"/"));
-                assertEqual(sym.isStatic, true, "@static tag, makes isStatic true.");
-                assertEqual(sym.isNamespace, true, "@static and @constructor tag, makes isNamespace true.");
-            */
-            
             // @inner
             if (this.comment.getTag(DocTagTitle.INNER).size > 0) {
                 this.isInner = true;
                 this.isStatic = false;
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@inner*"+"/"));
-                assertEqual(sym.isStatic, false, "@inner tag, makes isStatic false.");
-                assertEqual(sym.isInner, true, "@inner makes isInner true.");
-            */
             
             // @field
             if (this.comment.getTag(DocTagTitle.FIELD).size > 0) {
                 this.isa = "OBJECT";
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "FUNCTION", new DocComment("/**@field*"+"/"));
-                assertEqual(sym.isa, "OBJECT", "@field tag, makes symbol an object.");
-            */
+           
             
             // @function
             if (this.comment.getTag(DocTagTitle.FUNCTION).size > 0) {
@@ -512,10 +473,7 @@ namespace JSDOC {
             }
             
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@function*"+"/"));
-                assertEqual(sym.isa, "FUNCTION", "@function tag, makes symbol a function.");
-            */
+             
             
             // @event
             var events = this.comment.getTag(DocTagTitle.EVENT);
@@ -524,11 +482,7 @@ namespace JSDOC {
                 this.isEvent = true;
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@event*"+"/"));
-                assertEqual(sym.isa, "FUNCTION", "@event tag, makes symbol a function.");
-                assertEqual(sym.isEvent, true, "@event makes isEvent true.");
-            */
+            
             
             // @name
             var names = this.comment.getTag(DocTagTitle.NAME);
@@ -574,9 +528,7 @@ namespace JSDOC {
                 }
             }
             
-            /*~t
-                // todo
-            */
+          
 
             // @return
             var returns = this.comment.getTag(DocTagTitle.RETURN);
@@ -590,17 +542,12 @@ namespace JSDOC {
                 } 
              }
             
-            /*~t
-                // todo
-            */
+            
             
             // @exception
             this.exceptions = this.comment.getTag(DocTagTitle.THROWS);
             
-            /*~t
-                // todo
-            */
-            
+           
             // @requires
             var requires = this.comment.getTag(DocTagTitle.REQUIRES);
             if (requires.size > 0) {
@@ -609,10 +556,7 @@ namespace JSDOC {
                     this.requires.add(r.desc);
                 }
             }
-            
-            /*~t
-                // todo
-            */
+           
             
             // @type
             var types = this.comment.getTag(DocTagTitle.TYPE);
@@ -620,9 +564,7 @@ namespace JSDOC {
                 this.type = types.get(0).desc; //multiple type tags are ignored
             }
             
-            /*~t
-                // todo
-            */
+            
             
             // @private
             if (this.comment.getTag(DocTagTitle.PRIVATE).size > 0 || this.isInner) {
