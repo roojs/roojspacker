@@ -59,7 +59,7 @@ namespace JSDOC {
             this.indexedScopes = new Gee.ArrayList<int,Scope>();
             this.indexedScopes.set(  0,  this.globalScope );
             
-            this.mode = "BUILDING_SYMBOL_TREE";
+            this.mode = WalkerMode.BUILDING_SYMBOL_TREE;
             this.parseScope(this.globalScope);
             
         },
