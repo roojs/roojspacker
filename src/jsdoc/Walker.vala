@@ -800,7 +800,8 @@ namespace JSDOC {
                     // see if it"s a @class
                     if (this.currentDoc.getTag("class").length) {
                         _s = this.currentDoc.getTag("class")[0].desc;
-                        var symbol = new Symbol(_s, [], "CONSTRUCTOR", this.currentDoc);
+                        var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(),
+                        		 "CONSTRUCTOR", this.currentDoc);
                         Parser       = imports.Parser.Parser;
                         Parser.addSymbol(symbol);
                         this.symbols[_s] = symbol;
