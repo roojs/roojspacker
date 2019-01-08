@@ -14,7 +14,7 @@ namespace JSDOC {
 		Gee.ArrayList<string> warnings;
 		Gee.ArrayList<Scope> scopes;
 		Gee.ArrayList<string,Scope> indexedScopes;
-		Gee.ArrayList<Symbol> symbols;
+		Gee.ArrayList<string,Symbol> symbols;
 		Gee.HashMap<string,string> aliases;
 		Scope globalScope;
 		
