@@ -580,7 +580,7 @@ namespace JSDOC {
                         //$this$=foo
                         
                     if (
-                            (this.ts.lookTok(1).type == "NAME") 
+                            (this.ts.lookTok(1).isType(TokenType.NAME)) 
                         ) {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
