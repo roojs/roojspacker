@@ -521,7 +521,7 @@ namespace JSDOC {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
-                            scopeName = fixAlias(scopeName);
+                            scopeName = this.fixAlias(aliases, scopeName);
                          var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
             				new Token("$private$", TokenType.NAME, TokenName.NAME)
 			        	); 
