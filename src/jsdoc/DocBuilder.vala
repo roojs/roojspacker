@@ -321,7 +321,7 @@ namespace JSDOC
 		    
 		    for (var i = 0, l = files.size; i < l; i++) {
 		        var file = files.get(i);
-		        var targetDir = PackerRun.opt_doc_target + "/symbols/src/";
+		        var targetDir = PackerRun.singleton().opt_doc_target + "/symbols/src/";
 		        this.makeSrcFile(file, targetDir);
 		    }
 		    //print(JSON.stringify(symbols,null,4));
