@@ -44,7 +44,7 @@ namespace JSDOC
 		    DocParser.filesSymbols.set(srcFile, new SymbolSet());
 		    
 		    //Options.LOG.inform("Parser - run walker");
-		    this.walker = new  Walker2(ts);
+		    this.walker = new  Walker(ts);
 		    this.walker.buildSymbolTree();
 		    
 		    
