@@ -247,7 +247,7 @@ namespace JSDOC {
                         token = this.ts.nextTok(); // a
                         scopeName = token.data;
                         
-                        if (this.currentDoc) {
+                        if (this.currentDoc != null) {
                             this.addSymbol(scopeName,false,"OBJECT");
 
                         }
@@ -258,7 +258,7 @@ namespace JSDOC {
                         this.ts.nextTok(); // ,
                         token = this.ts.nextTok(); // {
                             
-                        scopeName = fixAlias(scopeName);
+                        scopeName = this.fixAlias(aliases, scopeName);
                         
                         var fnScope = new Scope(this.braceNesting, scope, token.n, 
                             "$this$=" + scopeName  + "|"+scopeName+".prototype");
