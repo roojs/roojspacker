@@ -438,7 +438,7 @@ namespace JSDOC
 		    //println(cfgProperties.toSource());
 		    
 		    for(var i =0; i < cfgProperties.size;i++) {
-		        var p = cfgPropertiesget.get(i);
+		        var p = cfgProperties.get(i);
 		        var add = new Json.Object();
 		        add.set_string_member("name",p.name);
 		        add.set_string_member("type",p.type);
