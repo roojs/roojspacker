@@ -353,7 +353,10 @@ namespace JSDOC {
                         this.ts.nextTok(); /// ,
                         this.ts.nextTok(); // {
                         scopeName = fixAlias(scopeName);
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, scopeName);
+                        var fnScope =   new Scope(this.braceNesting, scope, token.id, // was token.n?
+            				new Token(scopeName, TokenType.NAME, TokenName.NAME)
+			        	);
+
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         scope = fnScope;
                         this.scopesIn(fnScope);
