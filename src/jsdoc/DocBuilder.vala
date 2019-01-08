@@ -18,7 +18,7 @@ namespace JSDOC
 		{
 			
 			DocBuilder.init();
-			GLib.debug("Roo JsDoc Toolkit started  at %s ",  (new GLib.DateTime.now()).format("Y/m/d H:i:s"));
+			GLib.debug("Roo JsDoc Toolkit started  at %s ",  (new GLib.DateTime.now_local()).format("Y/m/d H:i:s"));
 			
 			this.packer = p;
         
