@@ -753,7 +753,7 @@ namespace JSDOC {
                     
                 //print("WALKER ADDsymbol: " + lastIdent);
                 
-                var s = [];
+                var s = new ArrayList<Identifier>();
                 for (var i = 0; i < this.scopes.length;i++) {
                     s.push(this.scopes[i].ident);
                 }
