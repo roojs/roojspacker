@@ -754,7 +754,7 @@ namespace JSDOC {
             thisProperties.add(symbol); // new property with this alias
         }
         
-        void addDocTag(DocTag docTag)
+        public void addDocTag(DocTag docTag)
         {
             this.comment.tags.add(docTag);
             if (docTag.title == DocTagTitle.CFG) {
