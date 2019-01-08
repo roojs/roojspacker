@@ -506,12 +506,12 @@ namespace JSDOC
 		    //        type=>
 		    //        desc=>
 		    //    }
-			var ret =  new JSON.Object();
-			ret.set_object_member("props", props);
-			ret.set_object_member("events", events);
-			ret.set_object_member("methods", methods);
+			var ret =  new Json.Object();
+			ret.set_array_member("props", props);
+			ret.set_array_member("events", events);
+			ret.set_array_member("methods", methods);
 		
-		   return ret;
+ 		    return ret;
 		    
 		    
 		    // b) methods
