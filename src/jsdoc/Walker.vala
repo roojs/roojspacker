@@ -101,7 +101,7 @@ namespace JSDOC {
             var aliases = new Gee.HashMap<string,string>();
 
             foreach(var i in ealiases.keys) {
-                aliases.set(i, ealiases.get(i);
+                aliases.set(i, ealiases.get(i));
             }
                 
             //print("STARTING SCOPE WITH: " + ealiases.toSource());
