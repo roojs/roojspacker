@@ -522,6 +522,11 @@ namespace JSDOC {
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
                             scopeName = fixAlias(scopeName);
+                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+            				new Token("$private$", TokenType.NAME, TokenName.NAME)
+			        	); 
+                        
+                        
                         var fnScope = new Scope(this.braceNesting, scope, token.n, "$private$");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = fnScope;
