@@ -236,17 +236,17 @@ namespace JSDOC
 		    
 		    
 		    GLib.debug("Making directories");
-		    if (File.isDirectory(PackerRun.singleton().opt_doc_target.length)) {
+		    if (!FileUtils.test (PackerRun.singleton().opt_doc_target,FileTest.IS_DIR )) {
 		        Posix.mkdir(PackerRun.singleton().opt_doc_target,0755);
 		    }
-		    if (!File.isDirectory(PackerRun.singleton().opt_doc_target+"/symbols")) {
+		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target+"/symbols")) {
 		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
 		    }
-		    if (!File.isDirectory(PackerRun.opt_doc_target+"/symbols/src")) {
+		    if (!FileUtils.test(PackerRun.opt_doc_target+"/symbols/src")) {
 		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols/src",075);
 		    }
-		    if (!File.isDirectory(PackerRun.opt_doc_target +"/json")) {
-		        File.mkdir(PackerRun.opt_doc_target +"/json",0755);
+		    if (!FileUtils.test(PackerRun.opt_doc_target +"/json")) {
+		        Posix.mkdir(PackerRun.opt_doc_target +"/json",0755);
 		    }
 		    
 		    GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
