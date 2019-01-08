@@ -13,7 +13,7 @@ namespace JSDOC {
 
 		 static  string toPretty(string str)
 		{
-			var p = new Packer();
+			 
 			var txs = new TextStream(str);
 			var tr = new TokenReader(p);
 			tr.keepComments = true;
