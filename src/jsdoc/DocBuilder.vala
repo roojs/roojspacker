@@ -270,7 +270,7 @@ namespace JSDOC
 		        	  PackerRun.singleton().opt_doc_target , src.get_basename());			
 			
 				src.copy(
-					GLib.File.new_from_path(PackerRun.singleton().opt_doc_target + '/' + src.get_basename()),
+					GLib.File.new_from_path(PackerRun.singleton().opt_doc_target + "/" + src.get_basename()),
 					GLib.FileCopyFlags.OVERWRITE
 				);
 			}
