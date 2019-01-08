@@ -543,7 +543,7 @@ namespace JSDOC
 		    
 		    GLib.debug("Write Source file : %s/symbols/src/%s", 
 		    	PackerRun.singleton().opt_doc_target, name);
-		    var pretty = PrettyPrint.toPretty(FileUtils.get_contenst(sourceFile));
+		    var pretty = PrettyPrint.toPretty(FileUtils.get_contenst(sourceFile)); 
 		    File.write(PackerRun.opt_doc_target+"/symbols/src/" + name, 
 		        "<html><head>" +
 		        "<title>" + sourceFile + "</title>" +

@@ -11,7 +11,7 @@ namespace JSDOC {
 				    replace("\"","&quot;");
 		}
 
-		 static  string toPretty(string str)
+		 public static  string toPretty(string str)
 		{
 			
 			var txs = new TextStream(str);
