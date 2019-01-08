@@ -474,7 +474,7 @@ namespace JSDOC
 		        add.set_string_member("sig", this.makeFuncSkel(m.params));
 		        events.add(add);
 		    } 
-		    
+		     
 		    // methods
 		    var ownMethods = new Gee.ArrayList<Symbol>();
 		    for(var i =0; i < data.methods.size;i++) {

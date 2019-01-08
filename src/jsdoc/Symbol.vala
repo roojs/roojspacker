@@ -791,34 +791,34 @@ namespace JSDOC {
             return r;
         }
         
-	}
 	
-	public string makeFuncSkel() {
-        if (this.params.size < 1) return "function ()\n{\n\n}";
-		var ret = "function (";
-		var f = false;
-		foreach(var p in this.params) {
-			if (p.name.contains(".")) continue;
-			ret += f ? "" : ", ";
-			f = true;
-			ret +=  p.name == "this" ? "_self" : p.name;
+		
+		public string makeFuncSkel() {
+		    if (this.params.size < 1) return "function ()\n{\n\n}";
+			var ret = "function (";
+			var f = false;
+			foreach(var p in this.params) {
+				if (p.name.contains(".")) continue;
+				ret += f ? "" : ", ";
+				f = true;
+				ret +=  p.name == "this" ? "_self" : p.name;
+			}
+			return ret + ")\n{\n\n}";
 		}
-		return ret + ")\n{\n\n}";
-    }
-    public string makeMethodSkel() {
-        if (this.params.size < 1) return "()\n{\n\n}";
-		var ret = "(";
-		var f = false;
-		foreach(var p in this.params) {
-			if (p.name.contains(".")) continue;
-			ret += f ? "" : ", ";
-			f = true;
-			ret +=  p.name == "this" ? "_self" : p.name;
+		public string makeMethodSkel() {
+		    if (this.params.size < 1) return "()\n{\n\n}";
+			var ret = "(";
+			var f = false;
+			foreach(var p in this.params) {
+				if (p.name.contains(".")) continue;
+				ret += f ? "" : ", ";
+				f = true;
+				ret +=  p.name == "this" ? "_self" : p.name;
+			}
+			return ret + ")";
 		}
-		return ret + ")";
-    }
     
-     
+ 	}
  
 	
 	
