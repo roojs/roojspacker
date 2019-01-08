@@ -16,7 +16,7 @@ namespace JSDOC {
 			
 			var txs = new TextStream(str);
 			var tr = new TokenReader({ keepComments : true, keepWhite : true });
-			var toks = tr.tokenize(txs)
+			var toks = tr.tokenize(txs);
 			
 			//var sp = new ScopeParser(new Collapse(toks));
 			//sp.buildSymbolTree();
@@ -30,7 +30,7 @@ namespace JSDOC {
 			
 			
 			
-			var cs = ''; // current style..
+			var cs = ""; // current style..
 			
 			// loop through and print it...?
 			
