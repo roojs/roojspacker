@@ -265,11 +265,12 @@ namespace JSDOC
 					continue;
 				} 
 				var src = File.new_for_path(info.get_name());
-		        GLib.debug("Copy %s to %s/%s" , info.get_name() , f,
+		        GLib.debug("Copy %s to %s/%s" ,
+		        	 info.get_name() ,
 		        	  PackerRun.singleton().opt_doc_target , src.get_basename());			
 			
 				src.copy(
-					GLib.File.new_from_path(PackerRun.opt_doc_target + '/' + src.get_basename()),
+					GLib.File.new_from_path(PackerRun.singleton().opt_doc_target + '/' + src.get_basename()),
 					GLib.FileCopyFlags.OVERWRITE
 				);
 			}
