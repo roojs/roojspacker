@@ -20,7 +20,7 @@ namespace JSDOC {
 		
         bool global = false;
         WalkerMode mode =  ""; //"BUILDING_SYMBOL_TREE",
-        int braceNesting : 0;
+        int braceNesting = 0;
         
 //        bool currentDoc =  false;
 
@@ -85,7 +85,7 @@ namespace JSDOC {
             
             
             return ret;
-        };
+        }
 
         
 
