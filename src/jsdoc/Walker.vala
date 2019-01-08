@@ -19,7 +19,7 @@ namespace JSDOC {
 		Scope globalScope;
 		
         bool global = false;
-        WalkerMode mode =  ""; //"BUILDING_SYMBOL_TREE",
+        WalkerMode mode =  WalkerMode.XXX; //"BUILDING_SYMBOL_TREE",
         int braceNesting = 0;
         
         DocComment? currentDoc =  null;
