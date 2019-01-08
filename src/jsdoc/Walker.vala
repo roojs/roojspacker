@@ -67,6 +67,25 @@ namespace JSDOC {
         }
         
 
+        string fixAlias (Gee.HashMap<string,string>aliases, string str, bool nomore)
+        {
+            var ar = str.split('.');
+            var m = ar[0];
+            
+            //print(str +"?=" +aliases.toSource());
+            if (!aliases.has_key(m)) {
+                return str;
+            }
+            ar[0] = aliases.get(m);
+            
+            var ret = string.joinv(".", ar);
+            if (nomore != true) {
+                ret = this.fixAlias(aliases, ret, true);
+            }
+            
+            
+            return ret;
+        };
 
        
 
@@ -77,24 +96,6 @@ namespace JSDOC {
             //this.timerPrint("parseScope EnterScope"); 
             
             var aliases = {};
-            var fixAlias = function(str, nomore)
-            {
-                var ar = str.split('.');
-                var m = ar.shift();
-                
-                //print(str +"?=" +aliases.toSource());
-                if (aliases[m] == undefined) {
-                    return str;
-                }
-                var ret = aliases[m] + (ar.length? '.' : '' )+ ar.join('.');
-                if (nomore !== true) {
-                    ret = fixAlias(ret, true);
-                }
-                
-                
-                
-                return ret;
-            };
 
             
             
