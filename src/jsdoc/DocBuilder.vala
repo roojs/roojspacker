@@ -280,16 +280,17 @@ namespace JSDOC
 		    
 		    GLib.debug("Setting up templates");
 		    // used to check the details of things being linked to
+		    /*
 		    Link.symbolSet = this.symbolSet;// need to work out where 'symbolset will be stored/set!
 		    Link.base = "../";
 		    
 		    Link.srcFileFlatName = this.srcFileFlatName; // where set?
 		    Link.srcFileRelName = this.srcFileRelName; // where set?
-		    
-		    var classTemplate = new Template( PackerRun.opt_doc_template_dir  + "/class." + PackerRun.opt_doc_ext );
-		    var classesTemplate = new Template( PackerRun.opt_doc_template_dir+"/allclasses." + PackerRun.opt_doc_ext  );
-		    var classesindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/index."  + PackerRun.opt_doc_ext );
-		    var fileindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/allfiles."+ PackerRun.opt_doc_ext );
+		    */
+		    //var classTemplate = new Template( PackerRun.opt_doc_template_dir  + "/class." + PackerRun.opt_doc_ext );
+		    //var classesTemplate = new Template( PackerRun.opt_doc_template_dir+"/allclasses." + PackerRun.opt_doc_ext  );
+		    //var classesindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/index."  + PackerRun.opt_doc_ext );
+		    //var fileindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/allfiles."+ PackerRun.opt_doc_ext );
 
 		    
 		    classTemplate.symbolSet = this.symbolSet; // where?
