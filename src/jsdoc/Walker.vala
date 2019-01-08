@@ -519,7 +519,7 @@ namespace JSDOC {
                             (this.ts.lookTok(-3).isName(TokenName.FUNCTION))
                         ) {
                         //scopeName = this.ts.look(-3).data;
-                        this.ts.balance("(");
+                        this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
                             scopeName = fixAlias(scopeName);
                         var fnScope = new Scope(this.braceNesting, scope, token.n, "$private$");
