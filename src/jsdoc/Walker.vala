@@ -230,7 +230,7 @@ namespace JSDOC {
                     
                     //print("TOK(ident)"+ token.toString());
                      
-                    if (/\.extend$/.test(token.data) &&
+                    if (/\.extend$/.match(token.data) &&
                         this.ts.lookTok(1).data == "(" &&
                         this.ts.lookTok(2).isType(TokenType.NAME)  &&
                         this.ts.lookTok(3).data == "," &&
