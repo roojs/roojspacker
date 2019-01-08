@@ -464,7 +464,7 @@ namespace JSDOC {
                 // really we only have to deal with object constructs and function calls that change the scope...
                 
                 
-                if (token.name == "FUNCTION") {
+                if (token.isName(TokenName.FUNCTION)) {
                     //print("GOT FUNCTION");
                     // see if we have an unconsumed doc...
                     
