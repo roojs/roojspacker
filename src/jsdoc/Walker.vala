@@ -811,7 +811,7 @@ namespace JSDOC {
                         continue;
                     }
                     // when to use $this$ (probabl for events)
-                    _s += _s.length ? "." : "";
+                    _s += _s.length > 0 ? "." : "";
                     _s += s[i];
                 }
                 //print("FULLSCOPE: s , t : " + _s +", " + _t);
