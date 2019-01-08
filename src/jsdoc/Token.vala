@@ -116,12 +116,12 @@ namespace JSDOC
 			NOT,
 			BITWISE_NOT,
 			DOT,
-			LEFT_BRACE,
+			LEFT_BRACE, 
 			RIGHT_BRACE,
 			LEFT_CURLY,
 			RIGHT_CURLY,
-			LEFT_PAREN,
-			RIGHT_PAREN,
+			LEFT_PAREN, // (
+			RIGHT_PAREN,  // )
 
 		
 		
