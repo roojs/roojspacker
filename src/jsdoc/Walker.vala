@@ -829,7 +829,7 @@ namespace JSDOC {
                         var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(),
                         		 "CONSTRUCTOR", this.currentDoc);
                        
-                        Parser.addSymbol(symbol);
+                        DocParser.addSymbol(symbol);
                         this.symbols[_s] = symbol;
                         return;
                     }
