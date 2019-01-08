@@ -455,7 +455,7 @@ namespace JSDOC
 		    var ownEvents = new Gee.ArrayList<Symbol>();
 		    for(var i =0; i < data.methods.size;i++) {
 				var e = data.methods.get(i);
-				if (e.isEvent && e.comment.getTag(DocTagTitle.HIDE).get(0).src == "") {
+				if (e.isEvent && !e.isIgnored) {
 					ownEvents.add(e);
 				}
 			}; 
