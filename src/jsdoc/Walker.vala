@@ -879,7 +879,7 @@ namespace JSDOC {
         {
             
            // print("<<<" + this.ts.context()  + "\n<<<"+this.scopes.length+":" +this.scopeListToStr());
-            return this.scopes.pop();
+            return this.scopes.remove_at(this.scopes.size -1 );
             
         },
         
