@@ -77,7 +77,7 @@ namespace JSDOC {
 			    return "string";
 			}
 			// other 'vary things??
-			if (tok.isType(TokenType.NAME) || tok.data == "." || tok.isName(TokenNAME.THIS)) {
+			if (tok.isType(TokenType.NAME) || tok.data == "." || tok.isName(TokenName.THIS)) {
 			    return "var";
 			}
 			var r = new Regex("^[a-zA-Z]+");
