@@ -11,6 +11,7 @@ namespace JSDOC
 		// extractable via JSON?
 		public string VERSION = "1.0.0" ;
 		
+		SymbolSet symbolSet;
 		
 		private Packer packer;
 	
