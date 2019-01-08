@@ -128,9 +128,9 @@ namespace JSDOC
 		        
 
 		        var toks = tr.tokenize( new TextStream(src) );
-		        if (PackerRun.opt_dump_tokens) {
+		        if (PackerRun.singleton().opt_dump_tokens) {
 					toks.dump();
-					return "";
+					return;
 					//GLib.Process.exit(0);
 				}
 		        
