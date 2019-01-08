@@ -67,16 +67,16 @@ namespace JSDOC {
 			    }
 			    return cs; // keep the same..
 			}
-			if (tok.is('STRN')) {
-			    return 'string';
+			if (tok.is("STRN")) {
+			    return "string";
 			}
 			// other 'vary things??
-			if (tok.is('NAME') || tok.data == '.' || tok.name == 'THIS') {
-			    return 'var';
+			if (tok.is("NAME") || tok.data == '.' || tok.name == "THIS") {
+			    return "var";
 			}
 			if (/^[a-z]+/i.test(tok.data)) {
 			    return 'keyword';
 			}
-			return 'syntax'
+			return "syntax"
 		}
 }
