@@ -725,6 +725,12 @@ namespace JSDOC {
         public bool is (string what) {
             return this.isa == what;
         }
+        public bool isaClass()
+        {
+        
+	        return (this.is("CONSTRUCTOR") || this.isNamespace || this.isClass); 
+        }
+        
  
         bool isBuiltin() {
             return SymbolSet.isBuiltin(this.alias);
