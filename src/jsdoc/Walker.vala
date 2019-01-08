@@ -118,8 +118,9 @@ namespace JSDOC {
             var isObjectLitAr = new Gee.ArrayList<bool>();
             isObjectLitAr.add(false);
             //print("SCOPE: ------------------START ----------------");
+
             this.scopesIn(scope);
-            var scopeLen = this.scopes.length;
+            var scopeLen = this.scopes.size;
             
             if (this.ts.cursor < 1) {
               // this.ts.cursor--; // hopeflly this kludge will work
@@ -128,7 +129,7 @@ namespace JSDOC {
             
             //print(JSON.stringify(this.ts, null, 4)); Seed.quit();
             
-            while (null != (token = this.ts.next())) {
+            while (null != (var token = this.ts.next())) {
                 //print("TOK"+ token.toString());
                 //  this.timerPrint("parseScope AFTER lookT: " + token.toString()); 
                   
