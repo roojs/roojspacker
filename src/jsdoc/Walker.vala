@@ -838,8 +838,8 @@ namespace JSDOC {
                      //   print(Script.pretStringtyDump(this.currentDoc.toSource));
                     //    throw "Add Prop?";
                     //}
-                    
-                    _s = _s.replace(/\.prototype.*$/, "");
+
+                    _s = \.prototype.*$/.replace(_s, _s.length,0, "");
                     if (!this.symbols.has_key(_s)) {
                         //print("Symbol:" + _s);
                     //print(this.currentDoc.src);
