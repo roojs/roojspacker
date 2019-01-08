@@ -479,7 +479,7 @@ namespace JSDOC
 		    var ownMethods = new Gee.ArrayList<Symbol>();
 		    for(var i =0; i < data.methods.size;i++) {
 				var e = data.methods.get(i);
-				if (!e.isEvent && !e.isIgnore) {
+				if (!e.isEvent && !e.isIgnored) {
 					ownMethods.add(e);
 				}
 			};
