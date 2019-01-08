@@ -428,7 +428,7 @@ namespace JSDOC {
                         var atype = "OBJECT";
                         
                         if (((this.ts.lookTok(1).data == ":" )|| (this.ts.lookTok(1).data == "=")) &&
-                            (this.ts.lookTok(2).name == "FUNCTION")
+                            (this.ts.lookTok(2).isName(TokenName.FUNCTION))
                             ) {
                                // this.ts.nextTok();
                                // this.ts.nextTok();
