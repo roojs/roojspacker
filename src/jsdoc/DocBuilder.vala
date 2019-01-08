@@ -541,7 +541,8 @@ namespace JSDOC
 		    
 		    var name = this.srcFileFlatName(sourceFile);
 		    
-		    GLib.debug("Write Source file : %s/symbols/src/%s", opt_doc_target, name);
+		    GLib.debug("Write Source file : %s/symbols/src/%s", 
+		    	PackerRun.singleton().opt_doc_target, name);
 		    var pretty = PrettyPrint.toPretty(FileUtils.get_contenst(sourceFile));
 		    File.write(PackerRun.opt_doc_target+"/symbols/src/" + name, 
 		        "<html><head>" +
