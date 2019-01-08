@@ -54,6 +54,7 @@ libroojspacker_1_1_la_SOURCES = \
 		jsdoc/SymbolSet.vala \
 		jsdoc/DocBuilder.vala \
 		jsdoc/DocComment.vala \
+		jsdoc/DocParser.vala \
 		jsdoc/DocTag.vala \
 		jsdoc/PrettyPrint.vala \
         jsdoc/Symbol.vala
