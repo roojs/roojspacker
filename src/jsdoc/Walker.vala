@@ -3,7 +3,10 @@
 
 namespace JSDOC {
 
-
+	enum WalkerMode {
+		BUILDING_SYMBOL_TREE,
+		XXX
+	}
 	
 	class Walker  : Object
 	{
@@ -16,7 +19,7 @@ namespace JSDOC {
 		Scope globalScope;
 		
         bool global = false;
-        string mode =  ""; //"BUILDING_SYMBOL_TREE",
+        WalkerMode mode =  ""; //"BUILDING_SYMBOL_TREE",
         int braceNesting : 0;
 
         bool munge =  true;
