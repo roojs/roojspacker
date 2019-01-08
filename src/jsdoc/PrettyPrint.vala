@@ -40,7 +40,7 @@ namespace JSDOC {
 				if (ns != cs) {
 				    // change of style
 				    if (cs.length > 0) { r += "</span>" };
-				    r +='<span class="jsdoc-'+ns+'">';
+				    r +="<span class=\"jsdoc-"+ns+"\">";
 				    cs = ns;
 				}
 				if (toks[i].identifier) {
