@@ -50,9 +50,12 @@ libroojspacker_1_1_la_SOURCES = \
 		jsdoc/TokenStream.vala \
 		jsdoc/Token.vala \
 		jsdoc/PackerRun.vala
-		
-#		jsdoc/DocBuilder.vala \
-#        jsdoc/Symbol.vala
+		jsdoc/Walker.vala \
+		jsdoc/SymbolSet.vala \
+		jsdoc/DocBuilder.vala \
+		jsdoc/PrettyPrint.vala \
+		jsdoc/DocTag.vala \
+        jsdoc/Symbol.vala
 
 # not sure if -g is needed..???
 
@@ -112,3 +115,4 @@ dist_vapi_DATA = \
 # 		$(gir_DATA)
     
     
+
