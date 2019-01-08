@@ -523,7 +523,7 @@ namespace JSDOC
 		// in Link (js) ???
 		string srcFileRelName(string sourceFile)
 		{
-	  		return sourceFile.substring(PackerRun.opt_real_basedir.length+1);
+	  		return sourceFile.substring(PackerRun.singleton().opt_real_basedir.length+1);
 		}
 		string srcFileFlatName(string sourceFile)
 		{
