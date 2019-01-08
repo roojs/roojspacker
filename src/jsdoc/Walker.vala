@@ -821,7 +821,7 @@ namespace JSDOC {
                         //    message: "Trying to append symbol "" + _s + "", but no doc available\n" +
                         //        this.ts.lookTok(0).toString()
                         //};
-                        this.currentDoc = false;
+                        this.currentDoc = null;
                         return;
                      
                     }
@@ -829,7 +829,7 @@ namespace JSDOC {
                     for (var i =0; i < this.currentDoc.tags.length;i++) {
                         this.symbols[_s].addDocTag(this.currentDoc.tags[i]);
                     }
-                    this.currentDoc = false;
+                    this.currentDoc = null;
                     return;
                 }
             }    
