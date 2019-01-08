@@ -797,7 +797,7 @@ namespace JSDOC {
                 /// fixme - needs
                 for (var i = 0; i < s.length;i++) {
                     
-                    if (!s[i].length) {
+                    if (s[i].length < 1) {
                         continue;
                     }
                     if ((s[i] == "$private$") || (s[i] == "$global$")) {
