@@ -455,10 +455,9 @@ namespace JSDOC {
                 //print ("NOT NAME");
                 
                 
-                if (token.type == "STRN")   { // THIS WILL NOT HAPPEN HERE?!!?
+                if (token.isType(TokenType.STRN))   { // THIS WILL NOT HAPPEN HERE?!!?
                     if (this.currentDoc != null) {
                         this.addSymbol(token.data.substring(1,token.data.length-1),false,"OBJECT");
-
                     }
                 }
             
