@@ -97,37 +97,26 @@ namespace JSDOC {
             
             var aliases = new Gee.HashMap<string,string>();
 
-            
-            
-            if (ealiases != undefined) {
-                // copy it down..
-                for(var i in ealiases) {
-                    aliases[i] = ealiases[i];
-                }
-                
-                
-            } else {
-                ealiases = {};
+            for(var i in ealiases.keys) {
+                aliases.set(i, ealiases.get(i);
             }
+                
             //print("STARTING SCOPE WITH: " + ealiases.toSource());
-            var symbol;
-            var token;
-            
-            var identifier;
-
+             
             var expressionBraceNesting = this.braceNesting;
             var bracketNesting = 0;
             var parensNesting = 0;
            
             
-            var l1 = '', l2 = '';
-            var scopeName ='';
+            var l1 = "", l2 = "";
+            var scopeName = "";
             
             
             var locBraceNest = 0;
             // determines if we are in object literals...
             
-            var isObjectLitAr = [ false ];
+            var isObjectLitAr = new Gee.ArrayList<bool>();
+            isObjectLitAr.add(false);
             //print("SCOPE: ------------------START ----------------");
             this.scopesIn(scope);
             var scopeLen = this.scopes.length;
