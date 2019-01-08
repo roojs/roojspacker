@@ -8,7 +8,7 @@ namespace JSDOC {
 		XXX
 	}
 	
-	class Walker  : Object
+	public class Walker  : Object
 	{
 		TokenStream ts;
 		Gee.ArrayList<string> warnings;

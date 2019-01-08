@@ -46,7 +46,7 @@ namespace JSDOC
 		    //Options.LOG.inform("Parser - run walker");
 		    this.walker = new  Walker(ts);
 		    this.walker.buildSymbolTree();
-		    
+		     
 		    
 		    
 		    //this.walker.walk(ts); // adds to our symbols
