@@ -380,8 +380,8 @@ namespace JSDOC {
                     ], null, 4));
                     */
                     if ( this.ts.lookTok(1).data == "=" &&
-                        this.ts.lookTok(2).name == "NEW" &&
-                        this.ts.lookTok(3).type == "NAME" &&
+                        this.ts.lookTok(2).isName(TokenName.NEW) &&
+                        this.ts.lookTok(3).isType(TokenType.NAME)&&
                         this.ts.lookTok(4).data == "(" &&
                         this.ts.lookTok(5).data == "{" 
                         ) {
