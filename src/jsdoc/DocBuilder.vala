@@ -428,7 +428,7 @@ namespace JSDOC
 		    var cfgProperties = new Gee.ArrayList<DocTag>();
 		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
 		        cfgProperties = data.configToArray();
-		        cfgProperties = cfgProperties.sort((a,b) =>{
+		         cfgProperties.sort((a,b) =>{
 		    		return a.alias.collate(b.alias);
 		        }); 
 		        
