@@ -62,18 +62,9 @@ namespace JSDOC {
             this.mode = WalkerMode.BUILDING_SYMBOL_TREE;
             this.parseScope(this.globalScope);
             
-        },
+        }
         
 
-
-        log : function(str)
-        {
-              //print("<B>LOG:</B>" + htmlescape(str) + "<BR/>\n");
-        },
-        logR : function(str)
-        {
-                //print("<B>LOG:</B>" + str + "<BR/>");
-        },
 
        
         currentDoc: false,
