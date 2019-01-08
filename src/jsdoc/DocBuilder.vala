@@ -373,15 +373,16 @@ namespace JSDOC
 		    
 		    
 		    // regenrate the index with different relative links
-		    Link.base = "";
+		    //Link.base = "";
 		    //var classesIndex = classesTemplate.process(classes);
 		    
 		    GLib.debug("build index");
-		    
+		    /*
 		    FileUtils.set_contents(
 				PackerRun.opt_doc_target +  "/index." + PackerRun.opt_doc_ext , 
 		        classesindexTemplate.process(classes)
 		    );
+		    */
 		    
 		    // blank everything???? classesindexTemplate = classesIndex = classes = null;
 		    
