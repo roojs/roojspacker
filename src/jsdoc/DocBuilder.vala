@@ -432,7 +432,7 @@ namespace JSDOC
 		    		return a.alias.collate(b.alias);
 		        });
 		        
-		    }
+		    } 
 		    
 		    var props = new JSON.Array();; 
 		    //println(cfgProperties.toSource());
