@@ -62,7 +62,7 @@ namespace JSDOC
 
 		private void parseSrcFiles() 
 		{
-		    DocParser.init();
+		    DocParser.initStatic();
 		    
 		    
 		    var useCache = PackerRun.opt_cache_dir == null ;
