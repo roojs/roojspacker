@@ -215,7 +215,7 @@ namespace JSDOC {
                 
                 }
                 
-                if ((token.data == "eval") || /\.eval$/.test(token.data)) {
+                if ((token.data == "eval") || /\.eval$/.match(token.data)) {
                     this.currentDoc = false;
                     continue;
                 }
