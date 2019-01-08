@@ -779,9 +779,9 @@ namespace JSDOC {
                     
                 //print("WALKER ADDsymbol: " + lastIdent);
                 
-                var s = new Gee.ArrayList<Identifier>();
+                var s = new Gee.ArrayList<string>();
                 for (var i = 0; i < this.scopes.size;i++) {
-                    s.add(this.scopes[i].ident);
+                    s.add(this.scopes[i].ident.name);
                 }
                 s.add(lastIdent);
                 
