@@ -514,9 +514,9 @@ namespace JSDOC {
                         //$private$
                         
                     if (
-                            (this.ts.lookTok(-1).name == "NEW") && 
+                            (this.ts.lookTok(-1).isName(TokenName.NEW)) && 
                             (this.ts.lookTok(-2).data == "=") &&
-                            (this.ts.lookTok(-3).type = "FUNCTION")
+                            (this.ts.lookTok(-3).isType(TokenType.FUNCTION))
                         ) {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance("(");
