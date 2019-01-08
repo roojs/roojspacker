@@ -171,7 +171,7 @@ namespace JSDOC {
                         // @scopeAlias a=b
                         //print("Walker2 : doctag changes scope (alias)");
                         var sal = newDoc.getTag(DocTagTitle.SCOPEALIAS).get(0).desc.split("=");
-                        aliases[sal[0]] = sal[1];
+                        aliases[sal[0].strip()] = sal[1].strip();
                         
                         continue;
                     }
