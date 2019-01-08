@@ -830,7 +830,7 @@ namespace JSDOC {
                 //docTag.memberOf = a;
                 docTag.memberOf = this.alias;
             }
-            if (!this.cfgs.has_key(docTag.name) {
+            if (!this.cfgs.has_key(docTag.name)) {
                 this.cfgs.set(docTag.name,  docTag);
             }
             
