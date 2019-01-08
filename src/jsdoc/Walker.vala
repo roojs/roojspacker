@@ -750,7 +750,7 @@ namespace JSDOC {
         void addSymbol(string lastIdent, bool appendIt = false, string atype = "OBJECT")
         {
             
-            if (this.currentDoc.getTag("private").length) {
+            if (this.currentDoc.getTag("private").size > 0) {
                 
               
                 //print(this.currentDoc.toSource());
