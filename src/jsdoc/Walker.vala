@@ -87,9 +87,7 @@ namespace JSDOC {
             return ret;
         };
 
-       
-
-
+        
 
         parseScope : function(scope, ealiases) // parse a token stream..
         {
