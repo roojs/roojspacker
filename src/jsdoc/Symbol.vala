@@ -793,14 +793,18 @@ namespace JSDOC {
         
 	}
 	
-	 makeFuncSkel :function(params) {
-        if (!params) return "function ()\n{\n\n}";
+	 public string makeFuncSkel() {
+        if (this.params.size < 1) return "function ()\n{\n\n}";
+		var ret = "function (";
+		var f = false;
+		foreach(var p in this.params) {
+			if (p.name.contains(".")) continue;
+			ret += f ? "" : ", ";
+			f = true;
+			ret +=  p.name == 'this' ? '_self' : p.name;
+		}
+
         return "function ("	+
-            params.filter(
-                function($) {
-                    return $.name.indexOf(".") == -1; // don't show config params in signature
-                }
-            ).map( function($) { return $.name == 'this' ? '_self' : $.name; } ).join(", ") +
         ")\n{\n\n}";
     },
 	makeMethodSkel :function(params) {
