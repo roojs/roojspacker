@@ -61,6 +61,7 @@ namespace JSDOC {
 		
 		string toStyle(Token tok)
 		{
+
 			if (tok.is("WHIT") || tok.is("COMM") ) {
 			    if (tok.data.index_of("/") > -1) {
 			        return "comment";
@@ -74,9 +75,11 @@ namespace JSDOC {
 			if (tok.is("NAME") || tok.data == '.' || tok.name == "THIS") {
 			    return "var";
 			}
-			if (/^[a-z]+/i.test(tok.data)) {
-			    return 'keyword';
+			var r = new Regex("^[a-zA-Z]+");
+			
+			if (r.match(tok.data)) {
+			    return "keyword";
 			}
-			return "syntax"
+			return "syntax";
 		}
 }
