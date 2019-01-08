@@ -3,51 +3,39 @@
 
 namespace JSDOC {
 
-	TokenStream ts;
-	Gee.ArrayList<string> warnings;
-	Gee.ArrayList<Scope> scopes;
-	class Walker  : Object
 
-    function(ts) {
-        this.ts = ts;
-        this.warnings = [];
-        this.scopes = [];
-        this.indexedScopes = {};
-        this.symbols = {};
-        //this.timer = new Date() * 1;
-       
-    },
-    Object,
-    
-    {
-    /*
-        timer: 0,
-        timerPrint: function (str) {
-            var ntime = new Date() * 1;
-            var tdif =  ntime -this.timer;
-            this.timer = ntime;
-            var pref = '';
-            if (tdif > 100) { //slower ones..
-                pref = '***';
-            }
-            print(pref+'['+tdif+']'+str);
-            
-        },
-        */
-        warn: function(s) {
+	
+	class Walker  : Object
+	{
+		TokenStream ts;
+		Gee.ArrayList<string> warnings;
+		Gee.ArrayList<Scope> scopes;
+		Gee.ArrayList<string,Scope> indexedScopes;
+		Gee.ArrayList<Symbol> symbols;
+
+        bool global = false;
+        string mode =  ""; //"BUILDING_SYMBOL_TREE",
+        int braceNesting : 0;
+
+        bool munge =  true;
+		
+		public Walker(TokenStream ts)
+		{
+			this.ts  = ts;
+			this.warnings= new Gee.ArrayList<string>();
+			this.scopes = new Gee.ArrayList<Scope>();
+			this.indexedScopes = new Gee.ArrayList<string,Scope>();
+			this.symbols = new Gee.ArrayList<Symbol>();
+			this.braceNesting = 0;
+		}
+
+        //warn: function(s) {
             //this.warnings.push(s);
-            print("WARNING:" + htmlescape(s) + "<BR>");
-        },
+        //    print("WARNING:" + htmlescape(s) + "<BR>");
+        //},
         // defaults should not be initialized here =- otherwise they get duped on new, rather than initalized..
-        warnings : false,
-        ts : false,
-        scopes : false,
-        global : false,
-        mode : "", //"BUILDING_SYMBOL_TREE",
-        braceNesting : 0,
-        indexedScopes : false,
-        munge: true,
-        symbols: false, /// object store of sumbols..
+
+
 
 
 
