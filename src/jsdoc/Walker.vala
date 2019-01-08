@@ -13,7 +13,7 @@ namespace JSDOC {
 		TokenStream ts;
 		Gee.ArrayList<string> warnings;
 		Gee.ArrayList<Scope> scopes;
-		Gee.ArrayList<string,Scope> indexedScopes;
+		Gee.HashMap<string,Scope> indexedScopes;
 		Gee.HashMap<string,Symbol> symbols;
 		Gee.HashMap<string,string> aliases;
 		Scope globalScope;
@@ -31,7 +31,7 @@ namespace JSDOC {
 			this.ts  = ts;
 			this.warnings= new Gee.ArrayList<string>();
 			this.scopes = new Gee.ArrayList<Scope>();
-			this.indexedScopes = new Gee.ArrayList<int,Scope>();
+			this.indexedScopes = new Gee.HashMap<int,Scope>();
 			this.symbols = new Gee.HashMap<string,Symbol>();
 			this.aliases = new Gee.HashMap<string,string>();
 			this.braceNesting = 0;
