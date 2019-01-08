@@ -386,7 +386,7 @@ namespace JSDOC {
                         this.ts.lookTok(5).data == "{" 
                         ) {
                         scopeName = token.data;
-                        if (this.currentDoc) {
+                        if (this.currentDoc != null) {
                             this.addSymbol(scopeName,false,"OBJECT");
                             
                         }
@@ -397,7 +397,7 @@ namespace JSDOC {
                         this.ts.nextTok(); /// (
                         this.ts.nextTok(); /// {
                             
-                        scopeName = fixAlias(scopeName);
+                        scopeName = this.fixAlias(aliases,scopeName);
                         var fnScope = new Scope(this.braceNesting, scope, token.n, scopeName);
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         scope = fnScope;
@@ -418,7 +418,7 @@ namespace JSDOC {
                     // eval can be prefixed with a hint hider for the compresser..
                     
                     
-                    if (this.currentDoc) {
+                    if (this.currentDoc != null) {
                         //print(token.toString());
                         
                         // ident : function ()
@@ -454,7 +454,7 @@ namespace JSDOC {
                 
                 
                 if (token.type == "STRN")   { // THIS WILL NOT HAPPEN HERE?!!?
-                    if (this.currentDoc) {
+                    if (this.currentDoc != null) {
                         this.addSymbol(token.data.substring(1,token.data.length-1),false,"OBJECT");
 
                     }
@@ -467,7 +467,7 @@ namespace JSDOC {
                     //print("GOT FUNCTION");
                     // see if we have an unconsumed doc...
                     
-                    if (this.currentDoc) {
+                    if (this.currentDoc != null) {
                             throw {
                                 name: "ArgumentError", 
                                 message: "Unhandled doc (TOKfunction)" + token.toString()
@@ -703,7 +703,7 @@ namespace JSDOC {
                 if (token.data == "}") {
                     
                      
-                        if (this.currentDoc) {
+                        if (this.currentDoc != null) {
                             this.addSymbol("", true);
 
                             //throw "Unconsumed Doc: (TOKrbrace)" + this.currentDoc.toSource();
