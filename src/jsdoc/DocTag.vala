@@ -42,6 +42,7 @@ namespace JSDOC
 		DEFAULT,
 		MEMBEROF,
 		PUBLIC,
+		SCOPE,
   
 	}
 	
