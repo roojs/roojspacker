@@ -61,14 +61,17 @@ namespace JSDOC {
 				
 		}
 		
-		static string toStyle(Token tok)
+		static string toStyle(Token tok, string cs)
 		{
 
-			if (tok.isName(TokenName.WHIT) || tok.isName(TokenName.COMM) ) {
-			    if (tok.data.index_of("/") > -1) {
-			        return "comment";
-			    }
-			    return cs; // keep the same..
+			if (tok.isName(TokenName.SPACE) || tok.isName(TokenName.NEWLINE) ) {
+				return cs;
+			}
+			if (tok.isName(TokenName.MULTI_LINE_COMM) || 
+				tok.isName(TokenName.JSDOC) ||
+				tok.isName(TokenName.SINGLE_LINE_COMM) ) {
+			    return "comment";
+			    
 			}
 			if (tok.is("STRN")) {
 			    return "string";
