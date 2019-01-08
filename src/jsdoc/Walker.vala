@@ -836,7 +836,7 @@ namespace JSDOC {
             //print("Walker.addsymbol - chkdup: " + _s);
             if (typeof(this.symbols.get(_s)) != "undefined") {
                 
-                if (this.symbols[_s].comment.hasTags) {
+                if (this.symbolsget(_s).comment.hasTags) {
                     // then existing comment doesnt has tags 
                     //throw {
                     //    name: "ArgumentError", 
