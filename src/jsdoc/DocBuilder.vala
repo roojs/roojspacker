@@ -471,8 +471,8 @@ namespace JSDOC
 		        add.set_string_member("name",m.name.substring(1,m.name.length-1));
 		        add.set_string_member("type","function");
 		        add.set_string_member("desc",m.desc);
-		        add.set_string_member("sig", this.makeFuncSkel(m.params));
-		        events.add(add);
+		        add.set_string_member("sig", m.makeFuncSkel());
+		        events.add_object_element(add);
 		    } 
 		     
 		    // methods
