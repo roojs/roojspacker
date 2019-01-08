@@ -258,9 +258,9 @@ namespace JSDOC
 				"standard::*",
 				FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
 				null);
+		    FileInfo info;
 		    
-		    
-		    while ( (var info = iter.next_file (null)) != null) {
+		    while ( (info = iter.next_file (null)) != null) {
 				if (info.get_file_type () == FileType.DIRECTORY) {
 					continue;
 				} 
