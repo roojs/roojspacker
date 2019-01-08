@@ -109,7 +109,7 @@ namespace JSDOC
 		        var src = "";
 		        try {
 		            GLib.debug("reading : %s" , srcFile);
-		            GLib.FileUtils.get_contents(srcFile. out src);
+		            GLib.FileUtils.get_contents(srcFile, out src);
 		        }
 		        catch(GLib.FileError e) {
 		            GLib.debug("Can't read source file '%s': %s", srcFile, e.to_string());
