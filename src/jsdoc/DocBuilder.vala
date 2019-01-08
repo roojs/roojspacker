@@ -31,7 +31,7 @@ namespace JSDOC
 		    this.parseSrcFiles();
 		    
 		    this.symbolSet = DocParser.symbols;
-		    
+		     
 		    // this currently uses the concept of publish.js...
 		    
 		    this.publish();
