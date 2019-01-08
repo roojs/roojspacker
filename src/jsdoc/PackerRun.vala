@@ -137,7 +137,18 @@ namespace JSDOC
 					arg_description = null
 				},
 				//{ "tmpdir", 'm', 0, OptionArg.STRING, ref opt_tmpdir, "Temporary Directory to use (defaults to /tmp)", null },
-				
+				/*
+				OptionEntry() {
+					long_name = "tmpdir",
+					short_name = 'm',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_tmpdir,
+					description = "Temporary Directory - used by documentation tool?",
+					arg_description = null
+				}, 
+				*/
+
 				OptionEntry() {
 					long_name = "basedir",
 					short_name = 'b',
