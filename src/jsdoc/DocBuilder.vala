@@ -240,25 +240,27 @@ namespace JSDOC
 		        Posix.mkdir(PackerRun.singleton().opt_doc_target,0755);
 		    }
 		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target+"/symbols",FileTest.IS_DIR)) {
-		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
+		        Posix.mkdir(PackerRun.singleton().opt_doc_target+"/symbols",0755);
 		    }
-		    if (!FileUtils.test(PackerRun.opt_doc_target+"/symbols/src",FileTest.IS_DIR)) {
-		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols/src",075);
+		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target+"/symbols/src",FileTest.IS_DIR)) {
+		        Posix.mkdir(PackerRun.singleton().opt_doc_target+"/symbols/src",075);
 		    }
-		    if (!FileUtils.test(PackerRun.opt_doc_target +"/json",FileTest.IS_DIR)) {
-		        Posix.mkdir(PackerRun.opt_doc_target +"/json",0755);
+		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target +"/json",FileTest.IS_DIR)) {
+		        Posix.mkdir(PackerRun.singleton().opt_doc_target +"/json",0755);
 		    }
 		    
-		    GLib.debug("Copying files from static: %s " , PackerRun.opt_doc_template_dir);
+		    GLib.debug("Copying files from static: %s " , PackerRun.singleton().opt_doc_template_dir);
 		    // copy everything in 'static' into 
 		    
-		    var iter = GLib.File.new_from_path(PackerRun.opt_doc_template_dir + "/static").enumerate_children (
+		    var iter = GLib.File.new_for_path(
+		    		PackerRun.singleton().opt_doc_template_dir + "/static"
+	    		).enumerate_children (
 				"standard::*",
 				FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
 				null);
 		    
 		    
-		    while ( (info = enumerator.next_file (null)) != null) {
+		    while ( (var info = iter.next_file (null)) != null) {
 				if (info.get_file_type () == FileType.DIRECTORY) {
 					continue;
 				} 
