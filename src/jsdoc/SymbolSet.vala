@@ -15,7 +15,7 @@ namespace JSDOC {
         public Gee.ArrayList<string> keys() 
         {
             var  r= new Gee.ArrayList<string>();
-            foreach(this._index.keys as k) {
+            foreach(var k in this._index.keys) {
             	r.add(k);
         	}
         	return r;
