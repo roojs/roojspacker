@@ -227,7 +227,7 @@ namespace JSDOC {
                     // a  << scope
                 // xxx.applyIf(a, {
                     // a  << scope
-                if (token.type == 'NAME') {
+                if (tokenisType(TokenType.NAME) ) {
                     
                     //print("TOK(ident)"+ token.toString());
                      
