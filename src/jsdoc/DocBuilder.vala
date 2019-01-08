@@ -342,7 +342,7 @@ namespace JSDOC
 		    
 		    GLib.debug("iterate classes");
 		    
-		    var jsonAll = new JSON.Object(); 
+		    var jsonAll = new Json.Object(); 
 		    
 		    for (var i = 0, l = classes.size; i < l; i++) {
 		        var symbol = classes.get(i);
