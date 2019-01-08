@@ -770,7 +770,7 @@ namespace JSDOC {
                 //lastIdent = "*" + lastIdent ;
             }
             if (lastIdent.length < 1 && this.currentDoc.getTag(DocTagTitle.PROPERTY).size > 0) {
-                lastIdent = this.currentDoc.getTag("property")[0].name;
+                lastIdent = this.currentDoc.getTag(DocTagTitle.PROPERTY).get(0).name;
                 //lastIdent = "*" + lastIdent ;
             }
             
