@@ -344,7 +344,7 @@ namespace JSDOC {
                         scopeName = token.data;
                         
                                       
-                        if (this.currentDoc) {
+                        if (this.currentDoc != null) {
                             this.addSymbol(scopeName,false,"OBJECT");
                         }
                      
