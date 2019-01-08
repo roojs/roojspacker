@@ -23,7 +23,8 @@
             "/src/jsdoc/Symbol.vala",
             "/src/jsdoc/SymbolSet.vala",
             "/src/jsdoc/DocComment.vala",
-            "/src/jsdoc/DocBuilder.vala"
+            "/src/jsdoc/DocBuilder.vala",
+            "/src/jsdoc/PrettyPrint.vala"
         ],
         "packages" : [
         ]
