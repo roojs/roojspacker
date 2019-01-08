@@ -22,7 +22,7 @@ namespace JSDOC {
         WalkerMode mode =  ""; //"BUILDING_SYMBOL_TREE",
         int braceNesting = 0;
         
-//        bool currentDoc =  false;
+        DocComment? currentDoc =  null;
 
         bool munge =  true;
 		
@@ -143,7 +143,7 @@ namespace JSDOC {
                         //print("Walker2 : spce is not JSDOC");
                         continue; //skip.
                     }
-                    if (this.currentDoc) {
+                    if (this.currentDoc != null) {
                         // add it to the current scope????
                         
                         this.addSymbol('', true);
@@ -723,20 +723,7 @@ namespace JSDOC {
          
         addSymbol: function(lastIdent, appendIt, atype )
         {
-            //print("Walker.addSymbol : " + lastIdent);
-           // print("Walker.curdoc: " + JSON.stringify(this.currentDoc, null,4));
             
-            /*if (!this.currentDoc.tags.length) {
-                
-              
-                //print(this.currentDoc.toSource());
-                //  this.currentDoc = false;
-                
-                print("SKIP ADD SYM: no tags");
-                print(this.currentDoc.src);
-                return;
-            }
-            */
             if (this.currentDoc.getTag('private').length) {
                 
               
