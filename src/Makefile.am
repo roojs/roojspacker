@@ -53,8 +53,9 @@ libroojspacker_1_1_la_SOURCES = \
 		jsdoc/Walker.vala \
 		jsdoc/SymbolSet.vala \
 		jsdoc/DocBuilder.vala \
-		jsdoc/PrettyPrint.vala \
+		jsdoc/DocComment.vala \
 		jsdoc/DocTag.vala \
+		jsdoc/PrettyPrint.vala \
         jsdoc/Symbol.vala
 
 # not sure if -g is needed..???
