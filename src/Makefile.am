@@ -12,7 +12,7 @@ AM_CPPFLAGS =  \
 
 
 bin_PROGRAMS = roojspacker
-lib_LTLIBRARIES = libroojspacker-1.1.la
+lib_LTLIBRARIES = libroojspacker-1.2.la
 
 
  
@@ -37,7 +37,7 @@ if HAVE_JSON_GLIB
 endif
 
 
-libroojspacker_1_1_la_SOURCES = \
+libroojspacker_1_2_la_SOURCES = \
 		jsdoc/Collapse.vala \
 		jsdoc/CompressWhite.vala \
 		jsdoc/Identifier.vala \
@@ -57,14 +57,14 @@ libroojspacker_1_1_la_SOURCES = \
 		jsdoc/DocParser.vala \
 		jsdoc/DocTag.vala \
 		jsdoc/PrettyPrint.vala \
-        jsdoc/Symbol.vala
+		jsdoc/Symbol.vala
 
 # not sure if -g is needed..???
 
-libroojspacker_1_1_la_VALAFLAGS = \
-    --library roojspacker-1.1 \
-    -H roojspacker-1.1.h \
-    --gir JSDOC-1.1.gir \
+libroojspacker_1_2_la_VALAFLAGS = \
+    --library roojspacker-1.2 \
+    -H roojspacker-1.2.h \
+    --gir JSDOC-1.2.gir \
     -X -shared -X -lm \
     --thread \
     --target-glib=2.32 \
@@ -73,11 +73,11 @@ libroojspacker_1_1_la_VALAFLAGS = \
     $(roojspacker_PKGS) \
      $(roojspacker_OLD_GLIB_FLAGS)  $(roojspacker_JSON_GLIB_FLAGS)
 
-libroojspacker_1_1_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
+libroojspacker_1_2_la_CFLAGS =    $(JSON_GLIB_CFLAGS) $(ROOJSPACKER_CFLAGS) 
 
 roojspacker_SOURCES =  main.vala
-roojspacker_LDADD = libroojspacker-1.1.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
-roojspacker_VALAFLAGS =  --pkg roojspacker-1.1 --thread -X -lm --target-glib=2.32   \
+roojspacker_LDADD = libroojspacker-1.2.la $(ROOJSPACKER_LIBS) $(JSON_GLIB_LIBS)
+roojspacker_VALAFLAGS =  --pkg roojspacker-1.2 --thread -X -lm --target-glib=2.32   \
     --vapidir=$(srcdir)  --vapidir=$(srcdir)/vapi -g  $(roojspacker_PKGS) \
      $(roojspacker_OLD_GLIB_FLAGS) $(roojspacker_JSON_GLIB_FLAGS)
      
@@ -88,7 +88,7 @@ CLEANFILES = *.h *.c *.vapi *.stamp *.gir
 roojspackerincludedir = $(includedir)/roojspacker
 
 roojspackerinclude_HEADERS = \
-	roojspacker-1.1.h \
+	roojspacker-1.2.h \
 	$(NULL)
 
 
@@ -96,7 +96,7 @@ roojspackerinclude_HEADERS = \
 vapidir = $(datadir)/vala/vapi
 
 dist_vapi_DATA = \
-    roojspacker-1.1.vapi
+    roojspacker-1.2.vapi
 
  
 

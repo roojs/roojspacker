@@ -73,7 +73,7 @@ namespace JSDOC
 		
 		public  bool opt_dump_tokens = false;	
 		
-		  
+		   
 		/**
 		 * @cfg {Boolean} opt_clean_cache  (optional) clean up temp files after done - 
 		 *    Defaults to false if you set tmpDir, otherwise true.
@@ -92,7 +92,7 @@ namespace JSDOC
 			}
 			return _PackerRun;
 		}
- 
+  
 		public PackerRun ()
 		{
 #if !HAVE_OLD_GLIB		
