@@ -843,7 +843,7 @@ namespace JSDOC {
                 if (this.cfgs.get(ci).desc.contains("@hide")) {
                     continue;
                 }
-                r.push(this.cfgs.get(ci)); 
+                r.add(this.cfgs.get(ci)); 
                
             }
             return r;
