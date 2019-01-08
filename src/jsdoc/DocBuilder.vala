@@ -363,7 +363,7 @@ namespace JSDOC
 
 		    }
 		    var   generator = new Json.Generator ();
-			generator.set_root (jsonAll));
+			generator.set_root (jsonAll);
 			generator.pretty=  true;
 			generator.ident = 2;
 			generator.to_file(PackerRun.opt_doc_target+"/json/roodata.json");
