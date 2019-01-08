@@ -60,7 +60,7 @@ namespace JSDOC {
             this.globalScope = new Scope(-1, null, -1, 
             	new Token("$global$", TokenType.NAME, TokenName.NAME)
         	);
-            this.indexedScopes = new Gee.ArrayList<int,Scope>();
+            this.indexedScopes = new Gee.HashMap<int,Scope>();
             this.indexedScopes.set(  0,  this.globalScope );
             
             this.mode = WalkerMode.BUILDING_SYMBOL_TREE;
