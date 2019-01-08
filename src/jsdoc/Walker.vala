@@ -725,7 +725,7 @@ namespace JSDOC {
                         
                             //assert braceNesting >= scope.getBraceNesting();
                         var closescope = this.scopeOut();   
-                        scope = this.scopes[this.scopes.length-1];
+                        scope = this.scopes.get(this.scopes.size-1);
                         //print("<<:" +  locBraceNest)
                         //print("<<<<<< " + locBraceNest );
                         if (locBraceNest < 0) {
