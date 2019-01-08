@@ -21,6 +21,8 @@ namespace JSDOC {
         bool global = false;
         WalkerMode mode =  ""; //"BUILDING_SYMBOL_TREE",
         int braceNesting : 0;
+        
+//        bool currentDoc =  false;
 
         bool munge =  true;
 		
@@ -67,7 +69,7 @@ namespace JSDOC {
 
 
        
-        currentDoc: false,
+
 
 
         parseScope : function(scope, ealiases) // parse a token stream..
