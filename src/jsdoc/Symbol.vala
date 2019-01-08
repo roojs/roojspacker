@@ -95,7 +95,7 @@ namespace JSDOC {
 
          
         //childClasses : [],
-        //cfgs : {},
+        private Gee.HashMap<string,DocTag>cfgs;
         
         
         public DocComment comment;
