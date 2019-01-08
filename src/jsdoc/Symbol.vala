@@ -835,7 +835,7 @@ namespace JSDOC {
             
         }
          
-        public Gee.ArrayList<DocTag> configToArray()
+        public Gee.ArrayList<Symbol> configToArray()
         {
             var r = new  Gee.ArrayList<DocTag>();
             foreach(var ci in this.cfgs.keys) {
