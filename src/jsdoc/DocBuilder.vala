@@ -362,7 +362,7 @@ namespace JSDOC
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
 		    }
-		    Json.Generator generator = new Json.Generator ();
+		    var   generator = new Json.Generator ();
 			generator.set_root (jsonAll.get_node());
 			generator.pretty=  true;
 			generator.ident = 2;
