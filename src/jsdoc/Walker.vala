@@ -779,16 +779,16 @@ namespace JSDOC {
                     
                 //print("WALKER ADDsymbol: " + lastIdent);
                 
-                var s = new Gee.ArrayList<string>();
+                string s[] = {};
                 for (var i = 0; i < this.scopes.size;i++) {
-                    s.add(this.scopes.get(i).ident);
+                    s +=this.scopes.get(i).ident;
                 }
-                s.add(lastIdent);
+                s += lastIdent;
                 
                 //print("FULLSCOPE: " + JSON.stringify(s));
                 
                 
-                var s = s.join("|").split("|");
+                var s = string.joinv("|", s).join("|").split("|");
                 //print("FULLSCOPE: " + s);
              //  print("Walker:ADDSymbol: " + s.join("|") );
                 var _t = "";
