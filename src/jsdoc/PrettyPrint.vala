@@ -64,7 +64,7 @@ namespace JSDOC {
 		static string toStyle(Token tok)
 		{
 
-			if (tok.is("WHIT") || tok.is("COMM") ) {
+			if (tok.isName(TokenName.WHIT) || tok.isName(TokenName.COMM) ) {
 			    if (tok.data.index_of("/") > -1) {
 			        return "comment";
 			    }
