@@ -825,7 +825,7 @@ namespace JSDOC {
                     
                     // see if it"s a @class
                     if (this.currentDoc.getTag(DocTagTitle.CLASS).size > 0) {
-                        _s = this.currentDoc.getTag("class")[0].desc;
+                        _s = this.currentDoc.getTag(DocTagTitle.CLASS).get(0).desc;
                         var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(),
                         		 "CONSTRUCTOR", this.currentDoc);
                         Parser       = imports.Parser.Parser;
