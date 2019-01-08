@@ -704,7 +704,7 @@ namespace JSDOC {
                     var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
 						new Token("", TokenType.NAME, TokenName.NAME)
 		        	); 
-                    var fnScope = new Scope(this.braceNesting, scope, token.n, "");
+
                     this.indexedScopes.set(this.ts.cursor, fnScope);
                     scope = fnScope;
                     this.scopesIn(fnScope);
