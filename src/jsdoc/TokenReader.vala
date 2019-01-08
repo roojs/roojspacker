@@ -660,26 +660,28 @@ namespace JSDOC {
 				        found += stream.nextS();
 				    }
 				    if (!Lang.isNumber(found)) {
-				    
-				      this.packer.logError(
-				    		Packer.ResultType.err,
-				    		this.filename,
-				    		this.line,
-				    		"Invalid Number " + found
-						);
+				    	if (this.packer != null) {
+						  this.packer.logError(
+								Packer.ResultType.err,
+								this.filename,
+								this.line,
+								"Invalid Number " + found
+							);
+						}
 						return true; // eat the characters and continue...
  	                }
 						
         		} else {
-			      this.packer.logError(
-			    		Packer.ResultType.err,
-			    		this.filename,
-			    		this.line,
-			    		"could not find +/- or 0-9 after Number '" + found
-					);
-        			return true;
+    			if (this.packer != null) {
+					  this.packer.logError(
+							Packer.ResultType.err,
+							this.filename,
+							this.line,
+							"could not find +/- or 0-9 after Number '" + found
+						);
+		    			return true;
+		    		}
         		}
-        		
         		
             }
              
