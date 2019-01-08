@@ -765,7 +765,7 @@ namespace JSDOC {
             if (this.currentDoc.getTag(DocTagTitle.EVENT).size > 0) {
                 //?? why does it end up in desc - and not name/...
                 //print(this.currentDoc.getTag("event")[0]);
-                lastIdent = "*" + this.currentDoc.getTag("event")[0].desc;
+                lastIdent = "*" + this.currentDoc.getTag(DocTagTitle.EVENT).get(0).desc;
                 //lastIdent = "*" + lastIdent ;
             }
             if (!lastIdent.length && this.currentDoc.getTag("property").length) {
