@@ -720,7 +720,7 @@ namespace JSDOC {
         }
      
          
-        void addSymbol(int lastIdent, bool appendIt, int atype )
+        void addSymbol(int lastIdent, bool appendIt = false, int atype = -11)
         {
             
             if (this.currentDoc.getTag("private").length) {
