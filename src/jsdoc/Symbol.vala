@@ -12,24 +12,15 @@ namespace JSDOC {
 	{
 		 
 		public static bool regex_init = false;
-		public static GLib.Regex regex_global;
-		public static GLib.Regex regex_prototype;
-		
-		static void  regexInit()
-		{
-			if (Symbol.regex_init = true) {
-				return;
-			}
-			Symbol.regex_init = true;
-			Symbol.regex_global = new GLib.Regex("^_global_[.#-]");
-			Symbol.regex_prototype = new GLib.Regex("\\.prototype\\.?");
-		}
+	 	
 
 		private string private_string_name = "";
-		private string private_name {
+		// called by symbolset...
+		public string private_name {
     		set {
-				var n = Symbol.regex_global.replace(value, value.length, 0, "");
-		        n =  Symbol.regex_prototype.replace(n,n.length, 0, "#");
+
+				var n = /^_global_[.#-]/.replace(value, value.length, 0, "");
+		        n =  /\\.prototype\\.?/.replace(n,n.length, 0, "#");
 		        while (true) {
 		    		if (!n.has_suffix("#")) {
 		    			break;
@@ -81,21 +72,22 @@ namespace JSDOC {
 		
 		}
 
-		private Gee.ArrayList<DocTag>  augments ;  
+		public Gee.ArrayList<string>  augments ;  
+		
 
 		private Gee.ArrayList<DocTag>  exceptions ;
 
-		private Gee.ArrayList<DocTag>  inherits; 
+		public Gee.ArrayList<DocTag>  inherits; 
 		public Gee.ArrayList<Symbol>  methods;
 
-		private Gee.ArrayList<Symbol> properties;
+		public Gee.ArrayList<Symbol> properties;
 		private Gee.ArrayList<string> requires;
 		private Gee.ArrayList<DocTag> returns;
 		private Gee.ArrayList<string> see ;
 
-         
-        //childClasses : [],
-        private Gee.HashMap<string,DocTag>cfgs;
+ 		public Gee.ArrayList<string> childClasses;
+ 		public Gee.ArrayList<string> inheritsFrom;
+        public Gee.HashMap<string,DocTag>cfgs;
         
         
         public DocComment comment;
@@ -112,7 +104,7 @@ namespace JSDOC {
         //events : false,
         string example = "";
         
-        //inheritsFrom : [],
+
         string isa = "OBJECT"; // OBJECT//FUNCTION
         
         public bool isEvent = false;
@@ -123,7 +115,7 @@ namespace JSDOC {
         public bool isPrivate = false;
         public bool isStatic = false;
         
-        string memberOf = "";
+        public string memberOf = "";
 
 
 
@@ -156,12 +148,14 @@ namespace JSDOC {
             this.requires = new Gee.ArrayList<string>();
             this.returns = new Gee.ArrayList<DocTag>();
             this.see = new Gee.ArrayList<string>();
+            this.augments = new Gee.ArrayList<string>();
  
             
             this.cfgs = new Gee.HashMap<string,DocTag>();
             // derived later?
-            //this.inheritsFrom = [];
-            //this.childClasses = [];
+            this.inheritsFrom = new Gee.ArrayList<string>();
+
+            this.childClasses = new Gee.ArrayList<string>();
              
             this.comment = new DocComment();
             this.comment.isUserComment =  false;
@@ -171,7 +165,7 @@ namespace JSDOC {
 		
 		public Symbol.new_builtin(string name)
 		{
-            Symbol.regexInit(); 
+            
             this.initArrays();
             this.srcFile = JSDOC.DocParser.currentSourceFile;
 			this.private_name =  name ;
@@ -197,7 +191,7 @@ namespace JSDOC {
                 string isa,
                 DocComment comment
         ) {
-            Symbol.regexInit();
+           
             this.initArrays();
            // this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
@@ -613,12 +607,14 @@ namespace JSDOC {
             */
 
             // @augments
-            this.augments = this.comment.getTag(DocTagTitle.ARGUMENTS);
+            foreach(var dt in this.comment.getTag(DocTagTitle.ARGUMENTS)) {
+            	this.augments.add(dt.desc);
+        	}
+            //@extends - Ext        	
+            foreach(var dt in this.comment.getTag(DocTagTitle.EXTENDS)) {
+            	this.augments.add(dt.desc);
+        	}
             
-            //@extends - Ext
-            if (this.comment.getTag(DocTagTitle.EXTENDS).size > 0) {   
-                this.augments = this.comment.getTag(DocTagTitle.EXTENDS);
-            }
             
             
             // @default
@@ -685,7 +681,7 @@ namespace JSDOC {
             this.type = typeComment;
         }
 
-        void inherit (Symbol symbol) {
+        public void inherit (Symbol symbol) {
             if (!this.hasMember(symbol.name) && !symbol.isInner) {
                 if (symbol.is("FUNCTION"))
                     this.methods.add(symbol);
@@ -698,7 +694,7 @@ namespace JSDOC {
             return (this.hasMethod(name) || this.hasProperty(name));
         }
 
-        void addMember (Symbol symbol) {
+        public void addMember (Symbol symbol) {
             //println("ADDMEMBER: " + this.name +  " ++ " + symbol.name);
             
             if (symbol.comment.getTag(DocTagTitle.CFG).size == 1) { 
@@ -763,7 +759,7 @@ namespace JSDOC {
              
         }
         
-        void addConfig(DocTag docTag)
+        public void addConfig(DocTag docTag)
         {
             if (docTag.memberOf == "") {
                 // remove prototype data...

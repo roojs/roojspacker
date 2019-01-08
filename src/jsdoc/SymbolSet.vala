@@ -38,7 +38,7 @@ namespace JSDOC {
         }
 
         public void addSymbol (Symbol symbol) {
-            //print("ADDING SYMBOL:"+symbol.alias.toString());
+             GLib.debug("ADDING SYMBOL: %s",symbol.alias);
             
              
             if (this.hasSymbol(symbol.alias)) {
@@ -91,28 +91,28 @@ namespace JSDOC {
 
         public void relate() 
         {
-            GLib.error("Not implemented");
-            /*
+            
             this.resolveBorrows();
             this.resolveMemberOf();
             this.resolveAugments();
-            */
+            
         }
 
         void resolveBorrows() 
         {
-            GLib.error("Not implemented");
+
+            return; // this code is not needed- we do not use @inherits
             /*
-            for (p in this._index) {
-                var symbol = this._index[p];
+            foreach (var p in this._index.keys) {
+                var symbol = this._index.get(p);
                 
                 
                 
                 if (symbol.is("FILE") || symbol.is("GLOBAL")) continue;
                 
                 var borrows = symbol.inherits;
-                for (var i = 0; i < borrows.length; i++) {
-                    var borrowed = this.getSymbol(borrows[i].alias);
+                for (var i = 0; i < borrows.size; i++) {
+                    var borrowed = this.getSymbol(borrows.get(i).alias);
                     if (!borrowed) {
                         imports.BuildDocs.Options.LOG.warn("Can't borrow undocumented "+borrows[i].alias+".");
                         continue;
@@ -126,7 +126,7 @@ namespace JSDOC {
                     }
                     
                     if (borrowAsName.length > symbol.alias.length && borrowAsName.indexOf(symbol.alias) == 0) {
-                        borrowAsName = borrowAsName.replace(borrowed.alias, "")
+                        borrowAsName = borrowAsName.replace(borrowed.alias, "");
                     }
                     else {
                         var joiner = "";
@@ -144,47 +144,53 @@ namespace JSDOC {
                     this.addSymbol(clone);
                 }
             }
-            */
+			*/
         }
 
         void resolveMemberOf () 
         {
-            GLib.error("Not implemented");
-            /*
-            for (var p in this._index) {
+            if (this._index.keys.size < 1) {
+	            return;
+            }
+            foreach (var p in this._index.keys) {
                 var symbol = this.getSymbol(p);
                 
                 if (symbol.is("FILE") || symbol.is("GLOBAL")) continue;
                 
                 // the memberOf value was provided in the @memberOf tag
-                else if (symbol.memberOf) {
-                    var parts = symbol.alias.match(new RegExp("^("+symbol.memberOf+"[.#-])(.+)$"));
+                else if (symbol.memberOf.length > 0) {
+                	var regex = new GLib.Regex("^("+symbol.memberOf+"[.#-])(.+)$");
+                	GLib.MatchInfo minfo;
+                    var parts = regex.match_full(symbol.alias, -1, 0, 0 , out minfo);
                     
                     // like foo.bar is a memberOf foo
-                    if (parts) {
-                        symbol.memberOf = parts[1];
-                        symbol.name = parts[2];
+                    if (parts) {                    	 
+                    		
+                        symbol.memberOf = minfo.fetch(1);
+                        symbol.private_name = minfo.fetch(2);
                     }
                     // like bar is a memberOf foo
                     else {
-                        var joiner = symbol.memberOf.charAt(symbol.memberOf.length-1);
-                        if (!/[.#-]/.test(joiner)) symbol.memberOf += ".";
+                        var joiner = symbol.memberOf.substring(symbol.memberOf.length-1);
+                        if (!/[.#-]/.match(joiner)) symbol.memberOf += ".";
                         
                         this.renameSymbol(p, symbol.memberOf + symbol.name);
                     }
                 }
                 // the memberOf must be calculated
                 else {
-                    var parts = symbol.alias.match(/^(.*[.#-])([^.#-]+)$/);
+                	GLib.MatchInfo minfo;                
+                    var parts = /^(.*[.#-])([^.#-]+)$/.match_full(symbol.alias, -1, 0, 0 , out minfo);
+
                     if (parts) {
-                        symbol.memberOf = parts[1];
-                        symbol.name = parts[2];				
+                        symbol.memberOf = minfo.fetch(1);
+                        symbol.private_name = minfo.fetch(2);
                     }
                 }
 
                 // set isStatic, isInner
-                if (symbol.memberOf) {
-                    switch (symbol.memberOf.charAt(symbol.memberOf.length-1)) {
+                if (symbol.memberOf.length > 0) {
+                    switch (symbol.memberOf[symbol.memberOf.length-1]) {
                         case '#' :
                             symbol.isStatic = false;
                             symbol.isInner = false;
@@ -202,67 +208,69 @@ namespace JSDOC {
                             
                     }
                 }
-                
+                 
                 // unowned methods and fields belong to the global object
                 if (!symbol.is("CONSTRUCTOR") && !symbol.isNamespace && symbol.memberOf == "") {
                     symbol.memberOf = "_global_";
                 }
                 
                 // clean up
-                if (symbol.memberOf.match(/[.#-]$/)) {
-                    symbol.memberOf = symbol.memberOf.substr(0, symbol.memberOf.length-1);
+                if (/[.#-]$/.match(symbol.memberOf)) {
+                    symbol.memberOf = symbol.memberOf.substring(0, symbol.memberOf.length-1);
                 }
                 //print("looking for memberOf: " + symbol.memberOf + " FOR " + symbol.alias);
                 // add to parent's methods or properties list
-                if (symbol.memberOf) {
+                if (symbol.memberOf.length > 0) {
                     var container = this.getSymbol(symbol.memberOf);
-                    if (!container) {
+                    if (container == null) {
                         if (SymbolSet.isBuiltin(symbol.memberOf)) {
-                            container = imports.Parser.Parser.addBuiltin(symbol.memberOf);
+                            container = DocParser.addBuiltin(symbol.memberOf);
                         }
                         else {
                            // print("symbol NOT a BUILT IN - createing a container");
                             // Eg. Ext.y.z (missing y)
                             // we need to add in the missing symbol...
-                            container = new imports.Symbol.Symbol(symbol.memberOf, [], "OBJECT", new DocComment(""));
+                            container = new Symbol.new_populate_with_args(
+                            	symbol.memberOf, new Gee.ArrayList<string>(), 
+                        			"OBJECT", new DocComment(""));
                             container.isNamespace = true;
                             this.addSymbol( container );
                            // print(container.toSource());
                             //container = this.getSymbol(symbol.memberOf);
                             // fake container ... so dont ad symbols to it..
                             continue;
-                            container = false;
+                            container = null;
                             //LOG.warn("Can't document "+symbol.name +" as a member of undocumented symbol "+symbol.memberOf+".");
                             //LOG.warn("We only have the following symbols: \n" + 
                             //    this.keys.toSource());
                         }
                     }
                     
-                    if (container && !container.isNamespace) container.addMember(symbol);
+                    if (container != null && !container.isNamespace) {
+                    	 container.addMember(symbol);
+                	 }
                 }
             }
-            */
+
         }
 
         void resolveAugments () 
-        	{
-                    GLib.error("Not implemented");
+    	{
             // does this sort out multiple extends???
-            /*
-            for (var p in this._index) {
+            
+            foreach (var p in this._index.keys) {
                 var symbol = this.getSymbol(p);
                 this.buildAugmentsList(symbol); /// build heirachy of inheritance...
                 if (symbol.alias == "_global_" || symbol.is("FILE")) continue;
                 
                 var augments = symbol.augments;
-                for(var ii = 0, il = augments.length; ii < il; ii++) {
+                for(var ii = 0, il = augments.size; ii < il; ii++) {
                     var contributer = this.getSymbol(augments[ii]);
                     
-                    
-                    
-                    if (contributer) {
-                        contributer.childClasses.push(symbol.alias);
-                        symbol.inheritsFrom.push(contributer.alias);
+                     
+                    if (contributer != null) {
+                        contributer.childClasses.add(symbol.alias);
+                        symbol.inheritsFrom.add(contributer.alias);
                         //if (!isUnique(symbol.inheritsFrom)) {
                         //    imports.BuildDocs.Options.LOG.warn("Can't resolve augments: Circular reference: "+symbol.alias+" inherits from "+contributer.alias+" more than once.");
                         //}
@@ -270,13 +278,13 @@ namespace JSDOC {
                             var cmethods = contributer.methods;
                             var cproperties = contributer.properties;
                             var cfgs = contributer.cfgs;
-                            for (var ci = 0, cl = cmethods.length; ci < cl; ci++) {   
+                            for (var ci = 0, cl = cmethods.size; ci < cl; ci++) {   
                                 symbol.inherit(cmethods[ci]);
-                            }
-                            for (var ci = 0, cl = cproperties.length; ci < cl; ci++) {
+                            } 
+                            for (var ci = 0, cl = cproperties.size; ci < cl; ci++) {
                                 symbol.inherit(cproperties[ci]);
                             }
-                            for (var ci in cfgs) {
+                            foreach (var ci in cfgs.keys) {
                                 symbol.addConfig(cfgs[ci]);
                             }
                             
@@ -284,64 +292,58 @@ namespace JSDOC {
                         //}
                     }
                     else {
-                        
-                        imports.BuildDocs.Options.LOG.warn("Can't augment contributer: '"+augments[ii]+"', not found. FOR: " + symbol.alias);
-                        
+                        GLib.warning("Can't augment contributer: '%s', not found. FOR: %s",
+	                        augments[ii], symbol.alias
+                        );
                         //LOG.warn("We only have the following symbols: \n" + 
                           //      this.keys().toSource().split(",").join(",    \n"));
                        }
 	
                 }
             }
-            */
+            
         }
 
-        int buildAugmentsList (Symbol symbol)
-        {
-	        // basic idea is to add all the child extends to the parent.. without looping forever..
-            GLib.error("Not implemented");
-            return 0;
-            /*
-            if (!symbol.augments.length) {
-                return;
-            }
-            
-            var _t = this;
-            print("buildAugmentsList:" + symbol.alias);
-            var addAugments = function (alist, forceit) { // returns number added..
-                if (!alist.length) {
-                    return 0;
+
+		 void addAugments (Symbol symbol, Gee.ArrayList<string> alist, bool forceit) 
+		 { // returns number added..
+                if (alist.size < 1) {
+                    return;
                 }
-                print("buildAugmentsList:addAugments" + alist.length);
-                var rval = 0;
-                for(var ii = 0; ii < alist.length; ii++) {
+                //print("buildAugmentsList:addAugments" + alist.length);
+                //var rval = 0;
+                for(var ii = 0; ii < alist.size; ii++) {
                     print("getAlias:" + alist[ii]);
                     if (alist[ii] == symbol.alias) {
                         continue;
                     }
-                    var contributer = _t.getSymbol(alist[ii]);
-                    if (!contributer) {
+                    var contributer = this.getSymbol(alist[ii]);
+                    if (contributer == null) {
                         continue;
                     }
                     
-                    if (!forceit && symbol.augments.indexOf(alist[ii]) > -1) {
+                    if (!forceit && symbol.augments.contains(alist[ii])) {
                         continue;
                     }
-                    if (symbol.augments.indexOf(alist[ii]) < 0) {
-                        symbol.augments.push(alist[ii]);
+                    if (symbol.augments.index_of(alist[ii]) < 0) {
+                        symbol.augments.add(alist[ii]);
                     }
                         
                     
-                    addAugments(contributer.augments,false);
+                    this.addAugments(symbol, contributer.augments,false);
                     
-                    rval++;
+                    //rval++;
                 }
-                print("buildAugmentsList: ADDED:" + rval);
-                return rval;
+               // print("buildAugmentsList: ADDED:" + rval);
+               // return rval;
             }
-            addAugments(symbol.augments, true);
-            //while(addAugments(symbol.augments) >  0) { }
-            */
+
+        void buildAugmentsList (Symbol symbol)
+        {
+	        
+	        this.addAugments(symbol, symbol.augments, true);
+	        
+            
             
         }
         public static bool isBuiltin(string name)
