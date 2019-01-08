@@ -884,11 +884,11 @@ namespace JSDOC {
             
             //print("Walker.addsymbol - add : ");
             var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(), atype, this.currentDoc);
-            Parser       = imports.Parser.Parser;
-            Parser.addSymbol(symbol);
+
+            DocParser.addSymbol(symbol);
             this.symbols[_s] = symbol;
             
-             this.currentDoc = false;
+             this.currentDoc = null;
             
         }
         
@@ -912,7 +912,7 @@ namespace JSDOC {
         void scopeListToStr ()
         {
             string[] s = {};
-            for (var i = 0; i < this.scopes.length;i++) {
+            for (var i = 0; i < this.scopes.size;i++) {
                 s +=(this.scopes[i].ident);
             }
             return  string.joinv("\n\t",s);
