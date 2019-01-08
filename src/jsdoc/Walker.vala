@@ -210,7 +210,7 @@ namespace JSDOC {
                  ) {
                     //print("SET ALIAS:" + this.ts.lookTok(1).data +'=' + this.ts.lookTok(3).data);
                      
-                    aliases[this.ts.lookTok(1).data] = this.ts.lookTok(3).data;
+                    aliases.set(this.ts.lookTok(1).data, this.ts.lookTok(3).data);
                     
                 
                 }
