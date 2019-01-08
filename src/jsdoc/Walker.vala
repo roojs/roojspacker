@@ -653,7 +653,7 @@ namespace JSDOC {
                 
                     if (
                             (this.ts.lookTok(-1).data == "=") &&
-                            (this.ts.lookTok(-2).type == "NAME") &&
+                            (this.ts.lookTok(-2).isType(TokenType.NAME)) &&
                             (this.ts.lookTok(-3).name != "VAR")  
                         ) {
                             
@@ -683,7 +683,7 @@ namespace JSDOC {
                     //print("GOT LBRACE : check for :");
                     if (
                             (this.ts.lookTok(-1).data == ":") &&
-                            (this.ts.lookTok(-2).type == "NAME") &&
+                            (this.ts.lookTok(-2).isType(TokenType.NAME)) &&
                             (this.ts.lookTok(-3).name != "VAR") 
                         ) {
                             
