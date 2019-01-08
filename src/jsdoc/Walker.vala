@@ -819,7 +819,7 @@ namespace JSDOC {
                 /// calc scope!!
                 //print("ADDING SYMBOL: "+ s.join("|") +"\n"+ _s + "\n" +Script.prettyDump(this.currentDoc.toSource()));
                 //print("Walker.addsymbol - add : " + _s);
-                if (appendIt && !lastIdent.length) {
+                if (appendIt && lastIdent.length < 1) {
                     
                     // append, and no symbol???
                     
