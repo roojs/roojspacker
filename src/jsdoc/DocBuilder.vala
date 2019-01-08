@@ -141,7 +141,7 @@ namespace JSDOC
 		    
 		                 
 		        DocParser.parse(ts, srcFile);
-		        
+		        /*
 		        if (useCache) {
 		    		
 		    		var ar = DocParser.symbolsToObject(srcFile);
@@ -163,11 +163,12 @@ namespace JSDOC
 		         
 		            
 				 }
+				 */
 		    }
 		    
 		     
 		    
-		    Parser.finish();
+		    DocParser.finish();
 		}
 		/*
 
