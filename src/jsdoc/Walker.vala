@@ -13,7 +13,7 @@ namespace JSDOC {
 		TokenStream ts;
 		Gee.ArrayList<string> warnings;
 		Gee.ArrayList<Scope> scopes;
-		Gee.HashMap<string,Scope> indexedScopes;
+		Gee.HashMap<int,Scope> indexedScopes;
 		Gee.HashMap<string,Symbol> symbols;
 		Gee.HashMap<string,string> aliases;
 		Scope globalScope;
