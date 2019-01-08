@@ -14,11 +14,11 @@ namespace JSDOC {
 
         public Gee.ArrayList<string> keys() 
         {
-            this._index.keys;
+            return this._index.keys;
         }
     	 public Gee.ArrayList<Symbol> values() 
         {
-            this._index.values;
+            return this._index.values;
         }
 
         public bool hasSymbol(string alias) 
