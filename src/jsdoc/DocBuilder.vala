@@ -429,7 +429,7 @@ namespace JSDOC
 		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
 		        cfgProperties = data.configToArray();
 		         cfgProperties.sort((a,b) =>{
-		    		return a.alias.collate(b.alias);
+		    		return a.name.collate(b.name);
 		        }); 
 		        
 		    } 
