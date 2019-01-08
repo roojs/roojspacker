@@ -733,9 +733,7 @@ namespace JSDOC {
             }
             
             var token = this.ts.lookTok(0);
-            if (typeof(appendIt) == "undefined") {
-                appendIt= false;
-            }
+          
           //  print(this.currentDoc.toSource(););
             if (this.currentDoc.getTag("event").length) {
                 //?? why does it end up in desc - and not name/...
@@ -814,7 +812,7 @@ namespace JSDOC {
                     //}
                     
                     _s = _s.replace(/\.prototype.*$/, "");
-                    if (typeof(this.symbols[_s]) == "undefined") {
+                    if (!this.symbols.has_key(_s)) {
                         //print("Symbol:" + _s);
                     //print(this.currentDoc.src);
                         
