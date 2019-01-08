@@ -45,16 +45,16 @@ namespace JSDOC {
 				}
 				if (toks[i].identifier) {
 				    
-				    r += "<span class=\"with-ident2\">' +
-				        escapeHTML(toks.get(i).data) + "</span>';
+				    r += "<span class=\"with-ident2\">" +
+				        escapeHTML(toks.get(i).data) + "</span>";
 				        continue;
 				        
 				}
-				r += escapeHTML(toks[i].data); //.replace(/\n/g, "<BR/>\n");
+				r += escapeHTML(toks.get(i).data); //.replace(/\n/g, "<BR/>\n");
 			}
-			if (cs.length) r +='</span>';
+			if (cs.length > 0) r += "</span>";
 			
-			return '<code class="jsdoc-pretty">'+r+'</code>';
+			return "<code class=\"jsdoc-pretty\">"+r+"</code>";
 			
 				
 		}
@@ -82,4 +82,5 @@ namespace JSDOC {
 			}
 			return "syntax";
 		}
+	}
 }
