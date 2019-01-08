@@ -754,7 +754,7 @@ namespace JSDOC {
                 
               
                 //print(this.currentDoc.toSource());
-                 this.currentDoc = false;
+                 this.currentDoc = null;
                 //print("SKIP ADD SYM:  it"s private");
                 return;
             }
