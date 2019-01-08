@@ -45,7 +45,7 @@ namespace JSDOC {
 				    r +="<span class=\"jsdoc-"+ns+"\">";
 				    cs = ns;
 				}
-				if (toks.get(i).identifier) {
+				if (toks.get(i).identifier.length > 0) {
 				    
 				    r += "<span class=\"with-ident2\">" +
 				        escapeHTML(toks.get(i).data) + "</span>";
