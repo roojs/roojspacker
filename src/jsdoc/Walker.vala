@@ -827,14 +827,14 @@ namespace JSDOC {
                     }
                         
                     for (var i =0; i < this.currentDoc.tags.length;i++) {
-                        this.symbols[_s].addDocTag(this.currentDoc.tags[i]);
+                        this.symbols.get(_s).addDocTag(this.currentDoc.tags[i]);
                     }
                     this.currentDoc = null;
                     return;
                 }
             }    
             //print("Walker.addsymbol - chkdup: " + _s);
-            if (typeof(this.symbols[_s]) != "undefined") {
+            if (typeof(this.symbols.get(_s)) != "undefined") {
                 
                 if (this.symbols[_s].comment.hasTags) {
                     // then existing comment doesnt has tags 
