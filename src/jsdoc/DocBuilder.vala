@@ -443,9 +443,9 @@ namespace JSDOC
 		        add.set_string_member("name",p.name);
 		        add.set_string_member("type",p.type);
 		        add.set_string_member("desc",p.desc);
-		        add.set_string_member("memberOf", p.memberOf == data.alias ? '' : p.memberOf);
+		        add.set_string_member("memberOf", p.memberOf == data.alias ? "" : p.memberOf);
 		            
-		        if (p.optvalues.size) {
+		        if (p.optvalues.size > 0) {
 		    		add.set_array_member("desc",p.optvalues_as_json_array());
 		        }
 		        props.add_object(add );
