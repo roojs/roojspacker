@@ -23,7 +23,12 @@ namespace JSDOC {
         }
     	 public Gee.ArrayList<Symbol> values() 
         {
-            return this._index.values;
+            var  r= new Gee.ArrayList<Symbol>();
+            foreach(var k in this._index.values) {
+            	r.add(k);
+        	}
+        	return r;
+
         }
 
         public bool hasSymbol(string alias) 
