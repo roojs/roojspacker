@@ -52,7 +52,7 @@ namespace JSDOC {
             this.scopes = new Gee.ArrayList<Scope>();;
 			this.aliases = new Gee.HashMap<string,string>();
              
-            this.globalScope = new Scope(-1, false, -1, '$global$');
+            this.globalScope = new Scope(-1, false, -1, "$global$");
             indexedScopes = { 0 : this.globalScope };
             
             this.mode = 'BUILDING_SYMBOL_TREE';
