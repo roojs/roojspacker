@@ -546,7 +546,8 @@ namespace JSDOC
 		    	var str = "";
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
-		    FileUtils.put_contents(PackerRun.singleton().opt_doc_target+"/symbols/src/" + name, 
+		    FileUtils.set_contents(
+    			PackerRun.singleton().opt_doc_target+"/symbols/src/" + name, 
 		        "<html><head>" +
 		        "<title>" + sourceFile + "</title>" +
 		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../css/highlight-js.css\"/>" + 
