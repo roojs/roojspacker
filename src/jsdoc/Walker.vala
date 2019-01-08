@@ -161,7 +161,7 @@ namespace JSDOC {
                     if (newDoc.getTag(DocTagTitle.SCOPE).size > 0) {
                         //print("Walker2 : doctag changes scope");
                         //throw "done";
-                        scope.ident = "$private$|" + newDoc.getTag("scope").get(0).desc;
+                        scope.ident = "$private$|" + newDoc.getTag(DocTagTitle.SCOPE).get(0).desc;
                         continue;
                     }
                     
