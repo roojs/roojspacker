@@ -12,7 +12,9 @@ namespace JSDOC {
 		Gee.ArrayList<Scope> scopes;
 		Gee.ArrayList<string,Scope> indexedScopes;
 		Gee.ArrayList<Symbol> symbols;
-
+		Gee.HashMap<string,string> aliases;
+		Scope globalScope;
+		
         bool global = false;
         string mode =  ""; //"BUILDING_SYMBOL_TREE",
         int braceNesting : 0;
@@ -26,6 +28,7 @@ namespace JSDOC {
 			this.scopes = new Gee.ArrayList<Scope>();
 			this.indexedScopes = new Gee.ArrayList<string,Scope>();
 			this.symbols = new Gee.ArrayList<Symbol>();
+			this.aliases = new Gee.HashMap<string,string>();
 			this.braceNesting = 0;
 		}
 
@@ -40,14 +43,14 @@ namespace JSDOC {
 
 
 
-        buildSymbolTree : function()
+        public void buildSymbolTree()
         {
             //print("<PRE>");
             
             this.ts.rewind();
             this.braceNesting = 0;
-            this.scopes = [];
-            this.aliases = {};
+            this.scopes = new Gee.ArrayList<Scope>();;
+			this.aliases = new Gee.HashMap<string,string>();
              
             this.globalScope = new Scope(-1, false, -1, '$global$');
             indexedScopes = { 0 : this.globalScope };
