@@ -293,7 +293,7 @@ namespace JSDOC
 		    //var fileindexTemplate = new Template( PackerRun.opt_doc_template_dir +"/allfiles."+ PackerRun.opt_doc_ext );
 
 		    
-		    classTemplate.symbolSet = this.symbolSet; // where?
+		    //classTemplate.symbolSet = this.symbolSet; // where?
 		    
 		    /*
 		    function hasNoParent($) {
@@ -315,7 +315,7 @@ namespace JSDOC
 		    
 		    
 		    
-		    var symbols = this.symbolSet.toArray();
+		    var symbols = this.symbolSet.valeis();
 		    
 		    var files = this.packer.files;
 		    

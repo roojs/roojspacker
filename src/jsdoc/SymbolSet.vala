@@ -16,7 +16,10 @@ namespace JSDOC {
         {
             this._index.keys;
         }
- 
+    	 public Gee.ArrayList<Symbol> values() 
+        {
+            this._index.values;
+        }
 
         public bool hasSymbol(string alias) 
         {
