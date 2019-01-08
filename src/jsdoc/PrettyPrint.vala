@@ -36,7 +36,7 @@ namespace JSDOC {
 			
 			
 			for (var i = 0;i < toks.length; i++) {
-				var ns = toStyle(toks[i]);
+				var ns = toStyle(toks.get(i));
 				if (ns != cs) {
 				    // change of style
 				    if (cs.length > 0) { r += "</span>"; };
@@ -45,8 +45,8 @@ namespace JSDOC {
 				}
 				if (toks[i].identifier) {
 				    
-				    r += '<span class="with-ident2">' +
-				        escapeHTML(toks[i].data) + '</span>';
+				    r += "<span class=\"with-ident2\">' +
+				        escapeHTML(toks.get(i).data) + "</span>';
 				        continue;
 				        
 				}
