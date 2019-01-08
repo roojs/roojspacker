@@ -14,7 +14,7 @@ namespace JSDOC {
 		Gee.ArrayList<string> warnings;
 		Gee.ArrayList<Scope> scopes;
 		Gee.ArrayList<string,Scope> indexedScopes;
-		Gee.ArrayList<string,Symbol> symbols;
+		Gee.HashMap<string,Symbol> symbols;
 		Gee.HashMap<string,string> aliases;
 		Scope globalScope;
 		
@@ -32,7 +32,7 @@ namespace JSDOC {
 			this.warnings= new Gee.ArrayList<string>();
 			this.scopes = new Gee.ArrayList<Scope>();
 			this.indexedScopes = new Gee.ArrayList<int,Scope>();
-			this.symbols = new Gee.ArrayList<Symbol>();
+			this.symbols = new Gee.HashMap<string,Symbol>();
 			this.aliases = new Gee.HashMap<string,string>();
 			this.braceNesting = 0;
 		}
