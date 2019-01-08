@@ -15,7 +15,7 @@ namespace JSDOC {
 		{
 			 
 			var txs = new TextStream(str);
-			var tr = new TokenReader(p);
+			var tr = new TokenReader(null);
 			tr.keepComments = true;
 			tr.keepWhite = true;
 			var toks = tr.tokenize(txs);
