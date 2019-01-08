@@ -762,7 +762,7 @@ namespace JSDOC {
             var token = this.ts.lookTok(0);
           
           //  print(this.currentDoc.toSource(););
-            if (this.currentDoc.getTag("event").length) {
+            if (this.currentDoc.getTag(DocTagTitle.EVENT).size > 0) {
                 //?? why does it end up in desc - and not name/...
                 //print(this.currentDoc.getTag("event")[0]);
                 lastIdent = "*" + this.currentDoc.getTag("event")[0].desc;
