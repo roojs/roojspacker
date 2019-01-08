@@ -74,7 +74,7 @@ namespace JSDOC {
 
         string fixAlias (Gee.HashMap<string,string>aliases, string str, bool nomore)
         {
-            var ar = str.split('.');
+            var ar = str.split(".");
             var m = ar[0];
             
             //print(str +"?=" +aliases.toSource());
@@ -146,7 +146,7 @@ namespace JSDOC {
                     if (this.currentDoc != null) {
                         // add it to the current scope????
                         
-                        this.addSymbol('', true);
+                        this.addSymbol("", true);
                         //print ( "Unconsumed Doc: " + token.toString())
                         //throw "Unconsumed Doc (TOKwhitespace): " + this.currentDoc.toSource();
                     }
@@ -154,7 +154,7 @@ namespace JSDOC {
                    // print ( "NEW COMMENT: " + token.toString())
                     var newDoc = new DocComment(token.data);
                     
-                    // it's a scope changer..
+                    // it"s a scope changer..
                     if (newDoc.getTag("scope").length) {
                         //print("Walker2 : doctag changes scope");
                         //throw "done";
@@ -162,7 +162,7 @@ namespace JSDOC {
                         continue;
                     }
                     
-                    // it's a scope changer..
+                    // it"s a scope changer..
                     if (newDoc.getTag("scopeAlias").length) {
                         //print(newDoc.getTag("scopeAlias").toSource());
                         // @scopeAlias a=b
@@ -188,9 +188,9 @@ namespace JSDOC {
                 // things that stop comments carrying on...??
                 
                 if (this.currentDoc && (
-                        token.data == ';' || 
-                        token.data == '}')) {
-                    this.addSymbol('', true);
+                        token.data == ";" || 
+                        token.data == "}")) {
+                    this.addSymbol("", true);
                     //throw "Unconsumed Doc ("+ token.toString() +"): " + this.currentDoc.toSource();
                 }
                     
@@ -202,16 +202,15 @@ namespace JSDOC {
                  if (token.isName(TokenName.VAR) &&
                  
                         this.ts.lookTok(1).isType(TokenType.NAME) &&
-                        this.ts.lookTok(2).data == '=' &&
+                        this.ts.lookTok(2).data == "=" &&
                         this.ts.lookTok(3).isType(TokenType.NAME) &&
-                        this.ts.lookTok(4).data == ';'  
+                        this.ts.lookTok(4).data == ";"  
                         
                  
                  ) {
-                    //print("SET ALIAS:" + this.ts.lookTok(1).data +'=' + this.ts.lookTok(3).data);
+                    //print("SET ALIAS:" + this.ts.lookTok(1).data +"=" + this.ts.lookTok(3).data);
                      
                     aliases.set(this.ts.lookTok(1).data, this.ts.lookTok(3).data);
-                    
                 
                 }
                 
@@ -227,17 +226,17 @@ namespace JSDOC {
                     // a  << scope
                 // xxx.applyIf(a, {
                     // a  << scope
-                if (tokenisType(TokenType.NAME) ) {
+                if (token.isType(TokenType.NAME) ) {
                     
                     //print("TOK(ident)"+ token.toString());
                      
                     if (/\.extend$/.test(token.data) &&
-                        this.ts.lookTok(1).data == '(' &&
-                        this.ts.lookTok(2).type == 'NAME' &&
-                        this.ts.lookTok(3).data == ',' &&
-                        this.ts.lookTok(4).type == 'NAME' &&
-                        this.ts.lookTok(5).data == ',' &&
-                        this.ts.lookTok(6).data == '{' 
+                        this.ts.lookTok(1).data == "(" &&
+                        this.ts.lookTok(2).isType(TokenType.NAME)  &&
+                        this.ts.lookTok(3).data == "," &&
+                        this.ts.lookTok(4).isType(TokenType.NAME)  &&
+                        this.ts.lookTok(5).data == "," &&
+                        this.ts.lookTok(6).data == "{" 
                            
                         ) {
                         // ignore test for ( a and ,
@@ -246,7 +245,7 @@ namespace JSDOC {
                         scopeName = token.data;
                         
                         if (this.currentDoc) {
-                            this.addSymbol(scopeName,false,'OBJECT');
+                            this.addSymbol(scopeName,false,"OBJECT");
 
                         }
                         this.ts.nextTok(); // ,
@@ -259,7 +258,7 @@ namespace JSDOC {
                         scopeName = fixAlias(scopeName);
                         
                         var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                            '$this$=' + scopeName  + '|'+scopeName+'.prototype');
+                            "$this$=" + scopeName  + "|"+scopeName+".prototype");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         scope = fnScope;
                         this.scopesIn(fnScope);
@@ -273,18 +272,18 @@ namespace JSDOC {
                     // a = Roo.extend(parentname, {
                         
                      if (/\.extend$/.test(token.data) &&
-                        this.ts.lookTok(-2).type == 'NAME'  &&
-                        this.ts.lookTok(-1).data == '=' &&
-                        this.ts.lookTok(1).data == '(' &&
-                        this.ts.lookTok(2).type == 'NAME' &&
-                        this.ts.lookTok(3).data == ',' &&
-                        this.ts.lookTok(4).data == '{' 
+                        this.ts.lookTok(-2).type == "NAME"  &&
+                        this.ts.lookTok(-1).data == "=" &&
+                        this.ts.lookTok(1).data == "(" &&
+                        this.ts.lookTok(2).type == "NAME" &&
+                        this.ts.lookTok(3).data == "," &&
+                        this.ts.lookTok(4).data == "{" 
                         ) {
                         // ignore test for ( a and ,
                         token = this.ts.lookTok(-2);
                         scopeName = token.data;
                         if (this.currentDoc) {
-                            this.addSymbol(scopeName,false,'OBJECT');
+                            this.addSymbol(scopeName,false,"OBJECT");
 
                         }
                         this.ts.nextTok(); /// (
@@ -296,7 +295,7 @@ namespace JSDOC {
                         
                         scopeName = fixAlias(scopeName);
                         var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                            '$this$=' + scopeName  + '|'+scopeName+'.prototype');
+                            "$this$=" + scopeName  + "|"+scopeName+".prototype");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         scope = fnScope;
                         this.scopesIn(fnScope);
@@ -320,10 +319,10 @@ namespace JSDOC {
                     */
                     
                     if (/\.(applyIf|apply)$/.test(token.data) && 
-                        this.ts.lookTok(1).data == '('  &&
-                        this.ts.lookTok(2).type == 'NAME' &&
-                        this.ts.lookTok(3).data == ','  &&
-                        this.ts.lookTok(4).data == '{' 
+                        this.ts.lookTok(1).data == "("  &&
+                        this.ts.lookTok(2).type == "NAME" &&
+                        this.ts.lookTok(3).data == ","  &&
+                        this.ts.lookTok(4).data == "{" 
                         
                         ) {
                         this.ts.nextTok(); /// (
@@ -335,7 +334,7 @@ namespace JSDOC {
                         
                                       
                         if (this.currentDoc) {
-                            this.addSymbol(scopeName,false,'OBJECT');
+                            this.addSymbol(scopeName,false,"OBJECT");
                         }
                      
 
@@ -366,15 +365,15 @@ namespace JSDOC {
                         this.ts.lookTok(5).data 
                     ], null, 4));
                     */
-                    if ( this.ts.lookTok(1).data == '=' &&
-                        this.ts.lookTok(2).name == 'NEW' &&
-                        this.ts.lookTok(3).type == 'NAME' &&
-                        this.ts.lookTok(4).data == '(' &&
-                        this.ts.lookTok(5).data == '{' 
+                    if ( this.ts.lookTok(1).data == "=" &&
+                        this.ts.lookTok(2).name == "NEW" &&
+                        this.ts.lookTok(3).type == "NAME" &&
+                        this.ts.lookTok(4).data == "(" &&
+                        this.ts.lookTok(5).data == "{" 
                         ) {
                         scopeName = token.data;
                         if (this.currentDoc) {
-                            this.addSymbol(scopeName,false,'OBJECT');
+                            this.addSymbol(scopeName,false,"OBJECT");
                             
                         }
                         
@@ -410,20 +409,20 @@ namespace JSDOC {
                         
                         // ident : function ()
                         // ident = function ()
-                        var atype = 'OBJECT';
+                        var atype = "OBJECT";
                         
-                        if (((this.ts.lookTok(1).data == ':' )|| (this.ts.lookTok(1).data == '=')) &&
+                        if (((this.ts.lookTok(1).data == ":" )|| (this.ts.lookTok(1).data == "=")) &&
                             (this.ts.lookTok(2).name == "FUNCTION")
                             ) {
                                // this.ts.nextTok();
                                // this.ts.nextTok();
-                                atype = 'FUNCTION';
+                                atype = "FUNCTION";
                         }
                         
                         //print("ADD SYM:" + atype + ":" + token.toString() + this.ts.lookTok(1).toString() + this.ts.lookTok(2).toString());
                         
                         this.addSymbol(
-                            this.ts.lookTok(-1).data == '.' ? token.data :    fixAlias(token.data),
+                            this.ts.lookTok(-1).data == "." ? token.data :    fixAlias(token.data),
                             false,
                             atype);
                         
@@ -442,7 +441,7 @@ namespace JSDOC {
                 
                 if (token.type == "STRN")   { // THIS WILL NOT HAPPEN HERE?!!?
                     if (this.currentDoc) {
-                        this.addSymbol(token.data.substring(1,token.data.length-1),false,'OBJECT');
+                        this.addSymbol(token.data.substring(1,token.data.length-1),false,"OBJECT");
 
                     }
                 }
@@ -450,7 +449,7 @@ namespace JSDOC {
                 // really we only have to deal with object constructs and function calls that change the scope...
                 
                 
-                if (token.name == 'FUNCTION') {
+                if (token.name == "FUNCTION") {
                     //print("GOT FUNCTION");
                     // see if we have an unconsumed doc...
                     
@@ -460,7 +459,7 @@ namespace JSDOC {
                                 message: "Unhandled doc (TOKfunction)" + token.toString()
                             };
                             
-                            //this.addSymbol(this.currentDoc.getTag('class')[0].name, true);
+                            //this.addSymbol(this.currentDoc.getTag("class")[0].name, true);
 
                             //throw "Unconsumed Doc: (TOKrbrace)" + this.currentDoc.toSource();
                     }
@@ -469,22 +468,22 @@ namespace JSDOC {
                      
                      
                      
-                    /// foo = function() {} << really it set's the 'this' scope to foo.prototype
+                    /// foo = function() {} << really it set"s the "this" scope to foo.prototype
                     //$this$=foo.prototype|$private$|foo.prototype
         
                     if (
-                            (this.ts.lookTok(-1).data == '=') && 
-                            (this.ts.lookTok(-2).type == 'NAME')
+                            (this.ts.lookTok(-1).data == "=") && 
+                            (this.ts.lookTok(-2).type == "NAME")
                         ) {
                         scopeName = this.ts.lookTok(-2).data;
-                        this.ts.balance('(');
+                        this.ts.balance("(");
                         token = this.ts.nextTok(); // should be {
                         //print("FOO=FUNCITON() {}" + this.ts.context() + "\n" + token.toString());
                         
                         
                         scopeName = fixAlias(scopeName);
                         var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                            '$this$='+scopeName+'.prototype|$private$|'+scopeName+'.prototype');
+                            "$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype");
                             
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = fnScope;
@@ -506,15 +505,15 @@ namespace JSDOC {
                         //$private$
                         
                     if (
-                            (this.ts.lookTok(-1).name == 'NEW') && 
-                            (this.ts.lookTok(-2).data == '=') &&
-                            (this.ts.lookTok(-3).type = 'FUNCTION')
+                            (this.ts.lookTok(-1).name == "NEW") && 
+                            (this.ts.lookTok(-2).data == "=") &&
+                            (this.ts.lookTok(-3).type = "FUNCTION")
                         ) {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance("(");
                         token = this.ts.nextTok(); // should be {
                             scopeName = fixAlias(scopeName);
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, '$private$');
+                        var fnScope = new Scope(this.braceNesting, scope, token.n, "$private$");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
@@ -537,19 +536,19 @@ namespace JSDOC {
                     //print("checking for : function() {"); 
                     //print( [this.ts.lookTok(-3).type , this.ts.lookTok(-2).type , this.ts.lookTok(-1).type ].join(":"));
                     if (
-                            (this.ts.lookTok(-1).data == ':') && 
-                            (this.ts.lookTok(-2).type == 'NAME') &&
-                            (this.ts.lookTok(-3).data == '(' || this.ts.lookTok(-3).data== ',') 
+                            (this.ts.lookTok(-1).data == ":") && 
+                            (this.ts.lookTok(-2).type == "NAME") &&
+                            (this.ts.lookTok(-3).data == "(" || this.ts.lookTok(-3).data== ",") 
                         ) {
                         //print("got for : function() {"); 
                             
                         //scopeName = this.ts.look(-3).data;
-                        this.ts.balance('(');
+                        this.ts.balance("(");
                         //print(token.toString())
                         token = this.ts.nextTok(); // should be {
                         //print(token.toString())
                         scopeName = fixAlias(scopeName);
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, '');
+                        var fnScope = new Scope(this.braceNesting, scope, token.n, "");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
@@ -559,18 +558,18 @@ namespace JSDOC {
                         continue; // no more processing..    
                           
                     } 
-               /// function foo() {} << really it set's the 'this' scope to foo.prototype
+               /// function foo() {} << really it set"s the "this" scope to foo.prototype
                         //$this$=foo|$private$
                         //$this$=foo
                         
                     if (
-                            (this.ts.lookTok(1).type == 'NAME') 
+                            (this.ts.lookTok(1).type == "NAME") 
                         ) {
                         //scopeName = this.ts.look(-3).data;
-                        this.ts.balance('(');
+                        this.ts.balance("(");
                         token = this.ts.nextTok(); // should be {
                             
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, '');
+                        var fnScope = new Scope(this.braceNesting, scope, token.n, "");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
@@ -588,16 +587,16 @@ namespace JSDOC {
                     
                     if (
                            // (this.ts.lookTok(-1).tokN == Script.TOKlparen) && 
-                            (this.ts.lookTok(1).name != 'NAME')   
+                            (this.ts.lookTok(1).name != "NAME")   
                             
                         //    (this.ts.lookTok(-2).tokN == Script.TOKnew) &&
                          //   (this.ts.lookTok(-3).tokN == Script.TOKassign) &&
                          //   (this.ts.lookTok(-4).tokN == Script.TOKidentifier)
                         ) {
                         //scopeName = this.ts.look(-3).data;
-                        this.ts.balance('(');
+                        this.ts.balance("(");
                         token = this.ts.nextTok(); // should be {
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, '$private$');
+                        var fnScope = new Scope(this.braceNesting, scope, token.n, "$private$");
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = ;
                         //this.scopesIn(fnScope);
@@ -624,16 +623,16 @@ namespace JSDOC {
                     
                 } // end checking for TOKfunction
                     
-                if (token.data == '{') {
+                if (token.data == "{") {
                     
                      // foo = { // !var!!!
                         //$this$=foo|Foo
                
                 
                     if (
-                            (this.ts.lookTok(-1).data == '=') &&
-                            (this.ts.lookTok(-2).type == 'NAME') &&
-                            (this.ts.lookTok(-3).name != 'VAR')  
+                            (this.ts.lookTok(-1).data == "=") &&
+                            (this.ts.lookTok(-2).type == "NAME") &&
+                            (this.ts.lookTok(-3).name != "VAR")  
                         ) {
                             
                             scopeName = this.ts.look(-2).data;
@@ -642,7 +641,7 @@ namespace JSDOC {
                             
                             //print(this.scopes.length);
                             var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                                '$this$='+scopeName + '|'+scopeName
+                                "$this$="+scopeName + "|"+scopeName
                             );
                             
                             this.indexedScopes[this.ts.cursor] = fnScope;
@@ -661,9 +660,9 @@ namespace JSDOC {
                       
                     //print("GOT LBRACE : check for :");
                     if (
-                            (this.ts.lookTok(-1).data == ':') &&
-                            (this.ts.lookTok(-2).type == 'NAME') &&
-                            (this.ts.lookTok(-3).name != 'VAR') 
+                            (this.ts.lookTok(-1).data == ":") &&
+                            (this.ts.lookTok(-2).type == "NAME") &&
+                            (this.ts.lookTok(-3).name != "VAR") 
                         ) {
                             
                             scopeName = this.ts.lookTok(-2).data;
@@ -677,7 +676,7 @@ namespace JSDOC {
                             //print(">>" +locBraceNest);
                             continue; // no more processing..   
                     }
-                    var fnScope = new Scope(this.braceNesting, scope, token.n, '');
+                    var fnScope = new Scope(this.braceNesting, scope, token.n, "");
                     this.indexedScopes[this.ts.cursor] = fnScope;
                     scope = fnScope;
                     this.scopesIn(fnScope);
@@ -687,11 +686,11 @@ namespace JSDOC {
                     continue;
                     
                 }
-                if (token.data == '}') {
+                if (token.data == "}") {
                     
                      
                         if (this.currentDoc) {
-                            this.addSymbol('', true);
+                            this.addSymbol("", true);
 
                             //throw "Unconsumed Doc: (TOKrbrace)" + this.currentDoc.toSource();
                         }
@@ -724,29 +723,29 @@ namespace JSDOC {
         addSymbol: function(lastIdent, appendIt, atype )
         {
             
-            if (this.currentDoc.getTag('private').length) {
+            if (this.currentDoc.getTag("private").length) {
                 
               
                 //print(this.currentDoc.toSource());
                  this.currentDoc = false;
-                //print("SKIP ADD SYM:  it's private");
+                //print("SKIP ADD SYM:  it"s private");
                 return;
             }
             
             var token = this.ts.lookTok(0);
-            if (typeof(appendIt) == 'undefined') {
+            if (typeof(appendIt) == "undefined") {
                 appendIt= false;
             }
           //  print(this.currentDoc.toSource(););
-            if (this.currentDoc.getTag('event').length) {
+            if (this.currentDoc.getTag("event").length) {
                 //?? why does it end up in desc - and not name/...
-                //print(this.currentDoc.getTag('event')[0]);
-                lastIdent = '*' + this.currentDoc.getTag('event')[0].desc;
-                //lastIdent = '*' + lastIdent ;
+                //print(this.currentDoc.getTag("event")[0]);
+                lastIdent = "*" + this.currentDoc.getTag("event")[0].desc;
+                //lastIdent = "*" + lastIdent ;
             }
-            if (!lastIdent.length && this.currentDoc.getTag('property').length) {
-                lastIdent = this.currentDoc.getTag('property')[0].name;
-                //lastIdent = '*' + lastIdent ;
+            if (!lastIdent.length && this.currentDoc.getTag("property").length) {
+                lastIdent = this.currentDoc.getTag("property")[0].name;
+                //lastIdent = "*" + lastIdent ;
             }
             
             var _s = lastIdent;
@@ -763,11 +762,11 @@ namespace JSDOC {
                 //print("FULLSCOPE: " + JSON.stringify(s));
                 
                 
-                var s = s.join('|').split('|');
+                var s = s.join("|").split("|");
                 //print("FULLSCOPE: " + s);
-             //  print("Walker:ADDSymbol: " + s.join('|') );
-                var _t = '';
-                 _s = '';
+             //  print("Walker:ADDSymbol: " + s.join("|") );
+                var _t = "";
+                 _s = "";
                 
                 /// fixme - needs
                 for (var i = 0; i < s.length;i++) {
@@ -775,32 +774,32 @@ namespace JSDOC {
                     if (!s[i].length) {
                         continue;
                     }
-                    if ((s[i] == '$private$') || (s[i] == '$global$')) {
-                        _s = '';
+                    if ((s[i] == "$private$") || (s[i] == "$global$")) {
+                        _s = "";
                         continue;
                     }
-                    if (s[i].substring(0,6) == '$this$') {
-                        var ts = s[i].split('=');
+                    if (s[i].substring(0,6) == "$this$") {
+                        var ts = s[i].split("=");
                         _t = ts[1];
-                        _s = ''; // ??? VERY QUESTIONABLE!!!
+                        _s = ""; // ??? VERY QUESTIONABLE!!!
                         continue;
                     }
                     // when to use $this$ (probabl for events)
-                    _s += _s.length ? '.' : '';
+                    _s += _s.length ? "." : "";
                     _s += s[i];
                 }
-                //print("FULLSCOPE: s , t : " + _s +', ' + _t);
+                //print("FULLSCOPE: s , t : " + _s +", " + _t);
                 
                 /// calc scope!!
-                //print("ADDING SYMBOL: "+ s.join('|') +"\n"+ _s + "\n" +Script.prettyDump(this.currentDoc.toSource()));
+                //print("ADDING SYMBOL: "+ s.join("|") +"\n"+ _s + "\n" +Script.prettyDump(this.currentDoc.toSource()));
                 //print("Walker.addsymbol - add : " + _s);
                 if (appendIt && !lastIdent.length) {
                     
                     // append, and no symbol???
                     
-                    // see if it's a @class
-                    if (this.currentDoc.getTag('class').length) {
-                        _s = this.currentDoc.getTag('class')[0].desc;
+                    // see if it"s a @class
+                    if (this.currentDoc.getTag("class").length) {
+                        _s = this.currentDoc.getTag("class")[0].desc;
                         var symbol = new Symbol(_s, [], "CONSTRUCTOR", this.currentDoc);
                         Parser       = imports.Parser.Parser;
                         Parser.addSymbol(symbol);
@@ -808,19 +807,19 @@ namespace JSDOC {
                         return;
                     }
                     
-                   // if (this.currentDoc.getTag('property').length) {
+                   // if (this.currentDoc.getTag("property").length) {
                      //   print(Script.pretStringtyDump(this.currentDoc.toSource));
                     //    throw "Add Prop?";
                     //}
                     
-                    _s = _s.replace(/\.prototype.*$/, '');
-                    if (typeof(this.symbols[_s]) == 'undefined') {
+                    _s = _s.replace(/\.prototype.*$/, "");
+                    if (typeof(this.symbols[_s]) == "undefined") {
                         //print("Symbol:" + _s);
                     //print(this.currentDoc.src);
                         
                         //throw {
                         //    name: "ArgumentError", 
-                        //    message: "Trying to append symbol '" + _s + "', but no doc available\n" +
+                        //    message: "Trying to append symbol "" + _s + "", but no doc available\n" +
                         //        this.ts.lookTok(0).toString()
                         //};
                         this.currentDoc = false;
@@ -836,7 +835,7 @@ namespace JSDOC {
                 }
             }    
             //print("Walker.addsymbol - chkdup: " + _s);
-            if (typeof(this.symbols[_s]) != 'undefined') {
+            if (typeof(this.symbols[_s]) != "undefined") {
                 
                 if (this.symbols[_s].comment.hasTags) {
                     // then existing comment doesnt has tags 
@@ -853,7 +852,7 @@ namespace JSDOC {
             //print("Walker.addsymbol - ATYPE: " + _s);
 
             if (typeof(atype) == "undefined") {
-                atype = 'OBJECT'; //this.currentDoc.getTag('class').length ? 'OBJECT' : 'FUNCTION';;
+                atype = "OBJECT"; //this.currentDoc.getTag("class").length ? "OBJECT" : "FUNCTION";;
                }
             
             //print("Walker.addsymbol - add : ");
@@ -889,7 +888,7 @@ namespace JSDOC {
             for (var i = 0; i < this.scopes.length;i++) {
                 s.push(this.scopes[i].ident);
             }
-            return  s.join('\n\t');
+            return  s.join("\n\t");
             
         }
         
