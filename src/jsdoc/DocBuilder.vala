@@ -427,19 +427,19 @@ namespace JSDOC
 		    // a) props..
 		    var cfgProperties = new Gee.ArrayList<DocTag>();
 		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
-		        cfgProperties = data.configToArray();
+		         cfgProperties = data.configToArray();
 		         cfgProperties.sort((a,b) =>{
 		    		return a.name.collate(b.name);
 		        }); 
 		        
 		    } 
 		    
-		    var props = new JSON.Array();; 
+		    var props = new Json.Array();; 
 		    //println(cfgProperties.toSource());
 		    
 		    for(var i =0; i < cfgProperties.size;i++) {
 		        var p = cfgPropertiesget.get(i);
-		        var add = new JSON.Object();
+		        var add = new Json.Object();
 		        add.set_string_member("name",p.name);
 		        add.set_string_member("type",p.type);
 		        add.set_string_member("desc",p.desc);
