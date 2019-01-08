@@ -354,7 +354,8 @@ namespace JSDOC
 		        
 		        
 		        FileUtils.set_contents(
-						PackerRun.opt_doc_target+"/symbols/" +symbol.alias+'.' + PackerRun.opt_doc_ext ,
+						PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+"." +
+							 PackerRun.singleton().opt_doc_ext ,
 		                classTemplate.process(symbol)
 		        );
 		        
