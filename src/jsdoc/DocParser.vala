@@ -11,7 +11,7 @@ namespace JSDOC
  
 		
 		static bool has_init = false;
-		//static DocWalker walker ;
+		static Walker walker ;
 	    public static SymbolSet symbols ;
 	    
 	    public static string currentSourceFile;
@@ -44,7 +44,7 @@ namespace JSDOC
 		    DocParser.filesSymbols.set(srcFile, new SymbolSet());
 		    
 		    //Options.LOG.inform("Parser - run walker");
-		    var walker = new  Walker(ts);
+		    walker = new  Walker(ts);
 		    walker.buildSymbolTree();
 		     
 		    
