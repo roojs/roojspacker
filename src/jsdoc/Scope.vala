@@ -29,7 +29,7 @@ namespace JSDOC
 			//if (lastIdent.length) {
 			   //  println("NEW SCOPE: " + lastIdent);
 			//}
-		
+			this.ident = "";
 			this.braceN = braceN;
 			this.parent = parent;
 			this.id = startTokN;
