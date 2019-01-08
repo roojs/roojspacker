@@ -909,7 +909,7 @@ namespace JSDOC {
             
         }
         
-        void scopeListToStr ()
+        string scopeListToStr ()
         {
             string[] s = {};
             for (var i = 0; i < this.scopes.size;i++) {
