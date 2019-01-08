@@ -494,7 +494,7 @@ namespace JSDOC {
             				new Token("$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype", TokenType.NAME, TokenName.NAME)
 			        	); 
                         
-                        this.indexedScopes[this.ts.cursor] = fnScope;
+                        this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
                         this.parseScope(fnScope, aliases);
