@@ -869,31 +869,31 @@ namespace JSDOC {
         
         
         
-        scopesIn : function(s)
+        void scopesIn  (Scope s)
         {
             this.scopes.add(s);
             //print(">>>" + this.ts.context()  + "\n>>>"+this.scopes.length+":" +this.scopeListToStr());
             
-        },
-        scopeOut : function()
+        }
+        Scope scopeOut()
         {
             
            // print("<<<" + this.ts.context()  + "\n<<<"+this.scopes.length+":" +this.scopeListToStr());
             return this.scopes.remove_at(this.scopes.size -1 );
             
-        },
+        }
         
-        scopeListToStr : function()
+        void scopeListToStr ()
         {
-            var s = [];
+            string[] s = {};
             for (var i = 0; i < this.scopes.length;i++) {
-                s.push(this.scopes[i].ident);
+                s +=(this.scopes[i].ident);
             }
-            return  s.join("\n\t");
+            return  string.joinv("\n\t",s);
             
         }
         
-    
+    }
     
      
-});
+}
