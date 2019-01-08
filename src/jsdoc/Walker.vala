@@ -489,10 +489,11 @@ namespace JSDOC {
                         //print("FOO=FUNCITON() {}" + this.ts.context() + "\n" + token.toString());
                         
                         
-                        scopeName = fixAlias(scopeName);
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                            "$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype");
-                            
+                        scopeName = this.fixAlias(aliases, scopeName);
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+            				new Token("$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype", TokenType.NAME, TokenName.NAME)
+			        	); 
+                        
                         this.indexedScopes[this.ts.cursor] = fnScope;
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
