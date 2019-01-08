@@ -13,7 +13,7 @@ namespace JSDOC
  
 		public bool isUserComment  = true;
 		public bool hasTags		= false;
-		string src          = "";
+		public string src          = "";
 		//string meta       =  "";
 		//Gee.ArrayList<string> tagTexts;
 		public Gee.ArrayList<DocTag>    tags;
