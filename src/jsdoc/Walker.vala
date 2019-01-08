@@ -560,8 +560,12 @@ namespace JSDOC {
                         //print(token.toString())
                         token = this.ts.nextTok(); // should be {
                         //print(token.toString())
+                        
                         scopeName = this.fixAlias(aliases, scopeName);
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, "");
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+            				new Token("", TokenType.NAME, TokenName.NAME)
+			        	); 
+
                         this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
@@ -581,8 +585,10 @@ namespace JSDOC {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
-                            
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, "");
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+            				new Token("", TokenType.NAME, TokenName.NAME)
+			        	); 
+
                         this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = fnScope;
                         //this.scopesIn(fnScope);
@@ -609,7 +615,10 @@ namespace JSDOC {
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
-                        var fnScope = new Scope(this.braceNesting, scope, token.n, "$private$");
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+        					new Token("$private$", TokenType.NAME, TokenName.NAME)
+			        	); 
+
                         this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = ;
                         //this.scopesIn(fnScope);
@@ -653,9 +662,9 @@ namespace JSDOC {
                             scopeName = this.fixAlias(aliases, scopeName);
                             
                             //print(this.scopes.length);
-                            var fnScope = new Scope(this.braceNesting, scope, token.n, 
-                                "$this$="+scopeName + "|"+scopeName
-                            );
+                            var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+		    					new Token("$this$=" + scopeName +"|"+scopeName, TokenType.NAME, TokenName.NAME)
+					    	); 
                             
                             this.indexedScopes.set(this.ts.cursor, fnScope);
                             scope = fnScope;
@@ -680,7 +689,10 @@ namespace JSDOC {
                             
                             scopeName = this.ts.lookTok(-2).data;
                             scopeName = this.fixAlias(aliases, scopeName);
-                            var fnScope = new Scope(this.braceNesting, scope, token.n, scopeName);
+                            var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+        						new Token(scopeName, TokenType.NAME, TokenName.NAME)
+				        	); 
+
                             this.indexedScopes.set(this.ts.cursor, fnScope);
                             scope = fnScope;
                             this.scopesIn(fnScope);
@@ -689,6 +701,9 @@ namespace JSDOC {
                             //print(">>" +locBraceNest);
                             continue; // no more processing..   
                     }
+                    var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+						new Token("", TokenType.NAME, TokenName.NAME)
+		        	); 
                     var fnScope = new Scope(this.braceNesting, scope, token.n, "");
                     this.indexedScopes.set(this.ts.cursor, fnScope);
                     scope = fnScope;
