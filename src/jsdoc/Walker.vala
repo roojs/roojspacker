@@ -95,7 +95,7 @@ namespace JSDOC {
         {
             //this.timerPrint("parseScope EnterScope"); 
             
-            var aliases = {};
+            var aliases = new Gee.HashMap<string,string>();
 
             
             
