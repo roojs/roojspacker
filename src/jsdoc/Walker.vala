@@ -839,7 +839,8 @@ namespace JSDOC {
                     //    throw "Add Prop?";
                     //}
 
-                    _s = \.prototype.*$/.replace(_s, _s.length,0, "");
+                    _s = /\.prototype.*$/.replace(_s, _s.length,0, "");
+                    
                     if (!this.symbols.has_key(_s)) {
                         //print("Symbol:" + _s);
                     //print(this.currentDoc.src);
@@ -854,7 +855,7 @@ namespace JSDOC {
                      
                     }
                         
-                    for (var i =0; i < this.currentDoc.tags.length;i++) {
+                    for (var i =0; i < this.currentDoc.tags.size;i++) {
                         this.symbols.get(_s).addDocTag(this.currentDoc.tags[i]);
                     }
                     this.currentDoc = null;
