@@ -166,7 +166,7 @@ namespace JSDOC {
                     }
                     
                     // it"s a scope changer..
-                    if (newDoc.getTag("scopeAlias").length) {
+                    if (newDoc.getTag(DocTagTitle.SCOPEALIAS).length) {
                         //print(newDoc.getTag("scopeAlias").toSource());
                         // @scopeAlias a=b
                         //print("Walker2 : doctag changes scope (alias)");
