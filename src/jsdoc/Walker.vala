@@ -834,7 +834,7 @@ namespace JSDOC {
                 }
             }    
             //print("Walker.addsymbol - chkdup: " + _s);
-            if (typeof(this.symbols.get(_s)) != "undefined") {
+            if (this.symbols.has_key(_s)) {
                 
                 if (this.symbols.get(_s).comment.hasTags) {
                     // then existing comment doesnt has tags 
