@@ -62,9 +62,14 @@ namespace JSDOC {
             this.indexedScopes.set(  0,  this.globalScope );
             
             this.mode = WalkerMode.BUILDING_SYMBOL_TREE;
-            this.parseScope(this.globalScope);
+            this.parseScope(this.globalScope,this.emptyAlias());
             
         }
+        Gee.HashMap<string,string>  emptyAlias()
+        {
+        	return new Gee.HashMap<string,string> ();
+    	}
+        
         
 
         string fixAlias (Gee.HashMap<string,string>aliases, string str, bool nomore)
@@ -89,7 +94,7 @@ namespace JSDOC {
 
         
 
-        parseScope : function(scope, ealiases) // parse a token stream..
+        void parseScope (Scope scope, Gee.HashMap<string,string> ealiases) // parse a token stream..
         {
             //this.timerPrint("parseScope EnterScope"); 
             
