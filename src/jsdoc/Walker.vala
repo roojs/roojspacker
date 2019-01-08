@@ -550,7 +550,7 @@ namespace JSDOC {
                     //print( [this.ts.lookTok(-3).type , this.ts.lookTok(-2).type , this.ts.lookTok(-1).type ].join(":"));
                     if (
                             (this.ts.lookTok(-1).data == ":") && 
-                            (this.ts.lookTok(-2).type == "NAME") &&
+                            (this.ts.lookTok(-2).isType(TokenType.NAME)) &&
                             (this.ts.lookTok(-3).data == "(" || this.ts.lookTok(-3).data== ",") 
                         ) {
                         //print("got for : function() {"); 
