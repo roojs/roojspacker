@@ -38,7 +38,7 @@ namespace JSDOC {
 			
 			
 			for (var i = 0;i < toks.length; i++) {
-				var ns = toStyle(toks.get(i));
+				var ns = toStyle(toks.get(i),cs);
 				if (ns != cs) {
 				    // change of style
 				    if (cs.length > 0) { r += "</span>"; };
@@ -73,11 +73,11 @@ namespace JSDOC {
 			    return "comment";
 			    
 			}
-			if (tok.is("STRN")) {
+			if (tok.isType(TokenType.STRN)) {
 			    return "string";
 			}
 			// other 'vary things??
-			if (tok.is("NAME") || tok.data == '.' || tok.name == "THIS") {
+			if (tok.isType(TokenType.NAME) || tok.data == "." || tok.isName(TokenNAME.THIS)) {
 			    return "var";
 			}
 			var r = new Regex("^[a-zA-Z]+");
