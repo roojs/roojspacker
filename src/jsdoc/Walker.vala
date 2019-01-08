@@ -864,14 +864,14 @@ namespace JSDOC {
             
              this.currentDoc = false;
             
-        },
+        }
         
         
         
         
         scopesIn : function(s)
         {
-            this.scopes.push(s);
+            this.scopes.add(s);
             //print(">>>" + this.ts.context()  + "\n>>>"+this.scopes.length+":" +this.scopeListToStr());
             
         },
