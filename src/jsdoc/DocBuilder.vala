@@ -239,13 +239,13 @@ namespace JSDOC
 		    if (!FileUtils.test (PackerRun.singleton().opt_doc_target,FileTest.IS_DIR )) {
 		        Posix.mkdir(PackerRun.singleton().opt_doc_target,0755);
 		    }
-		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target+"/symbols")) {
+		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target+"/symbols",FileTest.IS_DIR)) {
 		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols",0755);
 		    }
-		    if (!FileUtils.test(PackerRun.opt_doc_target+"/symbols/src")) {
+		    if (!FileUtils.test(PackerRun.opt_doc_target+"/symbols/src",FileTest.IS_DIR)) {
 		        Posix.mkdir(PackerRun.opt_doc_target+"/symbols/src",075);
 		    }
-		    if (!FileUtils.test(PackerRun.opt_doc_target +"/json")) {
+		    if (!FileUtils.test(PackerRun.opt_doc_target +"/json",FileTest.IS_DIR)) {
 		        Posix.mkdir(PackerRun.opt_doc_target +"/json",0755);
 		    }
 		    
