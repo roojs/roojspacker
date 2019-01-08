@@ -329,7 +329,7 @@ namespace JSDOC {
                     ], null, 4));
                     */
                     
-                    if (/\.(applyIf|apply)$/.test(token.data) && 
+                    if (/\.(applyIf|apply)$/.match(token.data) && 
                         this.ts.lookTok(1).data == "("  &&
                         this.ts.lookTok(2).type == "NAME" &&
                         this.ts.lookTok(3).data == ","  &&
