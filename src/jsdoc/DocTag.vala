@@ -95,7 +95,7 @@ namespace JSDOC
 		    
 		    
 		    
-		    this. optvalues = new Gee.ArrayList<string>();
+		    this.optvalues = new Gee.ArrayList<string>();
 		    
 		    var src = in_src;
 			
@@ -279,6 +279,18 @@ namespace JSDOC
             
 
 		}
+		
+		public Json.Array optvalue_as_json_array()
+		{
+			var ret = new Json.Array();
+			foreach (var str in this.optvalues ) {
+				ret.add_string_element(str);
+			}
+			return ret;
+			
+			
+		}
+		
 	}
 }
 	
