@@ -783,7 +783,8 @@ namespace JSDOC {
                 
                 string s[] = {};
                 for (var i = 0; i < this.scopes.size;i++) {
-                    s += this.scopes.get(i).ident;
+	                var adds = this.scopes.get(i).ident;
+                    s += adds;
                 }
                 s += lastIdent;
                 
