@@ -352,7 +352,7 @@ namespace JSDOC {
                         
                         this.ts.nextTok(); /// ,
                         this.ts.nextTok(); // {
-                        scopeName = fixAlias(scopeName);
+                        scopeName = this.fixAlias(aliases,scopeName);
                         var fnScope =   new Scope(this.braceNesting, scope, token.id, // was token.n?
             				new Token(scopeName, TokenType.NAME, TokenName.NAME)
 			        	);
