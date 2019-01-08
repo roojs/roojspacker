@@ -430,7 +430,7 @@ namespace JSDOC
 		        cfgProperties = data.configToArray();
 		        cfgProperties = cfgProperties.sort((a,b) =>{
 		    		return a.alias.collate(b.alias);
-		        });
+		        }); 
 		        
 		    } 
 		    
