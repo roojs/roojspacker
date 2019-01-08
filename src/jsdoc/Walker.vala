@@ -850,9 +850,8 @@ namespace JSDOC {
             }
             //print("Walker.addsymbol - ATYPE: " + _s);
 
-            if (typeof(atype) == "undefined") {
-                atype = "OBJECT"; //this.currentDoc.getTag("class").length ? "OBJECT" : "FUNCTION";;
-               }
+
+
             
             //print("Walker.addsymbol - add : ");
             var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(), atype, this.currentDoc);
