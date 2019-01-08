@@ -315,7 +315,7 @@ namespace JSDOC
 		    
 		    
 		    
-		    var symbols = this.symbolSet.valeis();
+		    var symbols = this.symbolSet.values();
 		    
 		    var files = this.packer.files;
 		    
