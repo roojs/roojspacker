@@ -101,14 +101,15 @@ namespace JSDOC {
 						t.isType(TokenType.NUMB) 
 					)
 				) {
+					if (this.packer != null) {				
 					//print("%s\n%s\n", this.lastAdded.asString(), t.asString());
-					this.packer.logError(
-		        		Packer.ResultType.err,
-		        		this.reader.filename,
-		        		t.line,
-		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
-		    		);
-					 
+						this.packer.logError(
+				    		Packer.ResultType.err,
+				    		this.reader.filename,
+				    		t.line,
+				    		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
+						);
+					}
 	    		}
     		}
     		
@@ -403,13 +404,14 @@ namespace JSDOC {
             if ((found == "}" || found == "]") && ls != null && ls.data == ",") {
                 //print("Error - comma found before " + found);
                 //print(JSON.stringify(tokens.lastSym(), null,4));
-                this.packer.logError(
-            		this.ignoreBadGrammer ? Packer.ResultType.warn : Packer.ResultType.err,
-            		this.filename,
-            		this.line,
-            		"comma found before " + found
-        		);
-                
+            	if (this.packer != null) {
+		            this.packer.logError(
+		        		this.ignoreBadGrammer ? Packer.ResultType.warn : Packer.ResultType.err,
+		        		this.filename,
+		        		this.line,
+		        		"comma found before " + found
+		    		);
+                }
                  
             }
             
