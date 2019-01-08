@@ -74,7 +74,7 @@ namespace JSDOC {
         
         
 
-        string fixAlias (Gee.HashMap<string,string>aliases, string str, bool nomore)
+        string fixAlias (Gee.HashMap<string,string>aliases, string str, bool nomore = false)
         {
             var ar = str.split(".");
             var m = ar[0];
