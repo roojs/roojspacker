@@ -11,7 +11,7 @@ namespace JSDOC
 		int braceN ;
 		public Scope parent;
 		public Gee.ArrayList<Scope> subScopes;
-		
+		public string ident = ""; // used by the walker...
 		
 		Gee.HashMap<string,Identifier> identifier_map;   // map of identifiers to {Identifier} objects
 		Gee.ArrayList<Identifier> identifier_list;
