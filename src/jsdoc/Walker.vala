@@ -630,12 +630,9 @@ namespace JSDOC {
                         
                     }
                     
+                    GLib.error( "dont know how to handle function syntax??\n %s" +
+                                token.asString());
                     
-                    throw {
-                        name: "ArgumentError", 
-                        message: "dont know how to handle function syntax??\n" +
-                                token.toString()
-                    };
             
                     
                     continue;
