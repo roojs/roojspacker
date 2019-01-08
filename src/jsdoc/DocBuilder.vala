@@ -425,7 +425,7 @@ namespace JSDOC
 		{
 		    // what we need to output to be usefull...
 		    // a) props..
-		    var cfgProperties = new GLib.ArrayList<Symbol>();
+		    var cfgProperties = new Gee.ArrayList<Symbol>();
 		    if (!data.comment.getTag(DocTagTitle.SINGLETON).length) {
 		        cfgProperties = data.configToArray();
 		        cfgProperties = cfgProperties.sort((a,b) =>{
