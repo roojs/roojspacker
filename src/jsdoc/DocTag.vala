@@ -220,7 +220,7 @@ namespace JSDOC
 
            
             var src = in_src.strip();
-            GLib.debug("nibbleName: %s", in_src);
+            //GLib.debug("nibbleName: %s", in_src);
             
             // is optional?
             if (src.get(0) == '[') {
