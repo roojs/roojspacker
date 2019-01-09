@@ -453,7 +453,6 @@ namespace JSDOC {
 		                    scope = fnScope;
 		                    this.scopesIn(fnScope);
 		                     
-                        
                         }
                         
                         
