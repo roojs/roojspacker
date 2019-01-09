@@ -301,8 +301,8 @@ namespace JSDOC {
                         
                         scopeName = this.fixAlias(aliases,scopeName);
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token("$this$=" + scopeName  + "|"+scopeName+".prototype",
-            					 TokenType.NAME, TokenName.NAME)
+            				 "$this$=" + scopeName  + "|"+scopeName+".prototype",
+            					 null
 			        	);
                         
                          
@@ -353,7 +353,7 @@ namespace JSDOC {
                         this.ts.nextTok(); // {
                         scopeName = this.fixAlias(aliases,scopeName);
                         var fnScope =   new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token(scopeName, TokenType.NAME, TokenName.NAME)
+            				scopeName, null
 			        	);
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
@@ -398,7 +398,7 @@ namespace JSDOC {
                             
                         scopeName = this.fixAlias(aliases,scopeName);
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token(scopeName, TokenType.NAME, TokenName.NAME)
+            				scopeName,null
 			        	); 
                         this.indexedScopes.set(this.ts.cursor,  fnScope);
                         scope = fnScope;
@@ -490,7 +490,8 @@ namespace JSDOC {
                         
                         scopeName = this.fixAlias(aliases, scopeName);
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token("$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype", TokenType.NAME, TokenName.NAME)
+            				"$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype",
+            				null
 			        	); 
                         
                         this.indexedScopes.set(this.ts.cursor, fnScope);
@@ -522,7 +523,7 @@ namespace JSDOC {
                         token = this.ts.nextTok(); // should be {
                         scopeName = this.fixAlias(aliases, scopeName);
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token("$private$", TokenType.NAME, TokenName.NAME)
+            				"$private$",null
 			        	); 
                         
                         
@@ -562,7 +563,7 @@ namespace JSDOC {
                         
                         scopeName = this.fixAlias(aliases, scopeName);
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token("", TokenType.NAME, TokenName.NAME)
+            				"", null
 			        	); 
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
@@ -585,7 +586,7 @@ namespace JSDOC {
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token("", TokenType.NAME, TokenName.NAME)
+            				"", null
 			        	); 
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
@@ -615,7 +616,7 @@ namespace JSDOC {
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-        					new Token("$private$", TokenType.NAME, TokenName.NAME)
+        					"$private$",null
 			        	); 
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
@@ -659,7 +660,7 @@ namespace JSDOC {
                             
                             //print(this.scopes.length);
                             var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-		    					new Token("$this$=" + scopeName +"|"+scopeName, TokenType.NAME, TokenName.NAME)
+		    					"$this$=" + scopeName +"|"+scopeName, null
 					    	); 
                             
                             this.indexedScopes.set(this.ts.cursor, fnScope);
@@ -686,7 +687,7 @@ namespace JSDOC {
                             scopeName = this.ts.lookTok(-2).data;
                             scopeName = this.fixAlias(aliases, scopeName);
                             var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-        						new Token(scopeName, TokenType.NAME, TokenName.NAME)
+        						scopeName, null
 				        	); 
 
                             this.indexedScopes.set(this.ts.cursor, fnScope);
