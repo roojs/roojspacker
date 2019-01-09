@@ -78,16 +78,7 @@ namespace JSDOC
 		}
 	
  
-		 	static bool done_init = false;
-		
-		static void initRegex()
-		{
-			if (DocTag.done_init) {
-				return;
-			}
-  	
-			DocTag.done_init = true;
-		}
+		 	 
 	
 	
 		public DocTag (string in_src)
@@ -95,8 +86,7 @@ namespace JSDOC
 		    
 		    GLib.debug("Parsing Tag: %s", in_src);
 		    
-		    DocTag.initRegex();
-		    
+		     
 		    
 		    
 		    this.optvalues = new Gee.ArrayList<string>();
