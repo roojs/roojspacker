@@ -99,13 +99,14 @@ namespace JSDOC {
 
         public void relate() 
         {
+            GLib.debug("RELATE called");
             foreach(var s in this._index.keys) {
-            	GLib.debug ("%s", s.asString());
+            	GLib.debug("%s", this._index.get(s).asString());
         	}
             this.resolveBorrows();
             this.resolveMemberOf();
             this.resolveAugments();
-            
+             
         }
 
         void resolveBorrows() 
