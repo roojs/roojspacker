@@ -444,7 +444,7 @@ namespace JSDOC {
 
                         this.currentDoc = null;
                         
-                        if (/\/.prototype$/.match(token.data) {
+                        if (/\/.prototype$/.match(token.data)) {
                         	scopeName = token.data;
 		                    var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
 		        				scopeName,null
