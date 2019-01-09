@@ -268,7 +268,7 @@ namespace JSDOC
 
 		    MatchInfo mi;
 
-            if (/^(\S+)(?:\s([\s\\S]*))?$/.match_full(src, src.length, 0, 0,  out mi)) {
+            if (/^(\S+)(?:\s([\s\S]*))?$/.match_full(src, src.length, 0, 0,  out mi)) {
         		this.name = mi.fetch(1);
         		GLib.debug("got name %s", this.name);
 				return mi.get_match_count() > 2 ? mi.fetch(2) : "";
