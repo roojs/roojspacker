@@ -23,7 +23,7 @@ namespace JSDOC {
     		set {
 				this._assigned_name = name;
 				var n = /^_global_[.#-]/.replace(value, value.length, 0, "");
-		        n =  /\\.prototype\\.?/.replace(n,n.length, 0, "#");
+		        n =  /\.prototype\.?/.replace(n,n.length, 0, "#");
 		        while (true) {
 		    		if (!n.has_suffix("#")) {
 		    			break;
