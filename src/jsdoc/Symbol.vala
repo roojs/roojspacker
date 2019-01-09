@@ -835,7 +835,11 @@ namespace JSDOC {
 				if (p.name.contains(".")) continue;
 				ret += f ? ", " : "";
 				f = true;
-				ret +=  p.name == "this" ? "_self" : p.name;
+				switch(p.name) {
+					case "this" : ret += "this"; break;
+					case "function" : ret += "function() { }"; break;					
+					default : ret += p.name; break;
+				}
 			}
 			return ret + ")";
 		}
