@@ -8,6 +8,7 @@ namespace JSDOC {
 		public Gee.HashMap<string,Symbol> _index {
 			get {
 				if (this.__index == null) {
+					GLib.debug("Creating new Symbolset array");
 					this.__index = new Gee.HashMap<string,Symbol>();
 				}
 				return this.__index;
