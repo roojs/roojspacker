@@ -441,7 +441,15 @@ namespace JSDOC {
                             false,
                             atype);
                         
+
                         this.currentDoc = null;
+                        
+                        if (/\/.prototype$/.match(tokent.data) {
+                        	
+                        
+                        }
+                        
+                        
                         
                         
                     }
