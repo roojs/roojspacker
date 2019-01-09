@@ -886,7 +886,8 @@ namespace JSDOC {
 
             
             //print("Walker.addsymbol - add : ");
-            var symbol = new Symbol.new_populate_with_args(_s, new Gee.ArrayList<string>(), atype, this.currentDoc);
+            var symbol = new Symbol.new_populate_with_args(
+            		_s, new Gee.ArrayList<string>(), atype, this.currentDoc);
 
             DocParser.addSymbol(symbol);
             this.symbols[_s] = symbol;
