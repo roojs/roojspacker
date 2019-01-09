@@ -790,7 +790,7 @@ namespace JSDOC {
                 }
                 s += lastIdent;
                 
-                GLib.debug("FULLSCOPE: '%s'" + string.joinv("', '", s));
+                GLib.debug("FULLSCOPE: '%s'" , string.joinv("', '", s));
                 
                 
                 s = string.joinv("|", s).split("|");
