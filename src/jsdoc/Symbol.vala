@@ -10,7 +10,13 @@ namespace JSDOC {
 
 	public  class Symbol : Object
 	{
-		 
+		// debugging?
+		public string asString()
+		{
+		
+		
+		}
+		
 		public static bool regex_init = false;
 	 	
 
