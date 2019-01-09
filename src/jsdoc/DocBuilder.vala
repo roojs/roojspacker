@@ -439,6 +439,7 @@ namespace JSDOC
 		        if (p.optvalues.size > 0) {
 		    		add.set_array_member("desc",p.optvalue_as_json_array());
 		        }
+		        
 		        props.add_object_element(add );
 		    }
 		    
@@ -463,7 +464,7 @@ namespace JSDOC
 		        add.set_string_member("type","function");
 		        add.set_string_member("desc",m.desc);
 		        add.set_string_member("sig", m.makeFuncSkel());
-		        add.set_string_member("memberOf", m.memberOf);		        
+		        add.set_string_member("memberOf", p.memberOf == data.alias ? "" : p.memberOf);		        
 		        events.add_object_element(add);
 		    } 
 		     
