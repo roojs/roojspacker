@@ -355,7 +355,7 @@ namespace JSDOC
 	        if (opt_doc_target != null) {
 				// remove trailing /
 		        opt_doc_target = opt_doc_target.has_suffix("/") ? 
-		        		opt_doc_target.substring(0, opt_doc_target.length-2) : opt_doc_target;
+		        		opt_doc_target.substring(0, opt_doc_target.length-1) : opt_doc_target;
 	    		var d = new JSDOC.DocBuilder(p);
 	    		return;
 	        } 
