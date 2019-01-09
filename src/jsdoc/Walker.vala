@@ -662,6 +662,7 @@ namespace JSDOC {
                             scopeName = this.ts.look(-2,false).data;
                             //print(scopeName);
                             scopeName = this.fixAlias(aliases, scopeName);
+                            GLib.debug("got %s = {", scopeName);
                             
                             //print(this.scopes.length);
                             var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
