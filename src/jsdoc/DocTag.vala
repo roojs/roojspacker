@@ -201,7 +201,7 @@ namespace JSDOC
                 throw new DocTagException.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ") ;
                 return src;
             }
-            this.type = src.substring(start,stop-1).strip();
+            this.type = src.substring(start+1,stop).strip();
             this.type = this.type.replace(",", "|"); // multiples can be separated by , or |
             return src.substring(stop+1, -1);
             
