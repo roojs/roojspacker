@@ -699,7 +699,7 @@ namespace JSDOC {
                             continue; // no more processing..   
                     }
                     var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
-						new Token("", TokenType.NAME, TokenName.NAME)
+						"", null
 		        	); 
 
                     this.indexedScopes.set(this.ts.cursor, fnScope);
