@@ -99,8 +99,8 @@ namespace JSDOC {
 
         public void relate() 
         {
-            forearch(var s in this._index.keys) {
-            	print ("%s", s.asString());
+            foreach(var s in this._index.keys) {
+            	GLib.debug ("%s", s.asString());
         	}
             this.resolveBorrows();
             this.resolveMemberOf();
