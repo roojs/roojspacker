@@ -99,7 +99,9 @@ namespace JSDOC {
 
         public void relate() 
         {
-            
+            forearch(var s in this._index.keys) {
+            	print ("%s", s.asString());
+        	}
             this.resolveBorrows();
             this.resolveMemberOf();
             this.resolveAugments();
