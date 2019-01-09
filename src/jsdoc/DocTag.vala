@@ -85,11 +85,7 @@ namespace JSDOC
 			if (DocTag.done_init) {
 				return;
 			}
- 
-			DocTag.opval_regex = new GLib.Regex("^\\([^)]+\\)");
-			DocTag.type_regex = new GLib.Regex("^\\s*\\{");
-			DocTag.name_regex = new GLib.Regex("^(\\S+)(?:\\s([\\s\\S]*))?$");
-			
+  	
 			DocTag.done_init = true;
 		}
 	
