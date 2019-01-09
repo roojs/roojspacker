@@ -359,7 +359,7 @@ namespace JSDOC
 			generator.indent = 2;
 			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
-			GLib.debug("JSON: %s", generator.to_string());
+			GLib.debug("JSON: %s", generator.to_data());
 		    
 		    
 		    // regenrate the index with different relative links
