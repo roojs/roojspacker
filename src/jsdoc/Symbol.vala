@@ -820,7 +820,7 @@ namespace JSDOC {
 			var f = false;
 			foreach(var p in this.params) {
 				if (p.name.contains(".")) continue;
-				ret += f ? "" : ", ";
+				ret += f ? ", " : "";
 				f = true;
 				ret +=  p.name == "this" ? "_self" : p.name;
 			}
