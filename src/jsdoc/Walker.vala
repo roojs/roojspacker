@@ -452,7 +452,10 @@ namespace JSDOC {
 		                    this.indexedScopes.set(this.ts.cursor,  fnScope);
 		                    scope = fnScope;
 		                    this.scopesIn(fnScope);
-		                     
+		                     locBraceNest++;
+                        	//print(">>" +locBraceNest);
+                        
+                        	continue; // no more processing..
                         }
                         
                         
