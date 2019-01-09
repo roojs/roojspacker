@@ -528,8 +528,7 @@ namespace JSDOC
 		void makeSrcFile(string sourceFile) 
 		{
 		    // this stuff works...
-		 
-		    
+		  
 		    var name = this.srcFileFlatName(sourceFile);
 		    
 		    GLib.debug("Write Source file : %s/symbols/src/%s", 
