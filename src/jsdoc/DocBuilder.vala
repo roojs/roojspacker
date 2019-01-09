@@ -359,7 +359,7 @@ namespace JSDOC
 			generator.indent = 2;
 			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
-
+			GLib.debug("JSON: %s", generator.to_string());
 		    
 		    
 		    // regenrate the index with different relative links
@@ -532,8 +532,8 @@ namespace JSDOC
 		    var name = this.srcFileFlatName(sourceFile);
 		    
 		    GLib.debug("Write Source file : %s/symbols/src/%s", 
-		    	PackerRun.singleton().opt_doc_target, name);
-		    	var str = "";
+	    	PackerRun.singleton().opt_doc_target, name);
+	    	var str = "";
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
 		    FileUtils.set_contents(
