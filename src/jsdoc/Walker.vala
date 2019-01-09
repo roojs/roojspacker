@@ -819,11 +819,13 @@ namespace JSDOC {
                     _s += _s.length > 0 ? "." : "";
                     _s += s[i];
                 }
-                GLib.debug("FULLSCOPE: _s=%s  : " , _s);
+                GLib.debug("FULLSCOPE: _s=%s (append = %s)" , _s, appendIt? "YES": "no");
                 
                 /// calc scope!!
                 //print("ADDING SYMBOL: "+ s.join("|") +"\n"+ _s + "\n" +Script.prettyDump(this.currentDoc.toSource()));
                 //print("Walker.addsymbol - add : " + _s);
+                
+                
                 if (appendIt && lastIdent.length < 1) {
                     
                     // append, and no symbol???
