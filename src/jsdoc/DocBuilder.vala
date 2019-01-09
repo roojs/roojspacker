@@ -230,7 +230,7 @@ namespace JSDOC
 		        Posix.mkdir(PackerRun.singleton().opt_doc_target+"/symbols",0755);
 		    }
 		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target+"/symbols/src",FileTest.IS_DIR)) {
-		        Posix.mkdir(PackerRun.singleton().opt_doc_target+"/symbols/src",075);
+		        Posix.mkdir(PackerRun.singleton().opt_doc_target+"/symbols/src",0755);
 		    }
 		    if (!FileUtils.test(PackerRun.singleton().opt_doc_target +"/json",FileTest.IS_DIR)) {
 		        Posix.mkdir(PackerRun.singleton().opt_doc_target +"/json",0755);
