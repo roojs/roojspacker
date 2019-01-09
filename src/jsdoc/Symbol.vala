@@ -837,7 +837,7 @@ namespace JSDOC {
 				f = true;
 				switch(p.name) {
 					case "this" : ret += "this"; break;
-					case "function" : ret += "function() { }"; break;					
+					case "function" : ret += "function() {\n\n}"; break;					
 					default : ret += p.name; break;
 				}
 			}
