@@ -11,14 +11,7 @@ namespace JSDOC {
 	public  class Symbol : Object
 	{
 		// debugging?
-		public string asString()
-		{
-			return "NAME: %s   ASNAME: %s ".sprintf(
-				this.name,
-				this._assigned_name,
-				
 		
-		}
 		
 		public static bool regex_init = false;
 	 	
@@ -136,7 +129,22 @@ namespace JSDOC {
         
         public string memberOf = "";
 
+		public string asString()
+		{
+			return "NAME: %s:%s   ASNAME: %s : %s%s%s%s%s".sprintf(
+				this.memberOf,
+				this.name,
+				this._assigned_name,
+				isStatic ? "static": "",
 
+				isEvent ? "EV": "",
+				isConstant ? "CO": "",
+				isConstant ? "IG": "",
+				
+				
+				
+		
+		}
 
        
         string since = "";
