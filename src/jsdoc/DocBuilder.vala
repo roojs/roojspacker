@@ -464,7 +464,7 @@ namespace JSDOC
 		        add.set_string_member("type","function");
 		        add.set_string_member("desc",m.desc);
 		        add.set_string_member("sig", m.makeFuncSkel());
-		        add.set_string_member("memberOf", p.memberOf == data.alias ? "" : p.memberOf);		        
+		        add.set_string_member("memberOf", m.memberOf == data.alias ? "" : m.memberOf);		        
 		        events.add_object_element(add);
 		    } 
 		     
@@ -490,7 +490,7 @@ namespace JSDOC
 		        add.set_string_member("desc",m.desc);
 		        add.set_string_member("sig", m.makeMethodSkel());
 		        add.set_boolean_member("static", m.isStatic);
-		        add.set_string_member("memberOf", m.memberOf);
+		        add.set_string_member("memberOf", m.memberOf == data.alias ? "" : m.memberOf);	
 		        methods.add_object_element(add);
 		    }
 		     
