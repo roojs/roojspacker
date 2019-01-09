@@ -350,11 +350,16 @@ namespace JSDOC
 		    	if (p.outstr.length > 0 ) {
 					stdout.printf ("%s", p.outstr);
 				}
+				return;
 	        }
 	        if (opt_doc_target != null) {
+				// remove trailing /
+		        opt_doc_target = opt_doc_target.has_suffix("/") ? 
+		        		opt_doc_target.substring(0, opt_doc_target.length-2) : opt_doc_target;
 	    		var d = new JSDOC.DocBuilder(p);
+	    		return;
 	        } 
-	        
+	        GLib.error("either select output target or doc output target");
 	        
 	        
 	        

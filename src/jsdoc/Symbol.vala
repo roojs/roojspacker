@@ -40,10 +40,13 @@ namespace JSDOC {
       
         string defaultValue = "";
         
-		private Gee.ArrayList<DocTag> private_doctag_params;
+		private Gee.ArrayList<DocTag> private_doctag_params = null;
 
 		private Gee.ArrayList<DocTag> private_params{
 			set  {
+				if (this.private_doctag_params == null) {
+					this.private_doctag_params = new Gee.ArrayList<DocTag>();
+				}
 				for (var i = 0; i < value.size; i++) {
 				   
 				    this.private_doctag_params.add(value.get(i));
@@ -54,6 +57,9 @@ namespace JSDOC {
      
 		Gee.ArrayList<string> private_string_params{
 			set  {
+				if (this.private_doctag_params == null) {
+					this.private_doctag_params = new Gee.ArrayList<DocTag>();
+				}
 				for (var i = 0; i < value.size; i++) {
 
 				    //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
@@ -67,6 +73,9 @@ namespace JSDOC {
 		}
 		public Gee.ArrayList<DocTag> params {
 			get {
+				if (this.private_doctag_params == null) {
+					this.private_doctag_params = new Gee.ArrayList<DocTag>();
+				}
 				return this.private_doctag_params;
 			}
 		
@@ -390,7 +399,7 @@ namespace JSDOC {
             var params = this.comment.getTag(DocTagTitle.PARAM);
             if (params.size > 0) {
                 // user-defined params overwrite those with same name defined by the parser
-                var thisParams = this.params;
+                var thisParams = params;
 
                 if (thisParams.size == 0) { // none exist yet, so just bung all these user-defined params straight in
                     this.private_params = params;

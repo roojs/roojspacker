@@ -12,36 +12,44 @@ namespace JSDOC
 		
 		static bool has_init = false;
 		static Walker walker ;
-	    public static SymbolSet? symbols = null;
+	    private static SymbolSet? _symbols = null;
 	    
+	    public static SymbolSet symbols() {
+	    	if (DocParser._symbols == null) {
+				GLib.debug("init symbols?");
+				DocParser._symbols = new  SymbolSet();
+				//DocParser._symbols.ref(); // not sure why, by symbols keeps getting blanked.?
+			}
+	    	return DocParser._symbols;
+	    }
+	    static Gee.HashMap<string,SymbolSet>? _filesSymbols = null;
+	    
+	    static Gee.HashMap<string,SymbolSet> filesSymbols() 
+	    {
+	    	if (DocParser._filesSymbols == null) {
+				GLib.debug("init _filesSymbols?");
+				DocParser._filesSymbols = new     Gee.HashMap<string,SymbolSet>();
+			}
+	    	return DocParser._filesSymbols;
+	    	
+	    }
+	    	    
 	    public static string currentSourceFile;
     
-	    static Gee.HashMap<string,SymbolSet> filesSymbols;
-		
-		// no CTOR.. it's mostly static!!
 
-		public static void initStatic()
-		{
-			if (DocParser.has_init) {
-				return ;
-			}
-			DocParser.symbols = new  SymbolSet();
-			DocParser.filesSymbols = new  Gee.HashMap<string,SymbolSet>();
-			
-			DocParser.has_init = true;
 		
-	   }
+		 
 		
 		
 		public static void parse(TokenStream ts, string srcFile) 
 		{
-	    	DocParser.initStatic();
+ 
 		    DocParser.currentSourceFile = srcFile;
 		    // not a nice way to set stuff...
 		   
 		    DocComment.shared = ""; // shared comments don't cross file boundaries
 		     
-		    DocParser.filesSymbols.set(srcFile, new SymbolSet());
+		    DocParser.filesSymbols().set(srcFile, new SymbolSet());
 		    
 		    //Options.LOG.inform("Parser - run walker");
 		    walker = new  Walker(ts);
@@ -53,16 +61,16 @@ namespace JSDOC
 		   // throw "done sym tree";
 		    //Options.LOG.inform("Parser - checking symbols");
 		    // filter symbols by option 
-		    foreach (var p in DocParser.symbols.keys()) {
-		        var symbol = DocParser.symbols.getSymbol(p);
+		    foreach (var p in DocParser.symbols().keys()) {
+		        var symbol = DocParser.symbols().getSymbol(p);
 		        
 		       // print(JSON.stringify(symbol, null,4));
 		        
 		        if (symbol == null) continue;
 		        
 		        if (symbol.isPrivate) {
-		            DocParser.symbols.deleteSymbol(symbol.alias);
-		            DocParser.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
+		            DocParser.symbols().deleteSymbol(symbol.alias);
+		            DocParser.filesSymbols().get(srcFile).deleteSymbol(symbol.alias);
 		            continue;
 		        }
 		         
@@ -75,8 +83,8 @@ namespace JSDOC
 		            
 		            print("Deleting Symbols (alias ends in #): " + symbol.alias);
 		            
-		            DocParser.symbols.deleteSymbol(symbol.alias);
-		            DocParser.filesSymbols.get(srcFile).deleteSymbol(symbol.alias);
+		            DocParser.symbols().deleteSymbol(symbol.alias);
+		            DocParser.filesSymbols().get(srcFile).deleteSymbol(symbol.alias);
 		        
 		        }
 		    }
@@ -91,8 +99,8 @@ namespace JSDOC
 		    //print("PARSER addSYMBOL : " + symbol.alias);
 		    
 			// if a symbol alias is documented more than once the last one with the user docs wins
-			if (DocParser.symbols.hasSymbol(symbol.alias)) {
-				var oldSymbol = DocParser.symbols.getSymbol(symbol.alias);
+			if (DocParser.symbols().hasSymbol(symbol.alias)) {
+				var oldSymbol = DocParser.symbols().getSymbol(symbol.alias);
 		         
 				if (oldSymbol.comment.isUserComment && !oldSymbol.comment.hasTags) {
 					if (symbol.comment.isUserComment) { // old and new are both documented
@@ -124,11 +132,11 @@ namespace JSDOC
 				return;
 			} 
 		    // add it to the file's list... (for dumping later..)
-		    if (Symbol.srcFile != null) {
-		        DocParser.filesSymbols.get(Symbol.srcFile).addSymbol(symbol);
+		    if (DocParser.currentSourceFile != null) {
+		        DocParser.filesSymbols().get(DocParser.currentSourceFile).addSymbol(symbol);
 		    }
 		  
-			DocParser.symbols.addSymbol(symbol);
+			DocParser.symbols().addSymbol(symbol);
 		}
 	
 		public static Symbol addBuiltin(string name) 
@@ -142,7 +150,7 @@ namespace JSDOC
 		public static  void finish() {
 			
 
-			DocParser.symbols.relate();		
+			DocParser.symbols().relate();		
 		
 			// make a litle report about what was found
 			/*
@@ -167,7 +175,7 @@ namespace JSDOC
 		SymbolSet symbolsToObject(string srcFile)
 		{
 
-		    return DocParser.filesSymbols.get(srcFile);
+		    return DocParser.filesSymbols().get(srcFile);
 
 		}
 

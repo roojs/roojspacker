@@ -11,14 +11,14 @@ namespace JSDOC
 		// extractable via JSON?
 		public string VERSION = "1.0.0" ;
 		
-		SymbolSet symbolSet;
+		private SymbolSet symbolSet;
 		
 		private Packer packer;
 	
 		public DocBuilder (Packer p) 
 		{
 			
-			DocBuilder.init();
+ 
 			GLib.debug("Roo JsDoc Toolkit started  at %s ",  (new GLib.DateTime.now_local()).format("Y/m/d H:i:s"));
 			
 			this.packer = p;
@@ -30,7 +30,7 @@ namespace JSDOC
 	
 		    this.parseSrcFiles();
 		    
-		    this.symbolSet = DocParser.symbols;
+		    this.symbolSet = DocParser.symbols();
 		     
 		    // this currently uses the concept of publish.js...
 		    
@@ -39,21 +39,7 @@ namespace JSDOC
         
 		}
 		
-		static bool done_init = false;
-		
-		static GLib.Regex regex_dotdot;
-		
-		static void init()
-		{
-			if (done_init) {
-				return;
-			}
-			// ./ or ../
-			DocBuilder.regex_dotdot = new Regex("\\\\.\\\\.?[/]");
-
-
-		}
-		
+	 
 		
 		/**
 		 * Parse the source files.
@@ -62,7 +48,7 @@ namespace JSDOC
  
 		private void parseSrcFiles() 
 		{
-		    DocParser.initStatic();
+		   
 		    
 		    
 		    //var useCache = PackerRun.opt_cache_dir == null ;
@@ -71,6 +57,7 @@ namespace JSDOC
 		    for (var i = 0, l = this.packer.files.size; i < l; i++) {
 		        
 		        var srcFile = this.packer.files.get(i);
+		        GLib.debug("Parsing source File: %s", srcFile);
 		     /*   
 		        if (useCache) {
 		        
@@ -252,32 +239,34 @@ namespace JSDOC
 		    GLib.debug("Copying files from static: %s " , PackerRun.singleton().opt_doc_template_dir);
 		    // copy everything in 'static' into 
 		    
-		    var iter = GLib.File.new_for_path(
-		    		PackerRun.singleton().opt_doc_template_dir + "/static"
-	    		).enumerate_children (
-				"standard::*",
-				FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
-				null);
-		    FileInfo info;
-		    
-		    while ( (info = iter.next_file (null)) != null) {
-				if (info.get_file_type () == FileType.DIRECTORY) {
-					continue;
-				} 
-				var src = File.new_for_path(info.get_name());
-		        GLib.debug("Copy %s to %s/%s" ,
-		        	 info.get_name() ,
-		        	  PackerRun.singleton().opt_doc_target , src.get_basename());			
-			
-				src.copy(
-					GLib.File.new_for_path(
-						PackerRun.singleton().opt_doc_target + "/" + src.get_basename()
-					),
-					GLib.FileCopyFlags.OVERWRITE
-				);
-			}
-	
-		    
+		    if (PackerRun.singleton().opt_doc_template_dir  != null) {
+				
+				var iter = GLib.File.new_for_path(
+						PackerRun.singleton().opt_doc_template_dir + "/static"
+					).enumerate_children (
+					"standard::*",
+					FileQueryInfoFlags.NOFOLLOW_SYMLINKS, 
+					null);
+				FileInfo info;
+				
+				while ( (info = iter.next_file (null)) != null) {
+					if (info.get_file_type () == FileType.DIRECTORY) {
+						continue;
+					} 
+					var src = File.new_for_path(info.get_name());
+				    GLib.debug("Copy %s to %s/%s" ,
+				    	 info.get_name() ,
+				    	  PackerRun.singleton().opt_doc_target , src.get_basename());			
+				
+					src.copy(
+						GLib.File.new_for_path(
+							PackerRun.singleton().opt_doc_target + "/" + src.get_basename()
+						),
+						GLib.FileCopyFlags.OVERWRITE
+					);
+				}
+		
+			}		    
 		    GLib.debug("Setting up templates");
 		    // used to check the details of things being linked to
 		    /*
@@ -322,7 +311,7 @@ namespace JSDOC
 		    for (var i = 0, l = files.size; i < l; i++) {
 		        var file = files.get(i);
 		        var targetDir = PackerRun.singleton().opt_doc_target + "/symbols/src/";
-///		        this.makeSrcFile(file, targetDir);
+		        this.makeSrcFile(file);
 		    }
 		    //print(JSON.stringify(symbols,null,4));
 		    var classes = new Gee.ArrayList<Symbol>();
@@ -368,6 +357,7 @@ namespace JSDOC
 			generator.set_root (root);
 			generator.pretty=  true;
 			generator.indent = 2;
+			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 
 		    
@@ -523,12 +513,13 @@ namespace JSDOC
 		// in Link (js) ???
 		string srcFileRelName(string sourceFile)
 		{
-	  		return sourceFile.substring(PackerRun.singleton().opt_real_basedir.length+1);
+	  		var rp = Posix.realpath(sourceFile);
+	  		return rp.substring(PackerRun.singleton().opt_real_basedir.length+1);
 		}
 		string srcFileFlatName(string sourceFile)
 		{
 		    var name = this.srcFileRelName(sourceFile);
-		    name = DocBuilder.regex_dotdot.replace(name, name.length, 0, "");
+		    name = /\\.\\.?[\/]/.replace(name, name.length, 0, "");
 		    name = name.replace("/", "_").replace(":", "_") + ".html";
 		    return name;
 		}

@@ -55,6 +55,7 @@ namespace JSDOC
 		    
 		    DocComment.initRegex();
 		     
+		    GLib.debug("parse comment : %s", comment);
 		    this.tags          = new Gee.ArrayList<DocTag>();
 
 		    
@@ -77,14 +78,8 @@ namespace JSDOC
 	            if (RegExp.$2) this.src = RegExp.$2;
 	        }
 	        */
-	        
+	        this.hasTags = /^\s*@\s*\S+/.match(this.src);
 
-	        if (!DocComment.has_tag_regex.match(this.src)) {
-
-	            this.hasTags = false;
-	            
-	            //return;
-	        }
 	        this.fixDesc();
 	        
 	        //if (typeof JSDOC.PluginManager != "undefined") {
@@ -94,17 +89,17 @@ namespace JSDOC
 	        this.src = DocComment.shared+"\n"+this.src;
 
 			//var tagTexts      = new Gee.ArrayList<string>();
-	        GLib.MatchInfo mi;
+ 
 	        
-    		if (DocComment.tag_regex.match_all(this.src, 0, out mi)) {
-	   			while(mi.next()) {
-	   				var sa = mi.fetch(0);
-	   				if (sa.strip().length >0) {
-	   					this.tags.add(new DocTag(sa));
-		   				// tagTexts.add(sa); // ?? strip again?
-	   				}
+	        var bits = /(^|[\r\n])\s*@/.split(this.src);
+   			for(int i=0; i<bits.length; i++) {
+   				var sa = bits[i];
+   				if (sa.strip().length >0) {
+   					this.tags.add(new DocTag(sa));
+	   				// tagTexts.add(sa); // ?? strip again?
    				}
 			}
+			
 	   				
 	        
 	    }
@@ -121,10 +116,12 @@ namespace JSDOC
 				 return "";
 			 }
 			 
-			 var ret = DocComment.comment_line_start_regex.replace(comment, comment.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
-			 ret = DocComment.comment_line_start_white_space_regex.replace(ret, ret.length, 0, "",GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
-		   
-		    return ret;
+			 var ret = /^\/\*\*|\*\/$/.replace(
+			 		comment, comment.length, 0, "", 0 ); //GLib.RegexMatchFlags.NEWLINE_ANYCRLF );
+			 
+			 ret = /(^|[\r\n])\s*\* ?/.replace(ret, ret.length, 0, "\n"  ); //);
+		     
+		    return ret.strip();
 		 }
 	    /**
 	        If no @desc tag is provided, this function will add it.

@@ -807,7 +807,7 @@ namespace JSDOC {
                         _s = "";
                         continue;
                     }
-                    if (s[i].substring(0,6) == "$this$") {
+                    if (s[i].length > 5 &&  s[i].substring(0,6) == "$this$") {
                         var ts = s[i].split("=");
                         _t = ts[1];
                         _s = ""; // ??? VERY QUESTIONABLE!!!

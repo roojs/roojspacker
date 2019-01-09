@@ -3,11 +3,19 @@ namespace JSDOC {
 
 	public class SymbolSet  : Object {
 
-		Gee.HashMap<string,Symbol> _index;
+		private Gee.HashMap<string,Symbol> __index = null;
+		
+		public Gee.HashMap<string,Symbol> _index {
+			get {
+				if (this.__index == null) {
+					this.__index = new Gee.HashMap<string,Symbol>();
+				}
+				return this.__index;
+			}
+		}
 		 
 		public SymbolSet ()
 		{
-			this._index = new Gee.HashMap<string,Symbol>();
 
 		}
 		 
@@ -152,7 +160,7 @@ namespace JSDOC {
             if (this._index.keys.size < 1) {
 	            return;
             }
-            foreach (var p in this._index.keys) {
+            foreach (var p in this.keys()) {
                 var symbol = this.getSymbol(p);
                 
                 if (symbol.is("FILE") || symbol.is("GLOBAL")) continue;
