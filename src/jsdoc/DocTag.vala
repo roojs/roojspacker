@@ -67,7 +67,15 @@ namespace JSDOC
 		public Gee.ArrayList<string> optvalues;
 		public string memberOf = ""; // set by add addMember..
 
-	
+		public string asString()
+		{
+			return "DocTag: title=%s name=%s type=%s  desc=%s".printf(
+				this.title.to_string(),
+				this.name,
+				this.type,
+				this.desc
+			);
+		}
 	
  
 		 private static GLib.Regex opval_regex;
