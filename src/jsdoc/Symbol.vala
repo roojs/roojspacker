@@ -136,12 +136,10 @@ namespace JSDOC {
 				this.name,
 				this._assigned_name,
 				isStatic ? "static": "",
-
 				isEvent ? "EV": "",
 				isConstant ? "CO": "",
-				isConstant ? "IG": "",
-				
-				
+				isConstant ? "IG": ""
+			);
 				
 		
 		}
