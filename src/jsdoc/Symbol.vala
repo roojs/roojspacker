@@ -831,6 +831,7 @@ namespace JSDOC {
 			var ret = "(";
 			var f = false;
 			foreach(var p in this.params) {
+				GLib.debug("got param: %s", p.asString());
 				if (p.name.contains(".")) continue;
 				ret += f ? "" : ", ";
 				f = true;
