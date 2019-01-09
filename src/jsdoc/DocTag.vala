@@ -203,7 +203,7 @@ namespace JSDOC
     	private string nibbleType(string src) 
         {
 		    MatchInfo mi;
-            if(! type_regex.match_all(src, 0, out mi)) {
+            if(! /^\s*\{/.match_all(src, 0, out mi)) {
          	   return src;
      	    }
             int start;
