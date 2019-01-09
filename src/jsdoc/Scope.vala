@@ -26,9 +26,9 @@ namespace JSDOC
 		// lastIdent is only used on the documentation parser..
 		public Scope(int braceN, Scope? parent, int startTokN, string lastIdent, Token? token) // Identifier? lastIdent
 		{
-			//if (lastIdent.length) {
-			   //  println("NEW SCOPE: " + lastIdent);
-			//}
+			if (lastIdent.length) {
+			   GLib.debug("NEW SCOPE: %s", lastIdent);
+			}
 			this.ident = "";
 			this.braceN = braceN;
 			this.parent = parent;
