@@ -359,7 +359,8 @@ namespace JSDOC
 			generator.indent = 2;
 			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
-			GLib.debug("JSON: %s", generator.to_data());
+			size_t l;
+			GLib.debug("JSON: %s", generator.to_data(out l));
 		    
 		    
 		    // regenrate the index with different relative links
@@ -424,7 +425,7 @@ namespace JSDOC
 		        
 		    } 
 		    
-		    var props = new Json.Array();; 
+		    var props = new Json.Array(); 
 		    //println(cfgProperties.toSource());
 		    
 		    for(var i =0; i < cfgProperties.size;i++) {
@@ -458,7 +459,7 @@ namespace JSDOC
 		    for(var i =0; i < ownEvents.size;i++) {
 		        var m = ownEvents.get(i);
 		        var add = new Json.Object();
-		        add.set_string_member("name",m.name.substring(1,m.name.length-1));
+		        add.set_string_member("name",m.name);
 		        add.set_string_member("type","function");
 		        add.set_string_member("desc",m.desc);
 		        add.set_string_member("sig", m.makeFuncSkel());
@@ -482,11 +483,11 @@ namespace JSDOC
 		    for(var i =0; i < ownMethods.size;i++) {
 		        var m = ownMethods.get(i);
 		        var add = new Json.Object();
-		        add.set_string_member("name",m.name.substring(1,m.name.length-1));
+		        add.set_string_member("name",m.name);
 		        add.set_string_member("type","function");
 		        add.set_string_member("desc",m.desc);
 		        add.set_string_member("sig", m.makeMethodSkel());
-		        events.add_object_element(add);
+		        methods.add_object_element(add);
 		    }
 		     
 		    //println(props.toSource());

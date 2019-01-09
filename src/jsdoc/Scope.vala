@@ -23,8 +23,8 @@ namespace JSDOC
 		bool munged  = false;
 	    Gee.HashMap<string,bool> protectedVars ; // only used by to parent..
 		Token? token;
-
-		public Scope(int braceN, Scope? parent, int startTokN, Token? token) // Identifier? lastIdent
+		// lastIdent is only used on the documentation parser..
+		public Scope(int braceN, Scope? parent, int startTokN, string lastIdent, Token? token) // Identifier? lastIdent
 		{
 			//if (lastIdent.length) {
 			   //  println("NEW SCOPE: " + lastIdent);
@@ -38,7 +38,7 @@ namespace JSDOC
 			this.subScopes = new Gee.ArrayList<Scope> ();
 			this.hints = new Gee.HashMap<string,string>();
 			this.protectedVars = new Gee.HashMap<string,bool>();
-			//this.ident = lastIdent;
+		 	this.ident = lastIdent;
 			this.id = Scope_gid++;
 			this.token = token;
 			//print("ADD SCOPE(" + this.gid + ") TO "+ (parent ? this.parent.gid : 'TOP') + ' : ' + 

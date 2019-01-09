@@ -113,7 +113,7 @@ namespace JSDOC {
 			this.filename = filename;
 			this.warnings = new Gee.ArrayList<string>();
 
-			this.globalScope = new  Scope(-1, null, -1, null);
+			this.globalScope = new  Scope(-1, null, -1, "", null);
 			this.indexedScopes = new Gee.HashMap<int,Scope>();
 	
 			//this.indexedg = {};
@@ -148,7 +148,7 @@ namespace JSDOC {
 		   // print(JSON.stringify(this.ts.tokens, null,4));
 			
 			
-			this.globalScope =new  Scope(-1, null, -1, null);
+			this.globalScope =new  Scope(-1, null, -1, "", null);
 			this.indexedScopes = new Gee.HashMap<int,Scope>();
 			this.indexedScopes.set(0, this.globalScope );
 			
@@ -986,7 +986,7 @@ namespace JSDOC {
 			Scope fnScope;
 			//assert token.getType() == Token.LP;
 			if (this.mode == ScopeParserMode.BUILDING_SYMBOL_TREE) {
-			    fnScope = new Scope(1, scope, token.id, token);
+			    fnScope = new Scope(1, scope, token.id, "", token);
 			    
  			    //println("STORING SCOPE" + this.ts.cursor);
 			    

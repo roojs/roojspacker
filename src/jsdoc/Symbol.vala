@@ -131,14 +131,14 @@ namespace JSDOC {
 
 		public string asString()
 		{
-			return "NAME: %s:%s   ASNAME: %s : %s%s%s%s%s".sprintf(
+			return "NAME: %s:%s   ASNAME: %s : %s%s%s%s".printf(
 				this.memberOf,
 				this.name,
 				this._assigned_name,
 				isStatic ? "static": "",
 				isEvent ? "EV": "",
 				isConstant ? "CO": "",
-				isConstant ? "IG": ""
+				isNamespace ? "NS": ""
 			);
 				
 		

@@ -107,7 +107,10 @@ namespace JSDOC {
             this.resolveBorrows();
             this.resolveMemberOf();
             this.resolveAugments();
-             
+			 GLib.debug("AFTER RELATE called");
+          	foreach(var s in this._index.keys) {
+            	GLib.debug("%s", this._index.get(s).asString());
+        	}
         }
 
         void resolveBorrows() 

@@ -57,9 +57,7 @@ namespace JSDOC {
             this.scopes = new Gee.ArrayList<Scope>();;
 			this.aliases = new Gee.HashMap<string,string>();
              
-            this.globalScope = new Scope(-1, null, -1, 
-            	new Token("$global$", TokenType.NAME, TokenName.NAME)
-        	);
+            this.globalScope = new Scope(-1, null, -1,  "$global$", null);
             this.indexedScopes = new Gee.HashMap<int,Scope>();
             this.indexedScopes.set(  0,  this.globalScope );
             
@@ -263,8 +261,7 @@ namespace JSDOC {
                         scopeName = this.fixAlias(aliases, scopeName);
                         
                         var fnScope = new Scope(this.braceNesting, scope, token.id, // was token.n?
-            				new Token("$this$=" + scopeName  + "|"+scopeName+".prototype",
-            					 TokenType.NAME, TokenName.NAME)
+            				"$this$=" + scopeName  + "|"+scopeName+".prototype", null
 			        	);
                         
     
@@ -752,6 +749,7 @@ namespace JSDOC {
         void addSymbol(string in_lastIdent, bool appendIt = false, string atype = "OBJECT")
         {
             
+            GLib.debug("addSymbol %s", in_lastIdent);
             var lastIdent = in_lastIdent;
             if (this.currentDoc.getTag(DocTagTitle.PRIVATE).size > 0) {
                 
@@ -782,13 +780,16 @@ namespace JSDOC {
                 //print("WALKER ADDsymbol: " + lastIdent);
                 
                 string[] s = {};
+                GLib.debug("Checking Scopes %d", this.scopes.size);
                 for (var i = 0; i < this.scopes.size;i++) {
+                    GLib.debug("Scope %s", this.scopes.get(i).ident);
 	                var adds = this.scopes.get(i).ident;
+	                
                     s = s + adds;
                 }
                 s += lastIdent;
                 
-                //print("FULLSCOPE: " + JSON.stringify(s));
+                GLib.debug("FULLSCOPE: '%s'" + string.joinv("', '", s));
                 
                 
                 s = string.joinv("|", s).split("|");
@@ -817,7 +818,7 @@ namespace JSDOC {
                     _s += _s.length > 0 ? "." : "";
                     _s += s[i];
                 }
-                //print("FULLSCOPE: s , t : " + _s +", " + _t);
+                GLib.debug("FULLSCOPE: _s=%s  : " , _s);
                 
                 /// calc scope!!
                 //print("ADDING SYMBOL: "+ s.join("|") +"\n"+ _s + "\n" +Script.prettyDump(this.currentDoc.toSource()));
@@ -846,7 +847,7 @@ namespace JSDOC {
                     
                     if (!this.symbols.has_key(_s)) {
                         //print("Symbol:" + _s);
-                    //print(this.currentDoc.src);
+                    	//print(this.currentDoc.src);
                         
                         //throw {
                         //    name: "ArgumentError", 
@@ -857,7 +858,7 @@ namespace JSDOC {
                         return;
                      
                     }
-                        
+                    GLib.debug("add to symbol  _s=%s  " , _s);    
                     for (var i =0; i < this.currentDoc.tags.size;i++) {
                         this.symbols.get(_s).addDocTag(this.currentDoc.tags.get(i));
                     } 
