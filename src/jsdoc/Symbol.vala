@@ -13,7 +13,10 @@ namespace JSDOC {
 		// debugging?
 		public string asString()
 		{
-		
+			return "PSNAME: %s   NAME: %s ".sprintf(
+				this.private_string_name,
+				this.name,
+				
 		
 		}
 		
@@ -21,6 +24,7 @@ namespace JSDOC {
 	 	
 
 		private string private_string_name = "";
+		private string _assigned_name = "";
 		// called by symbolset...
 		public string private_name {
     		set {
