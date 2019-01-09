@@ -78,11 +78,7 @@ namespace JSDOC
 		}
 	
  
-		 private static GLib.Regex opval_regex;
-		 private static GLib.Regex type_regex;
-		 private static GLib.Regex name_regex;
-		 
-		static bool done_init = false;
+		 	static bool done_init = false;
 		
 		static void initRegex()
 		{
