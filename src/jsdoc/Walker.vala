@@ -137,7 +137,7 @@ namespace JSDOC {
             //print(JSON.stringify(this.ts, null, 4)); Seed.quit();
             Token token;
             while (null != ( token = this.ts.next())) {
-                 GLib.debug("TOK"+ token.asString());
+                 GLib.debug("TOK %s", token.asString());
                 //  this.timerPrint("parseScope AFTER lookT: " + token.toString()); 
                   
                 if (token.isType(TokenType.COMM)) {
