@@ -13,9 +13,9 @@ namespace JSDOC {
 		// debugging?
 		public string asString()
 		{
-			return "PSNAME: %s   NAME: %s ".sprintf(
-				this.private_string_name,
+			return "NAME: %s   ASNAME: %s ".sprintf(
 				this.name,
+				this._assigned_name,
 				
 		
 		}
