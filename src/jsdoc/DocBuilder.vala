@@ -557,13 +557,13 @@ namespace JSDOC
 		
 		}
 		
-		void class_tree_make_parents(Json.Array top, Json.Object add)
+		void class_tree_make_parents(  Json.Object add)
 		{
 			var name = add.get_string_member("name");
 			var bits = name.split(".");
 	    	if (bits.length == 1) {
 	    		// top level..
-	    		top.add_object_element(add);
+	    		this.class_tree_top.add_object_element(add);
 	    		
 	    		return;
     		} 
@@ -578,7 +578,7 @@ namespace JSDOC
 			 
 			// no parent found.. make one..
 			var parent = this.class_tree_new_obj(pname, false);
-			this.class_tree_make_parents(top, map, parent);
+			this.class_tree_make_parents(  parent);
     		
 		
 		}
