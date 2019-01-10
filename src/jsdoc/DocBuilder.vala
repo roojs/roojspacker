@@ -556,10 +556,16 @@ namespace JSDOC
 	    			while(true) {
 	    				var pname = "";
 	    				for(var i=0; i < n; i++) {
-	    					pname += (i ? "." : "") + bits[n];
+	    					pname += (i > 0 ? "." : "") + bits[n];
     					}
     					// got parent..
-    					if (
+    					if (map.has_key(pname)) {
+    						map.get(pname).get_array_member("cn").add_object_element(add);
+    						break;
+						}
+						
+						
+						
     					
     					
 	    			
