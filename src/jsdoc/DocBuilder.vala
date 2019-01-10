@@ -614,6 +614,9 @@ namespace JSDOC
 		    this.class_tree_top = new Json.Array();
 		    this.class_tree_map = new Gee.HashMap<string,Json.Object>();
 		    foreach (var cls in classes) {
+		    	if(cls.alias.length < 1) {
+		    		continue;
+	    		}
 		    	var add =  this.class_tree_new_obj(cls.alias, cls.methods.size > 0 ? true : false);
 				this.class_tree_make_parents( add);
 		    	
