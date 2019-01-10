@@ -310,16 +310,12 @@ namespace JSDOC
 		        var   class_gen = new Json.Generator ();
 			    var  class_root = new Json.Node(Json.NodeType.OBJECT);
 				class_root.init_object(this.class_to_json(symbol));
-				class_gen.set_root (class_tree_root);
+				class_gen.set_root (class_root);
 				class_gen.pretty=  true;
 				class_gen.indent = 2;
 				GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
-				class_tree_gen.to_file(PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
-		        
-		        FileUtils.set_contents(
-						PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json",
-		                this.class_to_json(symbol)
-		        );
+				class_gen.to_file(PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
+		         
 		        
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
