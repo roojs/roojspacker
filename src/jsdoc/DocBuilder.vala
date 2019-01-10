@@ -345,46 +345,10 @@ namespace JSDOC
 			//GLib.debug("JSON: %s", generator.to_data(out l));
 		    
 		    
-		    // regenrate the index with different relative links
-		    //Link.base = "";
-		    //var classesIndex = classesTemplate.process(classes);
+		     
 		    
 		    GLib.debug("build index");
-		    /*
-		    FileUtils.set_contents(
-				PackerRun.opt_doc_target +  "/index." + PackerRun.opt_doc_ext , 
-		        classesindexTemplate.process(classes)
-		    );
-		    */
-		    
-		    // blank everything???? classesindexTemplate = classesIndex = classes = null;
-		    
-	 
-		    /*
-		    var documentedFiles = symbols.filter(function ($) {
-		        return ($.is("FILE"))
-		    });
-		    
-		    var allFiles = [];
-		    
-		    for (var i = 0; i < files.length; i++) {
-		        allFiles.push(new  Symbol(files[i], [], "FILE", new DocComment("/** *" + "/")));
-		    }
-		    
-		    for (var i = 0; i < documentedFiles.length; i++) {
-		        var offset = files.indexOf(documentedFiles[i].alias);
-		        allFiles[offset] = documentedFiles[i];
-		    }
-		        
-		    allFiles = allFiles.sort(makeSortby("name"));
-		    GLib.debug("write files index");
-		    
-		    FileUtils.set_contents(
-				PackerRun.opt_doc_target + "/files." + PackerRun.opt_doc_ext , 
-		        fileindexTemplate.process(allFiles)
-		    );
-		    */
-		    
+		   
 		    
 		    
 		}
