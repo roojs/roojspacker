@@ -658,13 +658,13 @@ namespace JSDOC
 		  
 		    var name = this.srcFileFlatName(sourceFile);
 		    
-		    GLib.debug("Write Source file : %s/symbols/src/%s", 
+		    GLib.debug("Write Source file : %s/src/%s", 
 	    	PackerRun.singleton().opt_doc_target, name);
 	    	var str = "";
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
 		    FileUtils.set_contents(
-    			PackerRun.singleton().opt_doc_target+"/symbols/src/" + name, 
+    			PackerRun.singleton().opt_doc_target+"/src/" + name, 
 		        "<html><head>" +
 		        "<title>" + sourceFile + "</title>" +
 		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../css/highlight-js.css\"/>" + 
