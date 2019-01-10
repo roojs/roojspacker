@@ -192,7 +192,7 @@ namespace JSDOC
 	    			ret += tag.desc;
     			}
 			}
-			return ret;
+			return string.joinv("\n", ret);
 	    }   
 	}
 }
