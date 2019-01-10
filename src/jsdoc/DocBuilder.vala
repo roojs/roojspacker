@@ -424,7 +424,7 @@ namespace JSDOC
 			var events = new Json.Array();
 			ret.set_array_member("events", events);		     
 		    foreach(var m in cls.methods) {
-		    	if (m.isEvent || m.isIgnored) {
+		    	if (!m.isEvent || m.isIgnored) {
 		    		continue;
 	    		}
 		        
