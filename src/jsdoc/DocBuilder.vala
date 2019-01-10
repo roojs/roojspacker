@@ -641,7 +641,7 @@ namespace JSDOC
 		string srcFileRelName(string sourceFile)
 		{
 	  		var rp = Posix.realpath(sourceFile);
-	  		return rp.substring(PackerRun.singleton().opt_real_basedir.length+1);
+	  		return rp.substring(PackerRun.singleton().opt_real_basedir.length);
 		}
 		string srcFileFlatName(string sourceFile)
 		{
