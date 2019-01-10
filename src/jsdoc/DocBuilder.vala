@@ -563,7 +563,7 @@ namespace JSDOC
     			nn += bits[i];
     		}
     		var pname = string.joinv(".", nn);
-    		GLib.debug("Class Tree: adding to parent %s => %s", name, pname);    		
+    		GLib.debug("Class Tree: adding to parent %s => %s", name, pname); 
 			if (map.has_key(pname)) {
 				map.get(pname).get_array_member("cn").add_object_element(add);
 				return;
