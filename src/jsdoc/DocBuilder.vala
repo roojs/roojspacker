@@ -536,14 +536,14 @@ namespace JSDOC
 		Gee.HashMap<string,Json.Object> class_tree_map;
 		Json.Array class_tree_top;
 		
-		Json.Object class_tree_new_obj(string name, bool is_class) 
+		Json.Object? class_tree_new_obj(string name, bool is_class) 
 		{
 	    	if (this.class_tree_map.has_key(name)) {
 	    		var ret = this.class_tree_map.get(name);
 	    		if (!ret.get_boolean_member("is_class") && is_class) {
 			    	ret.set_boolean_member("is_class", is_class);
 	    		}
-	    		return null;
+	    		return null; // no need to do anything
 	    	
 	    	}
 	    	
