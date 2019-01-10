@@ -372,8 +372,27 @@ namespace JSDOC
             ret.set_string_member("name", cls.alias);  
             ret.set_string_member("desc", cls.desc);
 			//ret.set_string_member("desc", cls.comment.getTagAsString(DocTagTitle.DESC));
-			cfgProperties = cls.configToArray();
 			
+			var props = new Json.Array(); 
+			ret.set_array_member("config", props);
+			var cfgProperties = cls.configToArray();
+			for(var i =0; i < cfgProperties.size;i++) {
+		        var p = cfgProperties.get(i);
+		        var add = new Json.Object();
+		        add.set_string_member("name",p.name);
+		        add.set_string_member("type",p.type);
+		        add.set_string_member("desc",p.desc);
+		        add.set_string_member("memberOf", p.memberOf == data.alias ? "" : p.memberOf);
+		            
+		        if (p.optvalues.size > 0) {
+		    		add.set_array_member("desc",p.optvalue_as_json_array());
+		        }
+		        
+		        props.add_object_element(add );
+		    }
+		    
+		    
+		    
 			
 			
 			
