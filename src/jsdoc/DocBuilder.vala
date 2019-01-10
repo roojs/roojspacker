@@ -358,6 +358,13 @@ namespace JSDOC
 		    
 		    
 		}
+		
+		Json.Object class_to_json (Symbol data)
+		{
+		
+		
+		
+		}
 		/**
 		 * JSON files are lookup files for the documentation
 		 * - can be used by IDE's or AJAX based doc tools
