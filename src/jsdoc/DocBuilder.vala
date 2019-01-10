@@ -533,6 +533,8 @@ namespace JSDOC
 		    
 		    
 		}
+		Gee.HashMap<string,Json.Object> class_map;
+		Json.Array class_tree_top;
 		
 		Json.Object class_tree_new_obj(string name, bool is_class) 
 		{
@@ -545,8 +547,7 @@ namespace JSDOC
 		
 		}
 		
-		void class_tree_make_parents(Json.Array top, 
-				Gee.HashMap<string,Json.Object> map, Json.Object add)
+		void class_tree_make_parents(Json.Array top, Json.Object add)
 		{
 			var name = add.get_string_member("name");
 			var bits = name.split(".");
