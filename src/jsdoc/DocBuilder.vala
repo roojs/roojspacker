@@ -515,6 +515,15 @@ namespace JSDOC
 		    
 		}
 		
+		Json.Object publishClassTreeJSON_add(string name, bool is_class) {
+	    	var add =  new Json.Object();
+	    	add.set_string_member("name", name);
+	    	add.set_array_member("cn", new Json.Array());
+	    	add.set_boolean_member("is_class", is_class);
+			return add;
+		
+		}
+		
 		Json.Object publishClassTreeJSON (Gee.ArrayList<Symbol> classes)
 		{
 		    // produce a tree array that can be used to render the navigation.
@@ -563,7 +572,13 @@ namespace JSDOC
     						map.get(pname).get_array_member("cn").add_object_element(add);
     						break;
 						}
-						
+						/// have not got parent..
+						// make it?
+						var add =  new Json.Object();
+						add.set_string_member("name", cls.alias);
+						add.set_array_member("cn", new Json.Array());
+						add.set_boolean_member("is_class", cls.methods.size > 0 ? true : false);
+					
 						
 						
     					
