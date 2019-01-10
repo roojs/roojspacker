@@ -515,10 +515,50 @@ namespace JSDOC
 		    
 		}
 		
-		Json.Object publishClassTreeJSON (Symbol data)
+		Json.Object publishClassTreeJSON (Gee.ArrayList<Symbol> classes)
 		{
-		    // what we need to output to be usefull...
-		    // a) props..
+		    // produce a tree array that can be used to render the navigation.
+		    /*
+		    should produce:
+		    
+		    [
+		    	{
+		    		name : Roo,
+		    		desc : ....
+		    		is_class : true,
+		    		cn : [
+		    			{
+		    				name : 'Roo.util',
+		    				basename : 'util',
+		    				is_class : false,
+	    					cn : [
+	    						{
+	    							....
+		    
+		    to do this, we will need to create the objects in a hashmap
+		    Roo.util => Json.Object
+		    
+		    */
+		    var ret = new Json.Array();
+		    var map = new Gee.HashMap<string,Json.Object>();
+		    foreach (var cls in classes) {
+		    	var add =  new Json.Object();
+		    	add.set_string_member("name", cls.alias);
+		    	add.set_array_member("cn", new Json.Array());
+		    	var bits = cls.alias.split(".");
+		    	if (bits.length == 1) {
+		    		// top level..
+		    		ret.add_array_element(add);
+	    		} else {
+	    		
+	    		
+	    		}
+	    		map.set(cls.alias, add);
+		    
+		    }
+		    
+		    
+		    
 		    var cfgProperties = new Gee.ArrayList<DocTag>();
 		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
 		         cfgProperties = data.configToArray();
