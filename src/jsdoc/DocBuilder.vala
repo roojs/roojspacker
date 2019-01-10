@@ -667,7 +667,7 @@ namespace JSDOC
     			PackerRun.singleton().opt_doc_target+"/src/" + name, 
 		        "<html><head>" +
 		        "<title>" + sourceFile + "</title>" +
-		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../../css/highlight-js.css\"/>" + 
+		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/highlight-js.css\"/>" + 
 		        "</head><body class=\"highlightpage\">" +
 		        pretty +
 		        "</body></html>");
