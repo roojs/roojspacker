@@ -624,7 +624,9 @@ namespace JSDOC
 		    		continue;
 	    		}
 		    	var add =  this.class_tree_new_obj(cls.alias, cls.methods.size > 0 ? true : false);
-				this.class_tree_make_parents( add);
+				if (add != null) {
+					this.class_tree_make_parents( add);
+				}
 		    	
 		    }
 		    
