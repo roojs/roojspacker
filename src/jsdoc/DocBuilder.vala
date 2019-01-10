@@ -352,14 +352,15 @@ namespace JSDOC
 
 		    }
 		    
+		    // outptu class truee
 		    
-		    var   generator = new Json.Generator ();
+		    var   class_tree_gen = new Json.Generator ();
     	    var  root = new Json.Node(Json.NodeType.OBJECT);
 			root.init_object(jsonAll);
-			generator.set_root (root);
-			generator.pretty=  true;
-			generator.indent = 2;
-			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			class_tree_gen.set_root (root);
+			class_tree_gen.pretty=  true;
+			class_tree_gen.indent = 2;
+			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/tree.json");
 			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			size_t l;
 			GLib.debug("JSON: %s", generator.to_data(out l));
