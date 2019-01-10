@@ -863,10 +863,7 @@ namespace JSDOC {
 				add.set_string_member("desc",p.desc);				
 				 
 			}
-			
-			
-			
-			
+			 
 			return ret;
 		
 		}
