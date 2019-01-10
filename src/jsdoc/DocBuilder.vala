@@ -538,6 +538,15 @@ namespace JSDOC
 		
 		Json.Object class_tree_new_obj(string name, bool is_class) 
 		{
+	    	if (class_tree_map.has_key(name)) {
+	    		var ret = class_tree_map.get(name);
+	    		if (!ret.get_boolean_member("is_class") && is_class) {
+			    	ret.set_boolean_member("is_class", is_class);
+	    		}
+	    		return ret;
+	    	
+	    	}
+	    	
 	    	GLib.debug("Class Tree: new object %s", name);
 	    	var add =  new Json.Object();
 	    	add.set_string_member("name", name);
@@ -554,7 +563,7 @@ namespace JSDOC
 	    	if (bits.length == 1) {
 	    		// top level..
 	    		top.add_object_element(add);
-	    		map.set(name, add);
+	    		
 	    		return;
     		} 
     		// got aaa.bb or aaa.bb.cc
