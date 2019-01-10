@@ -359,9 +359,10 @@ namespace JSDOC
 		    
 		}
 		
-		Json.Object class_to_json (Symbol data)
+		Json.Object class_to_json (Symbol cls)
 		{
-		
+			var ret = new Json.Object();
+			ret.set_string_member("name", cls.alias);
 		
 		
 		}
