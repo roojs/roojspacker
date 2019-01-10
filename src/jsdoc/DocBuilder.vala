@@ -372,6 +372,7 @@ namespace JSDOC
             ret.set_string_member("name", cls.alias);  
             ret.set_string_member("desc", cls.desc);
 			//ret.set_string_member("desc", cls.comment.getTagAsString(DocTagTitle.DESC));
+	        /// fixme - @see ... any others..
 			
 			var props = new Json.Array(); 
 			ret.set_array_member("config", props);
@@ -413,7 +414,7 @@ namespace JSDOC
 		        add.set_array_member("params", m.paramsToJson());
 		        add.set_string_member("returns", m.returns.size > 0 ? m.returns[0].type : "");
 		        
-		        /// fixme - @see ... 
+		        /// fixme - @see ... any others..
 		          
 		        
 		        methods.add_object_element(add);
