@@ -531,7 +531,7 @@ namespace JSDOC
 			var bits = name.split(".");
 	    	if (bits.length == 1) {
 	    		// top level..
-	    		ret.add_object_element(add);
+	    		top.add_object_element(add);
 	    		map.set(name, add);
 	    		return;
     		} 
