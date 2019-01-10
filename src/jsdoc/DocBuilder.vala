@@ -527,7 +527,7 @@ namespace JSDOC
 		void publishClassTreeJSON_make_parents(Json.Array top, 
 				Gee.HashMap<string,Json.Object> map, Json.Object add)
 		{
-			var name = add.get_object_member("name");
+			var name = add.get_string_member("name");
 			var bits = name.split(".");
 	    	if (bits.length == 1) {
 	    		// top level..
@@ -546,34 +546,10 @@ namespace JSDOC
 				map.get(pname).get_array_member("cn").add_object_element(add);
 				return;
 			}
+			// no parent found.. make one..
+			var parent = this.publishClassTreeJSON_add(pname, false);
+			this.publishClassTreeJSON_make_parents(top, map, parent);
     		
-    		
-    		
-    		
-    			// add it to the child.
-			var n = bits.length-1; // (so xx.yy.ccc) len =3 , n =2
-    			while(true) {
-    				var pname = "";
-    				for(var i=0; i < n; i++) {
-    					pname += (i > 0 ? "." : "") + bits[n];
-					}
-					// got parent..
-					/// have not got parent..
-					// make it?
-					var add =  new Json.Object();
-					add.set_string_member("name", cls.alias);
-					add.set_array_member("cn", new Json.Array());
-					add.set_boolean_member("is_class", cls.methods.size > 0 ? true : false);
-				
-					
-					
-					
-					
-    			
-    			}
-	    		
-	    		}
-	    		map.set(cls.alias, add);
 		
 		}
 		Json.Object publishClassTreeJSON (Gee.ArrayList<Symbol> classes )
