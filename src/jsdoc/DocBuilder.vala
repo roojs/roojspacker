@@ -534,7 +534,9 @@ namespace JSDOC
 		    
 		}
 		
-		Json.Object class_tree_new_obj(string name, bool is_class) {
+		Json.Object class_tree_new_obj(string name, bool is_class) 
+		{
+	    	GLib.debug("Class Tree: new object %s", name);
 	    	var add =  new Json.Object();
 	    	add.set_string_member("name", name);
 	    	add.set_array_member("cn", new Json.Array());
