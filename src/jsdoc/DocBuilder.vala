@@ -621,7 +621,7 @@ namespace JSDOC
 		    this.class_tree_top = new Json.Array();
 		    this.class_tree_map = new Gee.HashMap<string,Json.Object>();
 		    foreach (var cls in classes) {
-		    	if(cls.alias.length < 1) {
+		    	if(cls.alias.length < 1 || cls_alias == "this" || cls_alias == "_global_") {
 		    		continue;
 	    		}
 	    		bool is_new;
