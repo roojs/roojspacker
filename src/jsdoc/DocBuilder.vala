@@ -575,10 +575,7 @@ namespace JSDOC
     		}
     		var pname = string.joinv(".", nn);
     		GLib.debug("Class Tree: adding to parent %s => %s", name, pname); 
-			if (map.has_key(pname)) {
-				map.get(pname).get_array_member("cn").add_object_element(add);
-				return;
-			}
+			 
 			// no parent found.. make one..
 			var parent = this.class_tree_new_obj(pname, false);
 			this.class_tree_make_parents(top, map, parent);
