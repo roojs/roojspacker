@@ -205,7 +205,8 @@ namespace JSDOC
 		        this.name == TokenName.LEFT_CURLY || 
 	            this.name == TokenName.LEFT_PAREN ) {
 	            
-		        return "line:%d, id %d, type %s, IS=%d,PS=%d,KS=%d, data : %s,  name %s, , outData: %s".printf(
+		        return "line: %s, %d, id %d, type %s, IS=%d,PS=%d,KS=%d, data : %s,  name %s, , outData: %s".printf(
+		        	DocParser.currentSourceFile == null ? "??" : DocParser.currentSourceFile,
 		                this.line,
 		                this.id,
 		                this.type.to_string(),
