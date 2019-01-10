@@ -858,8 +858,9 @@ namespace JSDOC {
 				//GLib.debug("got param: %s", p.asString());
 				if (p.name.contains(".")) continue;// ?? why?				
 				var add = new Json.Object();
-				add.set_string_member("name",p.type);				
+				add.set_string_member("name",p.name);				
 				add.set_string_member("type",p.type);
+				add.set_string_member("type",p.desc);				
 				
 
 				 
