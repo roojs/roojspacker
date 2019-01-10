@@ -552,6 +552,7 @@ namespace JSDOC
 	    	add.set_string_member("name", name);
 	    	add.set_array_member("cn", new Json.Array());
 	    	add.set_boolean_member("is_class", is_class);
+	    	class_tree_map.set(name, add);
 			return add;
 		
 		}
