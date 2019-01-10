@@ -519,15 +519,22 @@ namespace JSDOC {
                 //var thisProperties = this.properties;
                 for (var i = 0; i < properties.size; i++) {
 
- 
-
+ 					
+					// if the doc tag just says @property ... but no name etc..
+					// then name will not be filled in..
+					if (properties[i].name.length < 0 ) {
+						continue;
+					}
 
                     var property = new Symbol.new_populate_with_args(
                         this.alias+"#"+properties[i].name,
                          new Gee.ArrayList<string>(), 
                         "OBJECT",
                          new DocComment(
-                            "/**"+properties[i].desc+"\n@name "+properties[i].name+"\n@memberOf "+this.alias+"#*/"
+                            "/**\n"+
+                            	properties[i].desc+
+                        	"\n@name "+ properties[i].name
+                        	+"\n@memberOf "+this.alias+"#*/"
                     ));
                     // TODO: shouldn't the following happen in the addProperty method of Symbol?
                     property.private_name = properties[i].name;
