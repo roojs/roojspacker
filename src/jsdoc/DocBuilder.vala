@@ -600,8 +600,8 @@ namespace JSDOC
 		    var ret = new Json.Array();
 		    var map = new Gee.HashMap<string,Json.Object>();
 		    foreach (var cls in classes) {
-		    	var add =  this.publishClassTreeJSON_add(cls.alias, cls.methods.size > 0 ? true : false);
-				this.publishClassTreeJSON_make_parents(ret, map, add);
+		    	var add =  this.class_tree_add(cls.alias, cls.methods.size > 0 ? true : false);
+				this.class_tree_make_parents(ret, map, add);
 		    	
 		    }
 		    
