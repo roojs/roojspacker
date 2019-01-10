@@ -608,11 +608,11 @@ namespace JSDOC
 		    Roo.util => Json.Object
 		    
 		    */
-		    var ret = new Json.Array();
-		    var map = new Gee.HashMap<string,Json.Object>();
+		    this.class_tree_top = new Json.Array();
+		    this.class_tree_map = new Gee.HashMap<string,Json.Object>();
 		    foreach (var cls in classes) {
 		    	var add =  this.class_tree_new_obj(cls.alias, cls.methods.size > 0 ? true : false);
-				this.class_tree_make_parents(ret, map, add);
+				this.class_tree_make_parents( add);
 		    	
 		    }
 		    
