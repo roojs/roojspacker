@@ -117,7 +117,7 @@ namespace JSDOC {
         string example = "";
         
 
-        string isa = "OBJECT"; // OBJECT//FUNCTION
+        public string isa = "OBJECT"; // OBJECT//FUNCTION
         
         public bool isEvent = false;
         public bool isConstant = false;
@@ -143,7 +143,7 @@ namespace JSDOC {
 				
 		
 		}
-
+c
        
         string since = "";
 
