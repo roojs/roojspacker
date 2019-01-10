@@ -355,7 +355,7 @@ namespace JSDOC
 		    // outptu class truee
 		    
 		    var   class_tree_gen = new Json.Generator ();
-    	    var  root = new Json.Node(Json.NodeType.Array);
+    	    var  root = new Json.Node(Json.NodeType.ARRAY);
 			root.init_array(this.class_tree());
 			class_tree_gen.set_root (root);
 			class_tree_gen.pretty=  true;
