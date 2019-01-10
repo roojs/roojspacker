@@ -545,12 +545,25 @@ namespace JSDOC
 		    	var add =  new Json.Object();
 		    	add.set_string_member("name", cls.alias);
 		    	add.set_array_member("cn", new Json.Array());
+		    	add.set_boolean_member("is_class", cls.methods.size > 0 ? true : false);
 		    	var bits = cls.alias.split(".");
 		    	if (bits.length == 1) {
 		    		// top level..
 		    		ret.add_object_element(add);
 	    		} else {
-	    		
+	    			// add it to the child.
+	    			var n = bits.length-1; // (so xx.yy.ccc) len =3 , n =2
+	    			while(true) {
+	    				var pname = "";
+	    				for(var i=0; i < n; i++) {
+	    					pname += (i ? "." : "") + bits[n];
+    					}
+    					// got parent..
+    					if (
+    					
+    					
+	    			
+	    			}
 	    		
 	    		}
 	    		map.set(cls.alias, add);
