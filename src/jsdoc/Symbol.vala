@@ -854,6 +854,19 @@ namespace JSDOC {
 		public Json.Array paramsToJson()
 		{
 			var ret = new Json.Array();
+			foreach(var p in this.params) {
+				GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?
+				ret += f ? ", " : "";
+				f = true;
+				switch(p.name) {
+					case "this" : ret += "this"; break;
+					case "function" : ret += "function() {\n\n}"; break;					
+					default : ret += p.name; break;
+				}
+			}
+			
+			
 			
 			
 			return ret;
