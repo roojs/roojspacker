@@ -543,7 +543,7 @@ namespace JSDOC
 	    		if (!ret.get_boolean_member("is_class") && is_class) {
 			    	ret.set_boolean_member("is_class", is_class);
 	    		}
-	    		return ret;
+	    		return null;
 	    	
 	    	}
 	    	
