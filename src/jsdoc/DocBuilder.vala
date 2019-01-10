@@ -409,6 +409,9 @@ namespace JSDOC
 		        add.set_boolean_member("static", m.isStatic);
 		        add.set_string_member("memberOf", m.memberOf == cls.alias ? "" : m.memberOf);
 		        
+		        add.set_boolean_member("args", m.argsToJson());
+		        
+		        /// 
 		        
 		        
 		        methods.add_object_element(add);
