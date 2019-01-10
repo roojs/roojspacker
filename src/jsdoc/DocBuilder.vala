@@ -552,7 +552,7 @@ namespace JSDOC
     		
 		
 		}
-		Json.Object publishClassTreeJSON (Gee.ArrayList<Symbol> classes )
+		Json.Array publishClassTreeJSON (Gee.ArrayList<Symbol> classes )
 		{
 		
 		
