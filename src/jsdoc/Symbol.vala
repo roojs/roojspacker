@@ -855,15 +855,14 @@ namespace JSDOC {
 		{
 			var ret = new Json.Array();
 			foreach(var p in this.params) {
-				GLib.debug("got param: %s", p.asString());
-				if (p.name.contains(".")) continue;// ?? why?
-				ret += f ? ", " : "";
-				f = true;
-				switch(p.name) {
-					case "this" : ret += "this"; break;
-					case "function" : ret += "function() {\n\n}"; break;					
-					default : ret += p.name; break;
-				}
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.type);				
+				add.set_string_member("type",p.type);
+				
+
+				 
 			}
 			
 			
