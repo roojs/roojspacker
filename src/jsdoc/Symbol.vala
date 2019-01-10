@@ -861,7 +861,7 @@ namespace JSDOC {
 				add.set_string_member("name",p.name);				
 				add.set_string_member("type",p.type);
 				add.set_string_member("desc",p.desc);				
-				 
+				ret.add_object_elemnt(add) ;
 			}
 			 
 			return ret;
