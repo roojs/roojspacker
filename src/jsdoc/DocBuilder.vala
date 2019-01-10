@@ -390,7 +390,26 @@ namespace JSDOC
 		        
 		        props.add_object_element(add );
 		    }
-		    
+		     
+		    // methods
+
+			 
+	  		var methods = new Json.Array();
+			ret.set_array_member("methods", methods);		     
+		    foreach(var m in data.methods) {
+		    	if (m.isEvent || m.isIgnored) {
+		    		continue;
+	    		}
+		        var m = ownMethods.get(i);
+		        var add = new Json.Object();
+		        add.set_string_member("name",m.name);
+		        add.set_string_member("type","function");
+		        add.set_string_member("desc",m.desc);
+		        add.set_string_member("sig", m.makeMethodSkel());
+		        add.set_boolean_member("static", m.isStatic);
+		        add.set_string_member("memberOf", m.memberOf == data.alias ? "" : m.memberOf);	
+		        methods.add_object_element(add);
+		    }
 		    
 		    
 			
