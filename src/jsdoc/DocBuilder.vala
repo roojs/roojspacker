@@ -583,10 +583,12 @@ namespace JSDOC
     		GLib.debug("Class Tree: adding to parent %s => %s", name, pname); 
 			 
 			// no parent found.. make one..
-			var parent = this.class_tree_new_obj(pname, false);
-			 
+			bool is_new;
+			var parent = this.class_tree_new_obj(pname, false, out is_new); 
 			parent.get_array_member("cn").add_object_element(add);
-			this.class_tree_make_parents(  parent);
+			if (is_new) {
+				this.class_tree_make_parents(  parent);
+			}
     		
 		
 		}
