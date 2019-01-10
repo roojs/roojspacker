@@ -410,7 +410,7 @@ namespace JSDOC
 		        add.set_boolean_member("constructor", m.isa == "CONSTRUCTOR");		        
 		        add.set_string_member("memberOf", m.memberOf == cls.alias ? "" : m.memberOf);
 		        
-		        add.set_boolean_member("params", m.paramsToJson());
+		        add.set_array_member("params", m.paramsToJson());
 		        add.set_string_member("returns", m.returns.size > 0 ? m.returns[0].type : "");
 		        
 		        /// fixme - @see ... 
