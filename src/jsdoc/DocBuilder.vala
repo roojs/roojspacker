@@ -654,6 +654,7 @@ namespace JSDOC
 		        pretty +
 		        "</body></html>");
 		}
+	}
 		 
 }
   
