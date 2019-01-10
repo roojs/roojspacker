@@ -98,7 +98,7 @@ namespace JSDOC {
 		private Gee.ArrayList<string> see ;
 
  		public Gee.ArrayList<string> childClasses;
- 		//public Gee.ArrayList<string> inheritsFrom;
+ 		public Gee.ArrayList<string> inheritsFrom;
         public Gee.HashMap<string,DocTag>cfgs;
         
         
@@ -178,7 +178,7 @@ namespace JSDOC {
             
             this.cfgs = new Gee.HashMap<string,DocTag>();
             // derived later?
-            //this.inheritsFrom = new Gee.ArrayList<string>();
+            this.inheritsFrom = new Gee.ArrayList<string>();
 
             this.childClasses = new Gee.ArrayList<string>();
              
