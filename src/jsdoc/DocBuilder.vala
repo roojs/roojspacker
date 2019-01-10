@@ -351,6 +351,24 @@ namespace JSDOC
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
 		    }
+		    
+		    
+		    var   generator = new Json.Generator ();
+    	    var  root = new Json.Node(Json.NodeType.OBJECT);
+			root.init_object(jsonAll);
+			generator.set_root (root);
+			generator.pretty=  true;
+			generator.indent = 2;
+			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			size_t l;
+			GLib.debug("JSON: %s", generator.to_data(out l));
+		    
+		    
+		    
+		    /*---- this is our 'builder' json file.. -- a full list of objects+functions */
+		    
+		    
 		    var   generator = new Json.Generator ();
     	    var  root = new Json.Node(Json.NodeType.OBJECT);
 			root.init_object(jsonAll);
