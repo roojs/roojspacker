@@ -569,7 +569,9 @@ namespace JSDOC
 		{
 			var name = add.get_string_member("name");
 			var bits = name.split(".");
-	    	 
+	    	if (bits.length < 2) {
+	    	 	return;
+    	 	}
     		// got aaa.bb or aaa.bb.cc
     		// find the parent..
     		string[] nn = {};
