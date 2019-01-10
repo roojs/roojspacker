@@ -396,7 +396,7 @@ namespace JSDOC
 			 
 	  		var methods = new Json.Array();
 			ret.set_array_member("methods", methods);		     
-		    foreach(var m in data.methods) {
+		    foreach(var m in cls.methods) {
 		    	if (m.isEvent || m.isIgnored) {
 		    		continue;
 	    		}
