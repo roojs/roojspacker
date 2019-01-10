@@ -356,7 +356,7 @@ namespace JSDOC
 		    
 		    var   class_tree_gen = new Json.Generator ();
     	    var  root = new Json.Node(Json.NodeType.Array);
-			root.init_object(this.);
+			root.init_object(this.class_tree());
 			class_tree_gen.set_root (root);
 			class_tree_gen.pretty=  true;
 			class_tree_gen.indent = 2;
