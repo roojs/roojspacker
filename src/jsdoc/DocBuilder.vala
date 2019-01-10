@@ -363,6 +363,13 @@ namespace JSDOC
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", cls.alias);
+			var ag = new Json.Array();
+			ret.set_string_member("augments", ag);			
+		 	for(var ii = 0, il = cls.augments.size; ii < il; ii++) {
+                  var contributer = this.symbolSet.getSymbol(cls.augments[ii]);
+              
+			
+			ret.set_string_member("name", cls.alias);
 			
 			
 			
