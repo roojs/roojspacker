@@ -89,7 +89,7 @@ namespace JSDOC {
 
 		private Gee.ArrayList<DocTag>  exceptions ;
 
-		public Gee.ArrayList<DocTag>  inherits; 
+		//public Gee.ArrayList<DocTag>  inherits; 
 		public Gee.ArrayList<Symbol>  methods;
 
 		public Gee.ArrayList<Symbol> properties;
@@ -98,7 +98,7 @@ namespace JSDOC {
 		private Gee.ArrayList<string> see ;
 
  		public Gee.ArrayList<string> childClasses;
- 		public Gee.ArrayList<string> inheritsFrom;
+ 		//public Gee.ArrayList<string> inheritsFrom;
         public Gee.HashMap<string,DocTag>cfgs;
         
         
@@ -164,7 +164,7 @@ namespace JSDOC {
             
             //this.events = [];
             this.exceptions = new Gee.ArrayList<DocTag>();
-            this.inherits = new Gee.ArrayList<DocTag>();
+            //this.inherits = new Gee.ArrayList<DocTag>();
             //
             this.isa = "OBJECT"; // OBJECT//FUNCTION
             this.methods = new Gee.ArrayList<Symbol>();
@@ -178,7 +178,7 @@ namespace JSDOC {
             
             this.cfgs = new Gee.HashMap<string,DocTag>();
             // derived later?
-            this.inheritsFrom = new Gee.ArrayList<string>();
+            //this.inheritsFrom = new Gee.ArrayList<string>();
 
             this.childClasses = new Gee.ArrayList<string>();
              
