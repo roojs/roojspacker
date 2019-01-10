@@ -363,8 +363,11 @@ namespace JSDOC
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", cls.alias);
+			
+			
+			
 		
-		
+			return ret;
 		}
 		/**
 		 * JSON files are lookup files for the documentation
