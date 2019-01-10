@@ -421,7 +421,31 @@ namespace JSDOC
 		    }
 		    
 		    
-			
+			var events = new Json.Array();
+			ret.set_array_member("events", events);		     
+		    foreach(var m in cls.methods) {
+		    	if (m.isEvent || m.isIgnored) {
+		    		continue;
+	    		}
+		        
+		        var add = new Json.Object();
+		        add.set_string_member("name",m.name);
+		        //add.set_string_member("type","function");
+		        add.set_string_member("desc",m.desc);
+		        //add.set_string_member("sig", m.makeMethodSkel());
+		        add.set_boolean_member("static", m.isStatic);
+		        add.set_boolean_member("constructor", m.isa == "CONSTRUCTOR");		        
+		        add.set_string_member("memberOf", m.memberOf == cls.alias ? "" : m.memberOf);
+		        
+		        add.set_array_member("params", m.paramsToJson());
+		        add.set_string_member("returns", m.returns.size > 0 ? m.returns[0].type : "");
+		        
+		        /// fixme - @see ... any others..
+		          
+		        
+		        events.add_object_element(add);
+		    }
+		    
 			
 			
 		
