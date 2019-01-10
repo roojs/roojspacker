@@ -616,7 +616,7 @@ namespace JSDOC
 		    	
 		    }
 		    
-		     return ret;
+		     return this.class_tree_top;
 		    
 		}
 		
