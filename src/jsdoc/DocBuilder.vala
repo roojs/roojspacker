@@ -368,10 +368,10 @@ namespace JSDOC
 		 	for(var ii = 0, il = cls.augments.size; ii < il; ii++) {
                   var contributer = this.symbolSet.getSymbol(cls.augments[ii]);
                   ag.add_string_element(contributer.alias);
-              }
-              
+            }
+            ret.set_string_member("name", cls.alias);  
 			
-			ret.set_string_member("name", cls.alias);
+			ret.set_string_member("name", cls.comment.getTagAsString(DocTagTitle.DESC));
 			
 			
 			
