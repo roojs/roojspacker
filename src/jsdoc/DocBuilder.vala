@@ -372,7 +372,7 @@ namespace JSDOC
             ret.set_string_member("name", cls.alias);  
             ret.set_string_member("desc", cls.desc);
 			//ret.set_string_member("desc", cls.comment.getTagAsString(DocTagTitle.DESC));
-			
+			cfgProperties = cls.configToArray();
 			
 			
 			
