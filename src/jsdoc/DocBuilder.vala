@@ -583,6 +583,9 @@ namespace JSDOC
 			 
 			// no parent found.. make one..
 			var parent = this.class_tree_new_obj(pname, false);
+			if (parent == null) {
+				return;
+			}
 			parent.get_array_member("cn").add_object_element(add);
 			this.class_tree_make_parents(  parent);
     		
