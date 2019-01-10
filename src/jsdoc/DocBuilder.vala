@@ -553,6 +553,14 @@ namespace JSDOC
 	    	add.set_array_member("cn", new Json.Array());
 	    	add.set_boolean_member("is_class", is_class);
 	    	this.class_tree_map.set(name, add);
+	    	var bits = name.split(".");
+	    	if (bits.length == 1) {
+	    		// top level..
+	    		this.class_tree_top.add_object_element(add);
+	    		 
+    		} 
+	    	
+	    	
 			return add;
 		
 		}
@@ -561,12 +569,7 @@ namespace JSDOC
 		{
 			var name = add.get_string_member("name");
 			var bits = name.split(".");
-	    	if (bits.length == 1) {
-	    		// top level..
-	    		this.class_tree_top.add_object_element(add);
-	    		
-	    		return;
-    		} 
+	    	 
     		// got aaa.bb or aaa.bb.cc
     		// find the parent..
     		string[] nn = {};
