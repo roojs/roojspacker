@@ -537,10 +537,18 @@ namespace JSDOC
     		} 
     		// got aaa.bb or aaa.bb.cc
     		// find the parent..
-    		for(var i=0; i < n; i++) {
-    		
-    		
+    		string[] nn = {};
+    		for(var i=0; i < n-1; i++) {
+    			nn += bits[n];
     		}
+    		var pname = string.joinv(".", nn);
+			if (map.has_key(pname)) {
+				map.get(pname).get_array_member("cn").add_object_element(add);
+				return;
+			}
+    		
+    		
+    		
     		
     			// add it to the child.
 			var n = bits.length-1; // (so xx.yy.ccc) len =3 , n =2
@@ -550,10 +558,6 @@ namespace JSDOC
     					pname += (i > 0 ? "." : "") + bits[n];
 					}
 					// got parent..
-					if (map.has_key(pname)) {
-						map.get(pname).get_array_member("cn").add_object_element(add);
-						break;
-					}
 					/// have not got parent..
 					// make it?
 					var add =  new Json.Object();
