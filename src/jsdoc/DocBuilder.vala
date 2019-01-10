@@ -646,7 +646,7 @@ namespace JSDOC
 		string srcFileFlatName(string sourceFile)
 		{
 		    var name = this.srcFileRelName(sourceFile);
-		    name = /\\.\\.?[\/]/.replace(name, name.length, 0, "");
+		    name = /\.\.?[\/]/.replace(name, name.length, 0, "");
 		    name = name.replace("/", "_").replace(":", "_") + ".html";
 		    return name;
 		}
