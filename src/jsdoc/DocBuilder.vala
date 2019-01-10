@@ -355,8 +355,8 @@ namespace JSDOC
 		    // outptu class truee
 		    
 		    var   class_tree_gen = new Json.Generator ();
-    	    var  root = new Json.Node(Json.NodeType.OBJECT);
-			root.init_object(jsonAll);
+    	    var  root = new Json.Node(Json.NodeType.Array);
+			root.init_object(this.);
 			class_tree_gen.set_root (root);
 			class_tree_gen.pretty=  true;
 			class_tree_gen.indent = 2;
@@ -534,7 +534,7 @@ namespace JSDOC
 		    
 		}
 		
-		Json.Object publishClassTreeJSON_add(string name, bool is_class) {
+		Json.Object class_tree_add(string name, bool is_class) {
 	    	var add =  new Json.Object();
 	    	add.set_string_member("name", name);
 	    	add.set_array_member("cn", new Json.Array());
@@ -543,7 +543,7 @@ namespace JSDOC
 		
 		}
 		
-		void publishClassTreeJSON_make_parents(Json.Array top, 
+		void class_tree_make_parents(Json.Array top, 
 				Gee.HashMap<string,Json.Object> map, Json.Object add)
 		{
 			var name = add.get_string_member("name");
@@ -567,11 +567,11 @@ namespace JSDOC
 			}
 			// no parent found.. make one..
 			var parent = this.publishClassTreeJSON_add(pname, false);
-			this.publishClassTreeJSON_make_parents(top, map, parent);
+			this.class_tree_make_parents(top, map, parent);
     		
 		
 		}
-		Json.Array publishClassTreeJSON (Gee.ArrayList<Symbol> classes )
+		Json.Array class_tree (Gee.ArrayList<Symbol> classes )
 		{
 		
 		
