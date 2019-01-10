@@ -548,7 +548,7 @@ namespace JSDOC
 		    	var bits = cls.alias.split(".");
 		    	if (bits.length == 1) {
 		    		// top level..
-		    		ret.add_array_element(add);
+		    		ret.add_object_element(add);
 	    		} else {
 	    		
 	    		
