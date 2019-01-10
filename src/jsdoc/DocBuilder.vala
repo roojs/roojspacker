@@ -355,9 +355,9 @@ namespace JSDOC
 		    // outptu class truee
 		    
 		    var   class_tree_gen = new Json.Generator ();
-    	    var  root = new Json.Node(Json.NodeType.ARRAY);
-			root.init_array(this.class_tree(classes));
-			class_tree_gen.set_root (root);
+    	    var  class_tree_root = new Json.Node(Json.NodeType.ARRAY);
+			class_tree_root.init_array(this.class_tree(classes));
+			class_tree_gen.set_root (class_tree_root);
 			class_tree_gen.pretty=  true;
 			class_tree_gen.indent = 2;
 			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/tree.json");
