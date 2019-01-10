@@ -522,7 +522,7 @@ namespace JSDOC {
  					
 					// if the doc tag just says @property ... but no name etc..
 					// then name will not be filled in..
-					if (properties[i].name.length < 0 ) {
+					if (properties[i].name.length < 1 ) {
 						continue;
 					}
 
