@@ -850,6 +850,15 @@ namespace JSDOC {
 			}
 			return ret + ")";
 		}
+		
+		public Json.Array paramsToJson()
+		{
+			var ret = new Json.Array();
+			
+			
+			return ret;
+		
+		}
     
  	}
  
