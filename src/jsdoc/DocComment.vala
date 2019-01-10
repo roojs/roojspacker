@@ -185,7 +185,15 @@ namespace JSDOC
 			}
 			return ret;
 	    }
-		    
+	     public string getTagAsString ( DocTagTitle tagTitle) {
+			string[] ret =  {}
+	        foreach(var tag in this.tags) {
+	    		if (tag.title == tagTitle) {
+	    			ret += tag.desc;
+    			}
+			}
+			return ret;
+	    }   
 	}
 }
 
