@@ -534,7 +534,7 @@ namespace JSDOC
 		    
 		}
 		
-		Json.Object class_tree_add(string name, bool is_class) {
+		Json.Object class_tree_new_obj(string name, bool is_class) {
 	    	var add =  new Json.Object();
 	    	add.set_string_member("name", name);
 	    	add.set_array_member("cn", new Json.Array());
@@ -566,7 +566,7 @@ namespace JSDOC
 				return;
 			}
 			// no parent found.. make one..
-			var parent = this.publishClassTreeJSON_add(pname, false);
+			var parent = this.class_tree_new_obj(pname, false);
 			this.class_tree_make_parents(top, map, parent);
     		
 		
@@ -600,7 +600,7 @@ namespace JSDOC
 		    var ret = new Json.Array();
 		    var map = new Gee.HashMap<string,Json.Object>();
 		    foreach (var cls in classes) {
-		    	var add =  this.class_tree_add(cls.alias, cls.methods.size > 0 ? true : false);
+		    	var add =  this.class_tree_new_obj(cls.alias, cls.methods.size > 0 ? true : false);
 				this.class_tree_make_parents(ret, map, add);
 		    	
 		    }
