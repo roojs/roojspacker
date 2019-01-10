@@ -543,7 +543,7 @@ namespace JSDOC
 	    		if (!ret.get_boolean_member("is_class") && is_class) {
 			    	ret.set_boolean_member("is_class", is_class);
 	    		}
-	    		return null; // no need to do anything
+	    		return ret; // no need to do anything
 	    	
 	    	}
 	    	
@@ -583,9 +583,7 @@ namespace JSDOC
 			 
 			// no parent found.. make one..
 			var parent = this.class_tree_new_obj(pname, false);
-			if (parent == null) {
-				return;
-			}
+			 
 			parent.get_array_member("cn").add_object_element(add);
 			this.class_tree_make_parents(  parent);
     		
