@@ -860,9 +860,7 @@ namespace JSDOC {
 				var add = new Json.Object();
 				add.set_string_member("name",p.name);				
 				add.set_string_member("type",p.type);
-				add.set_string_member("type",p.desc);				
-				
-
+				add.set_string_member("desc",p.desc);				
 				 
 			}
 			
