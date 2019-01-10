@@ -305,9 +305,7 @@ namespace JSDOC
 		        var output = "";
 		        
 		        GLib.debug("classTemplate Process : %s" , symbol.alias);
-		        
-		        
-		        
+		         
 		        FileUtils.set_contents(
 						PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json",
 		                this.class_to_json(symbol)
