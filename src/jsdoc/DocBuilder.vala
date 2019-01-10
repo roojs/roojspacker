@@ -538,7 +538,7 @@ namespace JSDOC
     		// got aaa.bb or aaa.bb.cc
     		// find the parent..
     		string[] nn = {};
-    		for(var i=0; i < n-1; i++) {
+    		for(var i=0; i < bits.length-1; i++) {
     			nn += bits[n];
     		}
     		var pname = string.joinv(".", nn);
