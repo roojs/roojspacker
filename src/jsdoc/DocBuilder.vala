@@ -407,7 +407,7 @@ namespace JSDOC
 		        add.set_string_member("desc",m.desc);
 		        //add.set_string_member("sig", m.makeMethodSkel());
 		        add.set_boolean_member("static", m.isStatic);
-		        add.set_boolean_member("constructor", m.isConstructor);		        
+		        add.set_boolean_member("constructor", m.isa == "CONSTRUCTOR");		        
 		        add.set_string_member("memberOf", m.memberOf == cls.alias ? "" : m.memberOf);
 		        
 		        add.set_boolean_member("params", m.paramsToJson());
