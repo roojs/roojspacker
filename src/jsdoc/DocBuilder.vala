@@ -413,7 +413,7 @@ namespace JSDOC
 		        //add.set_string_member("instanceOf", m.comment.getTagAsString(DocTagTitle.INSTANCEOF));
 		        add.set_string_member("memberOf", m.memberOf);
 		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
-		        
+		        add.set_string_member("deprecated", m.comment.getTagAsString(DocTagTitle.DEPRECATED));
 		        add.set_array_member("params", m.paramsToJson());
 		        add.set_string_member("returns", m.returns.size > 0 ? m.returns[0].type : "");
 		        
