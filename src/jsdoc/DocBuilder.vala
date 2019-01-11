@@ -413,7 +413,7 @@ namespace JSDOC
 		        //add.set_string_member("instanceOf", m.comment.getTagAsString(DocTagTitle.INSTANCEOF));
 		        add.set_string_member("memberOf", m.memberOf);
 		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
-		        add.set_string_member("deprecated", m.comment.getTagAsString(DocTagTitle.DEPRECATED));
+		        add.set_string_member("deprecated",m.comment.getTag(DocTagTitle.DEPRECATED).size ? "Depricated "+  m.comment.getTagAsString(DocTagTitle.DEPRECATED) : "");
 		        add.set_string_member("since", m.comment.getTagAsString(DocTagTitle.SINCE));
 		        add.set_string_member("see", m.comment.getTagAsString(DocTagTitle.SINCE));
 		        // not supported or used yet?
