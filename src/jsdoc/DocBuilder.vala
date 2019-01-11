@@ -375,6 +375,7 @@ namespace JSDOC
             ret.set_string_member("name", cls.alias);  
             ret.set_string_member("desc", cls.desc);
 	        ret.set_boolean_member("isSingleton", cls.comment.getTag(DocTagTitle.SINGLETON).size > 0);
+	        ret.set_boolean_member("isStatic", cls.isStatic> 0);
 			//ret.set_string_member("desc", cls.comment.getTagAsString(DocTagTitle.DESC));
 	        /// fixme - @see ... any others..
 			
