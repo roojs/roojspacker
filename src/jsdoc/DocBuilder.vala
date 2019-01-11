@@ -440,7 +440,7 @@ namespace JSDOC
 	    		}
 		        
 		        var add = new Json.Object();
-		        add.set_string_member("name",m.name);
+		        add.set_string_member("name",m.name.substring(1)); // all prefixed with '*'...
 		        //add.set_string_member("type","function");
 		        add.set_string_member("desc",m.desc);
 		        //add.set_string_member("sig", m.makeMethodSkel());
