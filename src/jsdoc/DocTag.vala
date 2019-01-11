@@ -17,7 +17,7 @@ namespace JSDOC
 		SINCE,
 		CONSTANT,
 		VERSION,
-		DEPRICATED,
+		DEPRECATED,
  
 		SEE,
 		CLASS,
