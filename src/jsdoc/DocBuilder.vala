@@ -423,7 +423,7 @@ namespace JSDOC
 		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
 		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
 		        add.set_array_member("params", m.paramsToJson());
-		        add.set_array_member("returns", m.returnsToJson()));
+		        add.set_array_member("returns", m.returnsToJson());
 		        
 		        /// fixme - @see ... any others..
 		          
