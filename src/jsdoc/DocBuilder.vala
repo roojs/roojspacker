@@ -412,6 +412,7 @@ namespace JSDOC
 		        add.set_string_member("singleton", m.comment.getTagAsString(DocTagTitle.SINGLETON));
 		        //add.set_string_member("instanceOf", m.comment.getTagAsString(DocTagTitle.INSTANCEOF));
 		        add.set_string_member("memberOf", m.memberOf);
+		        add.set_string_member("example", m.example);
 		        
 		        add.set_array_member("params", m.paramsToJson());
 		        add.set_string_member("returns", m.returns.size > 0 ? m.returns[0].type : "");
