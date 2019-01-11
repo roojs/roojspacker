@@ -871,14 +871,14 @@ namespace JSDOC {
     	public Json.Array returnsToJson()
 		{
 			var ret = new Json.Array();
-			foreach(var p in this.params) {
+			foreach(var p in this.returns) {
 				//GLib.debug("got param: %s", p.asString());
 				if (p.name.contains(".")) continue;// ?? why?				
 				var add = new Json.Object();
 				add.set_string_member("name",p.name);				
 				add.set_string_member("type",p.type);
 				add.set_string_member("desc",p.desc);
-				add.set_boolean_member("isOptional",p.isOptional);
+		 
 				ret.add_object_element(add) ;
 			}
 			 
