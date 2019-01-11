@@ -423,7 +423,7 @@ namespace JSDOC
 		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
 		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
 		        add.set_array_member("params", m.paramsToJson());
-		        add.set_array_member("returns", m.returnsToJson());
+
 		        
 		        /// fixme - @see ... any others..
 		          
@@ -447,9 +447,16 @@ namespace JSDOC
 		        add.set_boolean_member("static", m.isStatic);
 		        add.set_boolean_member("constructor", m.isa == "CONSTRUCTOR");		        
 		        add.set_string_member("memberOf", m.memberOf == cls.alias ? "" : m.memberOf);
+		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
+		        add.set_string_member("deprecated", // as depricated is used as a flag...
+		        		m.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+	        			"This has been deprecated: "+  m.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+	        			"");
+		        add.set_string_member("since", m.comment.getTagAsString(DocTagTitle.SINCE));
+		        add.set_string_member("see", m.comment.getTagAsString(DocTagTitle.SINCE));
 		        
 		        add.set_array_member("params", m.paramsToJson());
-		        add.set_string_member("returns", m.returns.size > 0 ? m.returns[0].type : "");
+		        add.set_array_member("returns", m.returnsToJson());
 		        
 		        /// fixme - @see ... any others..
 		          
