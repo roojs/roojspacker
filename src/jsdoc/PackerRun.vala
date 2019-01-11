@@ -1,5 +1,8 @@
 
 /** 
+
+  THIS IS THE ENTRY POINT...
+
   the application
   -- in theory this code  can be used as a library... but this is the standard command line version...
   
@@ -14,6 +17,8 @@
 
   
 */
+
+JSDOC.PackerRun _PackerRun;
 
 namespace JSDOC
 {
@@ -68,7 +73,7 @@ namespace JSDOC
 		
 		public  bool opt_dump_tokens = false;	
 		
-		  
+		   
 		/**
 		 * @cfg {Boolean} opt_clean_cache  (optional) clean up temp files after done - 
 		 *    Defaults to false if you set tmpDir, otherwise true.
@@ -80,8 +85,14 @@ namespace JSDOC
 		
 		public  string opt_doc_ext = "html";
 		
-	
- 
+		public static PackerRun singleton()
+		{
+			if (_PackerRun == null) {
+				_PackerRun = new PackerRun();
+			}
+			return _PackerRun;
+		}
+  
 		public PackerRun ()
 		{
 #if !HAVE_OLD_GLIB		
@@ -90,6 +101,8 @@ namespace JSDOC
 				flags: ApplicationFlags.HANDLES_COMMAND_LINE 
 			);
 #endif		
+			
+
 		}
 		
 		
@@ -124,7 +137,18 @@ namespace JSDOC
 					arg_description = null
 				},
 				//{ "tmpdir", 'm', 0, OptionArg.STRING, ref opt_tmpdir, "Temporary Directory to use (defaults to /tmp)", null },
-				
+				/*
+				OptionEntry() {
+					long_name = "tmpdir",
+					short_name = 'm',
+					flags = 0,
+					arg =  OptionArg.STRING,
+					arg_data = &opt_tmpdir,
+					description = "Temporary Directory - used by documentation tool?",
+					arg_description = null
+				}, 
+				*/
+
 				OptionEntry() {
 					long_name = "basedir",
 					short_name = 'b',
@@ -211,7 +235,7 @@ namespace JSDOC
 					flags = 0,
 					arg =  OptionArg.STRING,
 					arg_data = &opt_doc_target,
-					description = "Clean up the cache after running (slower)",
+					description = "Target location for documetnation",
 					arg_description = null
 				}, 
 
@@ -221,7 +245,7 @@ namespace JSDOC
 					flags = 0,
 					arg =  OptionArg.STRING,
 					arg_data = &opt_doc_template_dir,
-					description = "Documentation Directory target",
+					description = "Template directory for documentation",
 					arg_description = null
 				}, 			
 
@@ -271,9 +295,7 @@ namespace JSDOC
 				});
 			}
 			
-			
-		
-  
+			 
   
 			 
 			// set the base directory...
@@ -300,7 +322,7 @@ namespace JSDOC
 			}
 			
 			
-				// now run the Packer...
+				// initialize the Packer (does not parse anything..)
 			var p = new Packer(	this );
 			
 			
@@ -308,7 +330,7 @@ namespace JSDOC
 			 
 				foreach (var  f in opt_files) {
 					GLib.debug("Adding File %s", f);
-					p.loadFile(f);
+					p.loadFile(f);  // just adds to list of files to parse (no parsing yet..)
 				}
 			}  
 			if (opt_files_from != null) {
@@ -321,18 +343,23 @@ namespace JSDOC
 			
 			var run_pack = false;
 			if (opt_target != null || opt_debug_target != null || opt_dump_tokens) {
-			
+				// do the actual packing...
 				p.pack(	opt_target == null ? "" : opt_target ,
 						opt_debug_target == null ? "" :  opt_debug_target );
 		        
 		    	if (p.outstr.length > 0 ) {
 					stdout.printf ("%s", p.outstr);
 				}
+				return;
 	        }
 	        if (opt_doc_target != null) {
-	    		//var d = new DocBuilder(p);
-	        }
-	        
+				// remove trailing /
+		        opt_doc_target = opt_doc_target.has_suffix("/") ? 
+		        		opt_doc_target.substring(0, opt_doc_target.length-1) : opt_doc_target;
+	    		var d = new JSDOC.DocBuilder(p);
+	    		return;
+	        } 
+	        GLib.error("either select output target or doc output target");
 	        
 	        
 	        

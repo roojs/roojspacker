@@ -18,7 +18,14 @@
             "/src/jsdoc/TokenStream.vala",
             "/src/jsdoc/Token.vala",
             "/src/jsdoc",
-            "/src/jsdoc/DocTag.vala"
+            "/src/jsdoc/DocTag.vala",
+            "/src/jsdoc/DocParser.vala",
+            "/src/jsdoc/Symbol.vala",
+            "/src/jsdoc/SymbolSet.vala",
+            "/src/jsdoc/DocComment.vala",
+            "/src/jsdoc/DocBuilder.vala",
+            "/src/jsdoc/PrettyPrint.vala",
+            "/src/jsdoc/Walker.vala"
         ],
         "packages" : [
         ]
@@ -39,7 +46,8 @@
             "gio-2.0",
             "posix",
             "gee-1.0",
-            "json-glib-1.0"
+            "json-glib-1.0",
+            "gee-0.8"
         ]
     }
 ]

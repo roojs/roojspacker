@@ -6,7 +6,7 @@ public static int main(string[] args)
 	
 
 
-	var pr = new JSDOC.PackerRun( );
+	var pr =   JSDOC.PackerRun.singleton( );
 	pr.parseArgs(args);
 	pr.runPack();
 	

@@ -3,33 +3,27 @@
 	Create a new Symbol.
 	@class Represents a symbol in the source code.
  */
- 
+
  
 namespace JSDOC {
 
 
 	public  class Symbol : Object
 	{
+		// debugging?
 		
-		private static bool regex_init = false;
-		private GLib.Regex regex_global;
-		private GLib.Regex regex_prototype;
 		
-		static void  regexInit()
-		{
-			if (Symbol.regex_init = true) {
-				return;
-			}
-			Symbol.regex_init = true;
-			Symbol.regex_global = new GLib.Regex("^_global_[.#-]");
-			Symbol.regex_prototype = new GLib.Regex("\\.prototype\\.?");
-		}
+		public static bool regex_init = false;
+	 	
 
 		private string private_string_name = "";
-		private string private_name {
+		private string _assigned_name = "";
+		// called by symbolset...
+		public string private_name {
     		set {
-				var n = Symbol.regex_global(value, value.length, 0, "");
-		        n =  Symbol.regex_prototype(n,n.length, 0, "#");
+				this._assigned_name = name;
+				var n = /^_global_[.#-]/.replace(value, value.length, 0, "");
+		        n =  /\.prototype\.?/.replace(n,n.length, 0, "#");
 		        while (true) {
 		    		if (!n.has_suffix("#")) {
 		    			break;
@@ -49,13 +43,16 @@ namespace JSDOC {
       
         string defaultValue = "";
         
-		private Gee.ArrayList<DocTag> private_doctag_params;
+		private Gee.ArrayList<DocTag> private_doctag_params = null;
 
 		private Gee.ArrayList<DocTag> private_params{
 			set  {
+				if (this.private_doctag_params == null) {
+					this.private_doctag_params = new Gee.ArrayList<DocTag>();
+				}
 				for (var i = 0; i < value.size; i++) {
 				   
-				    this.private_doctag_params.add(v.get(i));
+				    this.private_doctag_params.add(value.get(i));
 				}
 				//this.params = this._params;
 			}
@@ -63,6 +60,9 @@ namespace JSDOC {
      
 		Gee.ArrayList<string> private_string_params{
 			set  {
+				if (this.private_doctag_params == null) {
+					this.private_doctag_params = new Gee.ArrayList<DocTag>();
+				}
 				for (var i = 0; i < value.size; i++) {
 
 				    //var ty = v[i].hasOwnProperty('type') ? v[i].type : '';
@@ -76,29 +76,33 @@ namespace JSDOC {
 		}
 		public Gee.ArrayList<DocTag> params {
 			get {
+				if (this.private_doctag_params == null) {
+					this.private_doctag_params = new Gee.ArrayList<DocTag>();
+				}
 				return this.private_doctag_params;
 			}
 		
 		}
 
-		private Gee.ArrayList<DocTag>  augments ;  
+		public Gee.ArrayList<string>  augments ;  
+		
 
 		private Gee.ArrayList<DocTag>  exceptions ;
 
-		private Gee.ArrayList<DocTag>  inherits; 
-		private Gee.ArrayList<DocTag>  methods;
+		//public Gee.ArrayList<DocTag>  inherits; 
+		public Gee.ArrayList<Symbol>  methods;
 
-		private Gee.ArrayList<DocTag> properties;
-		private Gee.ArrayList<DocTag> requires;
-		private Gee.ArrayList<DocTag> returns;
-		private Gee.ArrayList<DocTag> see ;
+		public Gee.ArrayList<Symbol> properties;
+		private Gee.ArrayList<string> requires;
+		public Gee.ArrayList<DocTag> returns;
+		private Gee.ArrayList<string> see ;
 
-         
-        //childClasses : [],
-        //cfgs : {},
+ 		public Gee.ArrayList<string> childClasses;
+ 		public Gee.ArrayList<string> inheritsFrom;
+        public Gee.HashMap<string,DocTag>cfgs;
         
         
-        DocComment comment;
+        public DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
         string addOn = "";
@@ -108,12 +112,12 @@ namespace JSDOC {
         string classDesc = "";
 
         string deprecated = "";
-        string desc = "";
+        public string desc = "";
         //events : false,
         string example = "";
         
-        //inheritsFrom : [],
-        string isa = "OBJECT"; // OBJECT//FUNCTION
+
+        public string isa = "OBJECT"; // OBJECT//FUNCTION
         
         public bool isEvent = false;
         public bool isConstant = false;
@@ -123,9 +127,22 @@ namespace JSDOC {
         public bool isPrivate = false;
         public bool isStatic = false;
         
-        string memberOf = "";
+        public string memberOf = "";
 
-
+		public string asString()
+		{
+			return "NAME: %s:%s   ASNAME: %s : %s%s%s%s".printf(
+				this.memberOf,
+				this.name,
+				this._assigned_name,
+				isStatic ? "static": "",
+				isEvent ? "EV": "",
+				isConstant ? "CO": "",
+				isNamespace ? "NS": ""
+			);
+				
+		
+		}
 
        
         string since = "";
@@ -133,7 +150,7 @@ namespace JSDOC {
         string type = "";
         string version = "";
        
-        string srcFile = "";
+        public static string srcFile = "";
         
         
         
@@ -147,35 +164,36 @@ namespace JSDOC {
             
             //this.events = [];
             this.exceptions = new Gee.ArrayList<DocTag>();
-            this.inherits = new Gee.ArrayList<DocTag>();
+            //this.inherits = new Gee.ArrayList<DocTag>();
             //
             this.isa = "OBJECT"; // OBJECT//FUNCTION
-            this.methods = new Gee.ArrayList<DocTag>();
+            this.methods = new Gee.ArrayList<Symbol>();
             //this.private_params = new Gee.ArrayList<DocTag>();
-            this.properties = new Gee.ArrayList<DocTag>();
-            this.requires = new Gee.ArrayList<DocTag>();
+            this.properties = new Gee.ArrayList<Symbol>();
+            this.requires = new Gee.ArrayList<string>();
             this.returns = new Gee.ArrayList<DocTag>();
-            this.see = new Gee.ArrayList<DocTag>();
+            this.see = new Gee.ArrayList<string>();
+            this.augments = new Gee.ArrayList<string>();
  
             
-            
-            this.cfgs = {};
+            this.cfgs = new Gee.HashMap<string,DocTag>();
             // derived later?
-            //this.inheritsFrom = [];
-            //this.childClasses = [];
-            
+            this.inheritsFrom = new Gee.ArrayList<string>();
+
+            this.childClasses = new Gee.ArrayList<string>();
+             
             this.comment = new DocComment();
             this.comment.isUserComment =  false;
             
                
         }
 		
-		Public Symbol.new_builtin(string name)
+		public Symbol.new_builtin(string name)
 		{
-            Symbol.regexInit();
+            
             this.initArrays();
-            this.srcFile = DocParser.currentSourceFile;
-			this.prviate_name =  name ;
+            this.srcFile = JSDOC.DocParser.currentSourceFile;
+			this.private_name =  name ;
 			this.alias = this.name;
 			this.isa = "CONSTRUCTOR";
 			this.comment = new DocComment("");
@@ -198,12 +216,12 @@ namespace JSDOC {
                 string isa,
                 DocComment comment
         ) {
-            Symbol.regexInit();
+           
             this.initArrays();
            // this.$args = arguments;
             //println("Symbol created: " + isa + ":" + name);
             this.private_name = name;
-            this.alias = this.getName();
+            this.alias = this.name;
             this.private_string_params = params; 
             this.isa = (isa == "VIRTUAL")? "OBJECT":isa;
             this.comment =  comment;
@@ -212,7 +230,7 @@ namespace JSDOC {
             
            
             
-            if (this.is("FILE") && !this.alias) { // this will never hapen???
+            if (this.is("FILE") && this.alias.length < 1) { // this will never hapen???
         		this.alias = this.srcFile;
     		}
 
@@ -222,8 +240,8 @@ namespace JSDOC {
 
         void tagsFromComment() {
             // @author
-            var authors = this.comment.getTag("author");
-            if (authors.size) {
+            var authors = this.comment.getTag(DocTagTitle.AUTHOR);
+            if (authors.size > 0) {
         		// turns author into a string....
         		this.author = "";
                 foreach(var a in authors) {
@@ -243,15 +261,15 @@ namespace JSDOC {
                 assertEqual(sym.author, "Joe Smith", "@author tag, author is found.");
             */
             // @desc
-            var mth = this.comment.getTag("method");
-            if (mth.length) {
+            var mth = this.comment.getTag(DocTagTitle.METHOD);
+            if (mth.size  > 0) {
                 this.isa = "FUNCTION";
             }
             // @desc
-            var descs = this.comment.getTag("desc");
-            if (descs.length) {
+            var descs = this.comment.getTag(DocTagTitle.DESC);
+            if (descs.size>  0) {
                 this.desc = "";
-                foreach(var d in desc) {
+                foreach(var d in descs) {
                     this.desc = this.desc == "" ? "": "\n";
                     this.desc += d.desc;
                 }
@@ -265,10 +283,10 @@ namespace JSDOC {
             
             // @overview
             if (this.is("FILE")) {
-                if (!this.alias) this.alias = this.srcFile;
+                if (this.alias.length < 1) this.alias = this.srcFile;
                 
-                var overviews = this.comment.getTag("overview");
-                if (overviews.length) {
+                var overviews = this.comment.getTag(DocTagTitle.OVERVIEW);
+                if (overviews.size > 0) {
                     foreach(var d in overviews) {
                         this.desc = this.desc == "" ? "": "\n";
                         this.desc += d.desc;
@@ -282,8 +300,8 @@ namespace JSDOC {
             */
             
             // @since
-            var sinces = this.comment.getTag("since");
-            if (sinces.length) {
+            var sinces = this.comment.getTag(DocTagTitle.SINCE);
+            if (sinces.size > 0) {
                 this.since = "";
                 foreach(var d in sinces) {
                     this.since = this.since == "" ? "": "\n";
@@ -297,7 +315,7 @@ namespace JSDOC {
             */
             
             // @constant
-            if (this.comment.getTag("constant").length) {
+            if (this.comment.getTag(DocTagTitle.CONSTANT).size > 0) {
                 this.isConstant = true;
                 this.isa = "OBJECT";
             }
@@ -308,8 +326,8 @@ namespace JSDOC {
             */
             
             // @version
-            var versions = this.comment.getTag("version");
-            if (versions.length) {
+            var versions = this.comment.getTag(DocTagTitle.VERSION);
+            if (versions.size > 0 ) {
                 this.version = "";
                  foreach(var d in versions) {
                     this.version = this.version == "" ? "": "\n";
@@ -323,8 +341,8 @@ namespace JSDOC {
             */
             
             // @deprecated
-            var deprecateds = this.comment.getTag("deprecated");
-            if (deprecateds.length) {
+            var deprecateds = this.comment.getTag(DocTagTitle.DEPRECATED);
+            if (deprecateds.size > 0) {
                 this.deprecated = "";
                  foreach(var d in deprecateds) {
                     this.deprecated = this.deprecated == "" ? "": "\n";
@@ -338,9 +356,9 @@ namespace JSDOC {
             */
             
             // @example
-            var examples = this.comment.getTag("example");
-            if (examples.length) {
-                this.example = examples[0];
+            var examples = this.comment.getTag(DocTagTitle.EXAMPLE);
+            if (examples.size > 0) {
+                this.example = examples.get(0).desc;
             }
             
             /*~t
@@ -349,9 +367,9 @@ namespace JSDOC {
             */
             
             // @see
-            var sees = this.comment.getTag("see");
-            if (sees.length) {
-                var thisSee = this.see;
+            var sees = this.comment.getTag(DocTagTitle.SEE);
+            if (sees.size > 0) {
+                 
                 foreach(var s in sees) {
                     this.see.add(s.desc);
                 }
@@ -363,14 +381,14 @@ namespace JSDOC {
             */
             
             // @class
-            var classes = this.comment.getTag("class");
-            if (classes.length) {
+            var classes = this.comment.getTag(DocTagTitle.CLASS);
+            if (classes.size > 0) {
                 //print(JSON.stringify(this,null,4));
                 this.isa = "CONSTRUCTOR";
                 this.classDesc = classes[0].desc; // desc can't apply to the constructor as there is none.
-                if (!this.classDesc) {
-                    this.classDesc = this.desc;
-                   }
+                //if (!this.classDesc.leg) {
+                //    this.classDesc = this.desc;
+                //   }
                 
                 
             }
@@ -382,8 +400,8 @@ namespace JSDOC {
             */
             
             // @namespace
-            var namespaces = this.comment.getTag("namespace");
-            if (namespaces.length) {
+            var namespaces = this.comment.getTag(DocTagTitle.NAMESPACE);
+            if (namespaces.size > 0) {
                 this.classDesc = namespaces[0].desc+"\n"+this.desc; // desc can't apply to the constructor as there is none.
                 this.isNamespace = true;
             }
@@ -394,64 +412,43 @@ namespace JSDOC {
             */
             
             // @param
-            var params = this.comment.getTag("param");
-            if (params.length) {
+            var params = this.comment.getTag(DocTagTitle.PARAM);
+            if (params.size > 0) {
                 // user-defined params overwrite those with same name defined by the parser
-                var thisParams = this.getParams();
+                var thisParams = params;
 
-                if (thisParams.length == 0) { // none exist yet, so just bung all these user-defined params straight in
-                    this.setParams(params);
+                if (thisParams.size == 0) { // none exist yet, so just bung all these user-defined params straight in
+                    this.private_params = params;
                 }
                 else { // need to overlay these user-defined params on to existing parser-defined params
-                    for (var i = 0, l = params.length; i < l; i++) {
-                        if (thisParams[i]) {
-                            if (params[i].type) thisParams[i].type = params[i].type;
-                            thisParams[i].name = params[i].name;
-                            thisParams[i].desc = params[i].desc;
-                            thisParams[i].isOptional = params[i].isOptional;
-                            thisParams[i].defaultValue = params[i].defaultValue;
+                    for (var i = 0, l = params.size; i < l; i++) {
+                        if (thisParams.size <= i) {
+                        	var np = thisParams.get(i);
+                        	
+                            if (np.type.length > 0) np.type = params[i].type;
+                            np.name = params[i].name;
+                            np.desc = params[i].desc;
+                            np.isOptional = params[i].isOptional;
+                            np.defaultValue = params[i].defaultValue;
+                            //thisParams.set(i, np); ///?? needed OO ?
                         }
-                        else thisParams[i] = params[i];
+                        else thisParams.set(i, params[i]);
                     }
+                    this.private_params = thisParams;
                 }
             }
             
-            /*~t
-                var sym = new Symbol("foo", [{type: "array", name: "pages"}], "FUNCTION", new DocComment("/**Description.*"+"/"));
-                assertEqual(sym.params.length, 1, "parser defined param is found.");
-                
-                sym = new Symbol("foo", [], "FUNCTION", new DocComment("/**Description.\n@param {array} pages*"+"/"));
-                assertEqual(sym.params.length, 1, "user defined param is found.");
-                assertEqual(sym.params[0].type, "array", "user defined param type is found.");
-                assertEqual(sym.params[0].name, "pages", "user defined param name is found.");
-                
-                sym = new Symbol("foo", [{type: "array", name: "pages"}], "FUNCTION", new DocComment("/**Description.\n@param {string} uid*"+"/"));
-                assertEqual(sym.params.length, 1, "user defined param overwrites parser defined param.");
-                assertEqual(sym.params[0].type, "string", "user defined param type overwrites parser defined param type.");
-                assertEqual(sym.params[0].name, "uid", "user defined param name overwrites parser defined param name.");
             
-                sym = new Symbol("foo", [{type: "array", name: "pages"}, {type: "number", name: "count"}], "FUNCTION", new DocComment("/**Description.\n@param {string} uid*"+"/"));
-                assertEqual(sym.params.length, 2, "user defined params  overlay parser defined params.");
-                assertEqual(sym.params[1].type, "number", "user defined param type overlays parser defined param type.");
-                assertEqual(sym.params[1].name, "count", "user defined param name overlays parser defined param name.");
-
-                sym = new Symbol("foo", [], "FUNCTION", new DocComment("/**Description.\n@param {array} pages The pages description.*"+"/"));
-                assertEqual(sym.params.length, 1, "user defined param with description is found.");
-                assertEqual(sym.params[0].desc, "The pages description.", "user defined param description is found.");
-            */
             
             // @constructor
-            if (this.comment.getTag("constructor").length) {
+            if (this.comment.getTag(DocTagTitle.CONSTRUCTOR).size > 0) {
                 this.isa = "CONSTRUCTOR";
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@constructor*"+"/"));
-                assertEqual(sym.isa, "CONSTRUCTOR", "@constructor tag, makes symbol a constructor.");
-            */
+         
             
             // @static
-            if (this.comment.getTag("static").length) {
+            if (this.comment.getTag(DocTagTitle.STATIC).size > 0) {
                 this.isStatic = true;
                 if (this.isa == "CONSTRUCTOR") {
                     this.isNamespace = true;
@@ -459,7 +456,7 @@ namespace JSDOC {
             }
             
                 // @static
-            if (this.comment.getTag("singleton").length) {
+            if (this.comment.getTag(DocTagTitle.SINGLETON).size > 0) {
                 this.isStatic = true;
                 //print('------------- got singleton ---------------' + this.isa);
                 //if (this.isa == "CONSTRUCTOR") {
@@ -469,68 +466,47 @@ namespace JSDOC {
             
             
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@static\n@constructor*"+"/"));
-                assertEqual(sym.isStatic, true, "@static tag, makes isStatic true.");
-                assertEqual(sym.isNamespace, true, "@static and @constructor tag, makes isNamespace true.");
-            */
-            
             // @inner
-            if (this.comment.getTag("inner").length) {
+            if (this.comment.getTag(DocTagTitle.INNER).size > 0) {
                 this.isInner = true;
                 this.isStatic = false;
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@inner*"+"/"));
-                assertEqual(sym.isStatic, false, "@inner tag, makes isStatic false.");
-                assertEqual(sym.isInner, true, "@inner makes isInner true.");
-            */
             
             // @field
-            if (this.comment.getTag("field").length) {
+            if (this.comment.getTag(DocTagTitle.FIELD).size > 0) {
                 this.isa = "OBJECT";
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "FUNCTION", new DocComment("/**@field*"+"/"));
-                assertEqual(sym.isa, "OBJECT", "@field tag, makes symbol an object.");
-            */
+           
             
             // @function
-            if (this.comment.getTag("function").length) {
+            if (this.comment.getTag(DocTagTitle.FUNCTION).size > 0) {
                 this.isa = "FUNCTION";
             }
             
             // @param
-            if (this.comment.getTag("param").length && this.isa == "OBJECT" ) {
+            if (this.comment.getTag(DocTagTitle.PARAM).size > 0 && this.isa == "OBJECT" ) {
                 // change a property to a function..
                 this.isa = "FUNCTION";
             }
             
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@function*"+"/"));
-                assertEqual(sym.isa, "FUNCTION", "@function tag, makes symbol a function.");
-            */
+             
             
             // @event
-            var events = this.comment.getTag("event");
-            if (events.length) {
+            var events = this.comment.getTag(DocTagTitle.EVENT);
+            if (events.size > 0) {
                 this.isa = "FUNCTION";
                 this.isEvent = true;
             }
             
-            /*~t
-                var sym = new Symbol("foo", [], "OBJECT", new DocComment("/**@event*"+"/"));
-                assertEqual(sym.isa, "FUNCTION", "@event tag, makes symbol a function.");
-                assertEqual(sym.isEvent, true, "@event makes isEvent true.");
-            */
+            
             
             // @name
-            var names = this.comment.getTag("name");
-            if (names.length) {
-                this.setName(names[0].desc);
+            var names = this.comment.getTag(DocTagTitle.NAME);
+            if (names.size > 0) {
+                this.private_name = names.get(0).desc.strip();
             }
             
             /*~t
@@ -538,46 +514,51 @@ namespace JSDOC {
             */
             
             // @property
-            var properties = this.comment.getTag("property");
-            if (properties.length) {
-                thisProperties = this.properties;
-                for (var i = 0; i < properties.length; i++) {
+            var properties = this.comment.getTag(DocTagTitle.PROPERTY);
+            if (properties.size > 0) {
+                //var thisProperties = this.properties;
+                for (var i = 0; i < properties.size; i++) {
 
- 
-
+ 					
+					// if the doc tag just says @property ... but no name etc..
+					// then name will not be filled in..
+					if (properties[i].name.length < 1 ) {
+						continue;
+					}
 
                     var property = new Symbol.new_populate_with_args(
                         this.alias+"#"+properties[i].name,
                          new Gee.ArrayList<string>(), 
                         "OBJECT",
                          new DocComment(
-                            "/**"+properties[i].desc+"\n@name "+properties[i].name+"\n@memberOf "+this.alias+"#*/"
+                            "/**\n"+
+                            	properties[i].desc+
+                        	"\n@name "+ properties[i].name
+                        	+"\n@memberOf "+this.alias+"#*/"
                     ));
                     // TODO: shouldn't the following happen in the addProperty method of Symbol?
-                    property.name = properties[i].name;
+                    property.private_name = properties[i].name;
                     property.memberOf = this.alias;
-                    if (properties[i].type) property.type = properties[i].type;
-                    if (properties[i].defaultValue) property.defaultValue = properties[i].defaultValue;
+                    if (properties[i].type.length > 0) property.type = properties[i].type;
+                    if (properties[i].defaultValue.length > 0) property.defaultValue = properties[i].defaultValue;
                     this.addProperty(property);
-                    imports.Parser.Parser.addSymbol(property);
+                    JSDOC.DocParser.addSymbol(property);
                 }
             }
             
             // config..
-            var conf = this.comment.getTag("cfg");
-            if (conf.length) {
-                for (var i = 0; i < conf.length; i++) {
-                    this.addConfig(conf[i]);
+            var conf = this.comment.getTag(DocTagTitle.CFG);
+            if (conf.size > 0) {
+                for (var i = 0; i < conf.size; i++) {
+                    this.addConfig(conf.get(i));
                 }
             }
             
-            /*~t
-                // todo
-            */
+          
 
             // @return
-            var returns = this.comment.getTag("return");
-            if (returns.length) { // there can be many return tags in a single doclet
+            var returns = this.comment.getTag(DocTagTitle.RETURN);
+            if (returns.size > 0) { // there can be many return tags in a single doclet
                 this.returns = returns;
 
                 this.type = "";
@@ -587,47 +568,37 @@ namespace JSDOC {
                 } 
              }
             
-            /*~t
-                // todo
-            */
+            
             
             // @exception
-            this.exceptions = this.comment.getTag("throws");
+            this.exceptions = this.comment.getTag(DocTagTitle.THROWS);
             
-            /*~t
-                // todo
-            */
-            
+           
             // @requires
-            var requires = this.comment.getTag("requires");
-            if (requires.length) {
+            var requires = this.comment.getTag(DocTagTitle.REQUIRES);
+            if (requires.size > 0) {
                 this.requires = new Gee.ArrayList<string>();
                 foreach(var r in requires) {
-                    this.requires.push(r.desc);
+                    this.requires.add(r.desc);
                 }
             }
-            
-            /*~t
-                // todo
-            */
+           
             
             // @type
-            var types = this.comment.getTag("type");
-            if (types.length) {
-                this.type = types[0].desc; //multiple type tags are ignored
+            var types = this.comment.getTag(DocTagTitle.TYPE);
+            if (types.size > 0) {
+                this.type = types.get(0).desc; //multiple type tags are ignored
             }
             
-            /*~t
-                // todo
-            */
+            
             
             // @private
-            if (this.comment.getTag("private").length || this.isInner) {
+            if (this.comment.getTag(DocTagTitle.PRIVATE).size > 0 || this.isInner) {
                 this.isPrivate = true;
             }
             
             // @ignore
-            if (this.comment.getTag("ignore").length) {
+            if (this.comment.getTag(DocTagTitle.IGNORE).size > 0) {
                 this.isIgnored = true;
             }
             
@@ -635,7 +606,8 @@ namespace JSDOC {
                 // todo
             */
             
-            // @inherits ... as ...
+            // @inherits ... as ... -- not used!!!
+            /*
             var inherits = this.comment.getTag("inherits");
             if (inherits.length) {
                 for (var i = 0; i < inherits.length; i++) {
@@ -661,25 +633,27 @@ namespace JSDOC {
                     this.inherits.push({alias: inAlias, as: inAs});
                 }
             }
-            
+            */
             /*~t
                 // todo
             */
 
             // @augments
-            this.augments = this.comment.getTag("augments");
+            foreach(var dt in this.comment.getTag(DocTagTitle.ARGUMENTS)) {
+            	this.augments.add(dt.desc);
+        	}
+            //@extends - Ext        	
+            foreach(var dt in this.comment.getTag(DocTagTitle.EXTENDS)) {
+            	this.augments.add(dt.desc);
+        	}
             
-            //@extends - Ext
-            if (this.comment.getTag("extends")) {   
-                this.augments = this.comment.getTag("extends");
-            }
             
             
             // @default
-            var defaults = this.comment.getTag("default");
-            if (defaults.length) {
+            var defaults = this.comment.getTag(DocTagTitle.DEFAULT);
+            if (defaults.size > 0) {
                 if (this.is("OBJECT")) {
-                    this.defaultValue = defaults[0].desc;
+                    this.defaultValue = defaults.get(0).desc;
                 }
             }
             
@@ -688,162 +662,240 @@ namespace JSDOC {
             */
             
             // @memberOf
-            var memberOfs = this.comment.getTag("memberOf");
-            if (memberOfs.length) {
+            var memberOfs = this.comment.getTag(DocTagTitle.MEMBEROF);
+            if (memberOfs.size > 0) {
                 this.memberOf = memberOfs[0].desc;
-                this.memberOf = this.memberOf.replace(/\.prototype\.?/g, "#");
-                this.name = this.name.split('.').pop();
-                this.name = this.name.split('#').pop();
-                this.name = this.memberOf + this.name;
-                this._name = this.name
+                var pr_reg = /\.prototype\.?/;
+                
+                this.memberOf = pr_reg.replace(this.memberOf, this.memberOf.length, 0, "#");
+                var dname = this.name.split(".");
+                var name = dname[dname.length-1];
+                
+                var hname = name.split("#");
+                name = hname[hname.length-1];
+                this.private_name = this.memberOf + "." + name; //?? "." ???
                 this.alias = this.name;
             }
 
             /*~t
                 // todo
             */
-            
+             
             // @public
-            if (this.comment.getTag("public").length) {
+            if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
             }
             
             /*~t
                 // todo
             */
-        },
+        }
 
-        is : function(what) {
-            return this.isa === what;
-        },
-
-        isBuiltin : function() {
+        public bool is (string what) {
+            return this.isa == what;
+        }
+        public bool isaClass()
+        {
+        
+	        return (this.is("CONSTRUCTOR") || this.isNamespace ); //|| this.isClass); 
+        }
+        
+ 
+        public bool isBuiltin() {
             return SymbolSet.isBuiltin(this.alias);
-        },
+        }
 
-        setType : function(/**String*/comment, /**Boolean*/overwrite) {
-            if (!overwrite && this.type) return;
+        void setType(string comment,bool overwrite) {
+            if (!overwrite && this.type.length > 0) {
+            	 return;
+        	 }
             var typeComment = DocComment.unwrapComment(comment);
             this.type = typeComment;
-        },
+        }
 
-        inherit : function(symbol) {
+        public void inherit (Symbol symbol) {
             if (!this.hasMember(symbol.name) && !symbol.isInner) {
                 if (symbol.is("FUNCTION"))
-                    this.methods.push(symbol);
+                    this.methods.add(symbol);
                 else if (symbol.is("OBJECT"))
-                    this.properties.push(symbol);
+                    this.properties.add(symbol);
             }
-        },
+        }
 
-        hasMember : function(name) {
+        bool hasMember (string name) {
             return (this.hasMethod(name) || this.hasProperty(name));
-        },
+        }
 
-        addMember : function(symbol) {
+        public void addMember (Symbol symbol) {
             //println("ADDMEMBER: " + this.name +  " ++ " + symbol.name);
             
-            if (symbol.comment.getTag("cfg").length == 1) { 
-                symbol.comment.getTag("cfg")[0].memberOf = this.alias;
-                this.addConfig(symbol.comment.getTag("cfg")[0]);
+            if (symbol.comment.getTag(DocTagTitle.CFG).size == 1) { 
+                symbol.comment.getTag(DocTagTitle.CFG).get(0).memberOf = this.alias;
+                this.addConfig(symbol.comment.getTag(DocTagTitle.CFG).get(0));
                 return;
             }
             
             if (symbol.is("FUNCTION")) { this.addMethod(symbol); }
             else if (symbol.is("OBJECT")) { this.addProperty(symbol); }
-        },
+        }
 
-        hasMethod : function(name) {
+        bool hasMethod (string name) {
             var thisMethods = this.methods;
-            for (var i = 0, l = thisMethods.length; i < l; i++) {
-                if (thisMethods[i].name == name) return true;
-                if (thisMethods[i].alias == name) return true;
+            for (var i = 0, l = thisMethods.size; i < l; i++) {
+                if (thisMethods.get(i).name == name) return true;
+                if (thisMethods.get(i).alias == name) return true;
             }
             return false;
-        },
+        }
 
-        addMethod : function(symbol) {
+        void addMethod (Symbol symbol) {
             var methodAlias = symbol.alias;
             var thisMethods = this.methods;
-            for (var i = 0, l = thisMethods.length; i < l; i++) {
-                if (thisMethods[i].alias == methodAlias) {
-                    thisMethods[i] = symbol; // overwriting previous method
+            for (var i = 0, l = thisMethods.size; i < l; i++) {
+                if (thisMethods.get(i).alias == methodAlias) {
+                    thisMethods.set(i, symbol); // overwriting previous method
                     return;
                 }
             }
-            thisMethods.push(symbol); // new method with this alias
-        },
+            thisMethods.add(symbol); // new method with this alias
+        }
 
-        hasProperty : function(name) {
+        bool hasProperty(string name) {
             var thisProperties = this.properties;
-            for (var i = 0, l = thisProperties.length; i < l; i++) {
-                if (thisProperties[i].name == name) return true;
-                if (thisProperties[i].alias == name) return true;
+            for (var i = 0, l = thisProperties.size; i < l; i++) {
+                if (thisProperties.get(i).name == name) return true;
+                if (thisProperties.get(i).alias == name) return true;
             }
             return false;
-        },
+        }
 
-        addProperty : function(symbol) {
+        void addProperty(Symbol symbol) {
             var propertyAlias = symbol.alias;
             var thisProperties = this.properties;
-            for (var i = 0, l = thisProperties.length; i < l; i++) {
-                if (thisProperties[i].alias == propertyAlias) {
-                    thisProperties[i] = symbol; // overwriting previous property
+            for (var i = 0, l = thisProperties.size; i < l; i++) {
+                if (thisProperties.get(i).alias == propertyAlias) {
+                    thisProperties.set(i, symbol); // overwriting previous property
                     return;
                 }
             }
 
-            thisProperties.push(symbol); // new property with this alias
-        },
+            thisProperties.add(symbol); // new property with this alias
+        }
         
-        addDocTag : function(docTag)
+        public void addDocTag(DocTag docTag)
         {
-            this.comment.tags.push(docTag);
-            if (docTag.title == 'cfg') {
+            this.comment.tags.add(docTag);
+            if (docTag.title == DocTagTitle.CFG) {
                 this.addConfig(docTag);
             }
-            
-        },
+             
+        }
         
-        addConfig : function(docTag)
+        public void addConfig(DocTag docTag)
         {
-            if (typeof(docTag['memberOf']) == 'undefined') {
+            if (docTag.memberOf == "") {
                 // remove prototype data...
                 //var a = this.alias.split('#')[0];
                 //docTag.memberOf = a;
                 docTag.memberOf = this.alias;
             }
-            if (typeof(this.cfgs[docTag.name]) == 'undefined') {
-                this.cfgs[docTag.name] = docTag;
+            if (!this.cfgs.has_key(docTag.name)) {
+                this.cfgs.set(docTag.name,  docTag);
             }
             
-        },
-        configToArray: function()
+        }
+         
+        public Gee.ArrayList<DocTag> configToArray()
         {
-            var r = [];
-            for(var ci in this.cfgs) {
+            var r = new  Gee.ArrayList<DocTag>();
+            foreach(var ci in this.cfgs.keys) {
                 // dont show hidden!!
-                if (this.cfgs[ci].desc.match(/@hide/)) {
+                if (this.cfgs.get(ci).desc.contains("@hide")) {
                     continue;
                 }
-                r.push(this.cfgs[ci]); 
+                r.add(this.cfgs.get(ci)); 
                
             }
             return r;
         }
-});
+        
+	
+		
+		public string makeFuncSkel() {
+		    if (this.params.size < 1) return "function ()\n{\n\n}";
+			var ret = "function (";
+			var f = false;
+			foreach(var p in this.params) {
+				if (p.name.contains(".")) continue;
+				ret += f ? ", " : "";
+				f = true;
+				ret +=  p.name == "this" ? "_self" : p.name;
+			}
+			return ret + ")\n{\n\n}";
+		}
+		public string makeMethodSkel() {
+		    if (this.params.size < 1) return "()\n{\n\n}";
+			var ret = "(";
+			var f = false;
+			foreach(var p in this.params) {
+				GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;
+				ret += f ? ", " : "";
+				f = true;
+				switch(p.name) {
+					case "this" : ret += "this"; break;
+					case "function" : ret += "function() {\n\n}"; break;					
+					default : ret += p.name; break;
+				}
+			}
+			return ret + ")";
+		}
+		
+		public Json.Array paramsToJson()
+		{
+			var ret = new Json.Array();
+			foreach(var p in this.params) {
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.name);				
+				add.set_string_member("type",p.type);
+				add.set_string_member("desc",p.desc);
+				add.set_boolean_member("isOptional",p.isOptional);
+				ret.add_object_element(add) ;
+			}
+			 
+			return ret;
+		
+		}
+    	public Json.Array returnsToJson()
+		{
+			var ret = new Json.Array();
+			foreach(var p in this.returns) {
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.name);				
+				add.set_string_member("type",p.type);
+				add.set_string_member("desc",p.desc);
+		 
+				ret.add_object_element(add) ;
+			}
+			 
+			return ret;
+		
+		}
+ 	}
+ 
+	
+	
+	//static string[] hide = { "$args" };
+	//static string srcFile = "";
+	 
+}
 
-/**
- * Elements that are not serialized
- * 
- */
-Symbol.hide = [ 
-    '$args' // not needed AFAIK
-]
 
-Symbol.srcFile = ""; //running reference to the current file being parsed
-
-
+/*
 Symbol.fromDump = function(t)
 {
     var ns = new Symbol();
@@ -855,3 +907,4 @@ Symbol.fromDump = function(t)
     }
     return ns;
 }
+*/

@@ -16,7 +16,7 @@ namespace JSDOC {
 
     public class TokenArray: Object {
         
-        private Packer packer;
+        private Packer? packer;
         private TokenReader reader;
         
         public Gee.ArrayList<Token> tokens;
@@ -26,7 +26,7 @@ namespace JSDOC {
             get { return this.tokens.size; }
         }
         
-        public TokenArray(Packer packer, TokenReader reader)
+        public TokenArray(Packer? packer, TokenReader reader)
         {
             this.packer = packer;
             this.reader  = reader;
@@ -76,13 +76,14 @@ namespace JSDOC {
 					)
 				) {
 					//print("%s\n%s\n", this.lastAdded.asString(), t.asString());
-					
-					this.packer.logError(
-		        		Packer.ResultType.err,
-		        		this.reader.filename,
-		        		t.line,
-		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
-		    		);
+					if (this.packer != null) {
+						this.packer.logError(
+				    		Packer.ResultType.err,
+				    		this.reader.filename,
+				    		t.line,
+				    		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
+						);
+					}
 					
 					 
 				}
@@ -100,14 +101,15 @@ namespace JSDOC {
 						t.isType(TokenType.NUMB) 
 					)
 				) {
+					if (this.packer != null) {				
 					//print("%s\n%s\n", this.lastAdded.asString(), t.asString());
-					this.packer.logError(
-		        		Packer.ResultType.err,
-		        		this.reader.filename,
-		        		t.line,
-		        		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
-		    		);
-					 
+						this.packer.logError(
+				    		Packer.ResultType.err,
+				    		this.reader.filename,
+				    		t.line,
+				    		"'" + this.lastAdded.data+ "' token followed by " + t.name.to_string() + ":" + t.data
+						);
+					}
 	    		}
     		}
     		
@@ -185,9 +187,9 @@ namespace JSDOC {
         
         int line = 0;
         
-        private Packer packer;
+        private Packer? packer;
         
-        public TokenReader(Packer packer)
+        public TokenReader(Packer? packer)
         {
     		this.packer = packer;
 		}
@@ -402,13 +404,14 @@ namespace JSDOC {
             if ((found == "}" || found == "]") && ls != null && ls.data == ",") {
                 //print("Error - comma found before " + found);
                 //print(JSON.stringify(tokens.lastSym(), null,4));
-                this.packer.logError(
-            		this.ignoreBadGrammer ? Packer.ResultType.warn : Packer.ResultType.err,
-            		this.filename,
-            		this.line,
-            		"comma found before " + found
-        		);
-                
+            	if (this.packer != null) {
+		            this.packer.logError(
+		        		this.ignoreBadGrammer ? Packer.ResultType.warn : Packer.ResultType.err,
+		        		this.filename,
+		        		this.line,
+		        		"comma found before " + found
+		    		);
+                }
                  
             }
             
@@ -657,26 +660,28 @@ namespace JSDOC {
 				        found += stream.nextS();
 				    }
 				    if (!Lang.isNumber(found)) {
-				    
-				      this.packer.logError(
-				    		Packer.ResultType.err,
-				    		this.filename,
-				    		this.line,
-				    		"Invalid Number " + found
-						);
+				    	if (this.packer != null) {
+						  this.packer.logError(
+								Packer.ResultType.err,
+								this.filename,
+								this.line,
+								"Invalid Number " + found
+							);
+						}
 						return true; // eat the characters and continue...
  	                }
 						
         		} else {
-			      this.packer.logError(
-			    		Packer.ResultType.err,
-			    		this.filename,
-			    		this.line,
-			    		"could not find +/- or 0-9 after Number '" + found
-					);
-        			return true;
+    			if (this.packer != null) {
+					  this.packer.logError(
+							Packer.ResultType.err,
+							this.filename,
+							this.line,
+							"could not find +/- or 0-9 after Number '" + found
+						);
+		    			return true;
+		    		}
         		}
-        		
         		
             }
              

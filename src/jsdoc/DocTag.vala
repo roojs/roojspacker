@@ -10,6 +10,41 @@ namespace JSDOC
 		CFG,
 		EXAMPLE,
 		SINGLETON,
+		AUTHOR,
+		METHOD,
+		DESC,
+		OVERVIEW,
+		SINCE,
+		CONSTANT,
+		VERSION,
+		DEPRECATED,
+ 
+		SEE,
+		CLASS,
+		NAMESPACE,
+		CONSTRUCTOR,
+		STATIC,
+ 
+		
+		INNER,
+		FIELD,
+		FUNCTION,
+		EVENT,
+		NAME,
+		RETURN,
+		THROWS,
+		REQUIRES,
+		TYPE,
+		PRIVATE,
+		IGNORE,
+		ARGUMENTS,
+		EXTENDS,
+		DEFAULT,
+		MEMBEROF,
+		PUBLIC,
+		SCOPE,
+		SCOPEALIAS
+  
 	}
 	
 	errordomain DocTagException {
@@ -24,44 +59,37 @@ namespace JSDOC
 	{
 
 		public DocTagTitle title = DocTagTitle.NO_VALUE;
-		public string type;  // eg.. boolean / string etc..., may be xxxx|bbbb - eg. optional types
-		public string name; // eg. "title" << a property name etc...
+		public string type = "";  // eg.. boolean / string etc..., may be xxxx|bbbb - eg. optional types
+		public string name = ""; // eg. "title" << a property name etc...
 		public bool isOptional = false;
 		public string defaultValue = "";
 		public string desc = "";
 		public Gee.ArrayList<string> optvalues;
+		public string memberOf = ""; // set by add addMember..
 
-	
-	
-		 private static  GLib.Regex title_regex;
-		 private static GLib.Regex opval_regex;
-		 private static GLib.Regex type_regex;
-		 private static GLib.Regex name_regex;
-		 
-		static bool done_init = false;
-		
-		static void initRegex()
+		public string asString()
 		{
-			if (DocTag.done_init) {
-				return;
-			}
-			DocTag.title_regex = new Regex("^\\s*(\\S+)(?:\\s([\\s\\S]*))?$");
-			DocTag.opval_regex = new GLib.Regex("^\\([^)]+\\)");
-			DocTag.type_regex = new GLib.Regex("^\\s*\\{");
-			DocTag.name_regex = new GLib.Regex("^(\\S+)(?:\\s([\\s\\S]*))?$");
-			
-			DocTag.done_init = true;
+			return "DocTag: title=%s name=%s type=%s  desc=%s".printf(
+				this.title.to_string(),
+				this.name,
+				this.type,
+				this.desc
+			);
 		}
+	
+ 
+		 	 
 	
 	
 		public DocTag (string in_src)
 		{
 		    
-		    DocTag.initRegex();
+		    GLib.debug("Parsing Tag: %s", in_src);
+		    
+		     
 		    
 		    
-		    
-		    this. optvalues = new Gee.ArrayList<string>();
+		    this.optvalues = new Gee.ArrayList<string>();
 		    
 		    var src = in_src;
 			
@@ -70,6 +98,7 @@ namespace JSDOC
                 
                 src = this.nibbleType(src);
                 
+
                 // only some tags are allowed to have names.
                 if (
             		this.title == DocTagTitle.PARAM ||
@@ -79,9 +108,9 @@ namespace JSDOC
                 }
             }
             catch(DocTagException e) {
-                GLib.debug(e.message);
+                GLib.debug("Failed to parse tag: '%s' = error = %s", in_src, e.message);
                 // only throw if in 'strict'??
-                throw e;
+                //throw e;
                 return;
             }
             
@@ -91,7 +120,7 @@ namespace JSDOC
  
             MatchInfo mi = null;
             
-            if (this.title ==  DocTagTitle.CFG && opval_regex.match_all(src, 0, out mi )) {
+            if (this.title ==  DocTagTitle.CFG && /^\([^)]+\)/.match_all(src, 0, out mi )) {
 				var ms = mi.fetch(0);
 				if (ms.contains("|")) {
 					var ar = ms.split("|");
@@ -126,20 +155,28 @@ namespace JSDOC
 		 */
 		private string nibbleTitle (string src) throws DocTagException
 		{
+		    //GLib.debug("nibbleTitle: %s", src);
 		    MatchInfo mi;
-		    if(! title_regex.match_all(src, 0, out mi)) {
+		     
+		    if(! /^\s*(\S+)\s*(?:\s([\s\S]*))?$/.match_full(src, src.length, 0, 0, out mi) || 
+			    mi.get_match_count() < 2)  {
 				throw new DocTagException.NO_TITLE("missing title");
 				return src;
 		    }
+		    
+		    //GLib.debug("nibbleTitle: regexmatches %d : %s",
+		    //		 mi.get_match_count(), 
+		    //		 mi.fetch(1).up());
+		    
 		    EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
 
-		    unowned EnumValue? eval = enumc.get_value_by_name (  mi.fetch(1).up());
+		    unowned EnumValue? eval = enumc.get_value_by_name ( "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up());
 		    if (eval == null) {
 				throw new DocTagException.INVALID_TITLE("title not supported ??");
 				return src;
 		    }
 		    this.title = (DocTagTitle) eval.value;
-		    return mi.fetch(2);
+		    return mi.get_match_count() > 2 ? mi.fetch(2) : "";
 
 		}
 		 
@@ -152,22 +189,22 @@ namespace JSDOC
     	private string nibbleType(string src) 
         {
 		    MatchInfo mi;
-            if(! type_regex.match_all(src, 0, out mi)) {
+            if(! /^\s*\{/.match_all(src, 0, out mi)) {
          	   return src;
      	    }
             int start;
             int stop;
               
 			this.balance(src,'{', '}', out start, out stop);
+			//GLib.debug("nibble type: %s %d, %d", src, start,stop);
             if (stop == -1) {
                 throw new DocTagException.INVALID_TYPE("Malformed comment tag ignored. Tag type requires an opening { and a closing }: ") ;
                 return src;
             }
-            this.type = src.substring(start+1,stop).strip();
+            this.type = src.substring(start+1,stop-1).strip();
             this.type = this.type.replace(",", "|"); // multiples can be separated by , or |
-            return src.substring(stop+1, stop+1-src.length);
+            return src.substring(stop+1, -1);
             
-            return src;
         }
          
          
@@ -178,11 +215,12 @@ namespace JSDOC
             @param {string} src
             @return src
          */
-        private string nibbleName( string in_src) throws DocTagException
-         {
+		private string nibbleName( string in_src) throws DocTagException
+        {
 
            
             var src = in_src.strip();
+            //GLib.debug("nibbleName: %s", in_src);
             
             // is optional?
             if (src.get(0) == '[') {
@@ -202,17 +240,20 @@ namespace JSDOC
                 if (nameAndValue.length > 1) {
             		var oname = this.name;
                     this.name = nameAndValue[0].strip();
+
                     this.defaultValue = oname.substring( nameAndValue[0].length + 1 , nameAndValue[0].length + 1 - oname.length); /// what about
                 }
+                GLib.debug("got name %s", this.name);                
                 return src.substring(stop+1, stop+1-src.length);
             }
 			// not encased with [ ]
 
 		    MatchInfo mi;
 
-            if (name_regex.match_all(src, 0,  out mi)) {
+            if (/^(\S+)(?:\s([\s\S]*))?$/.match_full(src, src.length, 0, 0,  out mi)) {
         		this.name = mi.fetch(1);
-				return mi.fetch(2);        		
+        		GLib.debug("got name %s", this.name);
+				return mi.get_match_count() > 2 ? mi.fetch(2) : "";
             }
            	
 
@@ -245,6 +286,18 @@ namespace JSDOC
             
 
 		}
+		
+		public Json.Array optvalue_as_json_array()
+		{
+			var ret = new Json.Array();
+			foreach (var str in this.optvalues ) {
+				ret.add_string_element(str);
+			}
+			return ret;
+			
+			
+		}
+		
 	}
 }
 	
