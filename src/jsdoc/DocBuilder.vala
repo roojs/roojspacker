@@ -423,7 +423,7 @@ namespace JSDOC
 		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
 		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
 		        add.set_array_member("params", m.paramsToJson());
-
+		        add.set_array_member("returns", m.returnsToJson());
 		        
 		        /// fixme - @see ... any others..
 		          
@@ -453,9 +453,12 @@ namespace JSDOC
 	        			"");
 		        add.set_string_member("since", m.comment.getTagAsString(DocTagTitle.SINCE));
 		        add.set_string_member("see", m.comment.getTagAsString(DocTagTitle.SINCE));
+		        // not supported or used yet?
+		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
+		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
 		        
 		        add.set_array_member("params", m.paramsToJson());
-		        add.set_array_member("returns", m.returnsToJson());
+
 		        
 		        /// fixme - @see ... any others..
 		          
