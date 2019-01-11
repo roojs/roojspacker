@@ -409,7 +409,7 @@ namespace JSDOC
 		        add.set_boolean_member("isStatic", m.isStatic);
 		        add.set_boolean_member("isConstructor", m.isa == "CONSTRUCTOR");
 		        add.set_boolean_member("isPrivate", m.isPrivate);
-		        add.set_string_member("singleton", m.comment.getTagAsString(DocTagTitle.SINGLETON));
+		        add.set_boolean_member("isSingleton", m.comment.getTag(DocTagTitle.SINGLETON).length > 0));
 		        //add.set_string_member("instanceOf", m.comment.getTagAsString(DocTagTitle.INSTANCEOF));
 		        add.set_string_member("memberOf", m.memberOf);
 		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
