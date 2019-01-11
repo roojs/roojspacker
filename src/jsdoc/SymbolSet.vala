@@ -328,7 +328,7 @@ namespace JSDOC {
                 //print("buildAugmentsList:addAugments" + alist.length);
                 //var rval = 0;
                 for(var ii = 0; ii < alist.size; ii++) {
-                    print("getAlias:" + alist[ii]);
+                    //print("getAlias:" + alist[ii]);
                     if (alist[ii] == symbol.alias) {
                         continue;
                     }
