@@ -415,7 +415,7 @@ namespace JSDOC
 		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
 		        add.set_string_member("deprecated", m.comment.getTagAsString(DocTagTitle.DEPRECATED));
 		        add.set_string_member("since", m.comment.getTagAsString(DocTagTitle.SINCE));
-		        // not supported yet?
+		        // not supported or used yet?
 		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
 		        
 		        add.set_array_member("params", m.paramsToJson());
