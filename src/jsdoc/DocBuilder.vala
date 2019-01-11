@@ -375,8 +375,24 @@ namespace JSDOC
             ret.set_string_member("name", cls.alias);  
             ret.set_string_member("desc", cls.desc);
 	        ret.set_boolean_member("isSingleton", cls.comment.getTag(DocTagTitle.SINGLETON).size > 0);
-	        ret.set_boolean_member("isStatic", cls.isStatic);
-	        ret.set_boolean_member("isBuiltin", cls.isBuiltin());	        
+	        ret.set_boolean_member("isStatic", cls.isa != "CONSTRUCTOR");
+	        ret.set_boolean_member("isBuiltin", cls.isBuiltin());
+	        
+	        // needded so that the class can fake a ctor..
+            ret.set_string_member("memberOf", cls.name);
+			ret.set_string_member("example", cls.comment.getTagAsString(DocTagTitle.EXAMPLE));
+		    ret.set_string_member("deprecated", // as depricated is used as a flag...
+		        		cls.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+	        			"This has been deprecated: "+  cls.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+        			"");
+	        ret.set_string_member("since", cls.comment.getTagAsString(DocTagTitle.SINCE));
+	        ret.set_string_member("see", cls.comment.getTagAsString(DocTagTitle.SINCE));
+		        // not supported or used yet?
+		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
+		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
+	        ret.set_array_member("params", cls.paramsToJson());
+	        ret.set_array_member("returns", new Json.Array()); 
+	        	        
 			//ret.set_string_member("desc", cls.comment.getTagAsString(DocTagTitle.DESC));
 	        /// fixme - @see ... any others..
 			
