@@ -701,7 +701,7 @@ namespace JSDOC {
         }
         
  
-        bool isBuiltin() {
+        public bool isBuiltin() {
             return SymbolSet.isBuiltin(this.alias);
         }
 
