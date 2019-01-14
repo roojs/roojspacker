@@ -463,7 +463,7 @@ namespace JSDOC
 		        add.set_string_member("desc",m.desc);
 		        //add.set_string_member("sig", m.makeMethodSkel());
 
-		        add.set_string_member("memberOf", m.memberOf == cls.alias ? "" : m.memberOf);
+		        add.set_string_member("memberOf", m.memberOf);
 		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
 		        add.set_string_member("deprecated", // as depricated is used as a flag...
 		        		m.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
