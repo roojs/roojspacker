@@ -330,7 +330,7 @@ namespace JSDOC
 			class_tree_gen.pretty=  true;
 			class_tree_gen.indent = 2;
 			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/tree.json");
-			class_tree_gen.to_file(PackerRun.singleton().opt_doc_target+"/tree.json");
+			this.writeJson(class_tree_gen,PackerRun.singleton().opt_doc_target+"/tree.json");
 			size_t class_tree_l;
 			//GLib.debug("JSON: %s", class_tree_gen.to_data(out class_tree_l));
 		    
@@ -348,7 +348,7 @@ namespace JSDOC
 			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			
 			
-			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			this.writeJson(generator,PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			size_t l;
 			//GLib.debug("JSON: %s", generator.to_data(out l));
 		    
