@@ -758,14 +758,15 @@ namespace JSDOC
 		        "</body></html>");
 		        
 		    // same content?
-		    string[] new_data, old_data;
-		    FileUtils.get_contents(tmp, out new_data);
-		    FileUtils.get_contents(fname, out old_data);
-		    if (old_data == new_data) {
-		    	GLib.File.new_for_path(tmp).delete();
-		    	return;
-	    	}
-		     
+		     if (GLib.FileUtils.test(fname, GLib.FileTest.EXISTS)) {
+				string new_data, old_data;
+				FileUtils.get_contents(tmp, out new_data);
+				FileUtils.get_contents(fname, out old_data);
+				if (old_data == new_data) {
+					GLib.File.new_for_path(tmp).delete();
+					return;
+				}
+		     }
 		        
 	        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
 		      
