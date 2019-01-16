@@ -495,6 +495,12 @@ namespace JSDOC
 		
 			return ret;
 		}
+		
+		void writeJson(Json.Generator g, string fname)
+		{
+		
+		}
+		
 		/**
 		 * JSON files are lookup files for the documentation
 		 * - can be used by IDE's or AJAX based doc tools
