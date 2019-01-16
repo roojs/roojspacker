@@ -751,7 +751,7 @@ namespace JSDOC
 		        "</head><body class=\"highlightpage\">" +
 		        pretty +
 		        "</body></html>");
-		        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
+	        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
 		      
 		    
 		    
