@@ -491,7 +491,9 @@ namespace JSDOC
 		
 			return ret;
 		}
-		
+		/**
+		* needed as Json dumps .xXXX into same directory as it writes...
+		*/
 		void writeJson(Json.Generator g, string fname)
 		{
 				var tmp = this.tempdir + GLibPath.get_basename(fname);
