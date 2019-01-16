@@ -740,14 +740,22 @@ namespace JSDOC
 	    	var str = "";
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
+		    
+		    var fname = PackerRun.singleton().opt_doc_target+"/src/" + name;
+		    var tmp = this.tempdir + GLib.Path.get_basename(fname);
 		    FileUtils.set_contents(
-    			PackerRun.singleton().opt_doc_target+"/src/" + name, 
+    			tmp, 
 		        "<html><head>" +
 		        "<title>" + sourceFile + "</title>" +
 		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/highlight-js.css\"/>" + 
 		        "</head><body class=\"highlightpage\">" +
 		        pretty +
 		        "</body></html>");
+		        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
+		      
+		    
+		    
+
 		}
 	}
 		 
