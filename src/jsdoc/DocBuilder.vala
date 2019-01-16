@@ -214,13 +214,14 @@ namespace JSDOC
     }
     
      */
+     	string tempdir;
         
 		void publish() 
 		{
 		    GLib.debug("Publishing");
 		     
 		    // link!!!
-		    
+		    this.tempdir = GLib.DirUtils.mkdtemp("roopackerXXXXXX");
 		    
 		    GLib.debug("Making directories");
 		    if (!FileUtils.test (PackerRun.singleton().opt_doc_target,FileTest.IS_DIR )) {
