@@ -214,13 +214,14 @@ namespace JSDOC
     }
     
      */
+     	string tempdir;
         
 		void publish() 
 		{
 		    GLib.debug("Publishing");
 		     
 		    // link!!!
-		    
+		    this.tempdir = GLib.DirUtils.make_tmp("roopackerXXXXXX");
 		    
 		    GLib.debug("Making directories");
 		    if (!FileUtils.test (PackerRun.singleton().opt_doc_target,FileTest.IS_DIR )) {
@@ -314,8 +315,7 @@ namespace JSDOC
 				class_gen.pretty=  true;
 				class_gen.indent = 2;
 				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
-				class_gen.to_file(PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
-		         
+				this.writeJson(class_gen, PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 		        
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
@@ -330,7 +330,7 @@ namespace JSDOC
 			class_tree_gen.pretty=  true;
 			class_tree_gen.indent = 2;
 			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/tree.json");
-			class_tree_gen.to_file(PackerRun.singleton().opt_doc_target+"/tree.json");
+			this.writeJson(class_tree_gen,PackerRun.singleton().opt_doc_target+"/tree.json");
 			size_t class_tree_l;
 			//GLib.debug("JSON: %s", class_tree_gen.to_data(out class_tree_l));
 		    
@@ -346,7 +346,9 @@ namespace JSDOC
 			generator.pretty=  true;
 			generator.indent = 2;
 			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
-			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			
+			
+			this.writeJson(generator,PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			size_t l;
 			//GLib.debug("JSON: %s", generator.to_data(out l));
 		    
@@ -489,6 +491,28 @@ namespace JSDOC
 		
 			return ret;
 		}
+		/**
+		* needed as Json dumps .xXXX into same directory as it writes...
+		*/
+		void writeJson(Json.Generator g, string fname)
+		{
+				var tmp = this.tempdir + GLib.Path.get_basename(fname);
+				g.to_file(tmp);
+				
+				if (GLib.FileUtils.test(fname, GLib.FileTest.EXISTS)) {
+					string new_data, old_data;
+					FileUtils.get_contents(tmp, out new_data);
+					FileUtils.get_contents(fname, out old_data);
+					if (old_data == new_data) {
+						GLib.File.new_for_path(tmp).delete();
+						return;
+					}
+			   }
+				
+		        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
+		      
+		}
+		
 		/**
 		 * JSON files are lookup files for the documentation
 		 * - can be used by IDE's or AJAX based doc tools
@@ -719,6 +743,11 @@ namespace JSDOC
 		void makeSrcFile(string sourceFile) 
 		{
 		    // this stuff works...
+		    
+		   
+		    
+		        // this check does not appear to work according to the doc's - need to check it out.
+	       
 		  
 		    var name = this.srcFileFlatName(sourceFile);
 		    
@@ -727,14 +756,34 @@ namespace JSDOC
 	    	var str = "";
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
+		     var fname = PackerRun.singleton().opt_doc_target+"/src/" + name;
+		    
+		    var tmp = this.tempdir + GLib.Path.get_basename(fname);
 		    FileUtils.set_contents(
-    			PackerRun.singleton().opt_doc_target+"/src/" + name, 
+    			tmp, 
 		        "<html><head>" +
 		        "<title>" + sourceFile + "</title>" +
 		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/highlight-js.css\"/>" + 
 		        "</head><body class=\"highlightpage\">" +
 		        pretty +
 		        "</body></html>");
+		        
+		    // same content?
+		     if (GLib.FileUtils.test(fname, GLib.FileTest.EXISTS)) {
+				string new_data, old_data;
+				FileUtils.get_contents(tmp, out new_data);
+				FileUtils.get_contents(fname, out old_data);
+				if (old_data == new_data) {
+					GLib.File.new_for_path(tmp).delete();
+					return;
+				}
+		     }
+		        
+	        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
+		      
+		    
+		    
+
 		}
 	}
 		 
