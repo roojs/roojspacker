@@ -498,7 +498,7 @@ namespace JSDOC
 		{
 				var tmp = this.tempdir + GLib.Path.get_basename(fname);
 				g.to_file(tmp);
-		        GLib.File.new_for_path(tmp).move( File.new_for_pathf(fname), GLib.FileCopyFlags.OVERWRITE);
+		        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
 		      
 		}
 		
