@@ -318,7 +318,7 @@ namespace JSDOC
 				var tmp = this.tempdir + symbol.alias+".json";
 				
 				class_gen.to_file(tmp);
-		        File.new_for_path(tmp).move(PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json",
+		        File.new_for_path(tmp).move( File.new_for_pathPackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json"),
 		        	GLib.FileCopyFlags.OVERWRITE);
 		        
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
