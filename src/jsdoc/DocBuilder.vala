@@ -732,6 +732,11 @@ namespace JSDOC
 		void makeSrcFile(string sourceFile) 
 		{
 		    // this stuff works...
+		    
+		    var fname = PackerRun.singleton().opt_doc_target+"/src/" + name;
+		    
+		        // this check does not appear to work according to the doc's - need to check it out.
+	       
 		  
 		    var name = this.srcFileFlatName(sourceFile);
 		    
@@ -741,7 +746,7 @@ namespace JSDOC
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
 		    
-		    var fname = PackerRun.singleton().opt_doc_target+"/src/" + name;
+		    
 		    var tmp = this.tempdir + GLib.Path.get_basename(fname);
 		    FileUtils.set_contents(
     			tmp, 
@@ -751,6 +756,17 @@ namespace JSDOC
 		        "</head><body class=\"highlightpage\">" +
 		        pretty +
 		        "</body></html>");
+		        
+		    // same content?
+		    string[] new_data, old_data;
+		    FileUtils.get_contents(tmp, out new_data);
+		    FileUtils.get_contents(fname, out old_data);
+		    if (old_data == new_data) {
+		    	GLib.File.new_for_path(tmp).delete();
+		    	return;
+	    	}
+		     
+		        
 	        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
 		      
 		    
