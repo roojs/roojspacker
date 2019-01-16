@@ -315,8 +315,11 @@ namespace JSDOC
 				class_gen.pretty=  true;
 				class_gen.indent = 2;
 				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
-				class_gen.to_file(PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
-		         
+				var tmp = this.tempdir + symbol.alias+".json";
+				
+				class_gen.to_file(tmp);
+		        File.new_for_path(tmp).move(PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json",
+		        	GLib.FileCopyFlags.OVERWRITE);
 		        
 		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
 
@@ -347,6 +350,8 @@ namespace JSDOC
 			generator.pretty=  true;
 			generator.indent = 2;
 			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			
+			
 			generator.to_file(PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			size_t l;
 			//GLib.debug("JSON: %s", generator.to_data(out l));
