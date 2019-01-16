@@ -498,7 +498,10 @@ namespace JSDOC
 		
 		void writeJson(Json.Generator g, string fname)
 		{
-		
+				var tmp = this.tempdir + GLibPath.get_basename(fname);
+				g.to_file(tmp);
+		        GLib.File.new_for_path(tmp).move( File.new_for_pathf(fname), GLib.FileCopyFlags.OVERWRITE);
+		      
 		}
 		
 		/**
