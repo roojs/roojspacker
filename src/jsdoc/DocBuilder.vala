@@ -733,7 +733,7 @@ namespace JSDOC
 		{
 		    // this stuff works...
 		    
-		    var fname = PackerRun.singleton().opt_doc_target+"/src/" + name;
+		   
 		    
 		        // this check does not appear to work according to the doc's - need to check it out.
 	       
@@ -745,7 +745,7 @@ namespace JSDOC
 	    	var str = "";
 	    	FileUtils.get_contents(sourceFile, out str);
 		    var pretty = PrettyPrint.toPretty(str); 
-		    
+		     var fname = PackerRun.singleton().opt_doc_target+"/src/" + name;
 		    
 		    var tmp = this.tempdir + GLib.Path.get_basename(fname);
 		    FileUtils.set_contents(
