@@ -762,7 +762,7 @@ namespace JSDOC
 		    FileUtils.set_contents(
     			tmp, 
 		        "<html><head>" +
-		        "<title>" + sourceFile + "</title>" +
+		        "<title>" + this.srcFileRelName(sourceFile) + "</title>" +
 		        "<link rel=\"stylesheet\" type=\"text/css\" href=\"../../css/highlight-js.css\"/>" + 
 		        "</head><body class=\"highlightpage\">" +
 		        pretty +
