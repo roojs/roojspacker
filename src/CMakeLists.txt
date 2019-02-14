@@ -3,6 +3,8 @@ pkg_check_modules(GOBJECT REQUIRED gobject-2.0)
 pkg_check_modules(GIO REQUIRED gio-2.0)
 pkg_check_modules(GEE REQUIRED gee-0.8)
 pkg_check_modules(GTHREAD REQUIRED gthread-2.0)
+# this was optional??
+pkg_check_modules(JSON REQUIRED json-glib-1.0)
 
 
 set(CFLAGS
