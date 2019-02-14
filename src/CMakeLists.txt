@@ -37,8 +37,26 @@ set(LIB_PATHS
 link_directories(${LIB_PATHS})
 
 set(VALA_SRC
-  ...
-  
+    jsdoc/Collapse.vala 
+    jsdoc/CompressWhite.vala 
+    jsdoc/Identifier.vala 
+    jsdoc/Lang.vala 
+    jsdoc/Packer.vala 
+    jsdoc/ScopeParser.vala 
+    jsdoc/Scope.vala 
+    jsdoc/TextStream.vala 
+    jsdoc/TokenReader.vala 
+    jsdoc/TokenStream.vala 
+    jsdoc/Token.vala 
+    jsdoc/PackerRun.vala 
+    jsdoc/Walker.vala 
+    jsdoc/SymbolSet.vala 
+    jsdoc/DocBuilder.vala 
+    jsdoc/DocComment.vala 
+    jsdoc/DocParser.vala 
+    jsdoc/DocTag.vala 
+    jsdoc/PrettyPrint.vala 
+    jsdoc/Symbol.vala
 )
 
 # Vala segfaults if its output dirs are not existant. Therefore make sure they
@@ -53,14 +71,19 @@ vala_precompile(VALA_C
 	${VALA_SRC}
 PACKAGES 
 	gio-2.0
-	poppler-glib
-	gtk+-2.0
-	posix
+	gee-0.8
+        glib-2.0
+        gobject-2.0
+        json-glib-1.0
 OPTIONS 
 	--thread
 	--debug
+        --vapidir=${CMAKE_SOURCE_DIR}/vapi
+        -g
+        -X -shared -X -lm
+        --target-glib=2.32
 GENERATE_HEADER
-	roojspacker
+	roojspacker-1.2.h
 GENERATE_VAPI
 	roojspacker
 )
