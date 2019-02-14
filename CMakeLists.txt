@@ -40,6 +40,7 @@ list(APPEND VALA_COMPILER_FLAGS "--target-glib=2.38")
 list(APPEND VALA_COMPILER_FLAGs_DEBUG "--debug")
 
 
+global_add_compiler_flags(-Wno-incompatible-pointer-types)
 
 
 set(LIBS
