@@ -6,8 +6,8 @@ list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/vala)
 
 include(FindVala)
 
-find_package(Vala REQUIRED)
-ensure_vala_version("0.36.0" MINIMUM)
+find_package(GLib "2.38" REQUIRED) 
+find_package(Vala "0.36.0" MINIMUM)
 
    
 
