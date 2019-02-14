@@ -59,11 +59,7 @@ set(VALA_SRC
     jsdoc/Symbol.vala
 )
 
-
-set(VALABIN_SRC
-    main.vala
-)
-
+ 
 
 # Vala segfaults if its output dirs are not existant. Therefore make sure they
 # are there.
@@ -100,8 +96,8 @@ add_library(libroojspacker-1.2
 	${VALA_C} roojspacker.h
 )
 
-vala_precompile(VALA_C
-	${VALA_SRC}
+vala_precompile(VALABIN_C
+	main.vala
 PACKAGES 
 	gio-2.0
 	gee-0.8
@@ -122,7 +118,7 @@ OPTIONS
 
 
 add_executable(roojspacker
-  	${VALA_C}
+  	${VALABIN_C}
 )
 
 # explicitly add libraries (needed e.g. for Fedora 13+)
