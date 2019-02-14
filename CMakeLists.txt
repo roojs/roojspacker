@@ -9,11 +9,46 @@ include(FindVala)
 find_package(Vala REQUIRED)
 ensure_vala_version("0.36.0" MINIMUM)
 
+   
+
 find_package(PkgConfig)
-pkg_check_modules(GTK REQUIRED gtk+-2.0)
-add_definitions(${GTK_CFLAGS} ${GTK_CFLAGS_OTHER})
-link_libraries(${GTK_LIBRARIES})
-link_directories(${GTK_LIBRARY_DIRS})
+pkg_check_modules(GOBJECT REQUIRED gobject-2.0)
+pkg_check_modules(GIO REQUIRED gio-2.0)
+pkg_check_modules(GEE REQUIRED gee-0.8)
+pkg_check_modules(GTHREAD REQUIRED gthread-2.0)
+# this was optional??
+pkg_check_modules(JSON REQUIRED json-glib-1.0)
+
+
+set(CFLAGS
+	${GOBJECT_CFLAGS} ${GOBJECT_CFLAGS_OTHER}
+	${GIO_CFLAGS} ${GIO_CFLAGS_OTHER}
+ 	${GTHREAD_CFLAGS} ${GTHREAD_CFLAGS_OTHER}
+        ${GEE_CFLAGS} ${GEE_CFLAGS_OTHER}
+        ${JSON_CFLAGS} ${JSON_CFLAGS_OTHER}
+)
+add_definitions(${CFLAGS})
+
+
+set(LIBS
+	${GOBJECT_LIBRARIES}
+	${GIO_LIBRARIES}
+	${GEE_LIBRARIES}
+	${GTHREAD_LIBRARIES}
+        ${JSON_LIBRARIES}
+)
+link_libraries(${LIBS})
+
+
+set(LIB_PATHS
+	${GOBJECT_LIBRARY_DIRS}
+	${GIO_LIBRARY_DIRS}
+	${GEE_LIBRARY_DIRS}
+	${GTHREAD_LIBRARY_DIRS}
+        ${JSON_LIBRARY_DIRS}
+)
+link_directories(${LIB_PATHS})
+
 
   
 add_subdirectory(src)
