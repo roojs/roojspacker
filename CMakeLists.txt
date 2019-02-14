@@ -30,6 +30,17 @@ set(CFLAGS
 add_definitions(${CFLAGS})
 
 
+
+if(CMAKE_BUILD_TYPE STREQUAL "")
+  set(CMAKE_BUILD_TYPE "Debug")
+endif(CMAKE_BUILD_TYPE STREQUAL "")
+
+list(APPEND VALA_COMPILER_FLAGS "--target-glib=2.38")
+list(APPEND VALA_COMPILER_FLAGs_DEBUG "--debug")
+
+
+
+
 set(LIBS
 	${GOBJECT_LIBRARIES}
 	${GIO_LIBRARIES}
