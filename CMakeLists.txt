@@ -5,6 +5,7 @@ cmake_minimum_required(VERSION 3.2)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
 include(FindVala)
+include(AddCompilerFlags)
 
 find_package(GLib "2.38" REQUIRED) 
 find_package(Vala "0.36.0" MINIMUM)
