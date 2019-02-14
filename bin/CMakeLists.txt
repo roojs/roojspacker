@@ -27,8 +27,7 @@ set_target_properties(roojspacker PROPERTIES
 
 # Any libraries that your tests need to link to should go here.
 # Usually this will just be your library.
-target_link_libraries(${PROJECT_NAME}
-    roojspacker-1.2)
+target_link_libraries(roojspacker roojspacker-1.2)
 
 # Install the executable.
 install (TARGETS roojspacker
