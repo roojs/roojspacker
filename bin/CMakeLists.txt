@@ -28,10 +28,7 @@ OPTIONS
 add_executable(roojspacker
 	${ROOJSPACKER_MAIN_SOURCES})
 
-# Make sure the Vala sources are compiled to C before attempting to
-# build the executable.
-add_dependencies("roojspacker" "roojspacker-vala")
-
+ 
 # We need to add the directory where the C header for our library is
 # installed, otherwise we'll get an error from the C compiler.
 set_target_properties(roojspacker PROPERTIES
