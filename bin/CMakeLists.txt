@@ -5,14 +5,14 @@
 # Compile Vala sources to C
 vala_precompile_target(
   "roojspacker"
-  MY_PROJECT_MAIN_SOURCES
+  ROOJSPACKER_MAIN_SOURCES
   ${CMAKE_BINARY_DIR}/src/roojspacker-1.2.vapi
   main.vala
   DEPENDS "${MY_PROJECT_LIBRARY_NAME}-vala")
 
 # Tell CMake to create an executable named "my-project"
-add_executable(${PROJECT_NAME}
-	${MY_PROJECT_MAIN_SOURCES})
+add_executable(roojspacker
+	${ROOJSPACKER_MAIN_SOURCES})
 
 # Make sure the Vala sources are compiled to C before attempting to
 # build the executable.
