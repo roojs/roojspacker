@@ -69,6 +69,8 @@ macro(make_compile_directory directory)
 	endif (NOT IS_DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/${directory}")
 endmacro(make_compile_directory)
 
+## ----------- the library
+
 vala_precompile(VALA_C
 	${VALA_SRC}
 PACKAGES 
@@ -95,6 +97,8 @@ add_library(libroojspacker-1.2
 	EXCLUDE_FROM_ALL
 	${VALA_C} roojspacker.h
 )
+
+## ----------- the binary
 
 vala_precompile(VALABIN_C
 	main.vala
