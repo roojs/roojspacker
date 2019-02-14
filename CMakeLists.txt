@@ -5,7 +5,6 @@ cmake_minimum_required(VERSION 2.6)
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake/vala)
 
 include(FindVala)
-include(UseVala)
 
 find_package(Vala REQUIRED)
 ensure_vala_version("0.36.0" MINIMUM)
