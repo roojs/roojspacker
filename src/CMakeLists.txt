@@ -89,7 +89,7 @@ OPTIONS
 GENERATE_HEADER
 	roojspacker-1.2.h
 GENERATE_VAPI
-	roojspacker
+	roojspacker-1.2
 )
 
 add_library(libroojspacker-1.2 
@@ -97,7 +97,15 @@ add_library(libroojspacker-1.2
 	EXCLUDE_FROM_ALL
 	${VALA_C} roojspacker.h
 )
-
+ 
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.vapi
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/vala/vapi)
+    
+install (TARGETS libroojspacker-1.2
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
+    
 ## ----------- the binary
 
 vala_precompile(VALABIN_C
@@ -126,7 +134,7 @@ add_executable(roojspacker
 )
 
 # explicitly add libraries (needed e.g. for Fedora 13+)
-target_link_libraries(roojspacker -lm)
+# target_link_libraries(roojspacker -lm)
 
 install(TARGETS 
 	roojspacker
