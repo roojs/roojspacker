@@ -59,6 +59,12 @@ set(VALA_SRC
     jsdoc/Symbol.vala
 )
 
+
+set(VALABIN_SRC
+    main.vala
+)
+
+
 # Vala segfaults if its output dirs are not existant. Therefore make sure they
 # are there.
 macro(make_compile_directory directory)
@@ -88,6 +94,33 @@ GENERATE_VAPI
 	roojspacker
 )
 
+add_library(libroojspacker-1.2 
+	SHARED
+	EXCLUDE_FROM_ALL
+	${VALA_C} roojspacker.h
+)
+
+vala_precompile(VALA_C
+	${VALA_SRC}
+PACKAGES 
+	gio-2.0
+	gee-0.8
+        glib-2.0
+        gobject-2.0
+        json-glib-1.0
+        roojspacker-1.2
+OPTIONS 
+	--thread
+	--debug
+        --vapidir=${CMAKE_SOURCE_DIR}/vapi
+        --vapidir=${CMAKE_SOURCE_DIR}
+        -g
+        -X -shared -X -lm
+        --target-glib=2.32
+)
+
+
+
 add_executable(roojspacker
   	${VALA_C}
 )
@@ -102,8 +135,4 @@ DESTINATION
 	bin
 )
 
-add_library(roojspacker_library 
-	SHARED
-	EXCLUDE_FROM_ALL
-	${VALA_C} roojspacker.h roojspacker.vapi
-)
+
