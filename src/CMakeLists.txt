@@ -12,6 +12,7 @@ set(CFLAGS
 	${GIO_CFLAGS} ${GIO_CFLAGS_OTHER}
  	${GTHREAD_CFLAGS} ${GTHREAD_CFLAGS_OTHER}
         ${GEE_CFLAGS} ${GEE_CFLAGS_OTHER}
+        ${JSON_CFLAGS} ${JSON_CFLAGS_OTHER}
 )
 add_definitions(${CFLAGS})
 
@@ -21,6 +22,7 @@ set(LIBS
 	${GIO_LIBRARIES}
 	${GEE_LIBRARIES}
 	${GTHREAD_LIBRARIES}
+        ${JSON_LIBRARIES}
 )
 link_libraries(${LIBS})
 
@@ -30,6 +32,7 @@ set(LIB_PATHS
 	${GIO_LIBRARY_DIRS}
 	${GEE_LIBRARY_DIRS}
 	${GTHREAD_LIBRARY_DIRS}
+        ${JSON_LIBRARY_DIRS}
 )
 link_directories(${LIB_PATHS})
 
