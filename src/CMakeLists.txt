@@ -106,9 +106,14 @@ install (TARGETS libroojspacker-1.2
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
 
+# Install the C header
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.h
     DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 
+# Install our VAPI
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.vapi
+    DESTINATION ${CMAKE_INSTALL_DATADIR}/vala/vapi)
     
 ## ----------- the binary
 
