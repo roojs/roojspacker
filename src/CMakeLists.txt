@@ -105,6 +105,10 @@ install (TARGETS libroojspacker-1.2
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
+
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.h
+    DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
+
     
 ## ----------- the binary
 
