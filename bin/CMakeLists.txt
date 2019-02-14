@@ -21,7 +21,7 @@ add_dependencies("roojspacker" "roojspacker-vala")
 # We need to add the directory where the C header for our library is
 # installed, otherwise we'll get an error from the C compiler.
 set_target_properties(${PROJECT_NAME} PROPERTIES
-	INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/my-project)
+	INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/roojspacker)
 
 # Any libraries that your tests need to link to should go here.
 # Usually this will just be your library.
