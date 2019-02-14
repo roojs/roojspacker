@@ -18,3 +18,4 @@ link_directories(${GTK_LIBRARY_DIRS})
 
   
 add_subdirectory(src)
+add_subdirectory(main)
