@@ -4,11 +4,9 @@ cmake_minimum_required(VERSION 3.2)
 
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
-include(FindVala)
-include(AddCompilerFlags)
-
+ 
 find_package(GLib "2.38" REQUIRED) 
-find_package(Vala "0.36.0" MINIMUM)
+find_package(Vala "0.36.0" REQUIRED)
 
    
 
@@ -36,9 +34,19 @@ if(CMAKE_BUILD_TYPE STREQUAL "")
   set(CMAKE_BUILD_TYPE "Debug")
 endif(CMAKE_BUILD_TYPE STREQUAL "")
 
-list(APPEND VALA_COMPILER_FLAGS "--target-glib=2.38")
+list(APPEND VALA_COMPILER_FLAGS
+        "--target-glib=2.38"
+        "-g"
+        "-X -shared"
+        "-X -lm"
+        "--thread"
+        "--vapidir=${CMAKE_SOURCE_DIR}/vapi"
+)
 list(APPEND VALA_COMPILER_FLAGs_DEBUG "--debug")
 
+
+
+include(AddCompilerFlags)
 
 global_add_compiler_flags(-Wno-incompatible-pointer-types)
 
@@ -66,4 +74,4 @@ set (LIBRARY_PATH "src")
 
   
 add_subdirectory(src)
-add_subdirectory(main)
+add_subdirectory(bin)

@@ -34,37 +34,38 @@ endmacro(make_compile_directory)
 
 ## ----------- the library
 
-vala_precompile(VALA_C
-	${VALA_SRC}
+vala_precompile_target(
+        "libroojspacker-vala"
+	VALA_C
 PACKAGES 
 	gio-2.0
 	gee-0.8
         glib-2.0
         gobject-2.0
         json-glib-1.0
-OPTIONS 
-	--thread
-	--debug
-        --vapidir=${CMAKE_SOURCE_DIR}/vapi
-        -g
-        -X -shared -X -lm
-        --target-glib=2.32
-GENERATE_HEADER
-	roojspacker-1.2.h
-GENERATE_VAPI
-	roojspacker-1.2
+HEADER roojspacker-1.2.h
+VAPI roojspacker-1.2
+    ${VALA_SRC}
 )
 
-add_library(libroojspacker-1.2 
+add_library(libroojspacker 
 	SHARED
-	EXCLUDE_FROM_ALL
 	${VALA_C} roojspacker.h
 )
- 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.vapi
+
+add_dependencies("libroojspacker" "libroojspacker-vala")
+
+# Set the library's version information
+set_target_properties (${MY_PROJECT_LIBRARY_NAME} PROPERTIES
+    SOVERSION "1.2.1000"
+    VERSION   "1.2")
+
+
+# Install our VAPI
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker.vapi
     DESTINATION ${CMAKE_INSTALL_DATADIR}/vala/vapi)
     
-install (TARGETS libroojspacker-1.2
+install (TARGETS "libroojspacker-1.2"
     RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
     LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
     ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
@@ -73,54 +74,13 @@ install (TARGETS libroojspacker-1.2
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.h
     DESTINATION ${CMAKE_INSTALL_FULL_INCLUDEDIR})
 
-# Install our VAPI
 
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.vapi
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/vala/vapi)
-    
+# pkg-config file..    
 configure_file (
-    "${CMAKE_CURRENT_SOURCE_DIR}/roojspacker-1.2.pc.in"
+    "${CMAKE_CURRENT_SOURCE_DIR}/../roojspacker-1.2.pc.in"
     "${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.pc"
     @ONLY)
     
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.pc
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
-    
-## ----------- the binary
-
-vala_precompile(VALABIN_C
-	main.vala
-PACKAGES 
-	gio-2.0
-	gee-0.8
-        glib-2.0
-        gobject-2.0
-        json-glib-1.0
-        roojspacker-1.2
-OPTIONS 
-	--thread
-	--debug
-        --vapidir=${CMAKE_SOURCE_DIR}/vapi
-        --vapidir=${CMAKE_SOURCE_DIR}
-        -g
-        -X -shared -X -lm
-        --target-glib=2.32
-)
-
-
-
-add_executable(roojspacker
-  	${VALABIN_C}
-)
-
-# explicitly add libraries (needed e.g. for Fedora 13+)
-# target_link_libraries(roojspacker -lm)
-
-install(TARGETS 
-	roojspacker
-RUNTIME
-DESTINATION
-	bin
-)
-
-
+     

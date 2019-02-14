@@ -202,3 +202,18 @@ make[1]: Leaving directory '/home/alan/gitlive/roojspacker/CMakeFiles/CMakeTmp'
     Feature record: C_FEATURE:0c_restrict
     Feature record: C_FEATURE:0c_static_assert
     Feature record: C_FEATURE:0c_variadic_macros
+Performing C SOURCE FILE Test CFLAG_Wincompatible_pointer_types succeeded with the following output:
+Change Dir: /home/alan/gitlive/roojspacker/CMakeFiles/CMakeTmp
+
+Run Build Command:"/usr/bin/make" "cmTC_6d44e/fast"
+/usr/bin/make -f CMakeFiles/cmTC_6d44e.dir/build.make CMakeFiles/cmTC_6d44e.dir/build
+make[1]: Entering directory '/home/alan/gitlive/roojspacker/CMakeFiles/CMakeTmp'
+Building C object CMakeFiles/cmTC_6d44e.dir/src.c.o
+/usr/bin/cc   -DCFLAG_Wincompatible_pointer_types   -Wall -Wextra -Werror -Wincompatible-pointer-types -o CMakeFiles/cmTC_6d44e.dir/src.c.o   -c /home/alan/gitlive/roojspacker/CMakeFiles/CMakeTmp/src.c
+Linking C executable cmTC_6d44e
+/usr/bin/cmake -E cmake_link_script CMakeFiles/cmTC_6d44e.dir/link.txt --verbose=1
+/usr/bin/cc  -DCFLAG_Wincompatible_pointer_types    -rdynamic CMakeFiles/cmTC_6d44e.dir/src.c.o  -o cmTC_6d44e 
+make[1]: Leaving directory '/home/alan/gitlive/roojspacker/CMakeFiles/CMakeTmp'
+
+Source file was:
+int main(void) { return 0; }
