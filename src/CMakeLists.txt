@@ -119,7 +119,8 @@ configure_file (
     "${CMAKE_CURRENT_SOURCE_DIR}/roojspacker-1.2.pc.in"
     "${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.pc"
     @ONLY)
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${MY_PROJECT_PKG_NAME}.pc
+    
+install(FILES ${CMAKE_CURRENT_BINARY_DIR}/roojspacker-1.2.pc
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
     
 ## ----------- the binary
