@@ -6,5 +6,5 @@ C_FLAGS =  -Wno-incompatible-pointer-types -g   -I/usr/include/glib-2.0 -I/usr/l
 
 C_DEFINES = 
 
-C_INCLUDES = -I/home/alan/gitlive/roojspacker/my-project 
+C_INCLUDES = -I/home/alan/gitlive/roojspacker/roojspacker 
 

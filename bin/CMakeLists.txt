@@ -10,7 +10,7 @@ set(ROOJSPACKER_MAIN_SOURCES
 vala_precompile_target(
   "${PROJECT_NAME}-vala"
   ROOJSPACKER_MAIN_SOURCES
-  ${CMAKE_BINARY_DIR}/my-project/my-project-${ROOJSPACKER_VERSION_API}.vapi
+  ${CMAKE_BINARY_DIR}/roojspacker/roojspacker-${ROOJSPACKER_VERSION_API}.vapi
   main.vala
   DEPENDS "${ROOJSPACKER_LIBRARY_NAME}-vala")
 
