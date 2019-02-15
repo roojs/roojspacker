@@ -1,4 +1,4 @@
-# Install script for directory: /home/alan/gitlive/roojspacker/jsdoc
+# Install script for directory: /home/alan/gitlive/roojspacker/roojspacker
 
 # Set the install prefix
 if(NOT DEFINED CMAKE_INSTALL_PREFIX)
@@ -39,20 +39,20 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/vala/vapi/.vapi")
+   "/vala/vapi/roojspacker-1.2.vapi")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/vala/vapi" TYPE FILE FILES "/home/alan/gitlive/roojspacker/jsdoc/.vapi")
+file(INSTALL DESTINATION "/vala/vapi" TYPE FILE FILES "/home/alan/gitlive/roojspacker/roojspacker/roojspacker-1.2.vapi")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   foreach(file
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2"
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2.0"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so.1.2"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so.1.2.0"
       )
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
@@ -62,12 +62,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-.so.1.2"
-    "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-.so.1.2.0"
+    "/home/alan/gitlive/roojspacker/roojspacker/libroojspacker-1.2.so.1.2"
+    "/home/alan/gitlive/roojspacker/roojspacker/libroojspacker-1.2.so.1.2.0"
     )
   foreach(file
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2"
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2.0"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so.1.2"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so.1.2.0"
       )
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
@@ -79,54 +79,54 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so"
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-.so")
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/alan/gitlive/roojspacker/roojspacker/libroojspacker-1.2.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so")
     endif()
   endif()
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "//.h")
+   "//roojspacker-1.2.h")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/" TYPE FILE FILES "/home/alan/gitlive/roojspacker/jsdoc/.h")
+file(INSTALL DESTINATION "/" TYPE FILE FILES "/home/alan/gitlive/roojspacker/roojspacker/roojspacker-1.2.h")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/vala/vapi/.vapi")
+   "/vala/vapi/roojspacker-1.2.vapi")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/vala/vapi" TYPE FILE FILES "/home/alan/gitlive/roojspacker/jsdoc/.vapi")
+file(INSTALL DESTINATION "/vala/vapi" TYPE FILE FILES "/home/alan/gitlive/roojspacker/roojspacker/roojspacker-1.2.vapi")
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   list(APPEND CMAKE_ABSOLUTE_DESTINATION_FILES
-   "/pkgconfig/.pc")
+   "/pkgconfig/roojspacker-1.2.pc")
   if(CMAKE_WARN_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(WARNING "ABSOLUTE path INSTALL DESTINATION : ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
   if(CMAKE_ERROR_ON_ABSOLUTE_INSTALL_DESTINATION)
     message(FATAL_ERROR "ABSOLUTE path INSTALL DESTINATION forbidden (by caller): ${CMAKE_ABSOLUTE_DESTINATION_FILES}")
   endif()
-file(INSTALL DESTINATION "/pkgconfig" TYPE FILE FILES "/home/alan/gitlive/roojspacker/jsdoc/.pc")
+file(INSTALL DESTINATION "/pkgconfig" TYPE FILE FILES "/home/alan/gitlive/roojspacker/roojspacker/roojspacker-1.2.pc")
 endif()
 
