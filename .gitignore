@@ -53,3 +53,5 @@ bindings/php/*
 
 CMakeFiles/*
 CMakeCache.txt
+build/
+
