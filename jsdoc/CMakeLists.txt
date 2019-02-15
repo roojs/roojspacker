@@ -45,8 +45,12 @@ set(ROOJSPACKER_VALA_SOURCES
 # template project we don't actually depend on anything else, so we
 # added it for illustrative purposes.
 set(ROOJSPACKER_VALA_PACKAGES
-    glib-2.0
-    gobject-2.0)
+    glib-2.0  
+    gobject-2.0  
+    gee-0.8 
+    posix 
+    gio-2.0
+)
 
 # Compile Vala -> C
 vala_precompile_target(
