@@ -115,22 +115,22 @@ endif()
 
 # We already had valac write a GIR, now we need to compile it to a
 # typelib.
-gobject_introspection_compile(
-  "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.typelib"
-  "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.gir")
+#gobject_introspection_compile(
+#  "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.typelib"
+#  "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.gir")
 
 # Telling CMake you want to install a file doesn't actually get it to
 # *build* that file.  The workaround is to add a custom target which
 # is always built and depens on the file we want to install.
-add_custom_target(typelib ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.typelib")
+#add_custom_target(typelib ALL DEPENDS "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.typelib")
 
 # Install our typelib
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.typelib"
-    DESTINATION "${GI_TYPELIB_DIR}")
+#install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.typelib"
+#    DESTINATION "${GI_TYPELIB_DIR}")
 
 # Install our GIR
-install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.gir"
-    DESTINATION "${GI_REPOSITORY_DIR}")
+#install(FILES "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_GIR_NAME}.gir"
+#    DESTINATION "${GI_REPOSITORY_DIR}")
 
 # Install our VAPI
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.vapi
