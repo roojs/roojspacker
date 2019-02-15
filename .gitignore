@@ -1,20 +1,17 @@
-src/Makefile
-src/jsdoc/*.c
-src/jsdoc/*.o
-src/*.c
-src/*.o
-src/roojspacker
-src/*.stamp
-src/*.stamp-t
-src/*.la
-src/roojspacker-1.0.h
-src/roojspacker-1.1.h
-src/roojspacker-1.2.h
+roojspacker/Makefile
+roojspacker/*.c
+roojspacker/*.o
+roojspacker/roojspacker
+*.stamp
+*.stamp-t
+*.la
+roojspacker/roojspacker-1.0.h
+roojspacker/roojspacker-1.1.h
+roojspacker/roojspacker-1.2.h
 
-src/roojspacker
-src/*.vapi
-src/*.typelib
-src/*.gir
+roojspacker/*.vapi
+roojspacker/*.typelib
+roojspacker/*.gir
 
 tests/*.c
 examples/test
