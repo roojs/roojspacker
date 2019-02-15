@@ -98,7 +98,10 @@ link_directories(${LIB_PATHS})
 
 set (LIBRARY_PATH "src")
 set(ROOJSPACKER_LIBRARY_NAME ${PROJECT_NAME}-${ROOJSPACKER_VERSION_API})
+set(ROOJSPACKER_PKG_NAME ${PROJECT_NAME}-${ROOJSPACKER_VERSION_API})
 
+# Name of the GObject Introspection repository for the library.
+set(ROOJSPACKER_GIR_NAME "MyProject-${ROOJSPACKER_VERSION_API}")
   
 add_subdirectory(roojspacker)
 #add_subdirectory(bin)
