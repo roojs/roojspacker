@@ -9,7 +9,7 @@ set(ROOJSPACKER_MAIN_SOURCES
 # Compile Vala sources to C
 vala_precompile_target(
   "${PROJECT_NAME}-vala"
-  ROOJSPACKER_MAIN_SOURCES
+  main.vala
   PACKAGES roojspacker-${ROOJSPACKER_VERSION_API}
   DEPENDS "${ROOJSPACKER_LIBRARY_NAME}-vala")
 
