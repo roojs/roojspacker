@@ -101,4 +101,4 @@ set(ROOJSPACKER_LIBRARY_NAME ${PROJECT_NAME}-${ROOJSPACKER_VERSION_API})
 
   
 add_subdirectory(roojspacker)
-add_subdirectory(bin)
+#add_subdirectory(bin)
