@@ -7,6 +7,9 @@ git clone https://github.com/roojs/roojspacker.git
 
 apt-get install valac cmake gcc libgee-0.8-dev   libtool libjson-glib-dev
 
+
+## -- this is designed to run make from the 'build' directory.... - it's hard coded in configure (called from autogen)
+
 cd roojspacker
 ./autogen.sh --prefix=/usr
 cd build
