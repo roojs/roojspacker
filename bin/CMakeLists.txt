@@ -10,7 +10,7 @@ set(ROOJSPACKER_MAIN_SOURCES
 vala_precompile_target(
   "${PROJECT_NAME}-vala"
   ROOJSPACKER_MAIN_SOURCES
-  PACKAGES ${CMAKE_BINARY_DIR}/roojspacker/roojspacker-${ROOJSPACKER_VERSION_API}.vapi
+  PACKAGES roojspacker-${ROOJSPACKER_VERSION_API}
   DEPENDS "${ROOJSPACKER_LIBRARY_NAME}-vala")
 
 # Tell CMake to create an executable named "my-project"
