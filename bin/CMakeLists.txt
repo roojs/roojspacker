@@ -10,7 +10,7 @@ set(ROOJSPACKER_MAIN_SOURCES
 vala_precompile_target(
   "${PROJECT_NAME}-vala"
   ROOJSPACKER_MAIN_SOURCES
-  ${CMAKE_BINARY_DIR}/roojspacker/roojspacker-${ROOJSPACKER_VERSION_API}.vapi
+  ${CMAKE_BINARY_DIR}/jsdoc/roojspacker-${ROOJSPACKER_VERSION_API}.vapi
   main.vala
   DEPENDS "${ROOJSPACKER_LIBRARY_NAME}-vala")
 
@@ -25,7 +25,7 @@ add_dependencies("${PROJECT_NAME}" "${PROJECT_NAME}-vala")
 # We need to add the directory where the C header for our library is
 # installed, otherwise we'll get an error from the C compiler.
 set_target_properties(${PROJECT_NAME} PROPERTIES
-	INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/roojspacker)
+	INCLUDE_DIRECTORIES ${CMAKE_BINARY_DIR}/jsdoc)
 
 # Any libraries that your tests need to link to should go here.
 # Usually this will just be your library.
