@@ -63,12 +63,12 @@ endif(CMAKE_BUILD_TYPE STREQUAL "")
 list(APPEND VALA_COMPILER_FLAGS
         "--target-glib=2.38"
         "-g"
-        "-X -shared"
-        "-X -lm"
         "--thread"
         "--vapidir=${CMAKE_SOURCE_DIR}/vapi"
 )
 list(APPEND VALA_COMPILER_FLAGs_DEBUG "--debug")
+#        "-X -shared"
+#"-X -lm"
 
 
 
@@ -97,6 +97,7 @@ set(LIB_PATHS
 link_directories(${LIB_PATHS})
 
 set (LIBRARY_PATH "src")
+set(ROOJSPACKER_LIBRARY_NAME ${PROJECT_NAME}-${MY_PROJECT_VERSION_API})
 
   
 add_subdirectory(jsdoc)
