@@ -22,6 +22,9 @@ set (MY_PROJECT_VERSION_REVISION 0)
 # This will go in the pkg-config and shared library names.  Should
 # only be changed if the API breaks backwards compatibility.
 set (MY_PROJECT_VERSION_API      "1.2")
+set (MY_PROJECT_SOVERSION_CURRENT  ${MY_PROJECT_VERSION_MAJOR})
+set (MY_PROJECT_SOVERSION_REVISION ${MY_PROJECT_VERSION_MINOR})
+set (MY_PROJECT_SOVERSION_AGE      ${MY_PROJECT_VERSION_REVISION})
 
 
 
