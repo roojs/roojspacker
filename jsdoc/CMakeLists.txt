@@ -18,8 +18,27 @@ set(ROOJSPACKER_HEADER ${PROJECT_NAME})
 
 # These are the Vala sources you want to build your library out of.
 set(ROOJSPACKER_VALA_SOURCES
-    "${CMAKE_CURRENT_BINARY_DIR}/config.vala"
-    my_class.vala)
+    Collapse.vala 
+    CompressWhite.vala 
+    Identifier.vala 
+    Lang.vala 
+    Packer.vala 
+    ScopeParser.vala 
+    Scope.vala 
+    TextStream.vala 
+    TokenReader.vala 
+    TokenStream.vala 
+    Token.vala 
+    PackerRun.vala 
+    Walker.vala 
+    SymbolSet.vala 
+    DocBuilder.vala 
+    DocComment.vala 
+    DocParser.vala 
+    DocTag.vala 
+    PrettyPrint.vala 
+    Symbol.vala
+)
 
 # Any dependencies.  Note that it isn't actually necessary to add
 # glib-2.0 or gobject-2.0 (it is done implicitly), but for this
