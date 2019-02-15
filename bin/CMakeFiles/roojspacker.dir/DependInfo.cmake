@@ -10,12 +10,12 @@ set(CMAKE_C_COMPILER_ID "GNU")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
-  "jsdoc"
+  "roojspacker"
   )
 
 # Targets to which this target links.
 set(CMAKE_TARGET_LINKED_INFO_FILES
-  "/home/alan/gitlive/roojspacker/jsdoc/CMakeFiles/roojspacker-.dir/DependInfo.cmake"
+  "/home/alan/gitlive/roojspacker/roojspacker/CMakeFiles/roojspacker-.dir/DependInfo.cmake"
   )
 
 # Fortran module output directory.

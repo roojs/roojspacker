@@ -62,9 +62,9 @@ bin/roojspacker-vala/stamp: bin/roojspacker-vala/build/bin/main.c.stamp
 	cd /home/alan/gitlive/roojspacker/bin && /usr/bin/cmake -E touch /home/alan/gitlive/roojspacker/bin/roojspacker-vala/stamp
 
 bin/roojspacker-vala/build/bin/main.c.stamp: bin/main.vala
-bin/roojspacker-vala/build/bin/main.c.stamp: jsdoc/roojspacker-1.2.vapi
+bin/roojspacker-vala/build/bin/main.c.stamp: roojspacker/roojspacker-1.2.vapi
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --blue --bold --progress-dir=/home/alan/gitlive/roojspacker/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Generating /home/alan/gitlive/roojspacker/bin/roojspacker-vala/build/bin/main.c"
-	cd /home/alan/gitlive/roojspacker/bin && /usr/bin/valac -d /home/alan/gitlive/roojspacker/bin/roojspacker-vala/build/bin -C /home/alan/gitlive/roojspacker/bin/main.vala /home/alan/gitlive/roojspacker/jsdoc/roojspacker-1.2.vapi --target-glib=2.38 -g --thread --vapidir=/home/alan/gitlive/roojspacker/vapi
+	cd /home/alan/gitlive/roojspacker/bin && /usr/bin/valac -d /home/alan/gitlive/roojspacker/bin/roojspacker-vala/build/bin -C /home/alan/gitlive/roojspacker/bin/main.vala /home/alan/gitlive/roojspacker/roojspacker/roojspacker-1.2.vapi --target-glib=2.38 -g --thread --vapidir=/home/alan/gitlive/roojspacker/vapi
 	cd /home/alan/gitlive/roojspacker/bin && /usr/bin/cmake -E touch /home/alan/gitlive/roojspacker/bin/roojspacker-vala/build/bin/main.c.stamp
 
 roojspacker-vala: bin/CMakeFiles/roojspacker-vala
