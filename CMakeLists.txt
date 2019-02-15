@@ -100,5 +100,5 @@ set (LIBRARY_PATH "src")
 set(ROOJSPACKER_LIBRARY_NAME ${PROJECT_NAME}-${MY_PROJECT_VERSION_API})
 
   
-add_subdirectory(jsdoc)
+add_subdirectory(roojspacker)
 add_subdirectory(bin)
