@@ -52,10 +52,10 @@ bindings/php/*
 !README
 
 CMakeFiles/*
-jsdoc/CMakeFiles/*
-jsdoc/build
-jsdoc/.libs
-jsdoc/.deps
+roojspacker/CMakeFiles/*
+roojspacker/build
+roojspacker/.libs
+roojspacker/.deps
 CMakeCache.txt
 build/
 
