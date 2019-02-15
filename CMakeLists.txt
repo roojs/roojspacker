@@ -73,5 +73,5 @@ link_directories(${LIB_PATHS})
 set (LIBRARY_PATH "src")
 
   
-add_subdirectory(src)
+add_subdirectory(jsdoc)
 add_subdirectory(bin)
