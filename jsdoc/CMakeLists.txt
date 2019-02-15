@@ -93,8 +93,8 @@ foreach(file ${ROOJSPACKER_C_SOURCES})
 endforeach(file)
 
 # Define the gettext domain
-set_property (TARGET ${ROOJSPACKER_LIBRARY_NAME}
-    APPEND PROPERTY COMPILE_DEFINITIONS GETTEXT_PACKAGE="${GETTEXT_PACKAGE}")
+#set_property (TARGET ${ROOJSPACKER_LIBRARY_NAME}
+#    APPEND PROPERTY COMPILE_DEFINITIONS GETTEXT_PACKAGE="${GETTEXT_PACKAGE}")
 
 # If you don't want to build and install a shared library, comment out
 # (or remove) everything below this point.
