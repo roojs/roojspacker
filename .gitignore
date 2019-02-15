@@ -50,3 +50,6 @@ bindings/php/*
 !bindings/php/php_roojspacker.h
 !bindings/php/roojspacker.xml
 !README
+
+CMakeFiles/*
+CMakeCache.txt
