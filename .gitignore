@@ -52,6 +52,10 @@ bindings/php/*
 !README
 
 CMakeFiles/*
+src/CMakeFiles/*
+src/build
+src/.libs
+src/.deps
 CMakeCache.txt
 build/
 
