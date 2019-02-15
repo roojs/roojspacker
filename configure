@@ -223,8 +223,6 @@ while [ $# != 0 ]; do
             DATA_DIR="$(quote "${1#*=}")"; shift;;
         "--datadir")
             DATA_DIR="$(quote "$2")"; shift;;
-            shift;;
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=$(quote "$2")"; shift;;
         "--infodir="*)
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INFODIR=$(quote "${1#*=}")";;
         "--infodir")
