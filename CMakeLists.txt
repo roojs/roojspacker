@@ -2,6 +2,29 @@ project("roojspacker" C)
 
 cmake_minimum_required(VERSION 3.2)
 
+
+set(PROJECT_WEB "https://www.roojs.com/")
+# Where to report bugs; usually either an e-mail address or an issue
+# tracker URL.
+set(PROJECT_BUGS "https://www.roojs.com/mtrack/")
+# Gettext package name
+#set(GETTEXT_PACKAGE ${PROJECT_NAME})
+
+# Library version
+#
+# This should be incremented with every release.  See semver.org.
+set (MY_PROJECT_VERSION_MAJOR    1)
+set (MY_PROJECT_VERSION_MINOR    2)
+set (MY_PROJECT_VERSION_REVISION 0)
+
+# API version.
+#
+# This will go in the pkg-config and shared library names.  Should
+# only be changed if the API breaks backwards compatibility.
+set (MY_PROJECT_VERSION_API      "1.2")
+
+
+
 list(APPEND CMAKE_MODULE_PATH ${CMAKE_SOURCE_DIR}/cmake)
 
  
