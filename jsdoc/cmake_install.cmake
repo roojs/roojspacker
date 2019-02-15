@@ -51,8 +51,8 @@ endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
   foreach(file
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so.."
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so..."
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2.0"
       )
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
@@ -62,12 +62,12 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
     endif()
   endforeach()
   file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES
-    "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-1.2.so.."
-    "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-1.2.so..."
+    "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-.so.1.2"
+    "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-.so.1.2.0"
     )
   foreach(file
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so.."
-      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so..."
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2"
+      "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so.1.2.0"
       )
     if(EXISTS "${file}" AND
        NOT IS_SYMLINK "${file}")
@@ -79,17 +79,17 @@ if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_
 endif()
 
 if("x${CMAKE_INSTALL_COMPONENT}x" STREQUAL "xUnspecifiedx" OR NOT CMAKE_INSTALL_COMPONENT)
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so")
     file(RPATH_CHECK
-         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so"
+         FILE "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so"
          RPATH "")
   endif()
-  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-1.2.so")
-  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so" AND
-     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so")
+  file(INSTALL DESTINATION "${CMAKE_INSTALL_PREFIX}/lib" TYPE SHARED_LIBRARY FILES "/home/alan/gitlive/roojspacker/jsdoc/libroojspacker-.so")
+  if(EXISTS "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so" AND
+     NOT IS_SYMLINK "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so")
     if(CMAKE_INSTALL_DO_STRIP)
-      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-1.2.so")
+      execute_process(COMMAND "/usr/bin/strip" "$ENV{DESTDIR}${CMAKE_INSTALL_PREFIX}/lib/libroojspacker-.so")
     endif()
   endif()
 endif()

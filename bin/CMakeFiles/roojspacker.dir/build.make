@@ -79,7 +79,7 @@ roojspacker_EXTERNAL_OBJECTS =
 
 bin/roojspacker: bin/CMakeFiles/roojspacker.dir/roojspacker-vala/build/bin/main.c.o
 bin/roojspacker: bin/CMakeFiles/roojspacker.dir/build.make
-bin/roojspacker: jsdoc/libroojspacker-1.2.so..
+bin/roojspacker: jsdoc/libroojspacker-.so.1.2
 bin/roojspacker: /usr/lib/x86_64-linux-gnu/libgobject-2.0.so
 bin/roojspacker: /usr/lib/x86_64-linux-gnu/libglib-2.0.so
 bin/roojspacker: /usr/lib/x86_64-linux-gnu/libgio-2.0.so

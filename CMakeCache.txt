@@ -174,6 +174,15 @@ GDBUS_CODEGEN:FILEPATH=/usr/bin/gdbus-codegen
 //Path to a library.
 GIO:FILEPATH=/usr/lib/x86_64-linux-gnu/libgio-2.0.so
 
+//Path to a file.
+GIREPOSITORY_FILE:FILEPATH=/usr/share/gir-1.0/GObject-2.0.gir
+
+//Path to a program.
+GI_COMPILER_EXECUTABLE:FILEPATH=/usr/bin/g-ir-compiler
+
+//Path to a program.
+GI_SCANNER_EXECUTABLE:FILEPATH=/usr/bin/g-ir-scanner
+
 //Path to a library.
 GLIB:FILEPATH=/usr/lib/x86_64-linux-gnu/libglib-2.0.so
 
@@ -201,11 +210,23 @@ GLib_DIR:PATH=GLib_DIR-NOTFOUND
 //Path to a library.
 GOBJECT:FILEPATH=/usr/lib/x86_64-linux-gnu/libgobject-2.0.so
 
+//The directory containing a CMake configuration file for GObjectIntrospection.
+GObjectIntrospection_DIR:PATH=GObjectIntrospection_DIR-NOTFOUND
+
 //pkg-config executable
 PKG_CONFIG_EXECUTABLE:FILEPATH=/usr/bin/pkg-config
 
+//Dependencies for the target
+SHARED_LIB_DEPENDS:STATIC=general;gobject-2.0;general;glib-2.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;general;gee-0.8;general;gobject-2.0;general;glib-2.0;general;gthread-2.0;general;glib-2.0;general;json-glib-1.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;
+
+//Valadoc
+VALADOC_EXECUTABLE:FILEPATH=VALADOC_EXECUTABLE-NOTFOUND
+
 //Path to a program.
 VALA_EXECUTABLE:FILEPATH=/usr/bin/valac
+
+//The directory containing a CMake configuration file for Valadoc.
+Valadoc_DIR:PATH=Valadoc_DIR-NOTFOUND
 
 //Dependencies for the target
 libroojspacker-1.2_LIB_DEPENDS:STATIC=general;gobject-2.0;general;glib-2.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;general;gee-0.8;general;gobject-2.0;general;glib-2.0;general;gthread-2.0;general;glib-2.0;general;json-glib-1.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;
@@ -272,6 +293,12 @@ pkgcfg_lib_JSON_gobject-2.0:FILEPATH=/usr/lib/x86_64-linux-gnu/libgobject-2.0.so
 
 //Path to a library.
 pkgcfg_lib_JSON_json-glib-1.0:FILEPATH=/usr/lib/x86_64-linux-gnu/libjson-glib-1.0.so
+
+//Dependencies for the target
+roojspacker-1.2_LIB_DEPENDS:STATIC=general;gobject-2.0;general;glib-2.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;general;gee-0.8;general;gobject-2.0;general;glib-2.0;general;gthread-2.0;general;glib-2.0;general;json-glib-1.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;
+
+//Dependencies for the target
+roojspacker-_LIB_DEPENDS:STATIC=general;gobject-2.0;general;glib-2.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;general;gee-0.8;general;gobject-2.0;general;glib-2.0;general;gthread-2.0;general;glib-2.0;general;json-glib-1.0;general;gio-2.0;general;gobject-2.0;general;glib-2.0;
 
 //Value Computed by CMake
 roojspacker_BINARY_DIR:STATIC=/home/alan/gitlive/roojspacker
@@ -411,6 +438,8 @@ CMAKE_UNAME:INTERNAL=/bin/uname
 CMAKE_VERBOSE_MAKEFILE-ADVANCED:INTERNAL=1
 //Details about finding GLib
 FIND_PACKAGE_MESSAGE_DETAILS_GLib:INTERNAL=[/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include][/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include][/usr/include/glib-2.0;/usr/lib/x86_64-linux-gnu/glib-2.0/include][/usr/bin/glib-mkenums][/usr/bin/glib-genmarshal][/usr/bin/glib-compile-schemas][/usr/bin/glib-compile-resources][/usr/bin/gdbus-codegen][v2.58.1(2.38)]
+//Details about finding GObjectIntrospection
+FIND_PACKAGE_MESSAGE_DETAILS_GObjectIntrospection:INTERNAL=[/usr/bin/g-ir-compiler][/usr/bin/g-ir-scanner][v()]
 //Details about finding PkgConfig
 FIND_PACKAGE_MESSAGE_DETAILS_PkgConfig:INTERNAL=[/usr/bin/pkg-config][v0.29.1()]
 //Details about finding Vala
