@@ -4,10 +4,10 @@
 
 # Generate a config.vala file, which can be used for version
 # information and feature detection.
-configure_file(
-    "${CMAKE_CURRENT_SOURCE_DIR}/config.vala.in"
-    "${CMAKE_CURRENT_BINARY_DIR}/config.vala"
-    @ONLY)
+#configure_file(
+#    "${CMAKE_CURRENT_SOURCE_DIR}/config.vala.in"
+#    "${CMAKE_CURRENT_BINARY_DIR}/config.vala"
+#    @ONLY)
 
 # You can re-type these if you prefer; putting them in variables makes
 # it easier to reuse them, and helps explain what each command needs
@@ -138,9 +138,9 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.vapi
 
 # Install the library
 install (TARGETS ${ROOJSPACKER_LIBRARY_NAME}
-    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
-    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
-    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
+    RUNTIME DESTINATION bin ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
+    LIBRARY DESTINATION lib ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
+    ARCHIVE DESTINATION lib ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
 
 # Install the C header
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.h
