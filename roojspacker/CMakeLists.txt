@@ -128,9 +128,9 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.vapi
 
 # Install the library
 install (TARGETS ${ROOJSPACKER_LIBRARY_NAME}
-    RUNTIME DESTINATION bin ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
-    LIBRARY DESTINATION lib ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
-    ARCHIVE DESTINATION lib ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
+    RUNTIME DESTINATION ${CMAKE_INSTALL_BINDIR}  # On Windows, the DLL goes in the same place as the executables
+    LIBRARY DESTINATION ${CMAKE_INSTALL_LIBDIR}  # This is where shared libraries (*.so on Linux, *.dynlib on OS X)
+    ARCHIVE DESTINATION ${CMAKE_INSTALL_LIBDIR}) # Finally, this is where static libraries (*.a) go
 
 # Install the C header
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.h
@@ -149,22 +149,22 @@ install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.pc
   DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
 
 # Generate documentation
-find_package(Valadoc)
-if(${VALADOC_FOUND})
-    valadoc_generate(html
-        PACKAGE_NAME ${ROOJSPACKER_PKG_NAME}
-        PACKAGE_VERSION "${ROOJSPACKER_VERSION_MAJOR}.${ROOJSPACKER_VERSION_MINOR}.${ROOJSPACKER_VERSION_REVISION}"
-        SOURCES ${ROOJSPACKER_VALA_SOURCES}
-        PACKAGES ${ROOJSPACKER_VALA_PACKAGES})
-    valadoc_generate(devhelp
-        DOCLET devhelp
-        PACKAGE_NAME ${ROOJSPACKER_PKG_NAME}
-        PACKAGE_VERSION "${ROOJSPACKER_VERSION_MAJOR}.${ROOJSPACKER_VERSION_MINOR}.${ROOJSPACKER_VERSION_REVISION}"
-        SOURCES ${ROOJSPACKER_VALA_SOURCES}
-        PACKAGES ${ROOJSPACKER_VALA_PACKAGES})
-
-    install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/devhelp/${ROOJSPACKER_PKG_NAME}"
-        DESTINATION "${CMAKE_INSTALL_DATADIR}/devhelp/books")
-    add_custom_target(doc ALL
-        DEPENDS html devhelp)
-endif()
+#find_package(Valadoc)
+#if(${VALADOC_FOUND})
+#    valadoc_generate(html
+#        PACKAGE_NAME ${ROOJSPACKER_PKG_NAME}
+#        PACKAGE_VERSION "${ROOJSPACKER_VERSION_MAJOR}.${ROOJSPACKER_VERSION_MINOR}.${ROOJSPACKER_VERSION_REVISION}"
+#        SOURCES ${ROOJSPACKER_VALA_SOURCES}
+#        PACKAGES ${ROOJSPACKER_VALA_PACKAGES})
+#    valadoc_generate(devhelp
+#        DOCLET devhelp
+#        PACKAGE_NAME ${ROOJSPACKER_PKG_NAME}
+#        PACKAGE_VERSION "${ROOJSPACKER_VERSION_MAJOR}.${ROOJSPACKER_VERSION_MINOR}.${ROOJSPACKER_VERSION_REVISION}"
+#        SOURCES ${ROOJSPACKER_VALA_SOURCES}
+#        PACKAGES ${ROOJSPACKER_VALA_PACKAGES})
+#
+#    install(DIRECTORY "${CMAKE_CURRENT_BINARY_DIR}/devhelp/${ROOJSPACKER_PKG_NAME}"
+#        DESTINATION "${CMAKE_INSTALL_DATADIR}/devhelp/books")
+#    add_custom_target(doc ALL
+#        DEPENDS html devhelp)
+#endif()
