@@ -26,6 +26,7 @@ CMAKE_CMD="cmake ${TOP_SRCDIR}"
 
 BUILD_TYPE="Debug"
 PREFIX=/usr
+DATA_DIR=${PREFIX}/share
 LIBDIR=
 CMAKE_ARGS=
 
