@@ -25,7 +25,7 @@ TOP_SRCDIR="$(dirname $0)"
 CMAKE_CMD="cmake ${TOP_SRCDIR}"
 
 BUILD_TYPE="Debug"
-PREFIX=/usr/local
+PREFIX=/usr
 LIBDIR=
 CMAKE_ARGS=
 
@@ -220,6 +220,7 @@ while [ $# != 0 ]; do
         "--datarootdir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATAROOTDIR=$(quote "$2")"; shift;;
         "--datadir="*)
+            DATADIR=$(quote "${1#*=}")";;
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=$(quote "${1#*=}")";;
         "--datadir")
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=$(quote "$2")"; shift;;
@@ -311,4 +312,4 @@ if [ "x${LDFLAGS}" != "x" ]; then
     done
 fi
 
-eval "cmake ${TOP_SRCDIR} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_LIBDIR=${LIBDIR} ${CMAKE_ARGS}"
+eval "cmake -Bbuild -H${TOP_SRCDIR} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_DATADIR=${DATA_DIR} -DCMAKE_INSTALL_LIBDIR=${LIBDIR} ${CMAKE_ARGS}"
