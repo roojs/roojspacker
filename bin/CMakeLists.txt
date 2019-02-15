@@ -1,25 +1,39 @@
 #
 #
 # Main target
-set(ROOJSPACKER_MAIN_SOURCES
-   main.vala
+set(ROOJSPACKER_MAIN_VALA_SOURCES
+   main.vala)
+   
+   
+set(ROOJS_VALA_CUSTOM_VAPIS
+  ${CMAKE_BINARY_DIR}/${LIBRARY_PATH}/${ROOJSPACKER_PKG_NAME}.vapi)
+
+set(ROOJSPACKER_VALA_PACKAGES
+    glib-2.0  
+    gobject-2.0  
+    gee-0.8 
+    posix 
+    gio-2.0
+    json-glib-1.0
 )
 
 
 # Compile Vala sources to C
 vala_precompile_target(
-  "${PROJECT_NAME}-vala"
-  main.vala
-  PACKAGES roojspacker-${ROOJSPACKER_VERSION_API}
+  "${PROJECT_NAME}-valabin"
+  ROOJSPACKER_MAIN_C_SOURCES
+  ${ROOJS_VALA_CUSTOM_VAPIS}
+  ${ROOJSPACKER_MAIN_VALA_SOURCES}
+  PACKAGES ${ROOJSPACKER_VALA_PACKAGES}
   DEPENDS "${ROOJSPACKER_LIBRARY_NAME}-vala")
 
 # Tell CMake to create an executable named "my-project"
 add_executable(${PROJECT_NAME}
-	${ROOJSPACKER_MAIN_SOURCES})
+	${ROOJSPACKER_MAIN_C_SOURCES})
 
 # Make sure the Vala sources are compiled to C before attempting to
 # build the executable.
-add_dependencies("${PROJECT_NAME}" "${PROJECT_NAME}-vala")
+add_dependencies("${PROJECT_NAME}" "${PROJECT_NAME}-valabin")
 
 # We need to add the directory where the C header for our library is
 # installed, otherwise we'll get an error from the C compiler.

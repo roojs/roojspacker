@@ -40,6 +40,7 @@ endif()
 if(NOT CMAKE_INSTALL_LOCAL_ONLY)
   # Include the install script for each subdirectory.
   include("/home/alan/gitlive/roojspacker/roojspacker/cmake_install.cmake")
+  include("/home/alan/gitlive/roojspacker/bin/cmake_install.cmake")
 
 endif()
 

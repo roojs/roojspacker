@@ -45,6 +45,17 @@ pkg_check_modules(GTHREAD REQUIRED gthread-2.0)
 pkg_check_modules(JSON REQUIRED json-glib-1.0)
 
 
+set(ROOJSPACKER_VALA_PACKAGES
+    glib-2.0  
+    gobject-2.0  
+    gee-0.8 
+    posix 
+    gio-2.0
+    json-glib-1.0
+)
+
+
+
 set(CFLAGS
 	${GOBJECT_CFLAGS} ${GOBJECT_CFLAGS_OTHER}
 	${GIO_CFLAGS} ${GIO_CFLAGS_OTHER}
@@ -102,6 +113,8 @@ set(ROOJSPACKER_PKG_NAME ${PROJECT_NAME}-${ROOJSPACKER_VERSION_API})
 
 # Name of the GObject Introspection repository for the library.
 set(ROOJSPACKER_GIR_NAME "MyProject-${ROOJSPACKER_VERSION_API}")
+
+set (LIBRARY_PATH "roojspacker")
   
 add_subdirectory(roojspacker)
 add_subdirectory(bin)
