@@ -50,6 +50,7 @@ set(ROOJSPACKER_VALA_PACKAGES
     gee-0.8 
     posix 
     gio-2.0
+    json-glib-1.0
 )
 
 # Compile Vala -> C
