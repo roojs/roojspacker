@@ -13,9 +13,9 @@ set(PROJECT_BUGS "https://www.roojs.com/mtrack/")
 # Library version
 #
 # This should be incremented with every release.  See semver.org.
-set (MY_PROJECT_VERSION_MAJOR    1)
-set (MY_PROJECT_VERSION_MINOR    2)
-set (MY_PROJECT_VERSION_REVISION 0)
+set (ROOJSPACKER_VERSION_MAJOR    1)
+set (ROOJSPACKER_VERSION_MINOR    2)
+set (ROOJSPACKER_VERSION_REVISION 0)
 
 # API version.
 #
