@@ -101,16 +101,15 @@ namespace JSDOC
 		public Packer(PackerRun config)
 		{
 			this.config = config;
-#if HAVE_JSON_GLIB
+##if HAVE_JSON_GLIB
 			this.result = new Json.Object();
-#else
-			this.result_count = new  Gee.HashMap <string,int>();
-		
-			this.result =  new Gee.HashMap<
-				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
-			>();
-	
-#endif			
+##else
+#			this.result_count = new  Gee.HashMap <string,int>();
+#		
+#			this.result =  new Gee.HashMap<
+#				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
+#			>();
+##endif			
 			this.files = new Gee.ArrayList<string>();
 			
 			new Lang_Class(); ///initilizaze lang..
