@@ -54,7 +54,7 @@ set(ROOJSPACKER_VALA_PACKAGES
     json-glib-1.0
 )
 
-set(HAVE_JSON_GLIB, "yes");
+set(HAVE_JSON_GLIB, "yes")
 
 set(CFLAGS
 	${GOBJECT_CFLAGS} ${GOBJECT_CFLAGS_OTHER}
