@@ -36,10 +36,10 @@
         "execute_args" : "",
         "target_bin" : "",
         "sources" : [
-            "/src/jsdoc",
             "..//roojspacker",
             "../../../../usr/share/vala/vapi",
-            "/src"
+            "/roojspacker",
+            "/bin"
         ],
         "packages" : [
             "glib-2.0",

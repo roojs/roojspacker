@@ -101,16 +101,16 @@ namespace JSDOC
 		public Packer(PackerRun config)
 		{
 			this.config = config;
-#if HAVE_JSON_GLIB
+//#if HAVE_JSON_GLIB
 			this.result = new Json.Object();
-#else
-			this.result_count = new  Gee.HashMap <string,int>();
-		
-			this.result =  new Gee.HashMap<
-				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
-			>();
-	
-#endif			
+//#else
+//			this.result_count = new  Gee.HashMap <string,int>();
+//		
+//			this.result =  new Gee.HashMap<
+//#				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
+//#			>();
+//#endif			
+//
 			this.files = new Gee.ArrayList<string>();
 			
 			new Lang_Class(); ///initilizaze lang..
@@ -148,7 +148,7 @@ namespace JSDOC
 		*
 		*/
 		
-#if HAVE_JSON_GLIB
+//#if HAVE_JSON_GLIB
 		
 		public Json.Object result;   // output - what's the complication result
 
@@ -212,11 +212,14 @@ namespace JSDOC
 			
 			});
 		}
-#else
+/*#else
 		public Gee.HashMap <string,int> result_count;   // output - what's the complication result
 		
 		public Gee.HashMap<
-				string /* errtype*/ , Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>
+				string // errtype
+				, Gee.HashMap<string //fn
+					,Gee.HashMap<int //line 
+						, Gee.ArrayList<string>>>
 		> result;
 
 		public void  logError(ResultType type, string filename, int line, string message) {
@@ -234,12 +237,15 @@ namespace JSDOC
 			 
 			 if (!this.result.has_key(type.to_string())) {
 				 this.result.set(type.to_string(),
-					 new Gee.HashMap<string /*fn*/,     Gee.HashMap<int /*line*/, Gee.ArrayList<string>>>()
+					 new Gee.HashMap<string //fn 
+					 ,     Gee.HashMap<int //line
+					 		, Gee.ArrayList<string>>>()
 				 );
 			 }
 			 var t = this.result.get(type.to_string());
 			 if (!t.has_key(filename)) {
-				 t.set(filename, new  Gee.HashMap<int /*line*/, Gee.ArrayList<string>>());
+				 t.set(filename, new  Gee.HashMap<int //line
+					 , Gee.ArrayList<string>>());
 			 }
 			 var tt = t.get(filename);
 			 if (!tt.has_key(line)) {
@@ -286,7 +292,7 @@ namespace JSDOC
 
 
 #endif
-		
+*/		
 		
 		
 		public void loadSourceIndexes(Gee.ArrayList<string> indexes)
