@@ -35,4 +35,9 @@ class Param {
     var $desc = '';
     var $isOptional = true;
 }
-      
+
+
+
+$fdir = '/home/alan/Downloads/flutterdocs/flutter/';
+$js = json_decode(file_get_contents($fdir.'index.json'));
+print_r($js);exit;
