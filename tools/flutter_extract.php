@@ -29,11 +29,10 @@ class Cls {
     var $methods = array();
     var $props = array();
 }
-"params" : [
-        {
-          "name" : "o",
-          "type" : "Object",
-          "desc" : "The object to remove",
-          "isOptional" : false
-        }
-      ],
+class Param {
+    var $name = '';
+    var $type = '';
+    var $desc = '';
+    var $isOptional = true;
+}
+      
