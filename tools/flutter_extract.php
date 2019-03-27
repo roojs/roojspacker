@@ -2,6 +2,8 @@
 
 // in flutter - an event is actually a property..?
 
+// we have 2 types of data - the overall summary, and the 'detail one we use for docs..
+//
 
 class  Prop {
     var $name = '';
@@ -26,5 +28,12 @@ class Cls {
     var $events = array();
     var $methods = array();
     var $props = array();
-    
 }
+"params" : [
+        {
+          "name" : "o",
+          "type" : "Object",
+          "desc" : "The object to remove",
+          "isOptional" : false
+        }
+      ],
