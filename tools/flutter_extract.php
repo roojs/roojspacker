@@ -10,7 +10,7 @@ class  Prop {
     var $memberOf = '';
 }
 
-class  Method {  // doubles up for events?
+class  Method {  // doubles up for events? - normally 'on' is the name
     var $name = '';
     var $type = ''; // return...
     var $desc = '';
@@ -18,4 +18,13 @@ class  Method {  // doubles up for events?
     var $memberOf = '';
     var $sig = '';
     var $args  = array();
+}
+
+class Cls {
+    var $name;
+    var $extends;
+    var $events = array();
+    var $methods = array();
+    var $props = array();
+    
 }
