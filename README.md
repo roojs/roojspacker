@@ -14,3 +14,9 @@ cd roojspacker
 ./autogen.sh --prefix=/usr
 cd build
 sudo make install
+
+
+Debian package build:
+dpkg-buildpackage -kalan@roojs.com
+
+
