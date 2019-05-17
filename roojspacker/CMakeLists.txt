@@ -138,12 +138,8 @@ install (
 #    DESTINATION ${CMAKE_INSTALL_INCLUDEDIR}/)
 
 INSTALL (FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.h
-	DESTINATION include)
+	DESTINATION ${CMAKE_INSTALL_INCLUDEDIR})
 
-
-# Install our VAPI
-install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.vapi
-    DESTINATION ${CMAKE_INSTALL_DATADIR}/vala/vapi)
 
 # Generate and install a pkg-config file
 configure_file (
@@ -151,7 +147,7 @@ configure_file (
     "${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.pc"
     @ONLY)
 install(FILES ${CMAKE_CURRENT_BINARY_DIR}/${ROOJSPACKER_PKG_NAME}.pc
-  DESTINATION ${CMAKE_INSTALL_LIBDIR}/pkgconfig)
+  DESTINATION ${CMAKE_INSTALL_DATADIR}/pkgconfig)
 
 # Generate documentation
 #find_package(Valadoc)
