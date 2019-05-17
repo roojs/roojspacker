@@ -27,6 +27,7 @@ CMAKE_CMD="cmake ${TOP_SRCDIR}"
 BUILD_TYPE="Debug"
 PREFIX=/usr
 DATA_DIR=${PREFIX}/share
+INCLUDE_DIR=include/roojspacker
 LIBDIR=
 CMAKE_ARGS=
 
@@ -209,9 +210,9 @@ while [ $# != 0 ]; do
         "--libdir")
             LIBDIR="${2}"; shift;;
         "--includedir="*)
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INCLUDEDIR=$(quote "${1#*=}")";;
+            INCLUDE_DIR="${1#*=}";;
         "--includedir")
-            CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INCLUDEDIR=$(quote "$2")"; shift;;
+            INCLUDE_DIR="${2}"; shift;;
         "--oldincludedir="*)
             CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_OLDINCLUDEDIR=$(quote "${1#*=}")";;
         "--oldincludedir")
@@ -312,4 +313,10 @@ if [ "x${LDFLAGS}" != "x" ]; then
     done
 fi
 
-eval "cmake -Bbuild -H${TOP_SRCDIR} -DCMAKE_BUILD_TYPE=${BUILD_TYPE} -DCMAKE_INSTALL_PREFIX=${PREFIX} -DCMAKE_INSTALL_DATADIR=${DATA_DIR} -DCMAKE_INSTALL_LIBDIR=${LIBDIR} ${CMAKE_ARGS}"
+CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_BUILD_TYPE=${BUILD_TYPE}"
+CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_PREFIX=${PREFIX}"
+CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_DATADIR=${DATA_DIR}"
+CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_INCLUDEDIR=${INCLUDE_DIR}"
+CMAKE_ARGS="$CMAKE_ARGS -DCMAKE_INSTALL_LIBDIR=${LIBDIR} ${CMAKE_ARGS}"
+
+eval "cmake -Bbuild -H${TOP_SRCDIR}  ${CMAKE_ARGS}"
