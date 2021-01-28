@@ -121,7 +121,10 @@ namespace JSDOC
             MatchInfo mi = null;
             
             if (this.title ==  DocTagTitle.CFG && /^\([^)]+\)/.match_all(src, 0, out mi )) {
+	            
 				var ms = mi.fetch(0);
+				GLib.debug("Got Opt list: %s", ms);
+				
 				ms = ms.substring(1,ms.length-2);
 				if (ms.contains("|")) {
 					var ar = ms.split("|");
