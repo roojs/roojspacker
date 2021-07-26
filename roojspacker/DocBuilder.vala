@@ -43,9 +43,9 @@ namespace JSDOC
 				generator.indent = 2;
 				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 				
-				
-				this.writeJson(generator, null);
-				exit;
+				print(generator.to_data());
+
+				return;
 			}
 			size_t l;
 			//GLib.debug("JSON: %s", generator.to_data(out l));
