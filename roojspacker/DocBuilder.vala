@@ -34,6 +34,25 @@ namespace JSDOC
 		     
 		    // this currently uses the concept of publish.js...
 		    
+		    if (PackerRun.singleton().dump_tree) {
+				var   generator = new Json.Generator ();
+			    var  root = new Json.Node(Json.NodeType.OBJECT);
+				root.init_object(jsonAll);
+				generator.set_root (root);
+				generator.pretty=  true;
+				generator.indent = 2;
+				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+				
+				
+				this.writeJson(generator, null);
+				exit;
+			}
+			size_t l;
+			//GLib.debug("JSON: %s", generator.to_data(out l));
+		    
+		    
+		    
+		    
 		    this.publish();
         
         

@@ -49,7 +49,7 @@ namespace JSDOC
 		private string[]? opt_files = null;
 		[CCode (array_length = false, array_null_terminated = true)]
 		private  string[]? opt_files_from = null;
-		
+		 
 		
 		public  bool opt_debug = false;
 		
@@ -235,7 +235,7 @@ namespace JSDOC
 					flags = 0,
 					arg =  OptionArg.STRING,
 					arg_data = &opt_doc_target,
-					description = "Target location for documetnation",
+					description = "Target location for documentation",
 					arg_description = null
 				}, 
 
