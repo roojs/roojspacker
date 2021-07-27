@@ -922,7 +922,7 @@ namespace JSDOC {
 		} 
 		
 		
-		public JsonObject toJson()
+		public Json.Object toJson()
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
