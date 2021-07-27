@@ -887,7 +887,7 @@ namespace JSDOC {
 		public Json.Array docTagsArrayToJson( Gee.ArrayList<string> ar) 
 		{
 			var ret = Json.Array();
-			foreach(ar as a) {
+			foreach(var a in ar) {
 				ret.add_string_element(a);
 			}
 			return ret;
@@ -896,7 +896,7 @@ namespace JSDOC {
 		public Json.Array symbolArrayToJson( Gee.ArrayList<Symbol> ar) 
 		{
 			var ret = Json.Array();
-			foreach(ar as a) {
+			foreach(var a in ar) {
 				ret.add_object_element(a.toJson());
 			}
 			return ret;
@@ -905,7 +905,7 @@ namespace JSDOC {
 		public Json.Array stringArrayToJson( Gee.ArrayList<DocTag> ar) 
 		{
 			var ret = Json.Array();
-			foreach(ar as a) {
+			foreach(var a in ar) {
 				ret.add_object_element(a.toJson());
 			}
 			return ret;
@@ -914,7 +914,7 @@ namespace JSDOC {
 		public Json.Object assocDocTagToJson( Gee.HashMap<string,DocTag> ar) 
 		{
 			var ret = Json.Object();
-			foreach(ar.keys as a) {
+			foreach(var a in ar.keys) {
 				ret.set_object_member(a, ar.get(a).toJson());
 			}
 			return ret;
