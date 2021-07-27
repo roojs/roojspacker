@@ -10,7 +10,7 @@ namespace JSDOC {
 		{
 			var ret = new Json.Object();
 			 foreach(var k in this._index.keys) {
-            	ret.set_object_member(k, this._index.get(k));
+            	ret.set_object_member(k, this._index.get(k).toJson());
         	}
         	return ret;
 		}
