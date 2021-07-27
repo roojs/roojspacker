@@ -41,8 +41,7 @@ namespace JSDOC {
 		}
 		
       
-        string defaultValue = "";
-        
+        string defaultValue = "";        
 		private Gee.ArrayList<DocTag> private_doctag_params = null;
 
 		private Gee.ArrayList<DocTag> private_params{
@@ -105,7 +104,7 @@ namespace JSDOC {
         public DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
-        string addOn = "";
+        //string addOn = "";
         public string alias = "";
         
         string author = "";
@@ -885,6 +884,98 @@ namespace JSDOC {
 			return ret;
 		
 		}
+		public Json.Array stringArrayToJson( Gee.ArrayList<string> ar) 
+		{
+			var ret = new Json.Array();
+			foreach(var a in ar) {
+				ret.add_string_element(a);
+			}
+			return ret;
+		
+		}
+		public Json.Array symbolArrayToJson( Gee.ArrayList<Symbol> ar) 
+		{
+			var ret = new Json.Array();
+			foreach(var a in ar) {
+				ret.add_object_element(a.toJson());
+			}
+			return ret;
+		
+		}
+		public Json.Array docTagsArrayToJson( Gee.ArrayList<DocTag> ar) 
+		{
+			var ret = new Json.Array();
+			foreach(var a in ar) {
+				ret.add_object_element(a.toJson());
+			}
+			return ret;
+		
+		} 
+		
+		
+		
+		public Json.Object assocDocTagToJson( Gee.HashMap<string,DocTag> ar) 
+		{
+			var ret = new Json.Object();
+			foreach(var a in ar.keys) {
+				ret.set_object_member(a, ar.get(a).toJson());
+			}
+			return ret;
+		
+		} 
+		
+		
+		public Json.Object toJson()
+		{
+			var ret = new Json.Object();
+			ret.set_string_member("name", this.name);
+			ret.set_array_member("params", this.docTagsArrayToJson(this.params));
+
+			ret.set_array_member("augments", this.stringArrayToJson(this.augments));
+			ret.set_array_member("exceptions", this.docTagsArrayToJson(this.exceptions));
+			ret.set_array_member("methods", this.symbolArrayToJson(this.methods));
+			ret.set_array_member("properties", this.symbolArrayToJson(this.properties));
+			ret.set_array_member("requires", this.stringArrayToJson(this.requires));
+			ret.set_array_member("returns", this.docTagsArrayToJson(this.returns));
+			ret.set_array_member("see", this.stringArrayToJson(this.see));
+			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
+			ret.set_array_member("inheritsFrom", this.stringArrayToJson(this.inheritsFrom));
+			ret.set_object_member("cfgs", this.assocDocTagToJson(this.cfgs));
+			ret.set_object_member("comment", this.comment.toJson());
+		      //$args : [], // original arguments used when constructing.
+ 
+			ret.set_string_member("alias", this.alias);
+        
+			ret.set_string_member("author", this.author);
+			ret.set_string_member("classDesc" , this.classDesc);
+			ret.set_string_member("deprecated", this.deprecated);
+			ret.set_string_member("desc", this.desc);
+			//events : false,
+			ret.set_string_member("example", this.example);
+			
+			ret.set_string_member("isa", this.isa);
+
+			ret.set_boolean_member("isEvent", this.isEvent);
+			ret.set_boolean_member("isConstant", this.isConstant);
+			ret.set_boolean_member("isIgnored", this.isIgnored);
+			ret.set_boolean_member("isInner", this.isInner);
+			ret.set_boolean_member("isNamespace", this.isNamespace);
+			ret.set_boolean_member("isPrivate", this.isPrivate);
+			ret.set_boolean_member("isStatic", this.isStatic);
+ 
+			ret.set_string_member("memberOf", this.memberOf);
+			return ret;
+		}
+		
+		
+		
+		
+		
+		
+		
+		
+		
+		
  	}
  
 	

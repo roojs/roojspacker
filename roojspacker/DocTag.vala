@@ -77,8 +77,23 @@ namespace JSDOC
 			);
 		}
 	
- 
-		 	 
+ 		public Json.Object toJson()
+		{
+			var ret = new Json.Object();
+			ret.set_string_member("title", this.title.to_string());
+			ret.set_string_member("type", this.type);
+			ret.set_string_member("name", this.name);
+			ret.set_string_member("defaultValue", this.defaultValue);
+			ret.set_string_member("desc", this.desc);
+			ret.set_string_member("memberOf", this.memberOf);
+			ret.set_boolean_member("isOptional", this.isOptional);
+			var ar = new Json.Array();
+			foreach(var ov in this.optvalues) {
+		 	 	ar.add_string_element(ov);
+	 	 	}
+	 	 	ret.set_array_member("optvalues", ar);
+	 	 	return ret;
+ 	 	}
 	
 	
 		public DocTag (string in_src)

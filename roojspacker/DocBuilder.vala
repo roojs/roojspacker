@@ -34,6 +34,53 @@ namespace JSDOC
 		     
 		    // this currently uses the concept of publish.js...
 		    
+		    if (PackerRun.singleton().opt_doc_dump_tree) {
+		    
+		    
+		        var symbols = this.symbolSet.values();
+		    
+				 
+				
+			 
+				//print(JSON.stringify(symbols,null,4));
+				var classes = new Gee.ArrayList<Symbol>();
+				
+				foreach(var symbol in symbols) {
+					if (symbol.isaClass()) { 
+						classes.add(symbol);
+					}
+				}    
+				classes.sort( (a,b) => {
+					return a.alias.collate(b.alias); 
+				});
+		    
+		        var jsonAll = new Json.Object(); 
+				for (var i = 0, l = classes.size; i < l; i++) {
+				    var symbol = classes.get(i);
+				         
+				    jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
+
+				}
+				
+				var generator = new Json.Generator ();
+			    var root = new Json.Node(Json.NodeType.OBJECT);
+    		   
+				root.init_object(jsonAll);
+				generator.set_root (root);
+				generator.pretty=  true;
+				generator.indent = 2;
+				 
+				size_t l;
+				stdout.printf("%s\n",generator.to_data(out l));
+
+				return;
+			}
+			size_t l;
+			//GLib.debug("JSON: %s", generator.to_data(out l));
+		    
+		    
+		    
+		    
 		    this.publish();
         
         

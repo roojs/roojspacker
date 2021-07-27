@@ -44,12 +44,13 @@ namespace JSDOC
 		public  string opt_doc_target = null;
 		public  string opt_doc_template_dir = null;
 		public  bool opt_doc_include_private = false;		
+		public  bool opt_doc_dump_tree = false;
 				
 		[CCode (array_length = false, array_null_terminated = true)]
 		private string[]? opt_files = null;
 		[CCode (array_length = false, array_null_terminated = true)]
 		private  string[]? opt_files_from = null;
-		
+		 
 		
 		public  bool opt_debug = false;
 		
@@ -235,7 +236,7 @@ namespace JSDOC
 					flags = 0,
 					arg =  OptionArg.STRING,
 					arg_data = &opt_doc_target,
-					description = "Target location for documetnation",
+					description = "Target location for documentation",
 					arg_description = null
 				}, 
 
@@ -250,6 +251,16 @@ namespace JSDOC
 				}, 			
 
 
+				OptionEntry() {
+					long_name = "doc-dump-tree",
+					short_name = 'E',
+					flags = 0,
+					arg =  OptionArg.NONE,
+					arg_data = &opt_doc_dump_tree,
+					description = "Dump the documenation json tree",
+					arg_description = null
+				}, 
+				
 				OptionEntry() {
 					long_name = "doc-private",
 					short_name = 'P',
