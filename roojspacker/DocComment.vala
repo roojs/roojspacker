@@ -200,7 +200,7 @@ namespace JSDOC
 			var ret = new Json.Object();
 			ret.set_string_member("src", this.src);
 			var ar = Json.Array();
-			foreach(this.tags as a) {
+			foreach(var a in this.tags) {
 				ar.add_object_element(a);
 			}
 			ret.set_array_member("tags", ar);
