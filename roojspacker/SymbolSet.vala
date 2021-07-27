@@ -5,6 +5,17 @@ namespace JSDOC {
 
 		private Gee.HashMap<string,Symbol> __index = null;
 		
+		
+		public Json.Object toJson()
+		{
+			var ret = new Json.Array();
+			 foreach(var k in this._index.keys) {
+            	ret.set_object_member(k, this._index.get(k));
+        	}
+        	return ret;
+		}
+		
+		
 		public Gee.HashMap<string,Symbol> _index {
 			get {
 				if (this.__index == null) {
