@@ -884,7 +884,7 @@ namespace JSDOC {
 			return ret;
 		
 		}
-		public Json.Array docTagsArrayToJson( Gee.ArrayList<string> ar) 
+		public Json.Array stringArrayToJson( Gee.ArrayList<string> ar) 
 		{
 			var ret = new Json.Array();
 			foreach(var a in ar) {
@@ -902,7 +902,7 @@ namespace JSDOC {
 			return ret;
 		
 		}
-		public Json.Array stringArrayToJson( Gee.ArrayList<DocTag> ar) 
+		public Json.Array docTagsArrayToJson( Gee.ArrayList<string> ar) 
 		{
 			var ret = new Json.Array();
 			foreach(var a in ar) {
@@ -911,6 +911,9 @@ namespace JSDOC {
 			return ret;
 		
 		} 
+		
+		
+		
 		public Json.Object assocDocTagToJson( Gee.HashMap<string,DocTag> ar) 
 		{
 			var ret = new Json.Object();
@@ -926,7 +929,7 @@ namespace JSDOC {
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
-			ret.set_array_member("params", this.assocDocTagToJson(this.params));
+			ret.set_array_member("params", this.docTagsToJson(this.params));
 
 			ret.set_array_member("augments", this.stringArrayToJson(this.augments));
 			ret.set_array_member("exceptions", this.docTagsArrayToJson(this.exceptions));
