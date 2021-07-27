@@ -902,7 +902,7 @@ namespace JSDOC {
 			return ret;
 		
 		}
-		public Json.Array docTagsArrayToJson( Gee.ArrayList<string> ar) 
+		public Json.Array docTagsArrayToJson( Gee.ArrayList<DocTag> ar) 
 		{
 			var ret = new Json.Array();
 			foreach(var a in ar) {
