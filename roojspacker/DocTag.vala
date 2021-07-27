@@ -88,7 +88,7 @@ namespace JSDOC
 			ret.set_string_member("memberOf", this.memberOf);
 			ret.set_boolean_member("isOptional", this.isOptional);
 			var ar = new Json.Array();
-			foreach(this.optvalues as ov) {
+			foreach(var ov in this.optvalues) {
 		 	 	ar.add_string_element(ov);
 	 	 	}
 	 	 	ret.set_array_member("optvalues", ar);
