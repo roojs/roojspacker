@@ -98,11 +98,13 @@ namespace JSDOC {
 
  		public Gee.ArrayList<string> childClasses;
  		public Gee.ArrayList<string> inheritsFrom;
-        public Gee.HashMap<string,DocTag>cfgs;
-        
- 
- 		
- 		
+		public Gee.HashMap<string,DocTag>cfgs;
+
+
+		public Gee.ArrayList<string> tree_parent;
+		public Gee.ArrayList<string> tree_children;
+		
+
         public DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
