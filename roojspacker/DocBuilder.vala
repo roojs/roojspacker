@@ -39,7 +39,17 @@ namespace JSDOC
 		    this.parseSrcFiles();
 		    
 		    this.symbolSet = DocParser.symbols();
-		     
+		    
+		    
+		    var classes =  this.classes();
+		    foreach (var cls in classes) {
+		    	foreach (var lookcls in classes) {
+					if (lookcls.augments.contains(cls.alias)) {
+						cls.addChildClass(lookcls.alias);
+					}
+				}
+	    	}
+		    
 		    // this currently uses the concept of publish.js...
 		   
 		    if (PackerRun.singleton().opt_doc_dump_tree) {
@@ -182,14 +192,7 @@ namespace JSDOC
 		    
 		    
 		    // this is probably not the best place for this..
-		    var classes =  this.classes();
-		    foreach (var cls in classes) {
-		    	foreach (var lookcls in classes) {
-					if (lookcls.augments.contains(cls.alias)) {
-						cls.addChildClass(lookcls.alias);
-					}
-				}
-	    	}
+		   
 		    
 
 		    
