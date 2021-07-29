@@ -316,6 +316,17 @@ namespace JSDOC
 			
 			
 		}
+		public Json.Object toPropertyJSON (Symbol parent)
+		{
+			
+			var add = new Json.Object();
+			add.set_string_member("name",this.name);
+			add.set_string_member("type",this.type);
+			add.set_string_member("desc",this.desc);
+			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);
+		    return add;
+	    }   
+		
 		
 	}
 }
