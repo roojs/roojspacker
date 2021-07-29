@@ -55,9 +55,7 @@ namespace JSDOC
 		    if (PackerRun.singleton().opt_doc_dump_tree) {
 		    
 		    
-		        var symbols = this.symbolSet.values();
-		    
-				 
+		        
 				
 			 
 				//print(JSON.stringify(symbols,null,4));
