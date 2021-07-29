@@ -992,6 +992,9 @@ namespace JSDOC {
 			}
 			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
 			
+			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
+			
+			
 			ret.set_string_member("name", this.alias);  
 			ret.set_string_member("desc", this.desc);
 			ret.set_boolean_member("isSingleton", this.comment.getTag(DocTagTitle.SINGLETON).size > 0);
