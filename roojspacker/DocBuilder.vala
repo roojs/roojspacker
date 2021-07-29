@@ -57,7 +57,7 @@ namespace JSDOC
 		        var jsonAll = new Json.Object(); 
 				for (var i = 0, l = classes.size; i < l; i++) {
 				    var symbol = classes.get(i);    
-				    jsonAll.set_object_member(symbol.alias,  symbol.toPublishJSON());
+				    jsonAll.set_object_member(symbol.alias,  symbol.toClassJSON());
 
 				}
 				
@@ -363,7 +363,7 @@ namespace JSDOC
 				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 				this.writeJson(class_gen, PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 		        
-		        jsonAll.set_object_member(symbol.alias,  symbol.toPublishJSON());
+		        jsonAll.set_object_member(symbol.alias,  symbol.toClassJSON());
 
 		    }
 		    
