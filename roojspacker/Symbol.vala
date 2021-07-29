@@ -693,7 +693,7 @@ namespace JSDOC {
             if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
             }
-            
+            /*
             // @children
              if (this.comment.getTag(DocTagTitle.CHILDREN).size > 0) {
                 foreach(var s in this.comment.getTag(DocTagTitle.CHILDREN).get(0).desc.strip().split(" ")) {
@@ -715,7 +715,7 @@ namespace JSDOC {
 			if (this.comment.getTag(DocTagTitle.BUILDER_TOP).size > 0) {
                 this.isBuilderTop = true;
             }
-            
+            */
             
             
              
