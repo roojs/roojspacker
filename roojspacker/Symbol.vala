@@ -694,9 +694,17 @@ namespace JSDOC {
             }
             
             // @children
-            
+             if (this.comment.getTag(DocTagTitle.CHILDREN).size > 0) {
+                foreach(var s in this.comment.getTag(DocTagTitle.CHILDREN).strip().split(" ")) {
+                	this.tree_children.add(s);
+            	}
+            }
             // @parent
-            
+             if (this.comment.getTag(DocTagTitle.PARENT).size > 0) {
+                foreach(var s in this.comment.getTag(DocTagTitle.PARENT).strip().split(" ")) {
+                	this.tree_parent.add(s);
+            	}
+            }
                         
             // @abstract
              if (this.comment.getTag(DocTagTitle.ABSTRACT).size > 0) {
