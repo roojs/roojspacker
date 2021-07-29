@@ -1153,6 +1153,8 @@ namespace JSDOC {
 			ret.set_array_member("props", props);
 			ret.set_array_member("events", events);
 			ret.set_array_member("methods", methods);
+
+			
 		
  		    return ret;
 		    
