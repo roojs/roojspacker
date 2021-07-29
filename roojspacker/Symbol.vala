@@ -695,13 +695,13 @@ namespace JSDOC {
             
             // @children
              if (this.comment.getTag(DocTagTitle.CHILDREN).size > 0) {
-                foreach(var s in this.comment.getTag(DocTagTitle.CHILDREN).strip().split(" ")) {
+                foreach(var s in this.comment.getTag(DocTagTitle.CHILDREN).get(0).desc.strip().split(" ")) {
                 	this.tree_children.add(s);
             	}
             }
             // @parent
              if (this.comment.getTag(DocTagTitle.PARENT).size > 0) {
-                foreach(var s in this.comment.getTag(DocTagTitle.PARENT).strip().split(" ")) {
+                foreach(var s in this.comment.getTag(DocTagTitle.PARENT).get(0).desc.strip().split(" ")) {
                 	this.tree_parent.add(s);
             	}
             }
