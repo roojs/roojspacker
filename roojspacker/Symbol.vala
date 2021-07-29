@@ -1047,7 +1047,7 @@ namespace JSDOC {
 		}
 		 
  	}
- 	Json.Object toEventJSON (Symbol parent)
+ 	public Json.Object toEventJSON (Symbol parent)
 	{
 		var add = new Json.Object();
 		add.set_string_member("name",this.name.substring(1,-1)); // remove'*' on events..
