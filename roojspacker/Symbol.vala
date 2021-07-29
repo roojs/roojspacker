@@ -185,6 +185,10 @@ namespace JSDOC {
             this.inheritsFrom = new Gee.ArrayList<string>();
 
             this.childClasses = new Gee.ArrayList<string>();
+            
+            this.tree_parent = new Gee.ArrayList<string>();
+            this.tree_children = new Gee.ArrayList<string>();
+            
              
             this.comment = new DocComment();
             this.comment.isUserComment =  false;
