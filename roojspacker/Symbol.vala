@@ -993,13 +993,16 @@ namespace JSDOC {
 			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
 			
 			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
-			
+			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
+
 			
 			ret.set_string_member("name", this.alias);  
 			ret.set_string_member("desc", this.desc);
 			ret.set_boolean_member("isSingleton", this.comment.getTag(DocTagTitle.SINGLETON).size > 0);
 			ret.set_boolean_member("isStatic", this.isa != "CONSTRUCTOR");
 			ret.set_boolean_member("isBuiltin", this.isBuiltin());
+			ret.set_boolean_member("isAbstract", this.isAbstract);
+			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);			
 
 			// needded so that the class can fake a ctor..
 			ret.set_string_member("memberOf", this.name);
