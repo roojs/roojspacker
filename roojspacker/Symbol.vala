@@ -707,11 +707,13 @@ namespace JSDOC {
             }
                         
             // @abstract
-             if (this.comment.getTag(DocTagTitle.ABSTRACT).size > 0) {
+            if (this.comment.getTag(DocTagTitle.ABSTRACT).size > 0) {
                 this.isAbstract = true;
             }
 			// @builder-top            
-
+			if (this.comment.getTag(DocTagTitle.BUILDER_TOP).size > 0) {
+                this.isBuilderTop = true;
+            }
             
             
             
