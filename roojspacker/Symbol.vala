@@ -100,7 +100,9 @@ namespace JSDOC {
  		public Gee.ArrayList<string> inheritsFrom;
         public Gee.HashMap<string,DocTag>cfgs;
         
-        
+ 
+ 		
+ 		
         public DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
@@ -176,7 +178,7 @@ namespace JSDOC {
  
             
             this.cfgs = new Gee.HashMap<string,DocTag>();
-            // derived later?
+            // what is this?
             this.inheritsFrom = new Gee.ArrayList<string>();
 
             this.childClasses = new Gee.ArrayList<string>();
@@ -237,7 +239,8 @@ namespace JSDOC {
             
         }
 
-        void tagsFromComment() {
+        void tagsFromComment() 
+        {
             // @author
             var authors = this.comment.getTag(DocTagTitle.AUTHOR);
             if (authors.size > 0) {
@@ -676,18 +679,26 @@ namespace JSDOC {
                 this.alias = this.name;
             }
 
-            /*~t
-                // todo
-            */
+           
              
             // @public
             if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
             }
             
-            /*~t
-                // todo
-            */
+            // @children
+            
+            // @parent
+            
+                        
+            // @abstract
+            
+			// @builder-top            
+
+            
+            
+            
+             
         }
 
         public bool is (string what) {
@@ -781,6 +792,11 @@ namespace JSDOC {
             thisProperties.add(symbol); // new property with this alias
         }
         
+        public void addChildClass(string clsname) {
+        	this.childClasses.add(clsname);
+    	}
+        
+        
         public void addDocTag(DocTag docTag)
         {
             this.comment.tags.add(docTag);
@@ -849,41 +865,7 @@ namespace JSDOC {
 			}
 			return ret + ")";
 		}
-		
-		public Json.Array paramsToJson()
-		{
-			var ret = new Json.Array();
-			foreach(var p in this.params) {
-				//GLib.debug("got param: %s", p.asString());
-				if (p.name.contains(".")) continue;// ?? why?				
-				var add = new Json.Object();
-				add.set_string_member("name",p.name);				
-				add.set_string_member("type",p.type);
-				add.set_string_member("desc",p.desc);
-				add.set_boolean_member("isOptional",p.isOptional);
-				ret.add_object_element(add) ;
-			}
-			 
-			return ret;
-		
-		}
-    	public Json.Array returnsToJson()
-		{
-			var ret = new Json.Array();
-			foreach(var p in this.returns) {
-				//GLib.debug("got param: %s", p.asString());
-				if (p.name.contains(".")) continue;// ?? why?				
-				var add = new Json.Object();
-				add.set_string_member("name",p.name);				
-				add.set_string_member("type",p.type);
-				add.set_string_member("desc",p.desc);
-		 
-				ret.add_object_element(add) ;
-			}
-			 
-			return ret;
-		
-		}
+	
 		public Json.Array stringArrayToJson( Gee.ArrayList<string> ar) 
 		{
 			var ret = new Json.Array();
@@ -924,7 +906,9 @@ namespace JSDOC {
 		
 		} 
 		
-		
+		/**
+		* direct Json Dump
+		*/
 		public Json.Object toJson()
 		{
 			var ret = new Json.Object();
@@ -966,7 +950,120 @@ namespace JSDOC {
 			ret.set_string_member("memberOf", this.memberOf);
 			return ret;
 		}
+		/**
+		* This is the more detail Class output for documentation body text
+		*/
 		
+		
+		public Json.Object toClassDocJSON (DocBuilder builder)
+		{
+			var ret = new Json.Object();
+			ret.set_string_member("name", this.alias);
+			
+			
+			var ag = new Json.Array();
+			ret.set_array_member("augments", ag);			
+		 	for(var ii = 0, il = this.augments.size; ii < il; ii++) {
+				var contributer = builder.getSymbol(this.augments[ii]);
+				if (contributer == null) {
+					continue;
+				}
+				ag.add_string_element(contributer.alias);
+			}
+			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
+			
+			ret.set_string_member("name", this.alias);  
+			ret.set_string_member("desc", this.desc);
+			ret.set_boolean_member("isSingleton", this.comment.getTag(DocTagTitle.SINGLETON).size > 0);
+			ret.set_boolean_member("isStatic", this.isa != "CONSTRUCTOR");
+			ret.set_boolean_member("isBuiltin", this.isBuiltin());
+
+			// needded so that the class can fake a ctor..
+			ret.set_string_member("memberOf", this.name);
+			ret.set_string_member("example", this.comment.getTagAsString(DocTagTitle.EXAMPLE));
+			ret.set_string_member("deprecated", // as depricated is used as a flag...
+				this.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+				"This has been deprecated: "+  this.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+			"");
+			ret.set_string_member("since", this.comment.getTagAsString(DocTagTitle.SINCE));
+			ret.set_string_member("see", this.comment.getTagAsString(DocTagTitle.SEE));
+			// ?? ctor? is that listed with the outer class?
+			
+			
+			
+			// this must be for the CTOR?
+			ret.set_array_member("params", this.paramsToJson());
+			ret.set_array_member("returns", new Json.Array()); // this is a placeholder - classes dont have returns..
+	        ret.set_string_member("throws", this.comment.getTagAsString(DocTagTitle.THROWS));
+			ret.set_string_member("requires", this.comment.getTagAsString(DocTagTitle.REQUIRES));
+			
+			
+			var props = new Json.Array(); 
+			ret.set_array_member("config", props);
+			var cfgProperties = this.configToArray();
+			for(var i =0; i < cfgProperties.size;i++) {
+				props.add_object_element(cfgProperties.get(i).toPropertyJSON(this));
+	    	}
+			// methods
+ 
+			var methods = new Json.Array();
+			ret.set_array_member("methods", methods);		     
+			foreach(var m in this.methods) {
+				if (m.isEvent || m.isIgnored) {
+					continue;
+				}
+				methods.add_object_element(m.toMethodJSON(this));
+			}
+			
+			// events
+			var events = new Json.Array();
+			ret.set_array_member("events", events);		     
+		    foreach(var m in this.methods) {
+		    	if (!m.isEvent || m.isIgnored) {
+		    		continue;
+	    		}
+	    		events.add_object_element(m.toEventJSON(this));
+    		}
+    		return ret;
+		}
+		
+		// ?? can this be replaced with ???
+		public Json.Array paramsToJson()
+		{
+			var ret = new Json.Array();
+			foreach(var p in this.params) {
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.name);				
+				add.set_string_member("type",p.type);
+				add.set_string_member("desc",p.desc);
+				add.set_boolean_member("isOptional",p.isOptional);
+				ret.add_object_element(add) ;
+			}
+			 
+			return ret;
+		
+		}
+		
+		// ?? can this be replaced with ???
+    	public Json.Array returnsToJson()
+		{
+			var ret = new Json.Array();
+			foreach(var p in this.returns) {
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.name);				
+				add.set_string_member("type",p.type);
+				add.set_string_member("desc",p.desc);
+		 
+				ret.add_object_element(add) ;
+			}
+			 
+			return ret;
+		
+		}
 		
 		 /**
 		 * JSON files are lookup files for the documentation
@@ -974,12 +1071,12 @@ namespace JSDOC {
 		 *  This is a simplified version..
 		 * 
 		 */
-		Json.Object toClassJSON ()
+		public Json.Object toClassJSON ()
 		{
 		    // what we need to output to be usefull...
 		    // a) props..
 		    var cfgProperties = new Gee.ArrayList<DocTag>();
-		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
+		    if (this.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
 		         cfgProperties = this.configToArray();
 		         cfgProperties.sort((a,b) =>{
 		    		return a.name.collate(b.name);
@@ -1046,31 +1143,71 @@ namespace JSDOC {
 		    
 		}
 		 
- 	}
- 	public Json.Object toEventJSON (Symbol parent)
-	{
-		var add = new Json.Object();
-		add.set_string_member("name",this.name.substring(1,-1)); // remove'*' on events..
-		add.set_string_member("type","function");
-		add.set_string_member("desc",this.desc);
-		add.set_string_member("sig", this.makeFuncSkel());
-		add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);		        
-		return add;
-	}
-	Json.Object toMethodJSON (Symbol parent)
-	{
-		var add = new Json.Object();
-		add.set_string_member("name",this.name);
-		add.set_string_member("type","function");
-		add.set_string_member("desc",this.desc);
-		add.set_string_member("sig", this.makeMethodSkel());
-		add.set_boolean_member("static", this.isStatic);
-		add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);		        
-		return add;
-	}
+	 	
+	 	public Json.Object toEventJSON (Symbol parent)
+		{
+			var add = new Json.Object();
+			add.set_string_member("name",this.name.substring(1,-1)); // remove'*' on events..
+			add.set_string_member("type","function");
+			add.set_string_member("desc",this.desc);
+			add.set_string_member("sig", this.makeFuncSkel());
+			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);	
+		 	add.set_string_member("example", this.comment.getTagAsString(DocTagTitle.EXAMPLE));
+			add.set_string_member("deprecated", // as depricated is used as a flag...
+					this.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+					"This has been deprecated: "+  this.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+					"");
+			add.set_string_member("since", this.comment.getTagAsString(DocTagTitle.SEE));
+			add.set_string_member("see", this.comment.getTagAsString(DocTagTitle.SEE));
+			// not supported or used yet?
+			//add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.THROWS));
+			//add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
+			
+			add.set_array_member("params", this.paramsToJson());
+			add.set_array_member("returns", this.returnsToJson());
+			
+			
+			
+			
+			
+				        
+			return add;
+		}
+		public Json.Object toMethodJSON (Symbol parent)
+		{
+			var add = new Json.Object();
+			add.set_string_member("name",this.name);
+			add.set_string_member("type","function");
+			add.set_string_member("desc",this.desc);
+			add.set_string_member("sig", this.makeMethodSkel());
+			add.set_boolean_member("static", this.isStatic);
+			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);
+			
+			// we may as well add extended data here...
+			add.set_boolean_member("isStatic", this.isStatic);
+			add.set_boolean_member("isConstructor", this.isa == "CONSTRUCTOR");
+			add.set_boolean_member("isPrivate", this.isPrivate);
+
+			add.set_string_member("example", this.comment.getTagAsString(DocTagTitle.EXAMPLE));
+			add.set_string_member("deprecated", // as depricated is used as a flag...
+					this.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+					"This has been deprecated: "+ this.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+					"");
+			add.set_string_member("since", this.comment.getTagAsString(DocTagTitle.SINCE));
+			add.set_string_member("see", this.comment.getTagAsString(DocTagTitle.SEE));
+			// not supported or used yet?
+			add.set_string_member("exceptions", this.comment.getTagAsString(DocTagTitle.THROWS));
+			add.set_string_member("requires", this.comment.getTagAsString(DocTagTitle.REQUIRES));
+			add.set_array_member("params", this.paramsToJson());
+			add.set_array_member("returns", this.returnsToJson());
+			 
+			
+			return add;
+		}
+
+	 }
 	//static string[] hide = { "$args" };
-	//static string srcFile = "";
-	 
+	//static string srcFile = "";	 
 }
 
 

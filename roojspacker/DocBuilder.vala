@@ -4,7 +4,7 @@
 namespace JSDOC 
 {
 
-	class DocBuilder : Object 
+	public class DocBuilder : Object 
 	{
 		
  
@@ -12,6 +12,14 @@ namespace JSDOC
 		public string VERSION = "1.0.0" ;
 		
 		private SymbolSet symbolSet;
+		
+		public Symbol getSymbol(string name) // wrapper for read only...
+		{
+			return this.symbolSet.getSymbol(name);
+		}
+		
+		
+		
 		
 		private Packer packer;
 	
@@ -33,7 +41,7 @@ namespace JSDOC
 		    this.symbolSet = DocParser.symbols();
 		     
 		    // this currently uses the concept of publish.js...
-		    
+		   
 		    if (PackerRun.singleton().opt_doc_dump_tree) {
 		    
 		    
@@ -43,17 +51,8 @@ namespace JSDOC
 				
 			 
 				//print(JSON.stringify(symbols,null,4));
-				var classes = new Gee.ArrayList<Symbol>();
+				var classes = this.classes();
 				
-				foreach(var symbol in symbols) {
-					if (symbol.isaClass()) { 
-						classes.add(symbol);
-					}
-				}    
-				classes.sort( (a,b) => {
-					return a.alias.collate(b.alias); 
-				});
-		    
 		        var jsonAll = new Json.Object(); 
 				for (var i = 0, l = classes.size; i < l; i++) {
 				    var symbol = classes.get(i);    
@@ -174,92 +173,47 @@ namespace JSDOC
 		    
 		                 
 		        DocParser.parse(ts, srcFile);
-		        /*
-		        if (useCache) {
-		    		
-		    		var ar = DocParser.symbolsToObject(srcFile);
-		    		
-		    		var builder = new Json.Builder ();
-		        	builder.begin_array ();
-		        	for (var i=0;i<ar.size;i++) {
-		        	
-						builder.add_object_value (ar.get(i));
-					}
-					builder.end_array ();
-					Json.Generator generator = new Json.Generator ();
-					Json.Node root = builder.get_root ();
-					generator.set_root (root);
-					generator.pretty=  true;
-					generator.ident = 2;
-					generator.to_file(cacheFile);
-		        
-		         
-		            
-				 }
-				 */
+		       
 		    }
 		    
 		     
 		    
 		    DocParser.finish();
-		}
-		/*
-
-            //var txs =
-            
-            var tr = new  TokenReader(this.packer);
-			tr.keepDocs = true;
-			tr.keepWhite = true;
-			tr.keepComments = true;
-			tr.sepIdents = false;
-			tr.collapseWhite = false;
-			tr.filename = src;
-            
-
-            var toks = tr.tokenize( new TextStream(src));
-            if (PackerRun.opt_dump_tokens) {
-				toks.dump();
-				return "";
-				//GLib.Process.exit(0);
-			}
-            
-            
-            var ts = new TokenStream(toks);
-        
-        
-        
-                     
-            DocParser.parse(ts, srcFile);
-            
-            if (useCache) {
-        		
-        		var ar = DocParser.symbolsToObject(srcFile);
-        		
-        		var builder = new Json.Builder ();
-            	builder.begin_array ();
-            	for (var i=0;i<ar.size;i++) {
-            	
-					builder.add_object_value (ar.get(i));
+		    
+		    
+		    // this is probably not the best place for this..
+		    var classes =  this.classes();
+		    foreach (var cls in classes) {
+		    	foreach (var lookcls in classes) {
+					if (lookcls.augments.contains(cls.alias)) {
+						cls.addChildClass(lookcls.alias);
+					}
 				}
-				builder.end_array ();
-				Json.Generator generator = new Json.Generator ();
-				Json.Node root = builder.get_root ();
-				generator.set_root (root);
-				generator.pretty=  true;
-				generator.ident = 2;
-				generator.to_file(cacheFile);
-            
-             
-                
-    //		}
-        }
-        
-        
-        
-        Parser.finish();
-    }
-    
-     */
+	    	}
+		    
+
+		    
+		    
+		    
+		}
+		
+		// prehaps move to symbolset?
+		public Gee.ArrayList<Symbol> classes()
+		{
+			var classes = new Gee.ArrayList<Symbol>();
+			foreach(var symbol in this.symbolSet.values()) {
+				if (symbol.isaClass()) { 
+					classes.add(symbol);
+				}
+			}    
+			classes.sort( (a,b) => {
+				return a.alias.collate(b.alias); 
+			});
+			return classes;
+		}
+		    
+		 
+		 
      	string tempdir;
         
 		void publish() 
@@ -328,16 +282,7 @@ namespace JSDOC
 		        this.makeSrcFile(file);
 		    }
 		    //print(JSON.stringify(symbols,null,4));
-		    var classes = new Gee.ArrayList<Symbol>();
-		    
-		    foreach(var symbol in symbols) {
-				if (symbol.isaClass()) { 
-					classes.add(symbol);
-				}
-		    }    
-		    classes.sort( (a,b) => {
-				return a.alias.collate(b.alias); 
-			});
+		    var classes = this.classes();
 		     
 		     //GLib.debug("classTemplate Process : all classes");
 		        
@@ -356,7 +301,7 @@ namespace JSDOC
 		        
 		        var   class_gen = new Json.Generator ();
 			    var  class_root = new Json.Node(Json.NodeType.OBJECT);
-				class_root.init_object(this.class_to_json(symbol));
+				class_root.init_object(symbol.toClassDocJSON(this));
 				class_gen.set_root (class_root);
 				class_gen.pretty=  true;
 				class_gen.indent = 2;
@@ -407,136 +352,7 @@ namespace JSDOC
 		    
 		}
 		
-		Json.Object class_to_json (Symbol cls)
-		{
-			var ret = new Json.Object();
-			ret.set_string_member("name", cls.alias);
-			var ag = new Json.Array();
-			ret.set_array_member("augments", ag);			
-		 	for(var ii = 0, il = cls.augments.size; ii < il; ii++) {
-                  var contributer = this.symbolSet.getSymbol(cls.augments[ii]);
-                  if (contributer == null) {
-                  	continue;
-                  	}
-                  ag.add_string_element(contributer.alias);
-            }
-            ret.set_string_member("name", cls.alias);  
-            ret.set_string_member("desc", cls.desc);
-	        ret.set_boolean_member("isSingleton", cls.comment.getTag(DocTagTitle.SINGLETON).size > 0);
-	        ret.set_boolean_member("isStatic", cls.isa != "CONSTRUCTOR");
-	        ret.set_boolean_member("isBuiltin", cls.isBuiltin());
-	        
-	        // needded so that the class can fake a ctor..
-            ret.set_string_member("memberOf", cls.name);
-			ret.set_string_member("example", cls.comment.getTagAsString(DocTagTitle.EXAMPLE));
-		    ret.set_string_member("deprecated", // as depricated is used as a flag...
-		        		cls.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
-	        			"This has been deprecated: "+  cls.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
-        			"");
-	        ret.set_string_member("since", cls.comment.getTagAsString(DocTagTitle.SINCE));
-	        ret.set_string_member("see", cls.comment.getTagAsString(DocTagTitle.SINCE));
-		        // not supported or used yet?
-		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
-		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
-	        ret.set_array_member("params", cls.paramsToJson());
-	        ret.set_array_member("returns", new Json.Array()); 
-	        	        
-			//ret.set_string_member("desc", cls.comment.getTagAsString(DocTagTitle.DESC));
-	        /// fixme - @see ... any others..
-			
-			var props = new Json.Array(); 
-			ret.set_array_member("config", props);
-			var cfgProperties = cls.configToArray();
-			for(var i =0; i < cfgProperties.size;i++) {
-		        var p = cfgProperties.get(i);
-		        var add = new Json.Object();
-		        add.set_string_member("name",p.name);
-		        add.set_string_member("type",p.type);
-		        add.set_string_member("desc",p.desc);
-		        add.set_string_member("memberOf",  p.memberOf);
-		        add.set_array_member("optvals",p.optvalues.size > 0 ? p.optvalue_as_json_array() : new Json.Array());
-		        props.add_object_element(add );
-		    }
-		     
-		    // methods
-
-			 
-	  		var methods = new Json.Array();
-			ret.set_array_member("methods", methods);		     
-		    foreach(var m in cls.methods) {
-		    	if (m.isEvent || m.isIgnored) {
-		    		continue;
-	    		}
-		        
-		        var add = new Json.Object();
-		        add.set_string_member("name",m.name);
-		        //add.set_string_member("type","function");
-		        add.set_string_member("desc",m.desc);
-		        //add.set_string_member("sig", m.makeMethodSkel());
-		        add.set_boolean_member("isStatic", m.isStatic);
-		        add.set_boolean_member("isConstructor", m.isa == "CONSTRUCTOR");
-		        add.set_boolean_member("isPrivate", m.isPrivate);
-		        //add.set_string_member("instanceOf", m.comment.getTagAsString(DocTagTitle.INSTANCEOF));
-		        add.set_string_member("memberOf", m.memberOf);
-		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
-		        add.set_string_member("deprecated", // as depricated is used as a flag...
-		        		m.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
-	        			"This has been deprecated: "+  m.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
-	        			"");
-		        add.set_string_member("since", m.comment.getTagAsString(DocTagTitle.SINCE));
-		        add.set_string_member("see", m.comment.getTagAsString(DocTagTitle.SINCE));
-		        // not supported or used yet?
-		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
-		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
-		        add.set_array_member("params", m.paramsToJson());
-		        add.set_array_member("returns", m.returnsToJson());
-		        
-		        /// fixme - @see ... any others..
-		          
-		        
-		        methods.add_object_element(add);
-		    }
-		    
-		    
-			var events = new Json.Array();
-			ret.set_array_member("events", events);		     
-		    foreach(var m in cls.methods) {
-		    	if (!m.isEvent || m.isIgnored) {
-		    		continue;
-	    		}
-		        
-		        var add = new Json.Object();
-		        add.set_string_member("name",m.name.substring(1)); // all prefixed with '*'...
-		        //add.set_string_member("type","function");
-		        add.set_string_member("desc",m.desc);
-		        //add.set_string_member("sig", m.makeMethodSkel());
-
-		        add.set_string_member("memberOf", m.memberOf);
-		        add.set_string_member("example", m.comment.getTagAsString(DocTagTitle.EXAMPLE));
-		        add.set_string_member("deprecated", // as depricated is used as a flag...
-		        		m.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
-	        			"This has been deprecated: "+  m.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
-	        			"");
-		        add.set_string_member("since", m.comment.getTagAsString(DocTagTitle.SINCE));
-		        add.set_string_member("see", m.comment.getTagAsString(DocTagTitle.SINCE));
-		        // not supported or used yet?
-		        //add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.EXCEPTIONS));
-		        //add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
-		        
-		        add.set_array_member("params", m.paramsToJson());
-		        add.set_array_member("returns", m.returnsToJson());
-		        
-		        /// fixme - @see ... any others..
-		          
-		        
-		        events.add_object_element(add);
-		    }
-		    
-			
-			
-		
-			return ret;
-		}
+ 
 		/**
 		* needed as Json dumps .xXXX into same directory as it writes...
 		*/
@@ -580,7 +396,7 @@ namespace JSDOC
 	    	add.set_array_member("cn", new Json.Array());
 	    	add.set_boolean_member("is_class", is_class);
 	    	this.class_tree_map.set(name, add);
-	    	var bits = name.split(".");publish
+	    	var bits = name.split(".");
 	    	if (bits.length == 1) {
 	    		// top level..
 	    		this.class_tree_top.add_object_element(add);
