@@ -127,6 +127,7 @@ namespace JSDOC {
         public bool isNamespace = false;
         public bool isPrivate = false;
         public bool isStatic = false;
+        public bool isAbstract = false;
         
         public string memberOf = "";
 
@@ -692,7 +693,9 @@ namespace JSDOC {
             
                         
             // @abstract
-            
+             if (this.comment.getTag(DocTagTitle.ABSTRACT).size > 0) {
+                this.isAbstract = true;
+            }
 			// @builder-top            
 
             
