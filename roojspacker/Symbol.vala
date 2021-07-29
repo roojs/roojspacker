@@ -971,10 +971,10 @@ namespace JSDOC {
 		 /**
 		 * JSON files are lookup files for the documentation
 		 * - can be used by IDE's or AJAX based doc tools
-		 * 
+		 *  This is a simplified version..
 		 * 
 		 */
-		Json.Object toPublishJSON ()
+		Json.Object toClassJSON ()
 		{
 		    // what we need to output to be usefull...
 		    // a) props..
@@ -1045,11 +1045,9 @@ namespace JSDOC {
 		    
 		    
 		}
-		
-		
-		
+		 
  	}
- 	Json.Object toEventPublishJSON (Symbol parent)
+ 	Json.Object toEventJSON (Symbol parent)
 	{
 		var add = new Json.Object();
 		add.set_string_member("name",this.name.substring(1,-1)); // remove'*' on events..
@@ -1059,7 +1057,7 @@ namespace JSDOC {
 		add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);		        
 		return add;
 	}
-	Json.Object toMethodPublishJSON (Symbol parent)
+	Json.Object toMethodJSON (Symbol parent)
 	{
 		var add = new Json.Object();
 		add.set_string_member("name",this.name);
