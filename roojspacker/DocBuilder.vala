@@ -61,8 +61,7 @@ namespace JSDOC
 				
 			 
 				//print(JSON.stringify(symbols,null,4));
-				var classes = this.classes();
-				
+				 
 		        var jsonAll = new Json.Object(); 
 				for (var i = 0, l = classes.size; i < l; i++) {
 				    var symbol = classes.get(i);    
