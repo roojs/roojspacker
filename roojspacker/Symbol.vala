@@ -987,7 +987,7 @@ namespace JSDOC {
 		    } 
 		    var props = new Json.Array(); 
 		    for(var i =0; i < cfgProperties.size;i++) {
-		        props.add_object_element(  cfgProperties.get(i).toPublishJSON(this) );
+		        props.add_object_element(  cfgProperties.get(i).toPropertyJSON(this) );
 		    }
 		    
 		    ///// --- events
@@ -1005,7 +1005,7 @@ namespace JSDOC {
 		    var events = new Json.Array();
 		     
 		    for(var i =0; i < ownEvents.size;i++) {
-		        events.add_object_element(ownEvents.get(i).toEventPublishJSON(this));
+		        events.add_object_element(ownEvents.get(i).toEventJSON(this));
 		    } 
 		     
 		    // methods
@@ -1022,7 +1022,7 @@ namespace JSDOC {
 		    
 	  		var methods = new Json.Array();
 		    for(var i =0; i < ownMethods.size;i++) {
-		        methods.add_object_element(ownMethods.get(i).toEventPublishJSON(this));
+		        methods.add_object_element(ownMethods.get(i).toMethodJSON(this));
 		    }
 		     
 		    //println(props.toSource());
