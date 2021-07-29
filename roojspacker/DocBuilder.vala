@@ -56,9 +56,8 @@ namespace JSDOC
 		    
 		        var jsonAll = new Json.Object(); 
 				for (var i = 0, l = classes.size; i < l; i++) {
-				    var symbol = classes.get(i);
-				         
-				    jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
+				    var symbol = classes.get(i);    
+				    jsonAll.set_object_member(symbol.alias,  symbol.toPublishJSON());
 
 				}
 				
@@ -364,7 +363,7 @@ namespace JSDOC
 				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 				this.writeJson(class_gen, PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 		        
-		        jsonAll.set_object_member(symbol.alias,  this.publishJSON(symbol));
+		        jsonAll.set_object_member(symbol.alias,  symbol.toPublishJSON());
 
 		    }
 		    
@@ -559,115 +558,7 @@ namespace JSDOC
 		        GLib.File.new_for_path(tmp).move( File.new_for_path(fname), GLib.FileCopyFlags.OVERWRITE);
 		      
 		}
-		
-		/**
-		 * JSON files are lookup files for the documentation
-		 * - can be used by IDE's or AJAX based doc tools
-		 * 
-		 * 
-		 */
-		Json.Object publishJSON (Symbol data)
-		{
-		    // what we need to output to be usefull...
-		    // a) props..
-		    var cfgProperties = new Gee.ArrayList<DocTag>();
-		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
-		         cfgProperties = data.configToArray();
-		         cfgProperties.sort((a,b) =>{
-		    		return a.name.collate(b.name);
-		        }); 
-		        
-		    } 
-		    
-		    var props = new Json.Array(); 
-		    //println(cfgProperties.toSource());
-		    
-		    for(var i =0; i < cfgProperties.size;i++) {
-		        var p = cfgProperties.get(i);
-		        var add = new Json.Object();
-		        add.set_string_member("name",p.name);
-		        add.set_string_member("type",p.type);
-		        add.set_string_member("desc",p.desc);
-		        add.set_string_member("memberOf", p.memberOf == data.alias ? "" : p.memberOf);
-		            
-		        if (p.optvalues.size > 0) {
-		    	     add.set_array_member("optvals",p.optvalue_as_json_array());
-		        }
-		        
-		        props.add_object_element(add );
-		    }
-		    
-		    ///// --- events
-		    var ownEvents = new Gee.ArrayList<Symbol>();
-		    for(var i =0; i < data.methods.size;i++) {
-				var e = data.methods.get(i);
-				if (e.isEvent && !e.isIgnored) {
-					ownEvents.add(e);
-				}
-			}; 
-			ownEvents.sort((a,b) => {
-				return a.name.collate(b.name);
-			});
-		    
-		    var events = new Json.Array();
-		     
-		    for(var i =0; i < ownEvents.size;i++) {
-		        var m = ownEvents.get(i);
-		        var add = new Json.Object();
-		        add.set_string_member("name",m.name.substring(1,-1)); // remove'*' on events..
-		        add.set_string_member("type","function");
-		        add.set_string_member("desc",m.desc);
-		        add.set_string_member("sig", m.makeFuncSkel());
-		        add.set_string_member("memberOf", m.memberOf == data.alias ? "" : m.memberOf);		        
-		        events.add_object_element(add);
-		    } 
-		     
-		    // methods
-		    var ownMethods = new Gee.ArrayList<Symbol>();
-		    for(var i =0; i < data.methods.size;i++) {
-				var e = data.methods.get(i);
-				if (!e.isEvent && !e.isIgnored) {
-					ownMethods.add(e);
-				}
-			};
-			ownMethods.sort((a,b) => {
-				return a.name.collate(b.name);
-			});
-		    
-	  		var methods = new Json.Array();
-		     
-		    for(var i =0; i < ownMethods.size;i++) {
-		        var m = ownMethods.get(i);
-		        var add = new Json.Object();
-		        add.set_string_member("name",m.name);
-		        add.set_string_member("type","function");
-		        add.set_string_member("desc",m.desc);
-		        add.set_string_member("sig", m.makeMethodSkel());
-		        add.set_boolean_member("static", m.isStatic);
-		        add.set_string_member("memberOf", m.memberOf == data.alias ? "" : m.memberOf);	
-		        methods.add_object_element(add);
-		    }
-		     
-		    //println(props.toSource());
-		    // we need to output:
-		    //classname => {
-		    //    propname => 
-		    //        type=>
-		    //        desc=>
-		    //    }
-			var ret =  new Json.Object();
-			ret.set_array_member("props", props);
-			ret.set_array_member("events", events);
-			ret.set_array_member("methods", methods);
-		
- 		    return ret;
-		    
-		    
-		    // b) methods
-		    // c) events
-		    
-		    
-		}
+		 
 		Gee.HashMap<string,Json.Object> class_tree_map;
 		Json.Array class_tree_top;
 		
@@ -689,7 +580,7 @@ namespace JSDOC
 	    	add.set_array_member("cn", new Json.Array());
 	    	add.set_boolean_member("is_class", is_class);
 	    	this.class_tree_map.set(name, add);
-	    	var bits = name.split(".");
+	    	var bits = name.split(".");publish
 	    	if (bits.length == 1) {
 	    		// top level..
 	    		this.class_tree_top.add_object_element(add);
