@@ -968,18 +968,117 @@ namespace JSDOC {
 		}
 		
 		
+		 /**
+		 * JSON files are lookup files for the documentation
+		 * - can be used by IDE's or AJAX based doc tools
+		 * 
+		 * 
+		 */
+		Json.Object toPublishJSON ()
+		{
+		    // what we need to output to be usefull...
+		    // a) props..
+		    var cfgProperties = new Gee.ArrayList<DocTag>();
+		    if (data.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
+		         cfgProperties = this.configToArray();
+		         cfgProperties.sort((a,b) =>{
+		    		return a.name.collate(b.name);
+		        }); 
+		    } 
+		    var props = new Json.Array(); 
+		    for(var i =0; i < cfgProperties.size;i++) {
+		        props.add_object_element(  cfgProperties.get(i).toPublishJSON(this) );
+		    }
+		    
+		    ///// --- events
+		    var ownEvents = new Gee.ArrayList<Symbol>();
+		    for(var i =0; i < this.methods.size;i++) {
+				var e = this.methods.get(i);
+				if (e.isEvent && !e.isIgnored) {
+					ownEvents.add(e);
+				}
+			}; 
+			ownEvents.sort((a,b) => {
+				return a.name.collate(b.name);
+			});
+		    
+		    var events = new Json.Array();
+		     
+		    for(var i =0; i < ownEvents.size;i++) {
+		        events.add_object_element(ownEvents.get(i).toEventPublishJSON(this));
+		    } 
+		     
+		    // methods
+		    var ownMethods = new Gee.ArrayList<Symbol>();
+		    for(var i =0; i < this.methods.size;i++) {
+				var e = this.methods.get(i);
+				if (!e.isEvent && !e.isIgnored) {
+					ownMethods.add(e);
+				}
+			};
+			ownMethods.sort((a,b) => {
+				return a.name.collate(b.name);
+			});
+		    
+	  		var methods = new Json.Array();
+		     
+		    for(var i =0; i < ownMethods.size;i++) {
+		        var m = ownMethods.get(i);
+		        var add = new Json.Object();
+		        add.set_string_member("name",m.name);
+		        add.set_string_member("type","function");
+		        add.set_string_member("desc",m.desc);
+		        add.set_string_member("sig", m.makeMethodSkel());
+		        add.set_boolean_member("static", m.isStatic);
+		        add.set_string_member("memberOf", m.memberOf == this.alias ? "" : m.memberOf);	
+		        methods.add_object_element(add);
+		    }
+		     
+		    //println(props.toSource());
+		    // we need to output:
+		    //classname => {
+		    //    propname => 
+		    //        type=>
+		    //        desc=>
+		    //    }
+			var ret =  new Json.Object();
+			ret.set_array_member("props", props);
+			ret.set_array_member("events", events);
+			ret.set_array_member("methods", methods);
 		
-		
-		
-		
-		
+ 		    return ret;
+		    
+		    
+		    // b) methods
+		    // c) events
+		    
+		    
+		}
 		
 		
 		
  	}
- 
-	
-	
+ 	Json.Object toEventPublishJSON (Symbol parent)
+	{
+		var add = new Json.Object();
+		add.set_string_member("name",this.name.substring(1,-1)); // remove'*' on events..
+		add.set_string_member("type","function");
+		add.set_string_member("desc",this.desc);
+		add.set_string_member("sig", this.makeFuncSkel());
+		add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);		        
+		return add;
+	}
+	Json.Object toMethodPublishJSON (Symbol parent)
+	{
+		var add = new Json.Object();
+		add.set_string_member("name",this.name);
+		add.set_string_member("type","function");
+		add.set_string_member("desc",this.desc);
+		add.set_string_member("sig", this.makeMethodSkel());
+		add.set_boolean_member("static", this.isStatic);
+		add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);		        
+		return add;
+	}
 	//static string[] hide = { "$args" };
 	//static string srcFile = "";
 	 
