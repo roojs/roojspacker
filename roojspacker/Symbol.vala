@@ -120,16 +120,17 @@ namespace JSDOC {
         string example = "";
         
 
-        public string isa = "OBJECT"; // OBJECT//FUNCTION
+		public string isa = "OBJECT"; // OBJECT//FUNCTION
         
-        public bool isEvent = false;
-        public bool isConstant = false;
-        public bool isIgnored = false;
-        public bool isInner = false;
-        public bool isNamespace = false;
-        public bool isPrivate = false;
-        public bool isStatic = false;
-        public bool isAbstract = false;
+		public bool isEvent = false;
+		public bool isConstant = false;
+		public bool isIgnored = false;
+		public bool isInner = false;
+		public bool isNamespace = false;
+		public bool isPrivate = false;
+		public bool isStatic = false;
+		public bool isAbstract = false;
+		public bool isBuilderTop = false;
         
         public string memberOf = "";
 
