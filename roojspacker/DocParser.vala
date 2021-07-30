@@ -101,10 +101,29 @@ namespace JSDOC
 			 	 classes.tree_children.clear();
 		    	 foreach(var cn in ar) {
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
-		    	 	if (contributer == null) {
+		    	 	if (sy == null) {
 						throw new DocParserError.InvalidDocChildren("Looking at Class %s, could not find child %s", 
 								cls.alias, cn);
 						continue;
+					}
+					if (sy.isAbstract) {
+						continue;
+					}
+					if (sy.tree_parent.length > 0) {
+						var skip  = true;
+						for (var pp in sy.tree_parent) {
+							if (pp == "none") {
+								break;
+							}
+							if (pp == cls.alias) {
+								skip = false;
+								break;
+							}
+						}
+						if (skip) {
+							continue;
+						}
+					
 					}
 					classes.tree_children.add(cn);
 					foreach(var cc in sy.childClassList) {
