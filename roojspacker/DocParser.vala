@@ -120,6 +120,8 @@ namespace JSDOC
 						var skip  = true;
 						foreach (var pp in sy.tree_parent) {
 							if (pp == "none") {
+								GLib.debug("fillTreeChildren : checking %s - skip due to tree_parent match: %s", 
+									cls.alias, pp);
 								break;
 							}
 							if (pp == cls.alias) {
@@ -128,11 +130,15 @@ namespace JSDOC
 							}
 						}
 						if (skip) {
+							GLib.debug("fillTreeChildren : checking %s - skip due to no tree_parent match", 
+									cls.alias);
 							continue;
 						}
 					}
+					GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cn);
 					cls.tree_children.add(cn);
 					foreach(var cc in sy.childClassesList) {
+						GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cc);
 						cls.tree_children.add(cc);
 					}
 				}
