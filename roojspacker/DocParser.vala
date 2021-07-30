@@ -93,7 +93,7 @@ namespace JSDOC
 	    	}
 		}
 		
-		public static boolean  isValidChild(Symbol cls, string cn)
+		public static bool   isValidChild(Symbol cls, string cn)
 		{
 			var sy = DocParser.symbols().getSymbol(cn);
     	 	if (sy == null) {
