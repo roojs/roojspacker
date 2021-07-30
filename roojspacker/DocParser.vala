@@ -62,7 +62,7 @@ namespace JSDOC
 		    foreach (var cls in classes) {
 			     var ar = cls.augments.slice(0, cls.augments.size); // copy?
 			    cls.augments.clear();
-				for(var ii = 0, ; ii <  ar.size; ii++) {
+				for(var ii = 0  ; ii <  ar.size; ii++) {
 					var contributer = DocParser.symbols().getSymbol(ar[ii]);
 					if (contributer == null) {
 						GLib.warning("Looking at Class %s, could not find augments %s", 
