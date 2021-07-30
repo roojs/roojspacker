@@ -295,7 +295,7 @@ namespace JSDOC {
                     
                      
                     if (contributer != null) {
-                        contributer.childClasses.add(symbol.alias);
+                        //contributer.childClasses.add(symbol.alias);
                         symbol.inheritsFrom.add(contributer.alias);
                         //if (!isUnique(symbol.inheritsFrom)) {
                         //    imports.BuildDocs.Options.LOG.warn("Can't resolve augments: Circular reference: "+symbol.alias+" inherits from "+contributer.alias+" more than once.");
