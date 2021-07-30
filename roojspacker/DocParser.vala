@@ -111,6 +111,7 @@ namespace JSDOC
 		 		}
 			 	cls.tree_children.clear();
 		    	foreach(var cn in ar) {
+			    	GLib.debug("fillTreeChildren : checking %s - child %s", cls.alias, cn);
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
 		    	 	if (sy == null) {
 		    	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
@@ -118,6 +119,7 @@ namespace JSDOC
 						continue;
 					}
 					if (sy.isAbstract) {
+						GLib.warning("fillTreeChildren:
 						continue;
 					}
 					if (sy.tree_parent.size > 0) {
