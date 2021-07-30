@@ -292,7 +292,7 @@ namespace JSDOC
 				class_gen.set_root (class_root);
 				class_gen.pretty=  true;
 				class_gen.indent = 2;
-				GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
+				GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 				this.writeJson(class_gen, PackerRun.singleton().opt_doc_target+"/symbols/" +symbol.alias+".json");
 		        
 		        jsonAll.set_object_member(symbol.alias,  symbol.toClassJSON());
@@ -307,7 +307,7 @@ namespace JSDOC
 			class_tree_gen.set_root (class_tree_root);
 			class_tree_gen.pretty=  true;
 			class_tree_gen.indent = 2;
-			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/tree.json");
+			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/tree.json");
 			this.writeJson(class_tree_gen,PackerRun.singleton().opt_doc_target+"/tree.json");
 			size_t class_tree_l;
 			//GLib.debug("JSON: %s", class_tree_gen.to_data(out class_tree_l));
@@ -323,7 +323,7 @@ namespace JSDOC
 			generator.set_root (root);
 			generator.pretty=  true;
 			generator.indent = 2;
-			GLib.warning("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			
 			
 			this.writeJson(generator,PackerRun.singleton().opt_doc_target+"/json/roodata.json");
