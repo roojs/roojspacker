@@ -106,7 +106,7 @@ namespace JSDOC
 				GLib.debug("fillTreeChildren : checking %s", cls.alias);
 				
 			 	var ar = new Gee.ArrayList<string>();
-			 	for var cn in cls.tree_children) {
+			 	foreach(var cn in cls.tree_children) {
 			 		ar.add(cn);
 		 		}
 			 	cls.tree_children.clear();
