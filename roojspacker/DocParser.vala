@@ -105,7 +105,7 @@ namespace JSDOC
 				}
 				GLib.debug("fillTreeChildren : checking %s", cls.alias);
 				
-			 	var ar = cls.tree_children.slice(0, cls.tree_children.size); // copy?
+			 	var ar = cls.tree_children.slice(0, cls.tree_children.size+1); // copy?
 			 	cls.tree_children.clear();
 		    	foreach(var cn in ar) {
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
