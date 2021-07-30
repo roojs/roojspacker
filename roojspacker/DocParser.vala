@@ -102,7 +102,7 @@ namespace JSDOC
 				return false;
 			}
 			if (sy.isAbstract) {
-				GLib.warning("fillTreeChildren: checking %s child is an abstract %s", cls.alias, cn
+				GLib.warning("fillTreeChildren: checking %s child is an abstract %s", cls.alias, cn);
 				return false
 			}
 			if (sy.tree_parent.size > 0) {
@@ -124,6 +124,7 @@ namespace JSDOC
 					return false;
 				}
 			}
+			return true;
 			
 			
 		}
