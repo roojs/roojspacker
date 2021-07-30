@@ -97,8 +97,8 @@ namespace JSDOC
 			 
 			 var classes =  DocParser.classes();
 			 foreach (var cls in classes) {
-			 	 var ar = classes.tree_children.slice(0, classes.tree_children.size); // copy?
-			 	 classes.tree_children.clear();
+			 	 var ar = cls.tree_children.slice(0, cls.tree_children.size); // copy?
+			 	 cls.tree_children.clear();
 		    	 foreach(var cn in ar) {
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
 		    	 	if (sy == null) {
@@ -124,9 +124,9 @@ namespace JSDOC
 							continue;
 						}
 					}
-					classes.tree_children.add(cn);
+					cls.tree_children.add(cn);
 					foreach(var cc in sy.childClassList) {
-						classes.tree_children.add(cc);
+						cls.tree_children.add(cc);
 					}
 				}
 			}	
