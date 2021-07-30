@@ -100,6 +100,7 @@ namespace JSDOC
 			 var classes =  DocParser.classes();
 			 foreach (var cls in classes) {
 				if (cls.tree_children.size < 1) {
+					GLib.debug("fillTreeChildren : skip - no children %s", cls.alias);
 					continue;
 				}
 				GLib.debug("fillTreeChildren : checking %s", cls.alias);
