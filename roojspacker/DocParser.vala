@@ -91,14 +91,14 @@ namespace JSDOC
 	    	}
 		}
 		 
-		public static void  fillDocChildren()
+		public static void  fillTreeChildren()
 		{
 			 // lookup symbol : builder.getSymbol()
 			 
 			 var classes =  DocParser.classes();
 			 foreach (var cls in classes) {
-			 	 var ar = classes.doc_children.slice(0, classes.doc_children.size); // copy?
-			 	 classes.doc_children.clear();
+			 	 var ar = classes.tree_children.slice(0, classes.doc_children.size); // copy?
+			 	 classes.tree_children.clear();
 		    	 foreach(var cn in ar) {
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
 		    	 	if (contributer == null) {
@@ -106,9 +106,9 @@ namespace JSDOC
 								cls.alias, cn);
 						continue;
 					}
-					classes.doc_children.add(cn);
+					classes.tree_children.add(cn);
 					foreach(var cc in sy.childClassList) {
-						classes.doc_children.add(cc);
+						classes.tree_children.add(cc);
 					}
 				}
 			}	
