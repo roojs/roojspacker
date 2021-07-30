@@ -111,7 +111,7 @@ namespace JSDOC
 					}
 					if (sy.tree_parent.length > 0) {
 						var skip  = true;
-						for (var pp in sy.tree_parent) {
+						foreach (var pp in sy.tree_parent) {
 							if (pp == "none") {
 								break;
 							}
@@ -123,7 +123,6 @@ namespace JSDOC
 						if (skip) {
 							continue;
 						}
-					
 					}
 					classes.tree_children.add(cn);
 					foreach(var cc in sy.childClassList) {
