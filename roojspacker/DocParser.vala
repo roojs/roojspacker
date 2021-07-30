@@ -153,13 +153,13 @@ namespace JSDOC
 		    	  
 		    	  
 					
-					if (DocParser.isValidChild(cls, cn) {
+					if (DocParser.isValidChild(cls, cn)) {
 						GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cn);
 						cls.tree_children.add(cn);
 					}
 					foreach(var cc in sy.childClassesList) {
 
-						if (DocParser.isValidChild(cls, cc) {
+						if (DocParser.isValidChild(cls, cc)) {
 							cls.tree_children.add(cc);
 							GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cc);
 						}
