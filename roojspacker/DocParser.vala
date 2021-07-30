@@ -2,7 +2,8 @@
 namespace JSDOC
 {
 	public errordomain DocParserError {
-            InvalidAugments
+            InvalidAugments,
+            InvalidDocChildren
     }
  
  
@@ -63,7 +64,7 @@ namespace JSDOC
 						var contributer = DocParser.symbols().getSymbol(cls.augments[ii]);
 						if (contributer == null) {
 							throw new DocParserError.InvalidAugments("Looking at Class %s, could not find augments %s", 
-									cls.alias, class.augments[ii]);
+									cls.alias, cls.augments[ii]);
 							continue;
 						}
 						 
