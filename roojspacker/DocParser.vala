@@ -44,7 +44,7 @@ namespace JSDOC
 		public static Gee.ArrayList<Symbol> classes()
 		{
 			var classes = new Gee.ArrayList<Symbol>();
-			foreach(var symbol in this.symbols().values()) {
+			foreach(var symbol in DocParser.symbols().values()) {
 				if (symbol.isaClass()) { 
 					classes.add(symbol);
 				}
