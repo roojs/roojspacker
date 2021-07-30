@@ -1,6 +1,10 @@
 
 namespace JSDOC
 {
+	public errordomain DocParserError {
+            InvalidAugments
+    }
+ 
  
 	public class DocParser : Object 
 	{
@@ -37,9 +41,79 @@ namespace JSDOC
 	    public static string currentSourceFile;
     
 
-		
+		public static Gee.ArrayList<Symbol> classes()
+		{
+			var classes = new Gee.ArrayList<Symbol>();
+			foreach(var symbol in this.symbols().values()) {
+				if (symbol.isaClass()) { 
+					classes.add(symbol);
+				}
+			}    
+			classes.sort( (a,b) => {
+				return a.alias.collate(b.alias); 
+			});
+			return classes;
+		}
+
+		public static void  validateAugments()
+		{
+			var classes =  DocParser.classes();
+		    foreach (var cls in classes) {
+				for(var ii = 0, il = cls.augments.size; ii < il; ii++) {
+						var contributer = DocParser.symbols().getSymbol(cls.augments[ii]);
+						if (contributer == null) {
+							throw new DocParserError.InvalidAugments("Looking at Class %s, could not find augments %s", 
+									cls.alias, class.augments[ii]);
+							continue;
+						}
+						 
+					}
+				}
+		}
+
+		public static void  fillChildClasses()
+		{
+			 var classes =  DocParser.classes();
+			 foreach (var cls in classes) {
+		    	foreach (var lookcls in classes) {
+					if (lookcls.augments.contains(cls.alias)) {
+						var extends = "";
+						if (lookcls.augments.size > 0) {
+							extends = lookcls.augments.get(0);
+							if ( extends  == lookcls.alias) {
+								extends = lookcls.augments.size > 1 ? lookcls.augments.get(1) : "";
+							}
+						}
+						cls.addChildClass(lookcls.alias, extends);
+					}
+				}
+	    	}
+		}
 		 
-		
+		public static void  fillDocChildren()
+		{
+			 // lookup symbol : builder.getSymbol()
+			 
+			 var classes =  DocParser.classes();
+			 foreach (var cls in classes) {
+			 	 var ar = classes.doc_children.slice(0, classes.doc_children.size); // copy?
+			 	 classes.doc_children.clear();
+		    	 foreach(var cn in ar) {
+		    	 	var sy = DocParser.symbols().getSymbol(cn);
+		    	 	if (contributer == null) {
+						throw new DocParserError.InvalidDocChildren("Looking at Class %s, could not find child %s", 
+								cls.alias, cn);
+						continue;
+					}
+					classes.doc_children.add(cn);
+					foreach(var cc in sy.childClassList) {
+						classes.doc_children.add(cc);
+					}
+				}
+			}	
+		    	 
+		    
+		}
 		
 		public static void parse(TokenStream ts, string srcFile) 
 		{

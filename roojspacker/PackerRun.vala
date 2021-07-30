@@ -353,7 +353,7 @@ namespace JSDOC
 			}  
 			
 			var run_pack = false;
-			if (opt_target != null || opt_debug_target != null || opt_dump_tokens) {
+			if (opt_target != null || opt_debug_target != null || opt_dump_tokens ) {
 				// do the actual packing...
 				p.pack(	opt_target == null ? "" : opt_target ,
 						opt_debug_target == null ? "" :  opt_debug_target );
@@ -363,10 +363,12 @@ namespace JSDOC
 				}
 				return;
 	        }
-	        if (opt_doc_target != null) {
+	        if (opt_doc_target != null || opt_doc_dump_tree) {
 				// remove trailing /
-		        opt_doc_target = opt_doc_target.has_suffix("/") ? 
-		        		opt_doc_target.substring(0, opt_doc_target.length-1) : opt_doc_target;
+				if (opt_doc_target  != null ) {
+				    opt_doc_target = opt_doc_target.has_suffix("/") ? 
+				    		opt_doc_target.substring(0, opt_doc_target.length-1) : opt_doc_target;
+	    		}
 	    		var d = new JSDOC.DocBuilder(p);
 	    		return;
 	        } 

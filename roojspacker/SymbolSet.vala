@@ -25,7 +25,7 @@ namespace JSDOC {
 				return this.__index;
 			}
 		}
-		 
+		// CTOR - do nothing..?
 		public SymbolSet ()
 		{
 

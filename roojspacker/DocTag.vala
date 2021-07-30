@@ -196,7 +196,8 @@ namespace JSDOC
 		    EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
 
 		    unowned EnumValue? eval = enumc.get_value_by_name(
-		    		 "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up().replace("-", "_")
+			//	 "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up()
+		   		 "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up().replace("-", "_")
     		 );
 		    if (eval == null) {
 				throw new DocTagException.INVALID_TITLE("title not supported ??");

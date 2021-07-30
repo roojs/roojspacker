@@ -38,17 +38,16 @@ namespace JSDOC
 	
 		    this.parseSrcFiles();
 		    
+		    DocParser.validateAugments();		    
+		    DocParser.fillChildClasses();
+		    DocParser.fillDocChildren();
+		    
+		    
 		    this.symbolSet = DocParser.symbols();
 		    
 		    
-		    var classes =  this.classes();
-		    foreach (var cls in classes) {
-		    	foreach (var lookcls in classes) {
-					if (lookcls.augments.contains(cls.alias)) {
-						cls.addChildClass(lookcls.alias);
-					}
-				}
-	    	}
+		    var classes =  DocParser.classes();
+		     
 		    
 		    // this currently uses the concept of publish.js...
 		   
@@ -61,12 +60,14 @@ namespace JSDOC
 				//print(JSON.stringify(symbols,null,4));
 				 
 		        var jsonAll = new Json.Object(); 
+		        var ar = new Json.Array(); 
 				for (var i = 0, l = classes.size; i < l; i++) {
 				    var symbol = classes.get(i);    
-				    jsonAll.set_object_member(symbol.alias,  symbol.toClassJSON());
+				    //
+				    ar.add_object_element(  symbol.toJson());
 
 				}
-				
+				jsonAll.set_array_member("data", ar);
 				var generator = new Json.Generator ();
 			    var root = new Json.Node(Json.NodeType.OBJECT);
     		   
@@ -197,21 +198,7 @@ namespace JSDOC
 		    
 		}
 		
-		// prehaps move to symbolset?
-		public Gee.ArrayList<Symbol> classes()
-		{
-			var classes = new Gee.ArrayList<Symbol>();
-			foreach(var symbol in this.symbolSet.values()) {
-				if (symbol.isaClass()) { 
-					classes.add(symbol);
-				}
-			}    
-			classes.sort( (a,b) => {
-				return a.alias.collate(b.alias); 
-			});
-			return classes;
-		}
-		    
+		 
 		 
 		 
      	string tempdir;
@@ -282,7 +269,7 @@ namespace JSDOC
 		        this.makeSrcFile(file);
 		    }
 		    //print(JSON.stringify(symbols,null,4));
-		    var classes = this.classes();
+		    var classes = DocParser.classes();
 		     
 		     //GLib.debug("classTemplate Process : all classes");
 		        
@@ -301,7 +288,7 @@ namespace JSDOC
 		        
 		        var   class_gen = new Json.Generator ();
 			    var  class_root = new Json.Node(Json.NodeType.OBJECT);
-				class_root.init_object(symbol.toClassDocJSON(this));
+				class_root.init_object(symbol.toClassDocJSON());
 				class_gen.set_root (class_root);
 				class_gen.pretty=  true;
 				class_gen.indent = 2;
@@ -312,7 +299,7 @@ namespace JSDOC
 
 		    }
 		    
-		    // outptu class truee
+		    // outptu class tree
 		    
 		    var   class_tree_gen = new Json.Generator ();
     	    var  class_tree_root = new Json.Node(Json.NodeType.ARRAY);
@@ -395,6 +382,7 @@ namespace JSDOC
 	    	add.set_string_member("name", name);
 	    	add.set_array_member("cn", new Json.Array());
 	    	add.set_boolean_member("is_class", is_class);
+	    	
 	    	this.class_tree_map.set(name, add);
 	    	var bits = name.split(".");
 	    	if (bits.length == 1) {
