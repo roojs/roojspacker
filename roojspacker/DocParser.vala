@@ -92,6 +92,18 @@ namespace JSDOC
 				}
 	    	}
 		}
+		
+		public static boolean  isValidChildren(cls, cn)
+		{
+			var sy = DocParser.symbols().getSymbol(cn);
+    	 	if (sy == null) {
+    	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
+						cls.alias, cn);
+				return falase;
+			}
+		
+		}
+		
 		 
 		public static void  fillTreeChildren()
 		{
@@ -119,7 +131,7 @@ namespace JSDOC
 						continue;
 					}
 					if (sy.isAbstract) {
-						GLib.warning("fillTreeChildren:
+						GLib.warning("fillTreeChildren: checking %s child is an abstract
 						continue;
 					}
 					if (sy.tree_parent.size > 0) {
