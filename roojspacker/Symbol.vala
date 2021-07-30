@@ -96,7 +96,8 @@ namespace JSDOC {
 		public Gee.ArrayList<DocTag> returns;
 		private Gee.ArrayList<string> see ;
 
- 		public Gee.ArrayList<string> childClasses;
+ 		public Gee.HashMap<string,Gee.ArrayList<string>> childClasses;
+ 		public Gee.ArrayList<string> childClassesList;
  		public Gee.ArrayList<string> inheritsFrom;
 		public Gee.HashMap<string,DocTag>cfgs;
 
@@ -185,7 +186,8 @@ namespace JSDOC {
             // what is this?
             this.inheritsFrom = new Gee.ArrayList<string>();
 
-            this.childClasses = new Gee.ArrayList<string>();
+            this.childClasses = new Gee.HashMap<string,Gee.ArrayList<string>>();
+            this.childClassesList = new Gee.ArrayList<string>();
             
             this.tree_parent = new Gee.ArrayList<string>();
             this.tree_children = new Gee.ArrayList<string>();
@@ -693,7 +695,7 @@ namespace JSDOC {
             if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
             }
-            /*
+             
             // @children
              if (this.comment.getTag(DocTagTitle.CHILDREN).size > 0) {
                 foreach(var s in this.comment.getTag(DocTagTitle.CHILDREN).get(0).desc.strip().split(" ")) {
@@ -715,7 +717,7 @@ namespace JSDOC {
 			if (this.comment.getTag(DocTagTitle.BUILDER_TOP).size > 0) {
                 this.isBuilderTop = true;
             }
-            */
+            
             
             
              
@@ -812,10 +814,15 @@ namespace JSDOC {
             thisProperties.add(symbol); // new property with this alias
         }
         
-        public void addChildClass(string clsname) {
-        	this.childClasses.add(clsname);
+        public void addChildClass(string clsname, string parent) 
+        {
+        	if (!this.childClasses.has_key( parent)) {
+	        	this.childClasses.set(parent, new Gee.ArrayList<string>());
+        	}
+        	this.childClasses.get(parent).add(clsname);
+        	this.childClassesList.add(clsname);
     	}
-        
+         
         
         public void addDocTag(DocTag docTag)
         {
@@ -914,7 +921,15 @@ namespace JSDOC {
 		
 		} 
 		
+		public Json.Object assocStringToJson( Gee.HashMap<string,Gee.ArrayList<string>> ar) 
+		{
+			var ret = new Json.Object();
+			foreach(var a in ar.keys) {
+				ret.set_array_member(a, this.stringArrayToJson(ar.get(a)));
+			}
+			return ret;
 		
+		} 
 		
 		public Json.Object assocDocTagToJson( Gee.HashMap<string,DocTag> ar) 
 		{
@@ -933,6 +948,21 @@ namespace JSDOC {
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
+			ret.set_object_member("comment", this.comment.toJson()); //contains doctags?
+			ret.set_boolean_member("isEvent", this.isEvent);
+			ret.set_boolean_member("isConstant", this.isConstant);
+			ret.set_boolean_member("isIgnored", this.isIgnored);
+			ret.set_boolean_member("isInner", this.isInner);
+			ret.set_boolean_member("isNamespace", this.isNamespace);
+			ret.set_boolean_member("isPrivate", this.isPrivate);
+			ret.set_boolean_member("isStatic", this.isStatic);
+ 			ret.set_boolean_member("isAbstract", this.isAbstract);
+			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);	
+			ret.set_string_member("memberOf", this.memberOf);
+			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
+			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
+			
+			
 			ret.set_array_member("params", this.docTagsArrayToJson(this.params));
 
 			ret.set_array_member("augments", this.stringArrayToJson(this.augments));
@@ -942,10 +972,10 @@ namespace JSDOC {
 			ret.set_array_member("requires", this.stringArrayToJson(this.requires));
 			ret.set_array_member("returns", this.docTagsArrayToJson(this.returns));
 			ret.set_array_member("see", this.stringArrayToJson(this.see));
-			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
+			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));
 			ret.set_array_member("inheritsFrom", this.stringArrayToJson(this.inheritsFrom));
 			ret.set_object_member("cfgs", this.assocDocTagToJson(this.cfgs));
-			ret.set_object_member("comment", this.comment.toJson());
+
 		      //$args : [], // original arguments used when constructing.
  
 			ret.set_string_member("alias", this.alias);
@@ -959,15 +989,8 @@ namespace JSDOC {
 			
 			ret.set_string_member("isa", this.isa);
 
-			ret.set_boolean_member("isEvent", this.isEvent);
-			ret.set_boolean_member("isConstant", this.isConstant);
-			ret.set_boolean_member("isIgnored", this.isIgnored);
-			ret.set_boolean_member("isInner", this.isInner);
-			ret.set_boolean_member("isNamespace", this.isNamespace);
-			ret.set_boolean_member("isPrivate", this.isPrivate);
-			ret.set_boolean_member("isStatic", this.isStatic);
- 
-			ret.set_string_member("memberOf", this.memberOf);
+
+
 			return ret;
 		}
 		/**
@@ -975,22 +998,15 @@ namespace JSDOC {
 		*/
 		
 		
-		public Json.Object toClassDocJSON (DocBuilder builder)
+		public Json.Object toClassDocJSON ()
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.alias);
 			
 			
 			var ag = new Json.Array();
-			ret.set_array_member("augments", ag);			
-		 	for(var ii = 0, il = this.augments.size; ii < il; ii++) {
-				var contributer = builder.getSymbol(this.augments[ii]);
-				if (contributer == null) {
-					continue;
-				}
-				ag.add_string_element(contributer.alias);
-			}
-			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
+			ret.set_array_member("augments", this.stringArrayToJson(this.augments));
+			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));
 			
 			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
 			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
@@ -1159,6 +1175,11 @@ namespace JSDOC {
 			ret.set_array_member("props", props);
 			ret.set_array_member("events", events);
 			ret.set_array_member("methods", methods);
+			ret.set_boolean_member("isAbstract", this.isAbstract);
+			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);
+			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));			
+			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
+			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
 
 			
 		
