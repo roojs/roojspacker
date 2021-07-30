@@ -93,15 +93,39 @@ namespace JSDOC
 	    	}
 		}
 		
-		public static boolean  isValidChildren(cls, cn)
+		public static boolean  isValidChildren(Symbol cls, string cn)
 		{
 			var sy = DocParser.symbols().getSymbol(cn);
     	 	if (sy == null) {
     	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
 						cls.alias, cn);
-				return falase;
+				return false;
 			}
-		
+			if (sy.isAbstract) {
+				GLib.warning("fillTreeChildren: checking %s child is an abstract %s", cls.alias, cn
+				return false
+			}
+			if (sy.tree_parent.size > 0) {
+				var skip  = true;
+				foreach (var pp in sy.tree_parent) {
+					if (pp == "none") {
+						GLib.debug("fillTreeChildren : checking %s - skip due to tree_parent match: %s", 
+							cls.alias, pp);
+						return false;
+					}
+					if (pp == cls.alias) {
+						skip = false;
+						break;
+					}
+				}
+				if (skip) {
+					GLib.debug("fillTreeChildren : checking %s - skip due to no tree_parent match", 
+							cls.alias);
+					return false;
+				}
+			}
+			
+			
 		}
 		
 		 
@@ -124,35 +148,7 @@ namespace JSDOC
 			 	cls.tree_children.clear();
 		    	foreach(var cn in ar) {
 			    	GLib.debug("fillTreeChildren : checking %s - child %s", cls.alias, cn);
-		    	 	var sy = DocParser.symbols().getSymbol(cn);
-		    	 	if (sy == null) {
-		    	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
-								cls.alias, cn);
-						continue;
-					}
-					if (sy.isAbstract) {
-						GLib.warning("fillTreeChildren: checking %s child is an abstract
-						continue;
-					}
-					if (sy.tree_parent.size > 0) {
-						var skip  = true;
-						foreach (var pp in sy.tree_parent) {
-							if (pp == "none") {
-								GLib.debug("fillTreeChildren : checking %s - skip due to tree_parent match: %s", 
-									cls.alias, pp);
-								break;
-							}
-							if (pp == cls.alias) {
-								skip = false;
-								break;
-							}
-						}
-						if (skip) {
-							GLib.debug("fillTreeChildren : checking %s - skip due to no tree_parent match", 
-									cls.alias);
-							continue;
-						}
-					}
+		    	  
 					GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cn);
 					cls.tree_children.add(cn);
 					foreach(var cc in sy.childClassesList) {
