@@ -40,7 +40,7 @@ namespace JSDOC
 		    
 		    DocParser.validateAugments();		    
 		    DocParser.fillChildClasses();
-		    DocParser.fillDocChildren();
+		    DocParser.fillTreeChildren();
 		    
 		    
 		    this.symbolSet = DocParser.symbols();
