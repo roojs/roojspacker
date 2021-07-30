@@ -109,7 +109,7 @@ namespace JSDOC
 					if (sy.isAbstract) {
 						continue;
 					}
-					if (sy.tree_parent.length > 0) {
+					if (sy.tree_parent.size > 0) {
 						var skip  = true;
 						foreach (var pp in sy.tree_parent) {
 							if (pp == "none") {
