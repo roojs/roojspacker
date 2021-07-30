@@ -99,9 +99,14 @@ namespace JSDOC
 			 
 			 var classes =  DocParser.classes();
 			 foreach (var cls in classes) {
-			 	 var ar = cls.tree_children.slice(0, cls.tree_children.size); // copy?
-			 	 cls.tree_children.clear();
-		    	 foreach(var cn in ar) {
+				if (cls.tree_children.size < 1) {
+					continue;
+				}
+				GLib.debug("fillTreeChildren : checking %s", cls.alias);
+				
+			 	var ar = cls.tree_children.slice(0, cls.tree_children.size); // copy?
+			 	cls.tree_children.clear();
+		    	foreach(var cn in ar) {
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
 		    	 	if (sy == null) {
 		    	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
