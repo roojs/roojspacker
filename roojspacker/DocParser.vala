@@ -60,16 +60,18 @@ namespace JSDOC
 		{
 			var classes =  DocParser.classes();
 		    foreach (var cls in classes) {
-				for(var ii = 0, il = cls.augments.size; ii < il; ii++) {
-						var contributer = DocParser.symbols().getSymbol(cls.augments[ii]);
-						if (contributer == null) {
-							GLib.warning("Looking at Class %s, could not find augments %s", 
-									cls.alias, cls.augments[ii]);
-							continue;
-						}
-						 
+			     var ar = cls.augments.slice(0, cls.augments.size); // copy?
+			    cls.augments.clear();
+				for(var ii = 0, ; ii <  ar.size; ii++) {
+					var contributer = DocParser.symbols().getSymbol(ar[ii]);
+					if (contributer == null) {
+						GLib.warning("Looking at Class %s, could not find augments %s", 
+								cls.alias, ar[ii]);
+						continue;
 					}
+					cls.augments.add(ar[ii]); 
 				}
+			}
 		}
 
 		public static void  fillChildClasses()
