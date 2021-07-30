@@ -96,11 +96,16 @@ namespace JSDOC {
 		public Gee.ArrayList<DocTag> returns;
 		private Gee.ArrayList<string> see ;
 
- 		public Gee.ArrayList<string> childClasses;
+ 		public Gee.HashMap<string,Gee.ArrayList<string>> childClasses;
+ 		public Gee.ArrayList<string> childClassesList;
  		public Gee.ArrayList<string> inheritsFrom;
-        public Gee.HashMap<string,DocTag>cfgs;
-        
-        
+		public Gee.HashMap<string,DocTag>cfgs;
+
+
+		public Gee.ArrayList<string> tree_parent;
+		public Gee.ArrayList<string> tree_children;
+		
+
         public DocComment comment;
                 
         //$args : [], // original arguments used when constructing.
@@ -116,15 +121,17 @@ namespace JSDOC {
         string example = "";
         
 
-        public string isa = "OBJECT"; // OBJECT//FUNCTION
+		public string isa = "OBJECT"; // OBJECT//FUNCTION
         
-        public bool isEvent = false;
-        public bool isConstant = false;
-        public bool isIgnored = false;
-        public bool isInner = false;
-        public bool isNamespace = false;
-        public bool isPrivate = false;
-        public bool isStatic = false;
+		public bool isEvent = false;
+		public bool isConstant = false;
+		public bool isIgnored = false;
+		public bool isInner = false;
+		public bool isNamespace = false;
+		public bool isPrivate = false;
+		public bool isStatic = false;
+		public bool isAbstract = false;
+		public bool isBuilderTop = false;
         
         public string memberOf = "";
 
@@ -176,10 +183,15 @@ namespace JSDOC {
  
             
             this.cfgs = new Gee.HashMap<string,DocTag>();
-            // derived later?
+            // what is this?
             this.inheritsFrom = new Gee.ArrayList<string>();
 
-            this.childClasses = new Gee.ArrayList<string>();
+            this.childClasses = new Gee.HashMap<string,Gee.ArrayList<string>>();
+            this.childClassesList = new Gee.ArrayList<string>();
+            
+            this.tree_parent = new Gee.ArrayList<string>();
+            this.tree_children = new Gee.ArrayList<string>();
+            
              
             this.comment = new DocComment();
             this.comment.isUserComment =  false;
@@ -237,7 +249,8 @@ namespace JSDOC {
             
         }
 
-        void tagsFromComment() {
+        void tagsFromComment() 
+        {
             // @author
             var authors = this.comment.getTag(DocTagTitle.AUTHOR);
             if (authors.size > 0) {
@@ -676,18 +689,38 @@ namespace JSDOC {
                 this.alias = this.name;
             }
 
-            /*~t
-                // todo
-            */
+           
              
             // @public
             if (this.comment.getTag(DocTagTitle.PUBLIC).size > 0) {
                 this.isPrivate = false;
             }
+             
+            // @children
+             if (this.comment.getTag(DocTagTitle.CHILDREN).size > 0) {
+                foreach(var s in this.comment.getTag(DocTagTitle.CHILDREN).get(0).desc.strip().split(" ")) {
+                	this.tree_children.add(s);
+            	}
+            }
+            // @parent
+             if (this.comment.getTag(DocTagTitle.PARENT).size > 0) {
+                foreach(var s in this.comment.getTag(DocTagTitle.PARENT).get(0).desc.strip().split(" ")) {
+                	this.tree_parent.add(s);
+            	}
+            }
+                        
+            // @abstract
+            if (this.comment.getTag(DocTagTitle.ABSTRACT).size > 0) {
+                this.isAbstract = true;
+            }
+			// @builder-top            
+			if (this.comment.getTag(DocTagTitle.BUILDER_TOP).size > 0) {
+                this.isBuilderTop = true;
+            }
             
-            /*~t
-                // todo
-            */
+            
+            
+             
         }
 
         public bool is (string what) {
@@ -781,6 +814,16 @@ namespace JSDOC {
             thisProperties.add(symbol); // new property with this alias
         }
         
+        public void addChildClass(string clsname, string parent) 
+        {
+        	if (!this.childClasses.has_key( parent)) {
+	        	this.childClasses.set(parent, new Gee.ArrayList<string>());
+        	}
+        	this.childClasses.get(parent).add(clsname);
+        	this.childClassesList.add(clsname);
+    	}
+         
+        
         public void addDocTag(DocTag docTag)
         {
             this.comment.tags.add(docTag);
@@ -849,41 +892,7 @@ namespace JSDOC {
 			}
 			return ret + ")";
 		}
-		
-		public Json.Array paramsToJson()
-		{
-			var ret = new Json.Array();
-			foreach(var p in this.params) {
-				//GLib.debug("got param: %s", p.asString());
-				if (p.name.contains(".")) continue;// ?? why?				
-				var add = new Json.Object();
-				add.set_string_member("name",p.name);				
-				add.set_string_member("type",p.type);
-				add.set_string_member("desc",p.desc);
-				add.set_boolean_member("isOptional",p.isOptional);
-				ret.add_object_element(add) ;
-			}
-			 
-			return ret;
-		
-		}
-    	public Json.Array returnsToJson()
-		{
-			var ret = new Json.Array();
-			foreach(var p in this.returns) {
-				//GLib.debug("got param: %s", p.asString());
-				if (p.name.contains(".")) continue;// ?? why?				
-				var add = new Json.Object();
-				add.set_string_member("name",p.name);				
-				add.set_string_member("type",p.type);
-				add.set_string_member("desc",p.desc);
-		 
-				ret.add_object_element(add) ;
-			}
-			 
-			return ret;
-		
-		}
+	
 		public Json.Array stringArrayToJson( Gee.ArrayList<string> ar) 
 		{
 			var ret = new Json.Array();
@@ -912,7 +921,15 @@ namespace JSDOC {
 		
 		} 
 		
+		public Json.Object assocStringToJson( Gee.HashMap<string,Gee.ArrayList<string>> ar) 
+		{
+			var ret = new Json.Object();
+			foreach(var a in ar.keys) {
+				ret.set_array_member(a, this.stringArrayToJson(ar.get(a)));
+			}
+			return ret;
 		
+		} 
 		
 		public Json.Object assocDocTagToJson( Gee.HashMap<string,DocTag> ar) 
 		{
@@ -924,11 +941,28 @@ namespace JSDOC {
 		
 		} 
 		
-		
+		/**
+		* direct Json Dump
+		*/
 		public Json.Object toJson()
 		{
 			var ret = new Json.Object();
 			ret.set_string_member("name", this.name);
+			ret.set_object_member("comment", this.comment.toJson()); //contains doctags?
+			ret.set_boolean_member("isEvent", this.isEvent);
+			ret.set_boolean_member("isConstant", this.isConstant);
+			ret.set_boolean_member("isIgnored", this.isIgnored);
+			ret.set_boolean_member("isInner", this.isInner);
+			ret.set_boolean_member("isNamespace", this.isNamespace);
+			ret.set_boolean_member("isPrivate", this.isPrivate);
+			ret.set_boolean_member("isStatic", this.isStatic);
+ 			ret.set_boolean_member("isAbstract", this.isAbstract);
+			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);	
+			ret.set_string_member("memberOf", this.memberOf);
+			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
+			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
+			
+			
 			ret.set_array_member("params", this.docTagsArrayToJson(this.params));
 
 			ret.set_array_member("augments", this.stringArrayToJson(this.augments));
@@ -938,10 +972,10 @@ namespace JSDOC {
 			ret.set_array_member("requires", this.stringArrayToJson(this.requires));
 			ret.set_array_member("returns", this.docTagsArrayToJson(this.returns));
 			ret.set_array_member("see", this.stringArrayToJson(this.see));
-			ret.set_array_member("childClasses", this.stringArrayToJson(this.childClasses));
+			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));
 			ret.set_array_member("inheritsFrom", this.stringArrayToJson(this.inheritsFrom));
 			ret.set_object_member("cfgs", this.assocDocTagToJson(this.cfgs));
-			ret.set_object_member("comment", this.comment.toJson());
+
 		      //$args : [], // original arguments used when constructing.
  
 			ret.set_string_member("alias", this.alias);
@@ -955,34 +989,274 @@ namespace JSDOC {
 			
 			ret.set_string_member("isa", this.isa);
 
-			ret.set_boolean_member("isEvent", this.isEvent);
-			ret.set_boolean_member("isConstant", this.isConstant);
-			ret.set_boolean_member("isIgnored", this.isIgnored);
-			ret.set_boolean_member("isInner", this.isInner);
-			ret.set_boolean_member("isNamespace", this.isNamespace);
-			ret.set_boolean_member("isPrivate", this.isPrivate);
-			ret.set_boolean_member("isStatic", this.isStatic);
- 
-			ret.set_string_member("memberOf", this.memberOf);
+
+
 			return ret;
 		}
+		/**
+		* This is the more detail Class output for documentation body text
+		*/
 		
 		
-		
-		
-		
-		
-		
-		
-		
-		
- 	}
+		public Json.Object toClassDocJSON ()
+		{
+			var ret = new Json.Object();
+			ret.set_string_member("name", this.alias);
+			
+			
+			var ag = new Json.Array();
+			ret.set_array_member("augments", this.stringArrayToJson(this.augments));
+			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));
+			
+			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
+			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
+
+			
+			ret.set_string_member("name", this.alias);  
+			ret.set_string_member("desc", this.desc);
+			ret.set_boolean_member("isSingleton", this.comment.getTag(DocTagTitle.SINGLETON).size > 0);
+			ret.set_boolean_member("isStatic", this.isa != "CONSTRUCTOR");
+			ret.set_boolean_member("isBuiltin", this.isBuiltin());
+			ret.set_boolean_member("isAbstract", this.isAbstract);
+			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);			
+
+			// needded so that the class can fake a ctor..
+			ret.set_string_member("memberOf", this.name);
+			ret.set_string_member("example", this.comment.getTagAsString(DocTagTitle.EXAMPLE));
+			ret.set_string_member("deprecated", // as depricated is used as a flag...
+				this.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+				"This has been deprecated: "+  this.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+			"");
+			ret.set_string_member("since", this.comment.getTagAsString(DocTagTitle.SINCE));
+			ret.set_string_member("see", this.comment.getTagAsString(DocTagTitle.SEE));
+			// ?? ctor? is that listed with the outer class?
+			
+			
+			
+			// this must be for the CTOR?
+			ret.set_array_member("params", this.paramsToJson());
+			ret.set_array_member("returns", new Json.Array()); // this is a placeholder - classes dont have returns..
+	        ret.set_string_member("throws", this.comment.getTagAsString(DocTagTitle.THROWS));
+			ret.set_string_member("requires", this.comment.getTagAsString(DocTagTitle.REQUIRES));
+			
+			
+			var props = new Json.Array(); 
+			ret.set_array_member("config", props);
+			var cfgProperties = this.configToArray();
+			for(var i =0; i < cfgProperties.size;i++) {
+				props.add_object_element(cfgProperties.get(i).toPropertyJSON(this));
+	    	}
+			// methods
  
-	
-	
+			var methods = new Json.Array();
+			ret.set_array_member("methods", methods);		     
+			foreach(var m in this.methods) {
+				if (m.isEvent || m.isIgnored) {
+					continue;
+				}
+				methods.add_object_element(m.toMethodJSON(this));
+			}
+			
+			// events
+			var events = new Json.Array();
+			ret.set_array_member("events", events);		     
+		    foreach(var m in this.methods) {
+		    	if (!m.isEvent || m.isIgnored) {
+		    		continue;
+	    		}
+	    		events.add_object_element(m.toEventJSON(this));
+    		}
+    		return ret;
+		}
+		
+		// ?? can this be replaced with ???
+		public Json.Array paramsToJson()
+		{
+			var ret = new Json.Array();
+			foreach(var p in this.params) {
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.name);				
+				add.set_string_member("type",p.type);
+				add.set_string_member("desc",p.desc);
+				add.set_boolean_member("isOptional",p.isOptional);
+				ret.add_object_element(add) ;
+			}
+			 
+			return ret;
+		
+		}
+		
+		// ?? can this be replaced with ???
+    	public Json.Array returnsToJson()
+		{
+			var ret = new Json.Array();
+			foreach(var p in this.returns) {
+				//GLib.debug("got param: %s", p.asString());
+				if (p.name.contains(".")) continue;// ?? why?				
+				var add = new Json.Object();
+				add.set_string_member("name",p.name);				
+				add.set_string_member("type",p.type);
+				add.set_string_member("desc",p.desc);
+		 
+				ret.add_object_element(add) ;
+			}
+			 
+			return ret;
+		
+		}
+		
+		 /**
+		 * JSON files are lookup files for the documentation
+		 * - can be used by IDE's or AJAX based doc tools
+		 *  This is a simplified version..
+		 * 
+		 */
+		public Json.Object toClassJSON ()
+		{
+		    // what we need to output to be usefull...
+		    // a) props..
+		    var cfgProperties = new Gee.ArrayList<DocTag>();
+		    if (this.comment.getTag(DocTagTitle.SINGLETON).size < 1) {
+		         cfgProperties = this.configToArray();
+		         cfgProperties.sort((a,b) =>{
+		    		return a.name.collate(b.name);
+		        }); 
+		    } 
+		    var props = new Json.Array(); 
+		    for(var i =0; i < cfgProperties.size;i++) {
+		        props.add_object_element(  cfgProperties.get(i).toPropertyJSON(this) );
+		    }
+		    
+		    ///// --- events
+		    var ownEvents = new Gee.ArrayList<Symbol>();
+		    for(var i =0; i < this.methods.size;i++) {
+				var e = this.methods.get(i);
+				if (e.isEvent && !e.isIgnored) {
+					ownEvents.add(e);
+				}
+			}; 
+			ownEvents.sort((a,b) => {
+				return a.name.collate(b.name);
+			});
+		    
+		    var events = new Json.Array();
+		     
+		    for(var i =0; i < ownEvents.size;i++) {
+		        events.add_object_element(ownEvents.get(i).toEventJSON(this));
+		    } 
+		     
+		    // methods
+		    var ownMethods = new Gee.ArrayList<Symbol>();
+		    for(var i =0; i < this.methods.size;i++) {
+				var e = this.methods.get(i);
+				if (!e.isEvent && !e.isIgnored) {
+					ownMethods.add(e);
+				}
+			};
+			ownMethods.sort((a,b) => {
+				return a.name.collate(b.name);
+			});
+		    
+	  		var methods = new Json.Array();
+		    for(var i =0; i < ownMethods.size;i++) {
+		        methods.add_object_element(ownMethods.get(i).toMethodJSON(this));
+		    }
+		     
+		    //println(props.toSource());
+		    // we need to output:
+		    //classname => {
+		    //    propname => 
+		    //        type=>
+		    //        desc=>
+		    //    }
+			var ret =  new Json.Object();
+			ret.set_array_member("props", props);
+			ret.set_array_member("events", events);
+			ret.set_array_member("methods", methods);
+			ret.set_boolean_member("isAbstract", this.isAbstract);
+			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);
+			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));			
+			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
+			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
+
+			
+		
+ 		    return ret;
+		    
+		    
+		    // b) methods
+		    // c) events
+		    
+		    
+		}
+		 
+	 	
+	 	public Json.Object toEventJSON (Symbol parent)
+		{
+			var add = new Json.Object();
+			add.set_string_member("name",this.name.substring(1,-1)); // remove'*' on events..
+			add.set_string_member("type","function");
+			add.set_string_member("desc",this.desc);
+			add.set_string_member("sig", this.makeFuncSkel());
+			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);	
+		 	add.set_string_member("example", this.comment.getTagAsString(DocTagTitle.EXAMPLE));
+			add.set_string_member("deprecated", // as depricated is used as a flag...
+					this.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+					"This has been deprecated: "+  this.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+					"");
+			add.set_string_member("since", this.comment.getTagAsString(DocTagTitle.SEE));
+			add.set_string_member("see", this.comment.getTagAsString(DocTagTitle.SEE));
+			// not supported or used yet?
+			//add.set_string_member("exceptions", m.comment.getTagAsString(DocTagTitle.THROWS));
+			//add.set_string_member("requires", m.comment.getTagAsString(DocTagTitle.REQUIRES));
+			
+			add.set_array_member("params", this.paramsToJson());
+			add.set_array_member("returns", this.returnsToJson());
+			
+			
+			
+			
+			
+				        
+			return add;
+		}
+		public Json.Object toMethodJSON (Symbol parent)
+		{
+			var add = new Json.Object();
+			add.set_string_member("name",this.name);
+			add.set_string_member("type","function");
+			add.set_string_member("desc",this.desc);
+			add.set_string_member("sig", this.makeMethodSkel());
+			add.set_boolean_member("static", this.isStatic);
+			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);
+			
+			// we may as well add extended data here...
+			add.set_boolean_member("isStatic", this.isStatic);
+			add.set_boolean_member("isConstructor", this.isa == "CONSTRUCTOR");
+			add.set_boolean_member("isPrivate", this.isPrivate);
+
+			add.set_string_member("example", this.comment.getTagAsString(DocTagTitle.EXAMPLE));
+			add.set_string_member("deprecated", // as depricated is used as a flag...
+					this.comment.getTag(DocTagTitle.DEPRECATED).size > 0 ? 
+					"This has been deprecated: "+ this.comment.getTagAsString(DocTagTitle.DEPRECATED) : 
+					"");
+			add.set_string_member("since", this.comment.getTagAsString(DocTagTitle.SINCE));
+			add.set_string_member("see", this.comment.getTagAsString(DocTagTitle.SEE));
+			// not supported or used yet?
+			add.set_string_member("exceptions", this.comment.getTagAsString(DocTagTitle.THROWS));
+			add.set_string_member("requires", this.comment.getTagAsString(DocTagTitle.REQUIRES));
+			add.set_array_member("params", this.paramsToJson());
+			add.set_array_member("returns", this.returnsToJson());
+			 
+			
+			return add;
+		}
+
+	 }
 	//static string[] hide = { "$args" };
-	//static string srcFile = "";
-	 
+	//static string srcFile = "";	 
 }
 
 

@@ -43,7 +43,14 @@ namespace JSDOC
 		MEMBEROF,
 		PUBLIC,
 		SCOPE,
-		SCOPEALIAS
+		SCOPEALIAS,
+		
+		// these are some we have added for creating trees etc..
+		CHILDREN, // what classes can be added as child in a tree
+		PARENT,  // restrict what the class can be added to.
+		ABSTRACT, // is the class abstract
+		BUILDER_TOP // can the element be used as a top level in the gui builder
+  
   
 	}
 	
@@ -183,13 +190,15 @@ namespace JSDOC
 				return src;
 		    }
 		    
-		    //GLib.debug("nibbleTitle: regexmatches %d : %s",
-		    //		 mi.get_match_count(), 
-		    //		 mi.fetch(1).up());
+		    // convert the @xxx to a DocTagTitle
+		    // wonder if caching this as a GeeHashmap would be quicker?
 		    
 		    EnumClass enumc = (EnumClass) typeof (DocTagTitle).class_ref ();
 
-		    unowned EnumValue? eval = enumc.get_value_by_name ( "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up());
+		    unowned EnumValue? eval = enumc.get_value_by_name(
+			//	 "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up()
+		   		 "JSDOC_DOC_TAG_TITLE_"+  mi.fetch(1).up().replace("-", "_")
+    		 );
 		    if (eval == null) {
 				throw new DocTagException.INVALID_TITLE("title not supported ??");
 				return src;
@@ -316,6 +325,17 @@ namespace JSDOC
 			
 			
 		}
+		public Json.Object toPropertyJSON (Symbol parent)
+		{
+			
+			var add = new Json.Object();
+			add.set_string_member("name",this.name);
+			add.set_string_member("type",this.type);
+			add.set_string_member("desc",this.desc);
+			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);
+		    return add;
+	    }   
+		
 		
 	}
 }

@@ -1,6 +1,11 @@
 
 namespace JSDOC
 {
+	public errordomain DocParserError {
+            InvalidAugments,
+            InvalidDocChildren
+    }
+ 
  
 	public class DocParser : Object 
 	{
@@ -37,9 +42,133 @@ namespace JSDOC
 	    public static string currentSourceFile;
     
 
+		public static Gee.ArrayList<Symbol> classes()
+		{
+			var classes = new Gee.ArrayList<Symbol>();
+			foreach(var symbol in DocParser.symbols().values()) {
+				if (symbol.isaClass()) { 
+					classes.add(symbol);
+				}
+			}    
+			classes.sort( (a,b) => {
+				return a.alias.collate(b.alias); 
+			});
+			return classes;
+		}
+
+		public static void  validateAugments()
+		{
+			var classes =  DocParser.classes();
+		    foreach (var cls in classes) {
+			     var ar = cls.augments.slice(0, cls.augments.size); // copy?
+			    cls.augments.clear();
+				for(var ii = 0  ; ii <  ar.size; ii++) {
+					var contributer = DocParser.symbols().getSymbol(ar[ii]);
+					if (contributer == null) {
+						GLib.warning("Looking at Class %s, could not find augments %s", 
+								cls.alias, ar[ii]);
+						continue;
+					}
+					cls.augments.add(ar[ii]); 
+				}
+			}
+		}
+
+		public static void  fillChildClasses()
+		{
+			 var classes =  DocParser.classes();
+			 foreach (var cls in classes) {
+		    	foreach (var lookcls in classes) {
+					if (lookcls.augments.contains(cls.alias)) {
+						var extends = "";
+						if (lookcls.augments.size > 0) {
+							extends = lookcls.augments.get(0);
+							if ( extends  == lookcls.alias) {
+								extends = lookcls.augments.size > 1 ? lookcls.augments.get(1) : "";
+							}
+						}
+						cls.addChildClass(lookcls.alias, extends);
+					}
+				}
+	    	}
+		}
+		
+		public static bool   isValidChild(Symbol cls, string cn)
+		{
+			var sy = DocParser.symbols().getSymbol(cn);
+    	 	if (sy == null) {
+    	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
+						cls.alias, cn);
+				return false;
+			}
+			if (sy.isAbstract) {
+				GLib.debug("fillTreeChildren: checking %s child is an abstract %s", cls.alias, cn);
+				return false;
+			}
+			if (sy.tree_parent.size > 0) {
+				var skip  = true;
+				foreach (var pp in sy.tree_parent) {
+					if (pp == "none") {
+						GLib.debug("fillTreeChildren : checking %s - skip due to tree_parent match: %s", 
+							cls.alias, pp);
+						return false;
+					}
+					if (pp == cls.alias) {
+						skip = false;
+						break;
+					}
+				}
+				if (skip) {
+					GLib.debug("fillTreeChildren : checking %s - skip due to no tree_parent match", 
+							cls.alias);
+					return false;
+				}
+			}
+			return true;
+			
+			
+		}
 		
 		 
-		
+		public static void  fillTreeChildren()
+		{
+			 // lookup symbol : builder.getSymbol()
+			 
+			 var classes =  DocParser.classes();
+			 foreach (var cls in classes) {
+				if (cls.tree_children.size < 1) {
+					GLib.debug("fillTreeChildren : skip - no children %s", cls.alias);
+					continue;
+				}
+				GLib.debug("fillTreeChildren : checking %s", cls.alias);
+				
+			 	var ar = new Gee.ArrayList<string>();
+			 	foreach(var cn in cls.tree_children) {
+			 		ar.add(cn);
+		 		}
+			 	cls.tree_children.clear();
+		    	foreach(var cn in ar) {
+			    	GLib.debug("fillTreeChildren : checking %s - child %s", cls.alias, cn);
+		    	  	var sy = DocParser.symbols().getSymbol(cn);
+		    	  
+		    	  
+					
+					if (DocParser.isValidChild(cls, cn)) {
+						GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cn);
+						cls.tree_children.add(cn);
+					}
+					foreach(var cc in sy.childClassesList) {
+
+						if (DocParser.isValidChild(cls, cc)) {
+							cls.tree_children.add(cc);
+							GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cc);
+						}
+					}
+				}
+			}	
+		    	 
+		    
+		}
 		
 		public static void parse(TokenStream ts, string srcFile) 
 		{
