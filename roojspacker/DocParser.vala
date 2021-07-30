@@ -93,7 +93,7 @@ namespace JSDOC
 	    	}
 		}
 		
-		public static boolean  isValidChildren(Symbol cls, string cn)
+		public static boolean  isValidChild(Symbol cls, string cn)
 		{
 			var sy = DocParser.symbols().getSymbol(cn);
     	 	if (sy == null) {
@@ -148,12 +148,20 @@ namespace JSDOC
 			 	cls.tree_children.clear();
 		    	foreach(var cn in ar) {
 			    	GLib.debug("fillTreeChildren : checking %s - child %s", cls.alias, cn);
+		    	  	var sy = DocParser.symbols().getSymbol(cn);
 		    	  
-					GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cn);
-					cls.tree_children.add(cn);
+		    	  
+					
+					if (DocParser.isValidChild(cls, cn) {
+						GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cn);
+						cls.tree_children.add(cn);
+					}
 					foreach(var cc in sy.childClassesList) {
-						GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cc);
-						cls.tree_children.add(cc);
+
+						if (DocParser.isValidChild(cls, cc) {
+							cls.tree_children.add(cc);
+							GLib.debug("fillTreeChildren : checking %s - add %s",  cls.alias ,cc);
+						}
 					}
 				}
 			}	
