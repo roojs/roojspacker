@@ -125,7 +125,7 @@ namespace JSDOC
 						}
 					}
 					cls.tree_children.add(cn);
-					foreach(var cc in sy.childClassList) {
+					foreach(var cc in sy.childClassesList) {
 						cls.tree_children.add(cc);
 					}
 				}
