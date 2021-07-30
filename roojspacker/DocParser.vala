@@ -63,7 +63,7 @@ namespace JSDOC
 				for(var ii = 0, il = cls.augments.size; ii < il; ii++) {
 						var contributer = DocParser.symbols().getSymbol(cls.augments[ii]);
 						if (contributer == null) {
-							throw new DocParserError.InvalidAugments("Looking at Class %s, could not find augments %s", 
+							GLib.warning("Looking at Class %s, could not find augments %s", 
 									cls.alias, cls.augments[ii]);
 							continue;
 						}
@@ -102,7 +102,7 @@ namespace JSDOC
 		    	 foreach(var cn in ar) {
 		    	 	var sy = DocParser.symbols().getSymbol(cn);
 		    	 	if (sy == null) {
-						throw new DocParserError.InvalidDocChildren("Looking at Class %s, could not find child %s", 
+		    	 		GLib.warning("fillTreeChildren: Looking at Class %s, could not find child %s", 
 								cls.alias, cn);
 						continue;
 					}
