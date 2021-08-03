@@ -246,9 +246,12 @@ namespace JSDOC {
                 }
                 //print("looking for memberOf: " + symbol.memberOf + " FOR " + symbol.alias);
                 // add to parent's methods or properties list
+                GLib.debug("Trying to add '%s' to '%s'", symbol.alias, symbol.memberOf);
+                
                 if (symbol.memberOf.length > 0) {
                     var container = this.getSymbol(symbol.memberOf);
                     if (container == null) {
+	                    GLib.debug("Could not find container for '%s'", symbol.memberOf);
                         if (SymbolSet.isBuiltin(symbol.memberOf)) {
                             container = DocParser.addBuiltin(symbol.memberOf);
                         }
@@ -272,7 +275,8 @@ namespace JSDOC {
                         }
                     }
                     
-                    if (container != null && !container.isNamespace) {
+                    if (container != null && (!container.isNamespace || container.isStatic)) {
+	                    GLib.debug("Calling addMember  for '%s' onto '%s'", symbol.alias, container.alias);                    
                     	 container.addMember(symbol);
                 	 }
                 }

@@ -1015,7 +1015,7 @@ namespace JSDOC {
 			ret.set_string_member("name", this.alias);  
 			ret.set_string_member("desc", this.desc);
 			ret.set_boolean_member("isSingleton", this.comment.getTag(DocTagTitle.SINGLETON).size > 0);
-			ret.set_boolean_member("isStatic", this.isa != "CONSTRUCTOR");
+			ret.set_boolean_member("isStatic", this.isStatic ); // ??? -> this.isa != "CONSTRUCTOR" ? true : this.isStatic);
 			ret.set_boolean_member("isBuiltin", this.isBuiltin());
 			ret.set_boolean_member("isAbstract", this.isAbstract);
 			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);			

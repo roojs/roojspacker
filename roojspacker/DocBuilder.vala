@@ -61,8 +61,8 @@ namespace JSDOC
 				 
 		        var jsonAll = new Json.Object(); 
 		        var ar = new Json.Array(); 
-				for (var i = 0, l = classes.size; i < l; i++) {
-				    var symbol = classes.get(i);    
+				for (var i = 0, l = this.symbolSet.values().size; i < l; i++) {
+				    var symbol = this.symbolSet.values().get(i);    
 				    //
 				    ar.add_object_element(  symbol.toJson());
 
