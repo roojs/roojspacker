@@ -461,14 +461,16 @@ namespace JSDOC {
             
             // @static
             if (this.comment.getTag(DocTagTitle.STATIC).size > 0) {
+            	GLib.debug("set class %s to static (static)", this.alias);
                 this.isStatic = true;
                 if (this.isa == "CONSTRUCTOR") {
                     this.isNamespace = true;
                 }
             }
             
-                // @static
+            // @singleton - technically it's an arready instanticsed class - eg. Roo.Ajax == new Roo.util.Connection
             if (this.comment.getTag(DocTagTitle.SINGLETON).size > 0) {
+            	GLib.debug("set class %s to static (singleton)", this.alias);
                 this.isStatic = true;
                 //print('------------- got singleton ---------------' + this.isa);
                 //if (this.isa == "CONSTRUCTOR") {
