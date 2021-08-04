@@ -149,6 +149,7 @@ namespace JSDOC {
                         // add it to the current scope????
                         
                         this.addSymbol("", true);
+                        GLib.debug("Call addSymbol EMPTY");
                         //print ( "Unconsumed Doc: " + token.toString())
                         //throw "Unconsumed Doc (TOKwhitespace): " + this.currentDoc.toSource();
                     }
@@ -193,7 +194,10 @@ namespace JSDOC {
                 if (this.currentDoc != null && (
                         token.data == ";" || 
                         token.data == "}")) {
+
+                    GLib.debug("Call addSymbol EMPTY");                        
                     this.addSymbol("", true);
+                    
                     //throw "Unconsumed Doc ("+ token.toString() +"): " + this.currentDoc.toSource();
                 }
                     
@@ -248,6 +252,7 @@ namespace JSDOC {
                         scopeName = token.data;
                         
                         if (this.currentDoc != null) {
+                        	GLib.debug("Call addSymbol %s", scopeName);
                             this.addSymbol(scopeName,false,"OBJECT");
 
                         }
@@ -289,6 +294,7 @@ namespace JSDOC {
                         token = this.ts.lookTok(-2);
                         scopeName = token.data;
                         if (this.currentDoc != null) {
+	                        GLib.debug("Call addSymbol %s", scopeName);
                             this.addSymbol(scopeName,false,"OBJECT");
 
                         }
@@ -344,6 +350,7 @@ namespace JSDOC {
                         
                                       
                         if (this.currentDoc != null) {
+	                        GLib.debug("Call addSymbol %s", scopeName);
                             this.addSymbol(scopeName,false,"OBJECT");
                         }
                      
@@ -386,6 +393,7 @@ namespace JSDOC {
                         ) {
                         scopeName = token.data;
                         if (this.currentDoc != null) {
+	                        GLib.debug("Call addSymbol %s", scopeName);
                             this.addSymbol(scopeName,false,"OBJECT");
                             
                         }
@@ -424,6 +432,7 @@ namespace JSDOC {
                         
                         // ident : function ()
                         // ident = function ()
+                        // this.ident = function()
                         var atype = "OBJECT";
                         
                         if (((this.ts.lookTok(1).data == ":" )|| (this.ts.lookTok(1).data == "=")) &&
@@ -435,11 +444,13 @@ namespace JSDOC {
                         }
                         
                         //print("ADD SYM:" + atype + ":" + token.toString() + this.ts.lookTok(1).toString() + this.ts.lookTok(2).toString());
-                        
-                        this.addSymbol(
-                            this.ts.lookTok(-1).data == "." ? token.data :    this.fixAlias(aliases,token.data),
-                            false,
-                            atype);
+                        var tname = this.ts.lookTok(-1).data == "." ? token.data :    this.fixAlias(aliases,token.data);
+
+                        if (/^this\./.match(tname)) {
+                        	tname = tname.substring(5);
+                        }
+                        GLib.debug("Call addSymbol %s", tname);                        
+                        this.addSymbol( tname, false, atype);
                         
 
                         this.currentDoc = null;
@@ -461,6 +472,7 @@ namespace JSDOC {
                 
                 if (token.isType(TokenType.STRN))   { // THIS WILL NOT HAPPEN HERE?!!?
                     if (this.currentDoc != null) {
+                        GLib.debug("Call addSymbol %s", token.data.substring(1,token.data.length-1));
                         this.addSymbol(token.data.substring(1,token.data.length-1),false,"OBJECT");
                     }
                 }
@@ -469,6 +481,7 @@ namespace JSDOC {
                 
                 
                 if (token.isName(TokenName.FUNCTION)) {
+                	GLib.debug("Got Function");
                     //print("GOT FUNCTION");
                     // see if we have an unconsumed doc...
                     
@@ -487,13 +500,16 @@ namespace JSDOC {
                             (this.ts.lookTok(-1).data == "=") && 
                             (this.ts.lookTok(-2).isType(TokenType.NAME))
                         ) {
+
                         scopeName = this.ts.lookTok(-2).data;
+                    	GLib.debug("Got %s = Function", scopeName);
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
                         //print("FOO=FUNCITON() {}" + this.ts.context() + "\n" + token.toString());
                         
                         
                         scopeName = this.fixAlias(aliases, scopeName);
+                         
                         var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
             				"$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype",
             				null
@@ -501,7 +517,7 @@ namespace JSDOC {
                         
                         this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = fnScope;
-                        //this.scopesIn(fnScope);
+                        // this.scopesIn(fnScope);
                         this.parseScope(fnScope, aliases);
                         
                         
@@ -515,7 +531,7 @@ namespace JSDOC {
                         
                 
                 // foo = new function() {}
-                        // is this actually used much!?!?!
+                        // is this actually used much!?!?! -- 
                         //$private$
                         
                     if (
@@ -534,7 +550,7 @@ namespace JSDOC {
                         
                         this.indexedScopes.set(this.ts.cursor,  fnScope);
                         //scope = fnScope;
-                        //this.scopesIn(fnScope);
+                        // this.scopesIn(fnScope);
                         this.parseScope(fnScope, aliases);
                         
                         locBraceNest++;
@@ -573,7 +589,7 @@ namespace JSDOC {
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = fnScope;
-                        //this.scopesIn(fnScope);
+                        // this.scopesIn(fnScope);
                          this.parseScope(fnScope, aliases);
                         locBraceNest++;
                         //print(">>" +locBraceNest);
@@ -595,8 +611,8 @@ namespace JSDOC {
 			        	); 
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
-                        //scope = fnScope;
-                        //this.scopesIn(fnScope);
+                        // scope = fnScope;
+                        // this.scopesIn(fnScope);
                         this.parseScope(fnScope, aliases);
                         locBraceNest++;
                         //print(">>" +locBraceNest);
@@ -604,6 +620,36 @@ namespace JSDOC {
                           
                     }
                     
+                     // 0 == FUNCTION...
+                     
+                     // this is used in Roo.util.JSON
+                     // XXXX = new (function() { 
+                     
+                      if (
+                             (this.ts.lookTok(-1).data == "(") &&
+                            (this.ts.lookTok(-2).data == "new" ) &&
+                            (this.ts.lookTok(-3).data == "=") &&
+                            (this.ts.lookTok(-4).isType(TokenType.NAME))
+                        ) {
+                        
+                        
+                        scopeName = this.ts.lookTok(-4).data;
+                        this.ts.balance(TokenName.LEFT_PAREN);
+                        token = this.ts.nextTok(); // should be {
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+        					"$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype",null
+			        	); 
+
+                        this.indexedScopes.set(this.ts.cursor, fnScope);
+                        //scope = ;
+                        // this.scopesIn(fnScope);
+                        this.parseScope(fnScope, aliases);
+                        locBraceNest++;
+                        //print(">>" +locBraceNest);
+                        continue; // no more processing..    
+                          
+                        
+                    }
                      
                 // foo = new (function() { }
                 // (function() { }
@@ -617,6 +663,7 @@ namespace JSDOC {
                          //   (this.ts.lookTok(-3).tokN == Script.TOKassign) &&
                          //   (this.ts.lookTok(-4).tokN == Script.TOKidentifier)
                         ) {
+                        
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
@@ -626,7 +673,7 @@ namespace JSDOC {
 
                         this.indexedScopes.set(this.ts.cursor, fnScope);
                         //scope = ;
-                        //this.scopesIn(fnScope);
+                        // this.scopesIn(fnScope);
                          this.parseScope(fnScope, aliases);
                         locBraceNest++;
                         //print(">>" +locBraceNest);
@@ -673,7 +720,7 @@ namespace JSDOC {
                             scope = fnScope;
                             // push the same scope onto the stack..
                             this.scopesIn(fnScope);
-                            //this.scopesIn(this.scopes[this.scopes.length-1]);
+                            // this.scopesIn(this.scopes[this.scopes.length-1]);
                             
                               
                             locBraceNest++;
@@ -721,6 +768,7 @@ namespace JSDOC {
                     
                      
                         if (this.currentDoc != null) {
+							 GLib.debug("Call addSymbol EMPTY");
                             this.addSymbol("", true);
 
                             //throw "Unconsumed Doc: (TOKrbrace)" + this.currentDoc.toSource();
@@ -738,9 +786,9 @@ namespace JSDOC {
                         //print("<<<<<< " + locBraceNest );
                         if (locBraceNest < 0) {
                            // print("POPED OF END OF SCOPE!");
-                            ///this.scopeOut();   
-                            //var ls = this.scopeOut();
-                            //ls.getUsedSymbols();
+                            // this.scopeOut();   
+                            // var ls = this.scopeOut();
+                            // ls.getUsedSymbols();
                             return;
                         }
                         continue;

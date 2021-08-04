@@ -181,17 +181,20 @@ namespace JSDOC {
             foreach (var p in this.keys()) {
                 var symbol = this.getSymbol(p);
                 
-                if (symbol.is("FILE") || symbol.is("GLOBAL")) continue;
+                if (symbol.is("FILE") || symbol.is("GLOBAL")) {
+                	continue;
+            	}
                 
                 // the memberOf value was provided in the @memberOf tag
-                else if (symbol.memberOf.length > 0) {
+                
+                GLib.debug("Resolve: %s memberOf=%s", symbol.alias, symbol.memberOf);
+				if (symbol.memberOf.length > 0) {
                 	var regex = new GLib.Regex("^("+symbol.memberOf+"[.#-])(.+)$");
                 	GLib.MatchInfo minfo;
                     var parts = regex.match_full(symbol.alias, -1, 0, 0 , out minfo);
                     
                     // like foo.bar is a memberOf foo
                     if (parts) {                    	 
-                    		
                         symbol.memberOf = minfo.fetch(1);
                         symbol.private_name = minfo.fetch(2);
                     }
@@ -202,9 +205,9 @@ namespace JSDOC {
                         
                         this.renameSymbol(p, symbol.memberOf + symbol.name);
                     }
-                }
+                } else {
                 // the memberOf must be calculated
-                else {
+                
                 	GLib.MatchInfo minfo;                
                     var parts = /^(.*[.#-])([^.#-]+)$/.match_full(symbol.alias, -1, 0, 0 , out minfo);
 
@@ -215,7 +218,7 @@ namespace JSDOC {
                 }
 
                 // set isStatic, isInner
-                if (symbol.memberOf.length > 0) {
+                if (symbol.memberOf.length > 0 && !symbol.is("CONSTRUCTOR")) {
                     switch (symbol.memberOf[symbol.memberOf.length-1]) {
                         case '#' :
                             symbol.isStatic = false;
