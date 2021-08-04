@@ -620,6 +620,36 @@ namespace JSDOC {
                           
                     }
                     
+                     // 0 == FUNCTION...
+                     
+                     // this is used in Roo.util.JSON
+                     // XXXX = new (function() { 
+                     
+                      if (
+                             (this.ts.lookTok(-1).data == "(") &&
+                            (this.ts.lookTok(-2).data == "new" ) &&
+                            (this.ts.lookTok(-3).data == "=") &&
+                            (this.ts.lookTok(-4).isType(TokenType.NAME))
+                        ) {
+                        
+                        
+                        scopeName = this.ts.lookTok(-4).data;
+                        this.ts.balance(TokenName.LEFT_PAREN);
+                        token = this.ts.nextTok(); // should be {
+                        var fnScope =  new Scope(this.braceNesting, scope, token.id, // was token.n?
+        					"$this$="+scopeName+".prototype|$private$|"+scopeName+".prototype",null
+			        	); 
+
+                        this.indexedScopes.set(this.ts.cursor, fnScope);
+                        //scope = ;
+                        // this.scopesIn(fnScope);
+                        this.parseScope(fnScope, aliases);
+                        locBraceNest++;
+                        //print(">>" +locBraceNest);
+                        continue; // no more processing..    
+                          
+                        
+                    }
                      
                 // foo = new (function() { }
                 // (function() { }
@@ -633,6 +663,7 @@ namespace JSDOC {
                          //   (this.ts.lookTok(-3).tokN == Script.TOKassign) &&
                          //   (this.ts.lookTok(-4).tokN == Script.TOKidentifier)
                         ) {
+                        
                         //scopeName = this.ts.look(-3).data;
                         this.ts.balance(TokenName.LEFT_PAREN);
                         token = this.ts.nextTok(); // should be {
