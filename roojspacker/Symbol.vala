@@ -1179,7 +1179,8 @@ namespace JSDOC {
 			ret.set_array_member("methods", methods);
 			ret.set_boolean_member("isAbstract", this.isAbstract);
 			ret.set_boolean_member("isBuilderTop", this.isBuilderTop);
-			ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));			
+			ret.set_array_member("implementations", this.stringArrayToJson(this.childClassesList));
+			//ret.set_object_member("childClasses", this.assocStringToJson(this.childClasses));
 			ret.set_array_member("tree_children", this.stringArrayToJson(this.tree_children));
 			ret.set_array_member("tree_parent", this.stringArrayToJson(this.tree_parent));
 

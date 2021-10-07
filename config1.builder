@@ -27,8 +27,7 @@
             "/src/jsdoc/PrettyPrint.vala",
             "/src/jsdoc/Walker.vala"
         ],
-        "packages" : [
-        ]
+        "packages" : []
     },
     {
         "name" : "_default_",

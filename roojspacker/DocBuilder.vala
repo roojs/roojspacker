@@ -323,7 +323,7 @@ namespace JSDOC
 			generator.set_root (root);
 			generator.pretty=  true;
 			generator.indent = 2;
-			GLib.debug("writing JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
+			GLib.debug("writing Builder JSON:  %s", PackerRun.singleton().opt_doc_target+"/json/roodata.json");
 			
 			
 			this.writeJson(generator,PackerRun.singleton().opt_doc_target+"/json/roodata.json");
