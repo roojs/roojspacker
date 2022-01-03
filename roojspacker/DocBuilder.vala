@@ -452,6 +452,7 @@ namespace JSDOC
 		    this.class_tree_map = new Gee.HashMap<string,Json.Object>();
 		    foreach (var cls in classes) {
 		    	if(cls.alias.length < 1 || cls.alias == "this" || cls.alias == "_global_") {
+		    		GLib.debug("Skip alias|global %s", cls.name);
 		    		continue;
 	    		}
 	    		bool is_new;
