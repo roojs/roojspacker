@@ -162,7 +162,7 @@ namespace JSDOC
 	                    GLib.debug("Add optvalue: %s",ar[i].strip());
 						this.optvalues.add(ar[i].strip());
 					}
-					src = src.substring(ms.length, src.length - (ms.length+2));
+					src = src.substring(ms.length, src.length - (ms.length+2)).strip();
                     GLib.debug("SRC NOW: %s",src);
                 } 
                 
