@@ -1046,7 +1046,7 @@ namespace JSDOC {
 			ret.set_array_member("config", props);
 			var cfgProperties = this.configToArray();
 			for(var i =0; i < cfgProperties.size;i++) {
-				props.add_object_element(cfgProperties.get(i).toPropertyJson(this));
+				props.add_object_element(cfgProperties.get(i).toPropertyJSON(this));
 	    	}
 			// methods
  
