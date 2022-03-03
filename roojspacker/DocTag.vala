@@ -125,7 +125,7 @@ namespace JSDOC
                 if (
             		this.title == DocTagTitle.PARAM ||
 	                this.title == DocTagTitle.PROPERTY || 
-	                this.title == DocTagTitle.CFG) { // @config is deprecated
+	                this.title == DocTagTitle.CFG) { // @config is deprecated << not really?
                     src = this.nibbleName(src);
                 }
             }
@@ -139,8 +139,14 @@ namespace JSDOC
             // if type == @cfg, and matches (|....|...)
             
             src = src.strip();
+            
+            // our code uses (Optional) - but we really want to ignore this.
+            src = /\(Optional\)/.replace(src, src.length, 0,  "").strip();
+            
  
             MatchInfo mi = null;
+            
+            
             
             if (this.title ==  DocTagTitle.CFG && /^\([^)]+\)/.match_all(src, 0, out mi )) {
 	            
@@ -148,18 +154,23 @@ namespace JSDOC
 				GLib.debug("Got Opt list: %s", ms);
 				
 				ms = ms.substring(1,ms.length-2);
+				GLib.debug("clan to: %s", ms);
 				if (ms.contains("|")) {
 					var ar = ms.split("|");
+				GLib.debug("split to: %d", ar.length);
 					for (var i =0 ; i < ar.length;i++) {
-						optvalues.add(ar[i].strip());
+	                    GLib.debug("Add optvalue: %s",ar[i].strip());
+						this.optvalues.add(ar[i].strip());
 					}
-					src = src.substring(ms.length, src.length - ms.length);                   
-                    
+					src = src.substring(ms.length, src.length - (ms.length+2)).strip();
+                    GLib.debug("SRC NOW: %s",src);
                 } 
                 
             }
-            
-            
+            if (this.title ==  DocTagTitle.CFG &&  /\[required\]/.match(src)) {
+            	this.isOptional = false;
+            	src = /\[required\]/.replace(src, src.length, 0,  "").strip();
+    		}
             this.desc = src; // whatever is left
             
             // example tags need to have whitespace preserved
@@ -333,6 +344,13 @@ namespace JSDOC
 			add.set_string_member("type",this.type);
 			add.set_string_member("desc",this.desc);
 			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);
+			add.set_boolean_member("isOptional", this.isOptional);
+			var ar = new Json.Array();
+			foreach(var ov in this.optvalues) {
+		 	 	ar.add_string_element(ov);
+	 	 	}
+	 	 	add.set_array_member("optvalues", ar);
+	 	 	
 		    return add;
 	    }   
 		
