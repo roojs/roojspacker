@@ -154,8 +154,10 @@ namespace JSDOC
 				GLib.debug("Got Opt list: %s", ms);
 				
 				ms = ms.substring(1,ms.length-2);
+				GLib.debug("clan to: %s", ms);
 				if (ms.contains("|")) {
 					var ar = ms.split("|");
+				GLib.debug("split to: %d", ar.length);
 					for (var i =0 ; i < ar.length;i++) {
 	                    GLib.debug("Add optvalue: %s",ar[i].strip());
 						this.optvalues.add(ar[i].strip());
