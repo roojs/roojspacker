@@ -344,12 +344,12 @@ namespace JSDOC
 			add.set_string_member("type",this.type);
 			add.set_string_member("desc",this.desc);
 			add.set_string_member("memberOf", this.memberOf == parent.alias ? "" : this.memberOf);
-			ret.set_boolean_member("isOptional", this.isOptional);
+			add.set_boolean_member("isOptional", this.isOptional);
 			var ar = new Json.Array();
 			foreach(var ov in this.optvalues) {
 		 	 	ar.add_string_element(ov);
 	 	 	}
-	 	 	ret.set_array_member("optvalues", ar);
+	 	 	add.set_array_member("optvalues", ar);
 	 	 	
 		    return add;
 	    }   
