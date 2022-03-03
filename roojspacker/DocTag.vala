@@ -349,7 +349,7 @@ namespace JSDOC
 			foreach(var ov in this.optvalues) {
 		 	 	ar.add_string_element(ov);
 	 	 	}
-	 	 	add.set_array_member("optvalues", ar);
+	 	 	add.set_array_member("optvals", ar);
 	 	 	
 		    return add;
 	    }   
