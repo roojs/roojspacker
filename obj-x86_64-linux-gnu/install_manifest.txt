@@ -1,0 +1,7 @@
+/usr/share/vala/vapi/roojspacker-1.2.vapi
+/usr/lib/libroojspacker-1.2.so.1.2
+/usr/lib/libroojspacker-1.2.so.1.2.0
+/usr/lib/libroojspacker-1.2.so
+/usr/include/roojspacker-1.2.h
+/usr/share/pkgconfig/roojspacker-1.2.pc
+/usr/bin/roojspacker

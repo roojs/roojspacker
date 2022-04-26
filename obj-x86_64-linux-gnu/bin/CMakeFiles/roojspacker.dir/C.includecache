@@ -1,0 +1,36 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/home/alan/gitlive/roojspacker/obj-x86_64-linux-gnu/bin/roojspacker-valabin/source/bin/main.c
+glib.h
+-
+glib-object.h
+-
+stdlib.h
+-
+string.h
+-
+roojspacker-1.2.h
+/home/alan/gitlive/roojspacker/obj-x86_64-linux-gnu/bin/roojspacker-valabin/source/bin/roojspacker-1.2.h
+
+roojspacker/roojspacker-1.2.h
+glib.h
+-
+glib-object.h
+-
+gee.h
+-
+stdlib.h
+-
+string.h
+-
+gio/gio.h
+-
+json-glib/json-glib.h
+-
+
