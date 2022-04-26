@@ -1,5 +1,10 @@
 # roojspacker
-Javascript packer / compressor (and possibly more) Was part of the jsdoc tools
+Javascript packer / compressor / and documentation tool
+
+Used to build the roojs docs - here, and the library
+https://roojs.org/roojs1/docs/
+
+https://github.com/roojs/roojs1
 
 ---
 Installation Procedure (Debian/Ubuntu)
