@@ -14,14 +14,14 @@ set(PROJECT_BUGS "https://www.roojs.com/mtrack/")
 #
 # This should be incremented with every release.  See semver.org.
 set (ROOJSPACKER_VERSION_MAJOR    1)
-set (ROOJSPACKER_VERSION_MINOR    2)
+set (ROOJSPACKER_VERSION_MINOR    4)
 set (ROOJSPACKER_VERSION_REVISION 0)
 
 # API version.
 #
 # This will go in the pkg-config and shared library names.  Should
 # only be changed if the API breaks backwards compatibility.
-set (ROOJSPACKER_VERSION_API      "1.2")
+set (ROOJSPACKER_VERSION_API      "1.4")
 set (ROOJSPACKER_SOVERSION_CURRENT  ${ROOJSPACKER_VERSION_MAJOR})
 set (ROOJSPACKER_SOVERSION_REVISION ${ROOJSPACKER_VERSION_MINOR})
 set (ROOJSPACKER_SOVERSION_AGE      ${ROOJSPACKER_VERSION_REVISION})
@@ -85,7 +85,7 @@ list(APPEND VALA_COMPILER_FLAGs_DEBUG "--debug")
 
 include(AddCompilerFlags)
 
-global_add_compiler_flags(-Wno-incompatible-pointer-types)
+# global_add_compiler_flags(-Wno-incompatible-pointer-types)
 
 
 set(LIBS
