@@ -1,8 +1,0 @@
-5cf0b219b0704f7789273c171a47c720  usr/bin/roojspacker
-600e912c4344848767ee69e366a2ce8d  usr/include/roojspacker-1.2.h
-647d7fc6641e2f32dee3c3c47b57e8d8  usr/lib/libroojspacker-1.2.so.1.2
-32689da3d242903cc630e5638a3eb9d1  usr/share/doc/roojspacker/README.Debian
-ff99ed110af8fa5bfe71f12df52ab4e9  usr/share/doc/roojspacker/changelog.gz
-a0496fcc7c3c6f49968c59ffb178b5a5  usr/share/doc/roojspacker/copyright
-0c471d55e7db4f267f873fa94ca8c231  usr/share/pkgconfig/roojspacker-1.2.pc
-f810217abf3bfde1e72374433535bfad  usr/share/vala/vapi/roojspacker-1.2.vapi

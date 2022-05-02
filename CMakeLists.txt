@@ -1,4 +1,4 @@
-project("roojspacker" C)
+project("roojspacker" C CXX)
 
 cmake_minimum_required(VERSION 3.2)
 
