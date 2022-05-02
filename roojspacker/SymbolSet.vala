@@ -9,14 +9,14 @@ namespace JSDOC {
 		public Json.Object toJson()
 		{
 			var ret = new Json.Object();
-			 foreach(var k in this._index.keys) {
-            	ret.set_object_member(k, this._index.get(k).toJson());
+			 foreach(var k in this.pr_index.keys) {
+            	ret.set_object_member(k, this.pr_index.get(k).toJson());
         	}
         	return ret;
 		}
 		
 		
-		public Gee.HashMap<string,Symbol> _index {
+		public Gee.HashMap<string,Symbol> pr_index {
 			get {
 				if (this.__index == null) {
 					GLib.debug("Creating new Symbolset array");
@@ -35,7 +35,7 @@ namespace JSDOC {
         public Gee.ArrayList<string> keys() 
         {
             var  r= new Gee.ArrayList<string>();
-            foreach(var k in this._index.keys) {
+            foreach(var k in this.pr_index.keys) {
             	r.add(k);
         	}
         	return r;
@@ -44,7 +44,7 @@ namespace JSDOC {
     	 public Gee.ArrayList<Symbol> values() 
         {
             var  r= new Gee.ArrayList<Symbol>();
-            foreach(var k in this._index.values) {
+            foreach(var k in this.pr_index.values) {
             	r.add(k);
         	}
         	return r;
@@ -53,7 +53,7 @@ namespace JSDOC {
 
         public bool hasSymbol(string alias) 
         {
-            return this._index.has_key(alias);
+            return this.pr_index.has_key(alias);
             //return this.keys().indexOf(alias) > -1;
         }
 
@@ -65,12 +65,12 @@ namespace JSDOC {
                 GLib.warning("Skip Overwriting symbol documentation for: %s.",symbol.alias);
                 return;
             }
-            this._index.set(symbol.alias,  symbol);
+            this.pr_index.set(symbol.alias,  symbol);
         }
 
         public Symbol? getSymbol (string alias) {
             
-            if (this.hasSymbol(alias)) return this._index.get(alias);
+            if (this.hasSymbol(alias)) return this.pr_index.get(alias);
             return null;
         }
 /*/
@@ -96,7 +96,7 @@ namespace JSDOC {
 
         public void deleteSymbol  (string alias) {
             if (!this.hasSymbol(alias)) return;
-            this._index.unset(alias);
+            this.pr_index.unset(alias);
         } 
 
         public string renameSymbol (string oldName, string newName) {
@@ -104,24 +104,24 @@ namespace JSDOC {
             if (!this.hasSymbol(oldName)) {
                 GLib.error("Cant rename " + oldName + " to " + newName + " As it doesnt exist");
             } 
-            this._index.set(newName, this._index.get(oldName));
+            this.pr_index.set(newName, this.pr_index.get(oldName));
             this.deleteSymbol(oldName);
-            this._index.get(newName).alias = newName;
+            this.pr_index.get(newName).alias = newName;
             return newName;
         }
 
         public void relate() 
         {
             GLib.debug("RELATE called");
-            foreach(var s in this._index.keys) {
-            	GLib.debug("%s", this._index.get(s).asString());
+            foreach(var s in this.pr_index.keys) {
+            	GLib.debug("%s", this.pr_index.get(s).asString());
         	}
             this.resolveBorrows();
             this.resolveMemberOf();
             this.resolveAugments();
 			 GLib.debug("AFTER RELATE called");
-          	foreach(var s in this._index.keys) {
-            	GLib.debug("%s", this._index.get(s).asString());
+          	foreach(var s in this.pr_index.keys) {
+            	GLib.debug("%s", this.pr_index.get(s).asString());
         	}
         }
 
@@ -176,7 +176,7 @@ namespace JSDOC {
 
         void resolveMemberOf () 
         {
-            if (this._index.keys.size < 1) {
+            if (this.pr_index.keys.size < 1) {
 	            return;
             }
             foreach (var p in this.keys()) {
@@ -292,7 +292,7 @@ namespace JSDOC {
     	{
             // does this sort out multiple extends???
             
-            foreach (var p in this._index.keys) {
+            foreach (var p in this.pr_index.keys) {
                 var symbol = this.getSymbol(p);
                 this.buildAugmentsList(symbol); /// build heirachy of inheritance...
                 if (symbol.alias == "_global_" || symbol.is("FILE")) continue;
