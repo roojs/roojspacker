@@ -85,7 +85,7 @@ list(APPEND VALA_COMPILER_FLAGs_DEBUG "--debug")
 
 include(AddCompilerFlags)
 
-# global_add_compiler_flags(-Wno-incompatible-pointer-types)
+global_add_compiler_flags(-Wno-incompatible-pointer-types)
 
 
 set(LIBS
