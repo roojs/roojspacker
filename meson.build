@@ -105,8 +105,7 @@ name_suffix : 'lib',
 
 pkg = import('pkgconfig')
 
-pkg.generate( 'roojspack',
-     libraries : roojspack_lib,
+pkg.generate(  roojspack_lib,
      version : '1.5',
      name : 'libroojspack',
      filebase : 'libroojspack',
