@@ -102,6 +102,10 @@ roojspack_lib = shared_library('roojspack',
     install_dir: [true, true, true]
 )
 pkg = import('pkgconfig')
-pkg.generate( roojspack_lib )
+pkg.generate( 
+     roojspack_lib,
+    filebase: 'roojspack-1.5'
+  )
+
 
 
