@@ -1,1 +1,11 @@
-Nothing to see here yet...
+roojspacker (1.4) UNRELEASED; urgency=medium
+
+  * Upgrading detection of multiple features , including adding child depenancies and value lists etc. 
+
+ -- Alan Knowles <alan@roojs.com>  Mon, 02 May 2022 10:37:20 +0800
+
+roojspacker (1.2) unstable; urgency=medium
+
+  * Initial Release.
+
+ -- Alan <alan@roojs.com>  Thu, 16 May 2019 17:52:08 +0800
