@@ -1,6 +1,6 @@
 roojspacker (1.5-1) UNRELEASED; urgency=medium
 
-  * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
+  * Converted to Meson build
 
  -- Alan Knowles  <alan@roojs.com>  Thu, 15 Feb 2024 16:05:29 +0800
  
