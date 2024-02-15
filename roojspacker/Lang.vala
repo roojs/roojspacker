@@ -109,8 +109,7 @@ namespace JSDOC {
 				case TokenName.RIGHT_BRACE: return TokenName.LEFT_BRACE;
                default:
 	               throw new LangError.ArgumentError("invalid matching character : %s", name.to_string());
-				
-           			return null;
+				 
            };
         
             //return this.matchingNames.get(name);
@@ -118,7 +117,7 @@ namespace JSDOC {
         
         public bool isKeyword(string word) {
        		try {
-       			var x = this.keyword(word);
+       			 this.keyword(word);
 				return true;
             } catch (LangError e) {
         		return false;
