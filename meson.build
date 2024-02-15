@@ -46,6 +46,7 @@ roojspacker_src = files([
    'roojspacker/DocBuilder.vala',
    'roojspacker/DocComment.vala',
    'roojspacker/DocParser.vala',
+   'bin/main.vala',
    'roojspacker/DocTag.vala',
    'roojspacker/Identifier.vala',
    'roojspacker/Lang.vala',
@@ -64,9 +65,9 @@ roojspacker_src = files([
 ])
 
 
-roojspacker_lib = shared_library('roojspacker',  [ roojspacker_src  ],
+roojspacker = executable('roojspacker',
     dependencies: deps,
-    install: true,
-    install_dir: [true, true, true]
+    sources: [ roojspacker_src  ],
+    install: true
 )
 
