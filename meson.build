@@ -94,7 +94,7 @@ roojspack_src = files([
 ])
 
 
-roojspack_lib = shared_library('libroojspack',  
+roojspack_lib = shared_library('roojspack',  
  
 	sources : [ roojspack_src  ],
 	vala_vapi: 'roojspack-1.5.vapi',
