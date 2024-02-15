@@ -1,10 +1,10 @@
 .\"                                      Hey, EMACS: -*- nroff -*-
-.\" (C) Copyright 2019 Alan <alan@roojs.com>,
+.\" (C) Copyright 2024 Alan <alan@office.roojs.com>,
 .\"
 .\" First parameter, NAME, should be all caps
 .\" Second parameter, SECTION, should be 1-8, maybe w/ subsection
 .\" other parameters are allowed: see man(7), man(1)
-.TH Roojspacker SECTION "May 16 2019"
+.TH Roojspacker SECTION "February 15 2024"
 .\" Please adjust this date whenever revising the manpage.
 .\"
 .\" Some roff macros, for reference:
@@ -38,7 +38,7 @@ commands.
 \fBroojspacker\fP is a program that...
 .SH OPTIONS
 These programs follow the usual GNU command line syntax, with long
-options starting with two dashes (`-').
+options starting with two dashes ('\-').
 A summary of options is included below.
 For a complete description, see the Info files.
 .TP

@@ -1,8 +1,8 @@
 <!doctype refentry PUBLIC "-//OASIS//DTD DocBook V4.1//EN" [
 
 <!-- Process this file with docbook-to-man to generate an nroff manual
-     page: `docbook-to-man manpage.sgml > manpage.1'.  You may view
-     the manual page with: `docbook-to-man manpage.sgml | nroff -man |
+     page: 'docbook-to-man manpage.sgml > manpage.1'.  You may view
+     the manual page with: 'docbook-to-man manpage.sgml | nroff -man |
      less'.  A typical entry in a Makefile or Makefile.am is:
 
 manpage.1: manpage.sgml
@@ -20,11 +20,11 @@ manpage.1: manpage.sgml
   <!ENTITY dhfirstname "<firstname>FIRSTNAME</firstname>">
   <!ENTITY dhsurname   "<surname>SURNAME</surname>">
   <!-- Please adjust the date whenever revising the manpage. -->
-  <!ENTITY dhdate      "<date>May 16 2019</date>">
+  <!ENTITY dhdate      "<date>February 15 2024</date>">
   <!-- SECTION should be 1-8, maybe w/ subsection other parameters are
        allowed: see man(7), man(1). -->
   <!ENTITY dhsection   "<manvolnum>SECTION</manvolnum>">
-  <!ENTITY dhemail     "<email>alan@roojs.com</email>">
+  <!ENTITY dhemail     "<email>alan@office.roojs.com</email>">
   <!ENTITY dhusername  "Alan">
   <!ENTITY dhucpackage "<refentrytitle>Roojspacker</refentrytitle>">
   <!ENTITY dhpackage   "roojspacker">
@@ -87,7 +87,7 @@ manpage.1: manpage.sgml
     <title>OPTIONS</title>
 
     <para>These programs follow the usual &gnu; command line syntax,
-      with long options starting with two dashes (`-').  A summary of
+      with long options starting with two dashes ('-').  A summary of
       options is included below.  For a complete description, see the
       <application>Info</application> files.</para>
 

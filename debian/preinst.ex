@@ -1,17 +1,17 @@
 #!/bin/sh
-# preinst script for roojspacker
+# preinst script for roojspacker.
 #
-# see: dh_installdeb(1)
+# See: dh_installdeb(1).
 
 set -e
 
-# summary of how this script can be called:
-#        * <new-preinst> `install'
-#        * <new-preinst> `install' <old-version>
-#        * <new-preinst> `upgrade' <old-version>
-#        * <old-preinst> `abort-upgrade' <new-version>
+# Summary of how this script can be called:
+#        * <new-preinst> 'install'
+#        * <new-preinst> 'install' <old-version>
+#        * <new-preinst> 'upgrade' <old-version>
+#        * <old-preinst> 'abort-upgrade' <new-version>
 # for details, see https://www.debian.org/doc/debian-policy/ or
-# the debian-policy package
+# the debian-policy package.
 
 
 case "$1" in
@@ -22,7 +22,7 @@ case "$1" in
     ;;
 
     *)
-        echo "preinst called with unknown argument \`$1'" >&2
+        echo "preinst called with unknown argument '$1'" >&2
         exit 1
     ;;
 esac
