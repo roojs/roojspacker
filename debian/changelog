@@ -2,7 +2,7 @@ roojspacker (1.5-1) UNRELEASED; urgency=medium
 
   * Initial release. (Closes: #nnnn)  <nnnn is the bug number of your ITP>
 
- -- Alan <alan@roojs.com>  Thu, 15 Feb 2024 16:05:29 +0800
+ -- Alan Knowles  <alan@roojs.com>  Thu, 15 Feb 2024 16:05:29 +0800
  
 roojspacker (1.4) unstable; urgency=medium
 
@@ -14,5 +14,5 @@ roojspacker (1.2) unstable; urgency=medium
 
   * Initial Release.
 
- -- Alan <alan@roojs.com>  Thu, 16 May 2019 17:52:08 +0800
+ -- Alan Knowles <alan@roojs.com>  Thu, 16 May 2019 17:52:08 +0800
 
