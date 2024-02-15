@@ -2,3 +2,4 @@ build/
 debian/.debhelper/
 debian/roojspacker/
 obj-x86_64-linux-gnu/
+.gdb_history
