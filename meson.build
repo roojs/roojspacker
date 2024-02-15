@@ -95,15 +95,13 @@ roojspack_src = files([
 
 
 roojspack_lib = shared_library('roojspack',  
- 
-	sources : [ roojspack_src  ],
-	vala_vapi: 'roojspack-1.5.vapi',
+    sources : [ roojspack_src  ],
+    vala_vapi: 'roojspack-1.5.vapi',
     dependencies: deps,
     install: true,
     install_dir: [true, true, true]
 )
-
 pkg = import('pkgconfig')
+pkg.generate( roojspack_lib )
 
-pkg.generate(  roojspack_lib )
 
