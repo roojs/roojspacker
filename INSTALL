@@ -1,5 +1,5 @@
 
-## -- this is designed to run make from the 'build' directory.... - it's hard coded in configure (called from autogen)
+ 
 
 git clone https://github.com/roojs/roojspacker.git
 
