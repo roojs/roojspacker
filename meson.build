@@ -1,5 +1,5 @@
 project('roojspacker', 'vala', 'c',
-  version: '1.0',
+  version: '1.5',
   license: 'LGPL',
   default_options: [
     'default_library=static',
@@ -96,7 +96,7 @@ roojspack_src = files([
 
 roojspack_lib = shared_library('roojspack',  
 	sources : [ roojspack_src  ],
-	vala_vapi: 'roojspack-1.0.vapi',
+	vala_vapi: 'roojspack-1.5.vapi',
     dependencies: deps,
     install: true,
     install_dir: [true, true, true]
