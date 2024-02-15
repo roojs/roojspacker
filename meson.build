@@ -103,3 +103,13 @@ name_suffix : 'lib',
     install_dir: [true, true, true]
 )
 
+pkg = import('pkgconfig')
+
+pkg.generate(
+    libraries : roojspack_lib,
+     version : '1.5',
+     name : 'libroojspack',
+     filebase : 'libroojspack',
+     description : 'roojspacker'
+)
+
