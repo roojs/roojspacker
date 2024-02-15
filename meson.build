@@ -67,7 +67,38 @@ roojspacker_src = files([
 
 roojspacker = executable('roojspacker',
     dependencies: deps,
-    sources: [ roojspacker_src  ],
+    sources: [  roojspacker_src  ],
     install: true
+)
+roojspack_src = files([
+   'roojspacker/Collapse.vala',
+   'roojspacker/CompressWhite.vala',
+   'roojspacker/DocBuilder.vala',
+   'roojspacker/DocComment.vala',
+   'roojspacker/DocParser.vala',
+   'roojspacker/DocTag.vala',
+   'roojspacker/Identifier.vala',
+   'roojspacker/Lang.vala',
+   'roojspacker/PackerRun.vala',
+   'roojspacker/Packer.vala',
+   'roojspacker/PrettyPrint.vala',
+   'roojspacker/ScopeParser.vala',
+   'roojspacker/Scope.vala',
+   'roojspacker/SymbolSet.vala',
+   'roojspacker/Symbol.vala',
+   'roojspacker/TextStream.vala',
+   'roojspacker/TokenReader.vala',
+   'roojspacker/TokenStream.vala',
+   'roojspacker/Token.vala',
+   'roojspacker/Walker.vala',
+])
+
+
+roojspack_lib = shared_library('roojspack',  
+	sources : [ roojspack_src  ],
+	vala_vapi: 'roojspack-1.0.vapi',
+    dependencies: deps,
+    install: true,
+    install_dir: [true, true, true]
 )
 
