@@ -170,7 +170,7 @@ namespace JSDOC
 			
 			 
 		}
-		
+		/*
 		public bool hasErrors(string fn)
 		{
 			 if (!this.result.has_member(ResultType.err.to_string())) {
@@ -204,6 +204,7 @@ namespace JSDOC
 			
 			});
 		}
+		*/
 /*#else
 		public Gee.HashMap <string,int> result_count;   // output - what's the complication result
 		
