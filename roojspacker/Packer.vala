@@ -166,6 +166,7 @@ namespace JSDOC
 			diag.set_string_member( "message", message );
 			diag.set_int_member( "severity", (int) type );
 			diag.set_int_member( "line", line );
+			fa.add_object_element(diag);
 			 /**
 			 	
 			 
