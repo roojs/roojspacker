@@ -195,7 +195,7 @@ namespace JSDOC
 		  			return;
 	  			}
 		 	 	
-			 }
+			 });
 			
 			 return ret;
 		}
