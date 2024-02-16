@@ -170,24 +170,36 @@ namespace JSDOC
 			
 			 
 		}
-		/*
+		 
 		public bool hasErrors(string fn)
 		{
-			 if (!this.result.has_member(ResultType.err.to_string())) {
-				 return false;
+			  var ret = false;
+			  this.result.foreach_member((obj, filename, node) => {
+			  	if (ret) {
+			  		return;
+		  		}
+				var ar = this.result.get_array_member(filename.to_string());		  		
+			  	if (fn == "") {
+			  		if (ar.get_length() > 0) {
+			  			ret = true;
+			  			return;
+		  			}
+		  			return; // next.
+		  		}
+		  		
+		  		if (fn != filename) {
+		  			return; // next;
+	  			}
+		  		if (ar.get_length() > 0) {
+		  			ret = true;
+		  			return;
+	  			}
+		 	 	
 			 }
-			 
-			 if (fn.length < 1) {
-				return true;
-			 }
-			 var t = this.result.get_object_member(ResultType.err.to_string());
-			 
-			 if (t.has_member(fn)) {
-				 return true;
-			 }
-			 return false;
+			
+			 return ret;
 		}
-		*/
+		 
 		public void dumpErrors(ResultType type)
 		{
 		 	 this.result.foreach_member((obj, filename, node) => {
