@@ -167,25 +167,7 @@ namespace JSDOC
 			diag.set_int_member( "severity", (int) type );
 			diag.set_int_member( "line", line );
 			fa.add_object_element(diag);
-			 /**
-			 	
-			 
-			 
-			 */
-			 
-			 if (!this.result.has_member(type.to_string())) {
-				 this.result.set_object_member(type.to_string(), new Json.Object());
-			 }
-			 var t = this.result.get_object_member(type.to_string());
-			 if (!t.has_member(filename)) {
-				 t.set_object_member(filename, new Json.Object());
-			 }
-			 var tt = t.get_object_member(filename);
-			 if (!tt.has_member(line.to_string())) {
-				 tt.set_array_member(line.to_string(), new Json.Array());
-			 }
-			 var tl = tt.get_array_member(line.to_string());
-			 tl.add_string_element(message);
+			
 			 
 		}
 		
