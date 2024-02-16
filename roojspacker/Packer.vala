@@ -199,7 +199,7 @@ namespace JSDOC
 					if ((int)ty != type) {
 						continue;
 					}
-				    print("%s: %s:%d %s\n", type.to_string(), filename, el.get_int_member("line"),  el.get_int_member("message"));
+				    print("%s: %s:%d %s\n", type.to_string(), filename, (int)el.get_int_member("line"),  el.get_int_member("message"));
 
 				}
 			
