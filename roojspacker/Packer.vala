@@ -150,18 +150,27 @@ namespace JSDOC
 		
 //#if HAVE_JSON_GLIB
 		
+		// loosely based on diagnostics in LSP
+		// key/value  key = filename / value = LSP.Diagnostic
+		
 		public Json.Object result;   // output - what's the complication result
+		
 
-		public void  logError(ResultType type, string filename, int line, string message) {
+		public void  logError(ResultType type, string filename, int line, string message)
+		{
+			if (!this.result.has_member(type.to_string())) {
+				this.result.set_object_member(filename, new Json.Array());
+			}
+			var fa = this.result.get_array_member( filename);
+			var diag = new Json.Object();
+			diag.set_string_member( "message", message );
+			diag.set_int_member( "severity", type.to_lsp() );
+			diag.set_int_member( "line", line );
+			 /**
+			 	
 			 
-			 if (!this.result.has_member(type.to_string()+"-TOTAL")) {
-				 this.result.set_int_member(type.to_string()+"-TOTAL", 1);
-			 } else {
-				this.result.set_int_member(type.to_string()+"-TOTAL", 
-					this.result.get_int_member(type.to_string()+"-TOTAL") +1 
-				);
-			 }
 			 
+			 */
 			 
 			 if (!this.result.has_member(type.to_string())) {
 				 this.result.set_object_member(type.to_string(), new Json.Object());
