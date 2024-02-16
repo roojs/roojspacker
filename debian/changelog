@@ -1,6 +1,7 @@
-roojspacker (1.5-1) UNRELEASED; urgency=medium
+roojspacker (1.5) UNRELEASED; urgency=medium
 
   * Converted to Meson build
+  * PackerRun result format changed (closer to LSP)
 
  -- Alan Knowles  <alan@roojs.com>  Thu, 15 Feb 2024 16:05:29 +0800
  
