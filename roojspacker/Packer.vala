@@ -124,8 +124,8 @@ namespace JSDOC
 		// this could be another class really..
 		
 		public enum ResultType { 
-			err , 
-			warn;
+			err = 1 , 
+			warn = 2;
 			public string to_string() { 
 				switch(this) {
 					case err: return "ERR";
@@ -164,7 +164,7 @@ namespace JSDOC
 			var fa = this.result.get_array_member( filename);
 			var diag = new Json.Object();
 			diag.set_string_member( "message", message );
-			diag.set_int_member( "severity", type.to_lsp() );
+			diag.set_int_member( "severity", (int) type );
 			diag.set_int_member( "line", line );
 			 /**
 			 	
