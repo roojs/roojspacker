@@ -1,4 +1,11 @@
-roojspacker (1.4) UNRELEASED; urgency=medium
+roojspacker (1.5) UNRELEASED; urgency=medium
+
+  * Converted to Meson build
+  * PackerRun result format changed (closer to LSP)
+
+ -- Alan Knowles  <alan@roojs.com>  Thu, 15 Feb 2024 16:05:29 +0800
+ 
+roojspacker (1.4) unstable; urgency=medium
 
   * Upgrading detection of multiple features , including adding child depenancies and value lists etc. 
 
@@ -8,4 +15,5 @@ roojspacker (1.2) unstable; urgency=medium
 
   * Initial Release.
 
- -- Alan <alan@roojs.com>  Thu, 16 May 2019 17:52:08 +0800
+ -- Alan Knowles <alan@roojs.com>  Thu, 16 May 2019 17:52:08 +0800
+

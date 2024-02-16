@@ -124,8 +124,8 @@ namespace JSDOC
 		// this could be another class really..
 		
 		public enum ResultType { 
-			err , 
-			warn;
+			err = 1 , 
+			warn = 2;
 			public string to_string() { 
 				switch(this) {
 					case err: return "ERR";
@@ -150,68 +150,74 @@ namespace JSDOC
 		
 //#if HAVE_JSON_GLIB
 		
+		// loosely based on diagnostics in LSP
+		// key/value  key = filename / value = LSP.Diagnostic
+		
 		public Json.Object result;   // output - what's the complication result
+		
 
-		public void  logError(ResultType type, string filename, int line, string message) {
-			 
-			 if (!this.result.has_member(type.to_string()+"-TOTAL")) {
-				 this.result.set_int_member(type.to_string()+"-TOTAL", 1);
-			 } else {
-				this.result.set_int_member(type.to_string()+"-TOTAL", 
-					this.result.get_int_member(type.to_string()+"-TOTAL") +1 
-				);
-			 }
-			 
-			 
-			 if (!this.result.has_member(type.to_string())) {
-				 this.result.set_object_member(type.to_string(), new Json.Object());
-			 }
-			 var t = this.result.get_object_member(type.to_string());
-			 if (!t.has_member(filename)) {
-				 t.set_object_member(filename, new Json.Object());
-			 }
-			 var tt = t.get_object_member(filename);
-			 if (!tt.has_member(line.to_string())) {
-				 tt.set_array_member(line.to_string(), new Json.Array());
-			 }
-			 var tl = tt.get_array_member(line.to_string());
-			 tl.add_string_element(message);
+		public void  logError(ResultType type, string filename, int line, string message)
+		{
+			if (!this.result.has_member(type.to_string())) {
+				this.result.set_array_member(filename, new Json.Array());
+			}
+			var fa = this.result.get_array_member( filename);
+			var diag = new Json.Object();
+			diag.set_string_member( "message", message );
+			diag.set_int_member( "severity", (int) type );
+			diag.set_int_member( "line", line );
+			fa.add_object_element(diag);
+			
 			 
 		}
-		
+		 
 		public bool hasErrors(string fn)
 		{
-			 if (!this.result.has_member(ResultType.err.to_string())) {
-				 return false;
-			 }
-			 
-			 if (fn.length < 1) {
-				return true;
-			 }
-			 var t = this.result.get_object_member(ResultType.err.to_string());
-			 
-			 if (t.has_member(fn)) {
-				 return true;
-			 }
-			 return false;
+			  var ret = false;
+			  this.result.foreach_member((obj, filename, node) => {
+			  	if (ret) {
+			  		return;
+		  		}
+				var ar = this.result.get_array_member(filename.to_string());		  		
+			  	if (fn == "") {
+			  		if (ar.get_length() > 0) {
+			  			ret = true;
+			  			return;
+		  			}
+		  			return; // next.
+		  		}
+		  		
+		  		if (fn != filename) {
+		  			return; // next;
+	  			}
+		  		if (ar.get_length() > 0) {
+		  			ret = true;
+		  			return;
+	  			}
+		 	 	
+			 });
+			
+			 return ret;
 		}
+		 
 		public void dumpErrors(ResultType type)
 		{
-			 if (!this.result.has_member(type.to_string())) {
-				 return;
-			 }
-			var t = this.result.get_object_member(type.to_string());
-			t.foreach_member((obj, filename, node) => {
-					var linelist = node.dup_object();
-					linelist.foreach_member((linelistobj, linestr, nodear) => {
-						var errors=  nodear.dup_array();
-						errors.foreach_element((errorar, ignore, nodestr) => {
-							print("%s: %s:%s %s\n", type.to_string(), filename, linestr, nodestr.get_string());
-						});
-					});
+		 	 this.result.foreach_member((obj, filename, node) => {
+		 	 	 
+				var ar = this.result.get_array_member(filename.to_string());
+				for(var i = 0; i < ar.get_length(); i++) {
+					var el = ar.get_object_element(i);
+					var ty = el.get_int_member("severity");
+					if ((int)ty != type) {
+						continue;
+					}
+				    print("%s: %s:%d %s\n", type.to_string(), filename, (int)el.get_int_member("line"),  el.get_string_member("message"));
+
+				}
 			
 			});
 		}
+
 /*#else
 		public Gee.HashMap <string,int> result_count;   // output - what's the complication result
 		

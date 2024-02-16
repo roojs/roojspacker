@@ -700,7 +700,14 @@ namespace JSDOC {
 										TokenKeyMap val = token.props.get(k);
 										
 										if (val == null) {
-											print("failed  to get %s val from token %s\n", k, token.asString());
+											this.packer.logError(
+												Packer.ResultType.warn,
+												this.filename,
+												token.line,
+												"could not get '" + k+ "'  but got token " + token.asString()
+											);
+										
+											//print("failed  to get %s val from token %s\n", k, token.asString());
 											continue;										
 										}
 
