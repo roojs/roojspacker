@@ -187,24 +187,25 @@ namespace JSDOC
 			 }
 			 return false;
 		}
+		*/
 		public void dumpErrors(ResultType type)
 		{
-			 if (!this.result.has_member(type.to_string())) {
-				 return;
-			 }
-			var t = this.result.get_object_member(type.to_string());
-			t.foreach_member((obj, filename, node) => {
-					var linelist = node.dup_object();
-					linelist.foreach_member((linelistobj, linestr, nodear) => {
-						var errors=  nodear.dup_array();
-						errors.foreach_element((errorar, ignore, nodestr) => {
-							print("%s: %s:%s %s\n", type.to_string(), filename, linestr, nodestr.get_string());
-						});
-					});
+		 	 this.result.foreach_member((obj, filename, node) => {
+		 	 	 
+				var ar = this.result.get_array_member(filename.to_string());
+				for(var i = 0; i < ar.get_length(); i++) {
+					var el = ar.get_object_element(i);
+					var ty = el.get_int_member("severity");
+					if ((int)ty != type) {
+						continue;
+					}
+				    print("%s: %s:%d %s\n", type.to_string(), filename, el.get_int_member("line"),  el.get_int_member("message"));
+
+				}
 			
 			});
 		}
-		*/
+
 /*#else
 		public Gee.HashMap <string,int> result_count;   // output - what's the complication result
 		
