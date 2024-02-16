@@ -102,9 +102,6 @@ roojspack_lib = shared_library('roojspack',
     install_dir: [true, true, true]
 )
 pkg = import('pkgconfig')
-pkg.generate( roojspack_lib,
-    filebase: 'roojspack-1.5',
-    requires : ['gobject-2.0','gio-2.0','gio-unix-2.0','gee-0.8','json-glib-1.0']
-)
+pkg.generate( roojspack_lib )
 
 
