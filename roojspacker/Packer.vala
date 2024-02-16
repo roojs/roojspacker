@@ -159,7 +159,7 @@ namespace JSDOC
 		public void  logError(ResultType type, string filename, int line, string message)
 		{
 			if (!this.result.has_member(type.to_string())) {
-				this.result.set_object_member(filename, new Json.Array());
+				this.result.set_array_member(filename, new Json.Array());
 			}
 			var fa = this.result.get_array_member( filename);
 			var diag = new Json.Object();
