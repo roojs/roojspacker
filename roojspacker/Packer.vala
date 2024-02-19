@@ -180,19 +180,27 @@ namespace JSDOC
 		  		}
 				var ar = this.result.get_array_member(filename.to_string());		  		
 			  	if (fn == "") {
-			  		if (ar.get_length() > 0) {
-			  			ret = true;
-			  			return;
+			  		
+		  			for(var i = 0 ; i < ar.get_length(); i++) {
+		  				if (ar.get_object_element(i).get_int_member("severity") != ResultType.warn) {
+		  		
+				  			ret = true;
+				  			return;
+			  			}
 		  			}
+		  			
 		  			return; // next.
 		  		}
 		  		
 		  		if (fn != filename) {
 		  			return; // next;
 	  			}
-		  		if (ar.get_length() > 0) {
-		  			ret = true;
-		  			return;
+	  			for(var i = 0 ; i < ar.get_length(); i++) {
+	  				if (ar.get_object_element(i).get_int_member("severity") != ResultType.warn) {
+	  		
+			  			ret = true;
+			  			return;
+		  			}
 	  			}
 		 	 	
 			 });

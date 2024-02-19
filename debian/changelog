@@ -1,4 +1,10 @@
-roojspacker (1.5) UNRELEASED; urgency=medium
+roojspacker (1.5.1) UNRELEASED; urgency=medium
+
+  * Fix has errors to ignore wanrings
+
+ -- Alan Knowles  <alan@roojs.com>  Mon, 19 Feb 2024 12:35:29 +0800
+
+roojspacker (1.5) unstable; urgency=medium
 
   * Converted to Meson build
   * PackerRun result format changed (closer to LSP)
@@ -7,7 +13,7 @@ roojspacker (1.5) UNRELEASED; urgency=medium
  
 roojspacker (1.4) unstable; urgency=medium
 
-  * Upgrading detection of multiple features , including adding child depenancies and value lists etc. 
+  * Upgrading detection of multiple features , including adding child depenancies and value lists etc.
 
  -- Alan Knowles <alan@roojs.com>  Mon, 02 May 2022 10:37:20 +0800
 
