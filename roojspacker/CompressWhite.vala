@@ -13,7 +13,7 @@ namespace JSDOC
             BRACE
     }
 	 
-	public string CompressWhite (TokenStream ts, Packer packer, bool keepWhite) // throws CompressWhiteError,TokenStreamError
+	public string CompressWhite (TokenStream ts, Packer packer, bool keepWhite)   throws CompressWhiteError 
 	{
 		//keepWhite = keepWhite || false;
 		ts.rewind();
@@ -88,6 +88,8 @@ namespace JSDOC
 			       //print("cursor = %d", ts.cursor);
 			          
 			        if (ts.lookTok(1).data != "(" || ts.balance(TokenName.LEFT_PAREN /*"("*/).size < 1 ){
+			        
+			        	 
 			    		print("balance ( issue on line %d\n", ts.toArray().get(cu).line);
 			            ts.dump(cu-40, cu+2);
 			            print(">>>>>>>>>>>>>>>>>HERE>>>>>>>>>>>>");

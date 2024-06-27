@@ -614,8 +614,15 @@ namespace JSDOC
 			//print(sp.warnings.join("\n"));
 			//(new TokenStream(toks.tokens)).dumpAll(""); GLib.Process.exit(1);
 			// compress works on the original array - in theory the replacements have already been done by now 
-			var outf = CompressWhite(new TokenStream(toks.tokens), this, config.opt_keep_whitespace); // do not kill whitespace..
-		
+			var tsr = new TokenStream(toks.tokens);			
+			var outf = "";
+			try {
+
+				  outf = CompressWhite(tsr, this, config.opt_keep_whitespace); // do not kill whitespace..
+			 } catch(CompressWhiteError e) {
+			 	this.logError(ResultType.err, fn, tsr.toArray().get(tsr.cursor).line, e.message);
+				return "";
+			}
 			
 	//		debug("RESULT: \n %s\n", outf);
 			
