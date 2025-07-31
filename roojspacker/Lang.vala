@@ -171,14 +171,15 @@ namespace JSDOC {
         public TokenName puncString (string ch)
         {
         
-    		switch(ch) {
-								
+			switch(ch) {
+									
 				case "||": return TokenName.OR;
 				case "&&": return TokenName.AND;
 				case "==": return TokenName.EQ;
 				case "!=": return TokenName.NE;
 				case "<<": return TokenName.LSH;
 				case "<=": return TokenName.LE;
+				case "=>": return TokenName.ER; // function shortcut
 				case ">>": return TokenName.RSH;
 				case ">=": return TokenName.GE;
 				case "++": return TokenName.INCREMENT;
@@ -188,14 +189,14 @@ namespace JSDOC {
 				case "===": return TokenName.STRICT_EQ;
 				case "!==": return TokenName.STRICT_NE;
 				case ">>>": return TokenName.URSH;
-				
-				
-			default:
-				return TokenName.UNKNOWN;
-				 
-				
-			}        
-         
+					
+					
+				default:
+					return TokenName.UNKNOWN;
+					 
+					
+				}        
+		     
         }
          
         

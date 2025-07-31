@@ -157,6 +157,10 @@ namespace JSDOC {
 			this.parseScope(this.globalScope);
 			
 		//	 print("---------------END PASS 1 ---------------- \n");
+			if (PackerRun.singleton().opt_debug) {
+				this.globalScope.dump();
+			
+			}
 			
 		}
 	
@@ -504,7 +508,13 @@ namespace JSDOC {
 								case TokenName.RIGHT_CURLY: // }
 									//print("<< EXIT SCOPE");
 									return;
-									
+								
+								
+								//case TokenName.ER: // short function  ?? do we need to andlie it?
+								// (....) => { ... return ... }
+								// (....) => ... ;
+								
+								
 								default:
 									break;
 						}

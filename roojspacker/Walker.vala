@@ -108,12 +108,12 @@ namespace JSDOC {
                 
             //print("STARTING SCOPE WITH: " + ealiases.toSource());
              
-            var expressionBraceNesting = this.braceNesting;
-            var bracketNesting = 0;
-            var parensNesting = 0;
+ 
+ 
+ 
            
             
-            var l1 = "", l2 = "";
+ 
             var scopeName = "";
             
             
@@ -125,7 +125,7 @@ namespace JSDOC {
             //print("SCOPE: ------------------START ----------------");
 
             this.scopesIn(scope);
-            var scopeLen = this.scopes.size;
+ 
             
             if (this.ts.cursor < 1) {
               // this.ts.cursor--; // hopeflly this kludge will work
@@ -687,7 +687,7 @@ namespace JSDOC {
                     
             
                     
-                    continue;
+
                     
                     
                     
@@ -778,7 +778,7 @@ namespace JSDOC {
                         locBraceNest--;
                         
                             //assert braceNesting >= scope.getBraceNesting();
-                        var closescope = this.scopeOut();
+                        this.scopeOut();
                         
                         scope = this.scopes.get(this.scopes.size-1);
                         

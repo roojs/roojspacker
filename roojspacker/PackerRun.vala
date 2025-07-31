@@ -329,7 +329,7 @@ namespace JSDOC
 			
 			if (opt_files == null && opt_files_from == null) {
 				GLib.error("You must list some files with -f or -i to compile - see --help for more details");
-				GLib.Process.exit(1);
+ 
 			}
 			
 			
@@ -352,13 +352,13 @@ namespace JSDOC
 				}
 			}  
 			
-			var run_pack = false;
+ 
 			if (opt_target != null || opt_debug_target != null || opt_dump_tokens ) {
 				// do the actual packing...
 				p.pack(	opt_target == null ? "" : opt_target ,
 						opt_debug_target == null ? "" :  opt_debug_target );
 		        
-		    	if (p.outstr.length > 0 ) {
+				if (p.outstr.length > 0 ) {
 					stdout.printf ("%s", p.outstr);
 				}
 				return;
@@ -366,11 +366,11 @@ namespace JSDOC
 	        if (opt_doc_target != null || opt_doc_dump_tree) {
 				// remove trailing /
 				if (opt_doc_target  != null ) {
-				    opt_doc_target = opt_doc_target.has_suffix("/") ? 
-				    		opt_doc_target.substring(0, opt_doc_target.length-1) : opt_doc_target;
-	    		}
-	    		var d = new JSDOC.DocBuilder(p);
-	    		return;
+						opt_doc_target = opt_doc_target.has_suffix("/") ? 
+								opt_doc_target.substring(0, opt_doc_target.length-1) : opt_doc_target;
+				}
+				new JSDOC.DocBuilder(p);
+				return;
 	        } 
 	        GLib.error("either select output target or doc output target");
 	        

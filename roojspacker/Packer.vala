@@ -426,10 +426,10 @@ namespace JSDOC
 		    
 		    foreach(var file in this.files) {
 		        
-		        print("reading %s\n",file );
+		        GLib.debug("reading %s\n",file );
 		        
 		        if (!FileUtils.test (file, FileTest.EXISTS) || FileUtils.test (file, FileTest.IS_DIR)) {
-		            print("SKIP (is not a file) %s\n ", file);
+		            GLib.debug("SKIP (is not a file) %s\n ", file);
 		            continue;
 		        }
 		       
@@ -471,7 +471,7 @@ namespace JSDOC
 		            
 		        }
 		         
-		        print("COMPRESSING to %s\n", minfile);
+		        GLib.debug("COMPRESSING to %s\n", minfile);
 		        //var codeComp = pack(str, 10, 0, 0);
 		        if (config.opt_clean_cache && FileUtils.test (minfile, FileTest.EXISTS)) {
 		            FileUtils.remove(minfile);
@@ -498,7 +498,7 @@ namespace JSDOC
 				 
 				GLib.Process.exit(0);
 			}
-		    print("MERGING SOURCE\n");
+		    GLib.debug("MERGING SOURCE\n");
 		    
 		    for(var i=0; i < this.files.size; i++)  {
 		        var file = this.files[i];
@@ -506,26 +506,26 @@ namespace JSDOC
 		        
 		        
 		        if ( !FileUtils.test(minfile, FileTest.EXISTS)) {
-		    		print("skipping source %s - does not exist\n", minfile);
+		    			GLib.debug("skipping source %s - does not exist\n", minfile);
 		            continue;
 		        }
 		        string str;
 		        FileUtils.get_contents(minfile, out str);
-		        print("using MIN FILE  %s\n", minfile);
+		        GLib.debug("using MIN FILE  %s\n", minfile);
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
-		        		this.targetStream.write(("// " + 
-		        			( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) + 
-						"\n").data); 
+				    		this.targetStream.write(("// " + 
+				    			( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) + 
+							"\n").data); 
 
-					this.targetStream.write((str + "\n").data); 
+						this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
-		        		( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) +  "\n";
-		                this.outstr += "//" +  file  +"\n";
+		        				( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) +  "\n";
+ 
 
-				     this.outstr += str + "\n";
+				     	this.outstr += str + "\n";
 		            }
 		            
 		        }
@@ -539,7 +539,7 @@ namespace JSDOC
 			}
 		    
 		    if (this.target.length > 0 ) {
-			    print("Output file: " + this.target);
+			    GLib.debug("Output file: " + this.target);
 		    }
 		    if (this.targetDebug.length > 0) {
 				 print("Output debug file: %s\n" , this.targetDebug);
