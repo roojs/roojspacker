@@ -514,18 +514,18 @@ namespace JSDOC
 		        GLib.debug("using MIN FILE  %s\n", minfile);
 		        if (str.length > 0) {
 		            if (this.targetStream != null) {
-		        		this.targetStream.write(("// " + 
-		        			( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) + 
-						"\n").data); 
+				    		this.targetStream.write(("// " + 
+				    			( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) + 
+							"\n").data); 
 
-					this.targetStream.write((str + "\n").data); 
+						this.targetStream.write((str + "\n").data); 
 
 		            } else {
 		                this.outstr += "//" + 
-		        		( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) +  "\n";
-		                this.outstr += "//" +  file  +"\n";
+		        				( (file.length > config.opt_real_basedir.length) ? file.substring(config.opt_real_basedir.length)  : file ) +  "\n";
+ 
 
-				     this.outstr += str + "\n";
+				     	this.outstr += str + "\n";
 		            }
 		            
 		        }
