@@ -508,7 +508,13 @@ namespace JSDOC {
 								case TokenName.RIGHT_CURLY: // }
 									//print("<< EXIT SCOPE");
 									return;
-									
+								
+								
+								//case TokenName.ER: // short function  ?? do we need to andlie it?
+								// (....) => { ... return ... }
+								// (....) => ... ;
+								
+								
 								default:
 									break;
 						}
