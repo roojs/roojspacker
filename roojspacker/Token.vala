@@ -272,14 +272,14 @@ namespace JSDOC
             
             var ret =  this.data ;
             
-            foreach(var ai in this.items ) {
+            //foreach(var ai in this.items ) {
                 // supposed to iterate properties???
-                string str = "";
+             //   string str = "";
                 //foreach( var it in ai) {
                  //   str += it.toRaw(lvl+1);
                // }
-                ret += str;
-            }
+             //   ret += str;
+            //}
             
             /* -- what is a prop..
             if (this.props) {
