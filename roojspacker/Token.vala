@@ -101,7 +101,7 @@ namespace JSDOC
 			NE,
 			LSH,
 			LE,
-			ER,
+			ER,  // => (function indicator)
 			LT,
 			URSH,
 			RSH,
