@@ -101,6 +101,7 @@ namespace JSDOC
 			NE,
 			LSH,
 			LE,
+			ER,
 			LT,
 			URSH,
 			RSH,
