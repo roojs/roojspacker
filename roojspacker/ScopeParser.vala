@@ -157,6 +157,10 @@ namespace JSDOC {
 			this.parseScope(this.globalScope);
 			
 		//	 print("---------------END PASS 1 ---------------- \n");
+			if (PackerRun.singleton().opt_debug) {
+				this.globalScope.dump();
+			
+			}
 			
 		}
 	

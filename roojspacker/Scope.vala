@@ -74,13 +74,13 @@ namespace JSDOC
 			    str += (str.length > 0 ? ", " : "");
 				str +=  indent + " " + identifier.name + "=>" +  identifier.mungedValue ;
 			}
-			
-		    print( "\n"+ 
-		        indent +  "Scope: %d\n" +
-		        indent + "Started: %s\n" +
-		        indent + "- idents..: %s\n",
 
-				this.id,
+		    print( "\n" +  
+				indent + "Scope: %d (parent:%d)" + "\n" +  
+				indent + "Started: %s " + "\n" +  
+				indent + "- idents..: %s" + "\n", 
+			
+				this.id, this.parent != null ? this.parent.id : 0,
 				this.token != null ? this.token.asString()  : "TOP",
 				str
 				//		     " + XObject.keys(this.identifiers).join(", ") + "
@@ -168,6 +168,15 @@ namespace JSDOC
 		        }
 		        result += mungedValue;
 		    }
+		    // add all thechildren  mundgegd.?
+
+	    		foreach(var s in this.subScopes) {
+	    			var pr = s.getUsedSymbols();
+	    			foreach(var k in pr) {
+	    				result += k;
+    				}
+			}
+		    
 		    //println("Symbols for ("+ this.id +"): <B>" + result.join(',') + "</B><BR/>");
 		    //this.usedsymcache = result;
 		    return result;
@@ -249,7 +258,7 @@ namespace JSDOC
 
 		    
 		    
-		    var pickFromSet = 1;
+
 
 		    // Do not munge symbols in the global scope!
 		    if (this.parent == null) {
@@ -278,11 +287,7 @@ namespace JSDOC
 		    var sy = this.getAllUsedSymbols();
 
 		    // we need to remove the used from the free.....
-		    
-		    
-		    
-		    
-		    
+		     
 		        
 			Scope.array_merge(freeSymbols,Scope.ones,sy); 
 		         
